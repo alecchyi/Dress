@@ -13,6 +13,7 @@ class Cloth {
     let _upper:Dictionary<String,String>?
     let _downer:Dictionary<String,String>?
     let _footer:Dictionary<String,String>?
+    let _cloth_type:String?
     
     init() {
     
