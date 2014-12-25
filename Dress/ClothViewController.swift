@@ -21,7 +21,8 @@ class ClothViewController: UIViewController,UIPickerViewDelegate,UIPickerViewDat
     @IBOutlet var lblCategory:UILabel?
     @IBOutlet var lblSeason:UILabel?
     
-    let categories = ["帽子","上衣","裤子","鞋子"] as [String]
+    var categories = ["帽子","上衣","裤子","鞋子"] as [String]
+    var pickViewType:Int = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,8 +40,8 @@ class ClothViewController: UIViewController,UIPickerViewDelegate,UIPickerViewDat
         
     }
     
-    @IBAction func clickCategoryTextField(){
-        println(2222)
+    func showToolBar(){
+        hideToolBar()
         UIView.animateWithDuration(0.3, delay: 0.0, options:UIViewAnimationOptions.CurveEaseOut, animations:{
             var frame = UIScreen.mainScreen().bounds
             frame.origin.y = frame.size.height - 244
@@ -52,15 +53,22 @@ class ClothViewController: UIViewController,UIPickerViewDelegate,UIPickerViewDat
             pickView.delegate = self
             self.view!.addSubview(pickView)
             self.view!.bringSubviewToFront(pickView)
-            println(4444)
             }, completion:{(BOOL isFinished) in
-                if(isFinished){
-                println(555)
-                }else{
-                    println(666)
-                }
-        
+                
         })
+    }
+    
+    @IBAction func clickCategoryBtn(){
+        self.categories = ["帽子","上衣","裤子","鞋子"]
+        self.pickViewType = 0
+        showToolBar()
+        
+    }
+    
+    @IBAction func clickSeasonBtn(){
+        self.categories = ["春季","夏季","秋季","冬季"];
+        self.pickViewType = 1
+        showToolBar()
         
     }
     
@@ -87,27 +95,40 @@ class ClothViewController: UIViewController,UIPickerViewDelegate,UIPickerViewDat
     
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         println(self.categories[row])
-        
-        self.lblCategory!.tag = 1000 + row
+        if(self.pickViewType==0){
+            self.lblCategory!.tag = 1000 + row
+            self.lblSeason!.tag = 1100
+        }else{
+            self.lblCategory!.tag = 1000
+            self.lblSeason!.tag = 1100 + row
+        }
     }
     
-    func clickCancelBtn() {
+    func hideToolBar(){
         let subviews = self.view!.subviews
         for subview in subviews as [UIView] {
             if(subview.tag==1024){
                 UIView.animateWithDuration(0.3, delay: 0.0, options: UIViewAnimationOptions.CurveEaseIn, animations: {
                     subview.removeFromSuperview()
                     }, completion: {(BOOL isFinished) in
-                        })
+                })
                 subview.removeFromSuperview()
                 break
             }
         }
     }
+    func clickCancelBtn() {
+        hideToolBar()
+    }
     
     func clickDoneBtn(){
-        let row = self.lblCategory!.tag - 1000
-        self.lblCategory!.text = self.categories[row]
+        let row = self.pickViewType == 0 ? self.lblCategory!.tag - 1000 : self.lblSeason!.tag - 1100
+        if(self.pickViewType==0){
+            self.lblCategory!.text = self.categories[row]
+        }else{
+            self.lblSeason!.text = self.categories[row]
+        }
+        
         clickCancelBtn()
     }
 

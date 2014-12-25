@@ -156,7 +156,7 @@
                                         <rect key="frame" x="15" y="151" width="83" height="32"/>
                                         <state key="normal" title="选择类别"/>
                                         <connections>
-                                            <action selector="clickCategoryTextField" destination="2qO-Iy-RT4" eventType="touchUpInside" id="qzo-39-17Q"/>
+                                            <action selector="clickCategoryBtn" destination="2qO-Iy-RT4" eventType="touchUpInside" id="Shu-cp-Rva"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f4J-Po-MPa">
@@ -164,6 +164,9 @@
                                         <state key="normal" title="选择季节">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="clickSeasonBtn" destination="2qO-Iy-RT4" eventType="touchUpInside" id="b4t-v5-Tfe"/>
+                                        </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XyA-QG-z5n">
                                         <rect key="frame" x="118" y="151" width="127" height="33"/>
