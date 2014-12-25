@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="49e-Tb-3d3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="49e-Tb-3d3">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
     </dependencies>
     <scenes>
         <!--Tab Bar Controller-->
@@ -87,10 +87,10 @@
             </objects>
             <point key="canvasLocation" x="-1035" y="1472"/>
         </scene>
-        <!--Choose-->
+        <!--Cloth-->
         <scene sceneID="hNq-Zr-YAE">
             <objects>
-                <navigationController title="Choose" id="gIr-8y-jFk" sceneMemberID="viewController">
+                <navigationController title="Cloth" id="gIr-8y-jFk" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Choose" id="W9d-cR-Gnz"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="nth-D8-9ZY">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -104,10 +104,10 @@
             </objects>
             <point key="canvasLocation" x="-332" y="779"/>
         </scene>
-        <!--Choose View Controller-->
+        <!--Cloth View Controller-->
         <scene sceneID="Is8-sV-7Ju">
             <objects>
-                <viewController id="2qO-Iy-RT4" customClass="ChooseViewController" customModule="Dress" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="2qO-Iy-RT4" customClass="ClothViewController" customModule="Dress" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="OyA-VA-FsA"/>
                         <viewControllerLayoutGuide type="bottom" id="byz-NR-vCW"/>
@@ -115,9 +115,88 @@
                     <view key="view" contentMode="scaleToFill" id="0AI-Cy-F4w">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eU9-zY-IbY">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="415"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ll0-oc-HLx">
+                                        <rect key="frame" x="118" y="191" width="127" height="26"/>
+                                        <attributedString key="attributedText">
+                                            <fragment content="春季">
+                                                <attributes>
+                                                    <color key="NSColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <font key="NSFont" size="17" name="STHeitiSC-Light"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                                </attributes>
+                                            </fragment>
+                                        </attributedString>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yH9-mn-esP">
+                                        <rect key="frame" x="8" y="69" width="584" height="62"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </view>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="qHv-j2-Vlg">
+                                        <rect key="frame" x="12" y="290" width="123" height="29"/>
+                                        <segments>
+                                            <segment title="拍照"/>
+                                            <segment title="相册"/>
+                                        </segments>
+                                    </segmentedControl>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="选图片：" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w78-D2-4Fh">
+                                        <rect key="frame" x="12" y="256" width="102" height="26"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="myh-tz-e5l">
+                                        <rect key="frame" x="143" y="225" width="240" height="178"/>
+                                    </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pKZ-EK-zeF">
+                                        <rect key="frame" x="15" y="151" width="83" height="32"/>
+                                        <state key="normal" title="选择类别"/>
+                                        <connections>
+                                            <action selector="clickCategoryTextField" destination="2qO-Iy-RT4" eventType="touchUpInside" id="qzo-39-17Q"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f4J-Po-MPa">
+                                        <rect key="frame" x="26" y="189" width="60" height="30"/>
+                                        <state key="normal" title="选择季节">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XyA-QG-z5n">
+                                        <rect key="frame" x="118" y="151" width="127" height="33"/>
+                                        <attributedString key="attributedText">
+                                            <fragment content="类别">
+                                                <attributes>
+                                                    <color key="NSColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <font key="NSFont" size="17" name="STHeitiSC-Light"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                                </attributes>
+                                            </fragment>
+                                        </attributedString>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AuI-7t-X74">
+                                <rect key="frame" x="0.0" y="423" width="600" height="128"/>
+                            </imageView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="SnQ-x6-Rgz"/>
+                    <connections>
+                        <outlet property="addClothView" destination="eU9-zY-IbY" id="FGN-yF-Vzh"/>
+                        <outlet property="advImgView" destination="AuI-7t-X74" id="h3q-m8-krb"/>
+                        <outlet property="lblCategory" destination="XyA-QG-z5n" id="h3C-1M-kKE"/>
+                        <outlet property="lblSeason" destination="ll0-oc-HLx" id="Nrz-cn-K0N"/>
+                        <outlet property="photoImgView" destination="myh-tz-e5l" id="Its-Cs-nQZ"/>
+                        <outlet property="photoSeg" destination="qHv-j2-Vlg" id="7VV-ru-Xys"/>
+                        <outlet property="tagView" destination="yH9-mn-esP" id="dlV-zS-0hA"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="S6r-w7-6X1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
