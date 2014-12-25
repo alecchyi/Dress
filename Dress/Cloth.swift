@@ -15,6 +15,7 @@ class Cloth {
     let _footer:Dictionary<String,String>?
     let _cloth_type:String?
     
+    
     init() {
     
     }
