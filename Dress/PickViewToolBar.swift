@@ -15,7 +15,7 @@ protocol PickViewToolBarDelegate {
 protocol PickViewToolBarDataSource {
 }
 
-class PickViewToolBar:UIView,UIPickerViewDataSource {
+class PickViewToolBar:UIView {
 
     let pickerView:UIPickerView?
     let toolBar:UIToolbar?
@@ -41,7 +41,6 @@ class PickViewToolBar:UIView,UIPickerViewDataSource {
 
     func clickCancelBtn(){
         if(self.respondsToSelector("clickCancelBtn")){
-            println(333222)
             delegate?.clickCancelBtn()
         }
         
@@ -57,14 +56,7 @@ class PickViewToolBar:UIView,UIPickerViewDataSource {
     required init(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return 5
-    }
-    
-    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
-        return 1
-    }
+
     
     
     
