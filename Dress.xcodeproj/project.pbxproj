@@ -21,7 +21,7 @@
 		70A663531A49B75600CB2662 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 70A663521A49B75600CB2662 /* Images.xcassets */; };
 		70A663561A49B75600CB2662 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 70A663541A49B75600CB2662 /* LaunchScreen.xib */; };
 		70A663621A49B75600CB2662 /* DressTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A663611A49B75600CB2662 /* DressTests.swift */; };
-		70A663721A49BC9900CB2662 /* ChooseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A6636E1A49BC9900CB2662 /* ChooseViewController.swift */; };
+		70A663721A49BC9900CB2662 /* ClothViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A6636E1A49BC9900CB2662 /* ClothViewController.swift */; };
 		70A663731A49BC9900CB2662 /* FindViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A6636F1A49BC9900CB2662 /* FindViewController.swift */; };
 		70A663741A49BC9900CB2662 /* PersonalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A663701A49BC9900CB2662 /* PersonalViewController.swift */; };
 		70A663751A49BC9900CB2662 /* WeatherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A663711A49BC9900CB2662 /* WeatherViewController.swift */; };
@@ -30,6 +30,10 @@
 		70A6637E1A49BCC800CB2662 /* trouser.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 70A6637A1A49BCC800CB2662 /* trouser.jpg */; };
 		70A6637F1A49BCC800CB2662 /* weather_icon.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 70A6637B1A49BCC800CB2662 /* weather_icon.jpg */; };
 		70A663831A49BCE800CB2662 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A663811A49BCE800CB2662 /* DataService.swift */; };
+		70AB758A1A4CEC4C00B9D6C2 /* NewClothViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70AB75891A4CEC4C00B9D6C2 /* NewClothViewController.swift */; };
+		70AB75901A4D37F000B9D6C2 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70AB758F1A4D37F000B9D6C2 /* Utils.swift */; };
+		70AB75921A4D3B9A00B9D6C2 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70AB75911A4D3B9A00B9D6C2 /* User.swift */; };
+		70AC70181A4BBBCE00F396AA /* PickViewToolBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70AC70171A4BBBCE00F396AA /* PickViewToolBar.swift */; };
 		CB36CD28BBE7699420681832 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FA990867593A7835004F6DD /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -65,7 +69,7 @@
 		70A663601A49B75600CB2662 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		70A663611A49B75600CB2662 /* DressTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DressTests.swift; sourceTree = "<group>"; };
 		70A6636B1A49B78200CB2662 /* Dress-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Dress-Bridging-Header.h"; sourceTree = "<group>"; };
-		70A6636E1A49BC9900CB2662 /* ChooseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChooseViewController.swift; sourceTree = "<group>"; };
+		70A6636E1A49BC9900CB2662 /* ClothViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClothViewController.swift; sourceTree = "<group>"; };
 		70A6636F1A49BC9900CB2662 /* FindViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindViewController.swift; sourceTree = "<group>"; };
 		70A663701A49BC9900CB2662 /* PersonalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonalViewController.swift; sourceTree = "<group>"; };
 		70A663711A49BC9900CB2662 /* WeatherViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherViewController.swift; sourceTree = "<group>"; };
@@ -74,6 +78,10 @@
 		70A6637A1A49BCC800CB2662 /* trouser.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = trouser.jpg; sourceTree = "<group>"; };
 		70A6637B1A49BCC800CB2662 /* weather_icon.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = weather_icon.jpg; sourceTree = "<group>"; };
 		70A663811A49BCE800CB2662 /* DataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
+		70AB75891A4CEC4C00B9D6C2 /* NewClothViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewClothViewController.swift; sourceTree = "<group>"; };
+		70AB758F1A4D37F000B9D6C2 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		70AB75911A4D3B9A00B9D6C2 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		70AC70171A4BBBCE00F396AA /* PickViewToolBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickViewToolBar.swift; sourceTree = "<group>"; };
 		B21546195A97146D5333C122 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -108,6 +116,7 @@
 			children = (
 				708E1AA41A4B021100FF27A1 /* Weather.swift */,
 				708E1AA61A4B035800FF27A1 /* Cloth.swift */,
+				70AB75911A4D3B9A00B9D6C2 /* User.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -138,7 +147,8 @@
 				708E1AA31A4B01F400FF27A1 /* Models */,
 				70A663801A49BCCF00CB2662 /* Utils */,
 				70A663761A49BCA200CB2662 /* Resources */,
-				70A6636E1A49BC9900CB2662 /* ChooseViewController.swift */,
+				70A6636E1A49BC9900CB2662 /* ClothViewController.swift */,
+				70AB75891A4CEC4C00B9D6C2 /* NewClothViewController.swift */,
 				70A6636F1A49BC9900CB2662 /* FindViewController.swift */,
 				70A663701A49BC9900CB2662 /* PersonalViewController.swift */,
 				70A663711A49BC9900CB2662 /* WeatherViewController.swift */,
@@ -200,6 +210,8 @@
 			isa = PBXGroup;
 			children = (
 				70A663811A49BCE800CB2662 /* DataService.swift */,
+				70AC70171A4BBBCE00F396AA /* PickViewToolBar.swift */,
+				70AB758F1A4D37F000B9D6C2 /* Utils.swift */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -368,10 +380,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				708E1AA71A4B035800FF27A1 /* Cloth.swift in Sources */,
+				70AC70181A4BBBCE00F396AA /* PickViewToolBar.swift in Sources */,
+				70AB758A1A4CEC4C00B9D6C2 /* NewClothViewController.swift in Sources */,
 				70A663731A49BC9900CB2662 /* FindViewController.swift in Sources */,
-				70A663721A49BC9900CB2662 /* ChooseViewController.swift in Sources */,
+				70A663721A49BC9900CB2662 /* ClothViewController.swift in Sources */,
 				70A6634A1A49B75600CB2662 /* AppDelegate.swift in Sources */,
 				70A663831A49BCE800CB2662 /* DataService.swift in Sources */,
+				70AB75901A4D37F000B9D6C2 /* Utils.swift in Sources */,
+				70AB75921A4D3B9A00B9D6C2 /* User.swift in Sources */,
 				70A663751A49BC9900CB2662 /* WeatherViewController.swift in Sources */,
 				70A663741A49BC9900CB2662 /* PersonalViewController.swift in Sources */,
 				708E1AA51A4B021100FF27A1 /* Weather.swift in Sources */,
