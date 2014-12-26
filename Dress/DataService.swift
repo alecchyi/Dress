@@ -46,5 +46,25 @@ class DataService {
             self.userToken = gen_uuid()
         }
     }
+    
+    func getUserClothPlist() -> String{
+        let fileManager = NSFileManager.defaultManager()
+        let storeFilePath = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true)
+        var documentDir = storeFilePath[0] as String
+        let path = documentDir.stringByAppendingPathComponent(DataService.shareService.userToken! + "/" + kClothPlist)
+        if(!fileManager.fileExistsAtPath(path)){
+            println(path)
+            fileManager.createFileAtPath(path, contents: nil, attributes: nil)
+        }
+        return path
+    }
+    
+    func getUserClothDirPath() -> String{
+        let fileManager = NSFileManager.defaultManager()
+        let storeFilePath = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true)
+        var documentDir = storeFilePath[0] as String
+        let path = documentDir.stringByAppendingPathComponent(DataService.shareService.userToken! + "/Clothes")
+        return path
+    }
 
 }

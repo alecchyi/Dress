@@ -24,6 +24,7 @@ class NewClothViewController: UIViewController,UIPickerViewDelegate,UIPickerView
     @IBOutlet var lblCategory:UILabel?
     @IBOutlet var lblSeason:UILabel?
     var newClothDelegate:NewClothViewControllerDelegate?
+    var _picPath:String?
     
     var categories = ["帽子","上衣","裤子","鞋子"] as [String]
     var pickViewType:Int = 0
@@ -80,9 +81,30 @@ class NewClothViewController: UIViewController,UIPickerViewDelegate,UIPickerView
     
     @IBAction func clickSaveBtn(){
         println("saving")
-        self.dismissViewControllerAnimated(true, completion: {})
-        if(self.respondsToSelector("dismissModelView")){
-            self.newClothDelegate?.dismissModelView()
+        println(self.lblCategory!.tag)
+        println(self.lblSeason!.tag)
+        println(self._picPath)
+        if(self._picPath == nil){
+            var alert = UIAlertView(title: "提示", message: "请选择衣服照片", delegate: nil, cancelButtonTitle: nil, otherButtonTitles: "好")
+            alert.show()
+        }else{
+            var params = NSMutableDictionary()
+            params.setValue(self.lblSeason!.tag - 1100, forKey: "season")
+            params.setValue(self.lblCategory!.tag - 1000, forKey: "type")
+            params.setValue(self._picPath!, forKey: "picPath")
+            params.setValue([0,1], forKey: "tags")
+            
+            var cloth:Cloth = Cloth(params: params)
+//            println(cloth)
+            var clothes = NSMutableArray(contentsOfFile: DataService.shareService.getUserClothPlist())
+//            if((clothes?.addObject(cloth)) != nil){
+                println(clothes)
+                clothes?.writeToFile(DataService.shareService.getUserClothPlist(), atomically: true)
+//            }
+            self.dismissViewControllerAnimated(true, completion: {})
+            if(self.respondsToSelector("dismissModelView")){
+                self.newClothDelegate?.dismissModelView()
+            }
         }
     }
     
@@ -132,10 +154,19 @@ class NewClothViewController: UIViewController,UIPickerViewDelegate,UIPickerView
             }
         }
     }
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
-        picker.dismissViewControllerAnimated(true, completion: {
-            println(info)
-        })
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: NSDictionary) {
+        var image = info.objectForKey(UIImagePickerControllerEditedImage) as UIImage
+        self.photoImgView?.image = image
+        var path = DataService.shareService.getUserClothDirPath() + "/" + gen_uuid()!
+        self._picPath = path
+        var result:Bool = UIImagePNGRepresentation(image).writeToFile(path, atomically: true)
+        if(false == result){
+            println("failed")
+        }else{
+            picker.dismissViewControllerAnimated(true, completion: {
+    //            println(info)
+            })
+        }
     }
     
     func imagePickerControllerDidCancel(picker: UIImagePickerController) {

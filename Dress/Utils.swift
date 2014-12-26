@@ -8,10 +8,11 @@
 
 import Foundation
 
+let kClothPlist = "clothes.plist"
 
 func gen_uuid() -> String? {
-    var uuid = NSUUID(UUIDString: "E621E1F8-C36C-495A-93FC-0C247A3E6E5F")
-    return uuid?.UUIDString
+    var uuid = NSUUID()
+    return uuid.UUIDString
 }
 
 func initLogin() {

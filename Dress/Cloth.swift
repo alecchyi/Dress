@@ -8,20 +8,24 @@
 
 import Foundation
 
-class Cloth {
-    let _header:Dictionary<String,AnyObject>?
-    let _upper:Dictionary<String,String>?
-    let _downer:Dictionary<String,String>?
-    let _footer:Dictionary<String,String>?
-    let _cloth_type:String?
+class Cloth:NSObject {
+    var _picPath:String?
+    var _tags:[AnyObject]?
+    var _season:Int = 0
+    var _cloth_type:Int = 0
     
     
-    init() {
-    
+    init(params:NSMutableDictionary) {
+        super.init()
+        self._picPath? = params.objectForKey("picPath") as String
+        self._cloth_type = params.objectForKey("type") as Int
+        self._season = params.objectForKey("season") as Int
+        self._tags = params.objectForKey("tags") as [Int]
+        
     }
     
-    func setHeader(val:AnyObject?) {
-    //        self._header?.updateValue("3333", forKey:"_header")
+    func add() {
+        
     }
     
     
