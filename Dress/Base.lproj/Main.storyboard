@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="49e-Tb-3d3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="49e-Tb-3d3">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
     </dependencies>
     <scenes>
         <!--Tab Bar Controller-->
@@ -107,7 +107,7 @@
         <!--添加衣服-->
         <scene sceneID="Is8-sV-7Ju">
             <objects>
-                <viewController title="添加衣服" id="2qO-Iy-RT4" customClass="NewClothViewController" customModule="Dress" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="newClothViewController" title="添加衣服" id="2qO-Iy-RT4" customClass="NewClothViewController" customModule="Dress" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="OyA-VA-FsA"/>
                         <viewControllerLayoutGuide type="bottom" id="byz-NR-vCW"/>
@@ -120,7 +120,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="415"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ll0-oc-HLx">
-                                        <rect key="frame" x="143" y="178" width="127" height="26"/>
+                                        <rect key="frame" x="143" y="163" width="127" height="26"/>
                                         <attributedString key="attributedText">
                                             <fragment content="春季">
                                                 <attributes>
@@ -132,58 +132,83 @@
                                         </attributedString>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yH9-mn-esP">
-                                        <rect key="frame" x="0.0" y="64" width="600" height="60"/>
+                                    <view clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yH9-mn-esP">
+                                        <rect key="frame" x="0.0" y="64" width="600" height="50"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bUY-fI-n4f">
-                                                <rect key="frame" x="91" y="15" width="30" height="30"/>
+                                                <rect key="frame" x="91" y="10" width="30" height="30"/>
                                                 <state key="normal" title="休闲">
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tst-eZ-wGB">
-                                                <rect key="frame" x="167" y="15" width="30" height="30"/>
+                                                <rect key="frame" x="150" y="10" width="30" height="30"/>
                                                 <state key="normal" title="商务">
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U3d-6E-Ma6">
-                                                <rect key="frame" x="253" y="15" width="30" height="30"/>
+                                                <rect key="frame" x="204" y="10" width="30" height="30"/>
                                                 <state key="normal" title="运动">
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="标签" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RkV-jD-ABQ">
-                                                <rect key="frame" x="10" y="19" width="34" height="21"/>
+                                                <rect key="frame" x="10" y="16" width="34" height="21"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="backgroundColor" red="0.87060903284671531" green="0.88580634124087587" blue="0.87306113138686137" alpha="1" colorSpace="calibratedRGB"/>
                                     </view>
-                                    <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="qHv-j2-Vlg">
-                                        <rect key="frame" x="8" y="246" width="102" height="29"/>
-                                        <segments>
-                                            <segment title="拍照"/>
-                                            <segment title="相册"/>
-                                        </segments>
-                                    </segmentedControl>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QYR-62-RRH">
+                                        <rect key="frame" x="0.0" y="20" width="600" height="44"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cdb-SC-9og">
+                                                <rect key="frame" x="10" y="10" width="50" height="30"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                <state key="normal" title="取消">
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="clickBackBtn" destination="2qO-Iy-RT4" eventType="touchUpInside" id="VD3-9a-7HY"/>
+                                                </connections>
+                                            </button>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="添加衣物" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fvr-aV-b7E">
+                                                <rect key="frame" x="90" y="14" width="140" height="21"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dzD-PZ-b8w">
+                                                <rect key="frame" x="260" y="10" width="50" height="30"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                <state key="normal" title="完成">
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="clickSaveBtn" destination="2qO-Iy-RT4" eventType="touchUpInside" id="6Z1-Zf-PeT"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
+                                    </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="选图片：" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w78-D2-4Fh">
-                                        <rect key="frame" x="0.0" y="210" width="89" height="26"/>
+                                        <rect key="frame" x="0.0" y="195" width="89" height="26"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pKZ-EK-zeF">
-                                        <rect key="frame" x="0.0" y="141" width="80" height="30"/>
+                                        <rect key="frame" x="0.0" y="126" width="80" height="30"/>
                                         <state key="normal" title="选择类别"/>
                                         <connections>
                                             <action selector="clickCategoryBtn" destination="2qO-Iy-RT4" eventType="touchUpInside" id="Shu-cp-Rva"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f4J-Po-MPa">
-                                        <rect key="frame" x="0.0" y="176" width="80" height="30"/>
+                                        <rect key="frame" x="0.0" y="161" width="80" height="30"/>
                                         <state key="normal" title="选择季节">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -192,7 +217,7 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XyA-QG-z5n">
-                                        <rect key="frame" x="143" y="139" width="127" height="33"/>
+                                        <rect key="frame" x="143" y="124" width="127" height="33"/>
                                         <attributedString key="attributedText">
                                             <fragment content="类别">
                                                 <attributes>
@@ -204,26 +229,36 @@
                                         </attributedString>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="shirt.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="myh-tz-e5l">
-                                        <rect key="frame" x="120" y="219" width="180" height="180"/>
+                                    <imageView userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="shirt.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="myh-tz-e5l">
+                                        <rect key="frame" x="120" y="204" width="180" height="180"/>
                                     </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mhh-cT-EdG">
+                                        <rect key="frame" x="8" y="224" width="60" height="30"/>
+                                        <state key="normal" title="找照片">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="clickPhotoBtn" destination="2qO-Iy-RT4" eventType="touchUpInside" id="9dt-KZ-eyP"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.87058823529411766" green="0.88627450980392153" blue="0.87450980392156863" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AuI-7t-X74">
-                                <rect key="frame" x="-37" y="-68" width="96" height="3"/>
+                                <rect key="frame" x="0.0" y="415" width="600" height="150"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <toolbarItems/>
                     <navigationItem key="navigationItem" title="添加衣服" id="SnQ-x6-Rgz"/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="addClothView" destination="eU9-zY-IbY" id="FGN-yF-Vzh"/>
                         <outlet property="advImgView" destination="AuI-7t-X74" id="h3q-m8-krb"/>
                         <outlet property="lblCategory" destination="XyA-QG-z5n" id="h3C-1M-kKE"/>
                         <outlet property="lblSeason" destination="ll0-oc-HLx" id="Nrz-cn-K0N"/>
                         <outlet property="photoImgView" destination="myh-tz-e5l" id="Its-Cs-nQZ"/>
-                        <outlet property="photoSeg" destination="qHv-j2-Vlg" id="7VV-ru-Xys"/>
                         <outlet property="tagView" destination="yH9-mn-esP" id="dlV-zS-0hA"/>
                     </connections>
                 </viewController>

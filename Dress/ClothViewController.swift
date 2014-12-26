@@ -9,7 +9,7 @@
 import UIKit
 //import PickViewToolBar
 
-class ClothViewController: UIViewController {
+class ClothViewController: UIViewController, NewClothViewControllerDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,10 +26,16 @@ class ClothViewController: UIViewController {
     }
     
     func clickAddBtn(){
-        var newClothViewController = NewClothViewController()
-        newClothViewController.title = "添加衣服"
+        let mainStoryBoard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
+        var newClothViewController = mainStoryBoard.instantiateViewControllerWithIdentifier("newClothViewController") as NewClothViewController
+        newClothViewController.newClothDelegate = self
+        self.presentViewController(newClothViewController, animated: true, completion: {
         
-        self.navigationController?.pushViewController(newClothViewController, animated: true)
+        })
+    }
+    
+    func dismissModelView() {
+        println("dismiss")
     }
 
     override func didReceiveMemoryWarning() {

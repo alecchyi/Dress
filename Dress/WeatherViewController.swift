@@ -42,7 +42,6 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
         locationManager!.delegate = self
         locationManager!.desiredAccuracy = kCLLocationAccuracyBest
         if(atof(UIDevice.currentDevice().systemVersion)>=8.0){
-            println(3333)
             locationManager!.requestAlwaysAuthorization()
         }
         locationManager!.startUpdatingLocation()
@@ -54,17 +53,17 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
         
         self.clothesMainView!.frame = CGRectMake(0, 160, self.view.bounds.width, self.view.bounds.height - 68)
         
+        //init user Id
+        
+        
         //init ruler view
         
         //
     }
     
     func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
-        println(5555)
         var location:CLLocation = locations[locations.count - 1] as CLLocation
         if(location.horizontalAccuracy>0){
-            println(location.coordinate.latitude)
-            println(location.coordinate.longitude)
             updateWeatherData(location.coordinate.longitude, lat: location.coordinate.latitude)
             manager.stopUpdatingLocation()
         }

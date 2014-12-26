@@ -8,7 +8,11 @@
 
 import UIKit
 
-class NewClothViewController: UIViewController,UIPickerViewDelegate,UIPickerViewDataSource,PickViewToolBarDelegate {
+protocol NewClothViewControllerDelegate {
+    func dismissModelView()
+}
+
+class NewClothViewController: UIViewController,UIPickerViewDelegate,UIPickerViewDataSource,PickViewToolBarDelegate, UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIActionSheetDelegate {
     
     @IBOutlet var tagView:UIView?
     @IBOutlet var categoryBtn:UIButton?
@@ -19,6 +23,7 @@ class NewClothViewController: UIViewController,UIPickerViewDelegate,UIPickerView
     @IBOutlet var addClothView:UIView?
     @IBOutlet var lblCategory:UILabel?
     @IBOutlet var lblSeason:UILabel?
+    var newClothDelegate:NewClothViewControllerDelegate?
     
     var categories = ["帽子","上衣","裤子","鞋子"] as [String]
     var pickViewType:Int = 0
@@ -75,7 +80,72 @@ class NewClothViewController: UIViewController,UIPickerViewDelegate,UIPickerView
     
     @IBAction func clickSaveBtn(){
         println("saving")
+        self.dismissViewControllerAnimated(true, completion: {})
+        if(self.respondsToSelector("dismissModelView")){
+            self.newClothDelegate?.dismissModelView()
+        }
     }
+    
+    @IBAction func clickBackBtn(){
+        println("back")
+        self.dismissViewControllerAnimated(true, completion: {})
+    }
+    
+    @IBAction func clickPhotoBtn(){
+        
+        var sheet:UIActionSheet?
+        if(UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera)){
+            sheet! = UIActionSheet(title: "选择照片", delegate:self, cancelButtonTitle:nil, destructiveButtonTitle: "取消", otherButtonTitles: "拍照","相册")
+        }else{
+            sheet = UIActionSheet(title: "选择照片", delegate:self, cancelButtonTitle:nil, destructiveButtonTitle:"取消",otherButtonTitles:"相册")
+        }
+        
+        sheet?.showInView(self.view)
+    }
+    
+    func actionSheet(actionSheet: UIActionSheet, clickedButtonAtIndex buttonIndex: Int) {
+        var imgPicker = UIImagePickerController()
+        imgPicker.delegate = self
+        imgPicker.allowsEditing = true
+        if(UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera)){
+            if(buttonIndex==1){
+                imgPicker.sourceType = UIImagePickerControllerSourceType.Camera
+                self.presentViewController(imgPicker, animated: true, completion: {
+                    
+                })
+            }else if(buttonIndex==2){
+                imgPicker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
+                self.presentViewController(imgPicker, animated: true, completion: {
+                    
+                })
+            }else{
+                actionSheet.dismissWithClickedButtonIndex(buttonIndex, animated: true)
+            }
+        }else{
+            if(buttonIndex==1){
+                imgPicker.sourceType = UIImagePickerControllerSourceType.SavedPhotosAlbum
+                self.presentViewController(imgPicker, animated: true, completion: {
+                    
+                })
+            }else{
+                actionSheet.dismissWithClickedButtonIndex(buttonIndex, animated: true)
+            }
+        }
+    }
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
+        picker.dismissViewControllerAnimated(true, completion: {
+            println(info)
+        })
+    }
+    
+    func imagePickerControllerDidCancel(picker: UIImagePickerController) {
+        println("cancel")
+        picker.dismissViewControllerAnimated(true, completion: {
+        
+        })
+    }
+    
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -118,11 +188,11 @@ class NewClothViewController: UIViewController,UIPickerViewDelegate,UIPickerView
             }
         }
     }
-    func clickCancelBtn() {
+    func clickToolBarCancelBtn() {
         hideToolBar()
     }
     
-    func clickDoneBtn(){
+    func clickToolBarDoneBtn(){
         let row = self.pickViewType == 0 ? self.lblCategory!.tag - 1000 : self.lblSeason!.tag - 1100
         if(self.pickViewType==0){
             self.lblCategory!.text = self.categories[row]
@@ -130,7 +200,7 @@ class NewClothViewController: UIViewController,UIPickerViewDelegate,UIPickerView
             self.lblSeason!.text = self.categories[row]
         }
         
-        clickCancelBtn()
+        hideToolBar()
     }
     
 }

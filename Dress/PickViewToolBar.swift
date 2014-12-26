@@ -9,8 +9,8 @@
 import Foundation
 
 protocol PickViewToolBarDelegate {
-    func clickCancelBtn()
-    func clickDoneBtn()
+    func clickToolBarCancelBtn()
+    func clickToolBarDoneBtn()
 }
 protocol PickViewToolBarDataSource {
 }
@@ -23,7 +23,6 @@ class PickViewToolBar:UIView {
     
     override init(frame: CGRect) {
         super.init(frame:frame)
-        println("sssssss")
         self.backgroundColor = UIColor.grayColor()
         self.pickerView = UIPickerView(frame: CGRectMake(0, 44, frame.size.width, frame.size.height - 44))
         self.toolBar = UIToolbar(frame: CGRectMake(0, 0, frame.size.width, 44))
@@ -41,14 +40,14 @@ class PickViewToolBar:UIView {
 
     func clickCancelBtn(){
         if(self.respondsToSelector("clickCancelBtn")){
-            delegate?.clickCancelBtn()
+            delegate?.clickToolBarCancelBtn()
         }
         
     }
     
     func clickDoneBtn(){
         if(self.respondsToSelector("clickDoneBtn")){
-            delegate?.clickDoneBtn()
+            delegate?.clickToolBarDoneBtn()
         }
         
     }
