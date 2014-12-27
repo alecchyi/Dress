@@ -53,7 +53,7 @@ class DataService {
         var documentDir = storeFilePath[0] as String
         let path = documentDir.stringByAppendingPathComponent(DataService.shareService.userToken! + "/" + kClothPlist)
         if(!fileManager.fileExistsAtPath(path)){
-            println(path)
+//            println(path)
             fileManager.createFileAtPath(path, contents: nil, attributes: nil)
         }
         return path
@@ -64,6 +64,11 @@ class DataService {
         let storeFilePath = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true)
         var documentDir = storeFilePath[0] as String
         let path = documentDir.stringByAppendingPathComponent(DataService.shareService.userToken! + "/Clothes")
+        var isDir:ObjCBool = false
+        if(!fileManager.fileExistsAtPath(path, isDirectory: &isDir)){
+//            println(path)
+            fileManager.createDirectoryAtPath(path, withIntermediateDirectories: true, attributes: nil, error: nil)
+        }
         return path
     }
 

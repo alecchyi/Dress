@@ -8,19 +8,18 @@
 
 import Foundation
 
-class Cloth:NSObject {
+class Cloth {
     var _picPath:String?
     var _tags:[AnyObject]?
     var _season:Int = 0
     var _cloth_type:Int = 0
     
-    
     init(params:NSMutableDictionary) {
-        super.init()
         self._picPath? = params.objectForKey("picPath") as String
         self._cloth_type = params.objectForKey("type") as Int
         self._season = params.objectForKey("season") as Int
         self._tags = params.objectForKey("tags") as [Int]
+        
         
     }
     

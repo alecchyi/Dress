@@ -81,9 +81,6 @@ class NewClothViewController: UIViewController,UIPickerViewDelegate,UIPickerView
     
     @IBAction func clickSaveBtn(){
         println("saving")
-        println(self.lblCategory!.tag)
-        println(self.lblSeason!.tag)
-        println(self._picPath)
         if(self._picPath == nil){
             var alert = UIAlertView(title: "提示", message: "请选择衣服照片", delegate: nil, cancelButtonTitle: nil, otherButtonTitles: "好")
             alert.show()
@@ -94,13 +91,15 @@ class NewClothViewController: UIViewController,UIPickerViewDelegate,UIPickerView
             params.setValue(self._picPath!, forKey: "picPath")
             params.setValue([0,1], forKey: "tags")
             
-            var cloth:Cloth = Cloth(params: params)
-//            println(cloth)
             var clothes = NSMutableArray(contentsOfFile: DataService.shareService.getUserClothPlist())
-//            if((clothes?.addObject(cloth)) != nil){
-                println(clothes)
-                clothes?.writeToFile(DataService.shareService.getUserClothPlist(), atomically: true)
-//            }
+            if(clothes == nil){
+                clothes = NSMutableArray()
+            }
+            clothes!.addObject(params)
+
+            var plist = DataService.shareService.getUserClothPlist()
+            var result = clothes!.writeToFile(plist, atomically: true)
+            println(result)
             self.dismissViewControllerAnimated(true, completion: {})
             if(self.respondsToSelector("dismissModelView")){
                 self.newClothDelegate?.dismissModelView()
@@ -117,7 +116,6 @@ class NewClothViewController: UIViewController,UIPickerViewDelegate,UIPickerView
         
         var sheet:UIActionSheet = UIActionSheet()
         if(UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera)){
-//            sheet = UIActionSheet()
             sheet.addButtonWithTitle("取消")
             sheet.addButtonWithTitle("拍照")
             sheet.addButtonWithTitle("相册")
@@ -164,16 +162,13 @@ class NewClothViewController: UIViewController,UIPickerViewDelegate,UIPickerView
         self.photoImgView?.image = image
         var path = DataService.shareService.getUserClothDirPath() + "/" + gen_uuid()! + ".png"
         self._picPath = path
-        println(path)
         var result:Bool = UIImagePNGRepresentation(image).writeToFile(path, atomically: true)
-//        UIImage
         if(false == result){
             println("failed")
-        }else{
-            picker.dismissViewControllerAnimated(true, completion: {
-    //            println(info)
-            })
         }
+        picker.dismissViewControllerAnimated(true, completion: {
+            //            println(info)
+        })
     }
     
     func imagePickerControllerDidCancel(picker: UIImagePickerController) {
