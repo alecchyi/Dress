@@ -10,6 +10,9 @@ import UIKit
 //import PickViewToolBar
 
 class ClothViewController: UIViewController, NewClothViewControllerDelegate {
+    
+    @IBOutlet var clothesCollectView:UICollectionView?
+    @IBOutlet var tagsView:UIView?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,6 +24,11 @@ class ClothViewController: UIViewController, NewClothViewControllerDelegate {
         //add new btn
         var rightBarBtnItem = UIBarButtonItem(title:"add", style: UIBarButtonItemStyle.Plain, target: self, action: "clickAddBtn")
         self.navigationItem.rightBarButtonItem = rightBarBtnItem
+        
+        //init clothes view
+        var frame = self.view.frame
+        self.tagsView?.frame.size.width = frame.size.width
+        self.clothesCollectView?.frame.size.width = frame.size.width
         
         
     }
