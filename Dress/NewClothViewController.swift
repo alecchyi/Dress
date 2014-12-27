@@ -115,14 +115,19 @@ class NewClothViewController: UIViewController,UIPickerViewDelegate,UIPickerView
     
     @IBAction func clickPhotoBtn(){
         
-        var sheet:UIActionSheet?
+        var sheet:UIActionSheet = UIActionSheet()
         if(UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera)){
-            sheet! = UIActionSheet(title: "选择照片", delegate:self, cancelButtonTitle:nil, destructiveButtonTitle: "取消", otherButtonTitles: "拍照","相册")
+//            sheet = UIActionSheet()
+            sheet.addButtonWithTitle("取消")
+            sheet.addButtonWithTitle("拍照")
+            sheet.addButtonWithTitle("相册")
+            sheet.title = "选择照片"
+            sheet.delegate = self
         }else{
             sheet = UIActionSheet(title: "选择照片", delegate:self, cancelButtonTitle:nil, destructiveButtonTitle:"取消",otherButtonTitles:"相册")
         }
         
-        sheet?.showInView(self.view)
+        sheet.showInView(self.view)
     }
     
     func actionSheet(actionSheet: UIActionSheet, clickedButtonAtIndex buttonIndex: Int) {
@@ -157,9 +162,11 @@ class NewClothViewController: UIViewController,UIPickerViewDelegate,UIPickerView
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: NSDictionary) {
         var image = info.objectForKey(UIImagePickerControllerEditedImage) as UIImage
         self.photoImgView?.image = image
-        var path = DataService.shareService.getUserClothDirPath() + "/" + gen_uuid()!
+        var path = DataService.shareService.getUserClothDirPath() + "/" + gen_uuid()! + ".png"
         self._picPath = path
+        println(path)
         var result:Bool = UIImagePNGRepresentation(image).writeToFile(path, atomically: true)
+//        UIImage
         if(false == result){
             println("failed")
         }else{
