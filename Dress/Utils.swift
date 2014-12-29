@@ -9,6 +9,7 @@
 import Foundation
 
 let kClothPlist = "clothes.plist"
+let kTagPlist = "tags.plist"
 
 func gen_uuid() -> String? {
     var uuid = NSUUID()
@@ -24,5 +25,5 @@ func initLogin() {
     }else{
         DataService.shareService.userToken = userToken
     }
-
+    
 }

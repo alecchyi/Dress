@@ -9,10 +9,12 @@
 import UIKit
 //import PickViewToolBar
 
-class ClothViewController: UIViewController, NewClothViewControllerDelegate {
+class ClothViewController: UIViewController, NewClothViewControllerDelegate,UICollectionViewDelegate,UICollectionViewDataSource {
     
     @IBOutlet var clothesCollectView:UICollectionView?
     @IBOutlet var tagsView:UIView?
+    
+    var clothesList:NSMutableArray?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,11 +28,65 @@ class ClothViewController: UIViewController, NewClothViewControllerDelegate {
         self.navigationItem.rightBarButtonItem = rightBarBtnItem
         
         //init clothes view
-        var frame = self.view.frame
-        self.tagsView?.frame.size.width = frame.size.width
-        self.clothesCollectView?.frame.size.width = frame.size.width
-        
-        
+        var frame = UIScreen.mainScreen().bounds
+        frame.origin.x = 0
+        frame.origin.y = 114
+        frame.size.height = 400
+        self.tagsView!.frame.size.width = frame.size.width
+        self.clothesCollectView!.frame = frame
+        frame.size.height = 50
+        frame.origin.x = 0
+        frame.origin.y = 64
+//        self.tagsView = TagToolBar(frame: frame)
+        initTagView()
+        initCollectView()
+    }
+    
+    func initTagView(){
+        var allTags = NSMutableArray(contentsOfFile: DataService.shareService.getTagsPlist())
+        if(allTags == nil){
+            var tag:NSMutableDictionary = NSMutableDictionary()
+            tag.setValue(0, forKey: "id")
+            tag.setValue("运动", forKey: "name")
+            
+            var tag1 = NSMutableDictionary()
+            tag1.setValue(1, forKey: "id")
+            tag1.setValue("休闲", forKey: "name")
+            
+            var tag2 = NSMutableDictionary()
+            tag2.setValue(2, forKey: "id")
+            tag2.setValue("商务", forKey: "name")
+            
+            var tag3 = NSMutableDictionary()
+            tag3.setValue(3, forKey: "id")
+            tag3.setValue("流行", forKey: "name")
+            allTags = NSMutableArray(array: [tag,tag1,tag2,tag3])
+            
+            allTags!.writeToFile(DataService.shareService.getTagsPlist(), atomically: true)
+        }
+
+        for var i:Int = 0; i < allTags?.count; i++ {
+            var x:CGFloat = CGFloat(50) + CGFloat(i * 70)
+            var frame:CGRect = CGRectMake(x, 10, 40, 30)
+            var btn = UIButton(frame: frame)
+            btn.setTitle((allTags?.objectAtIndex(i) as NSDictionary).objectForKey("name") as? String, forState: UIControlState.Normal)
+            btn.setTitleColor(UIColor.blueColor(), forState: UIControlState.Normal)
+            btn.backgroundColor = UIColor.whiteColor()
+            self.tagsView!.addSubview(btn)
+        }
+    }
+    
+    func initCollectView(){
+        var allClothes = NSMutableArray(contentsOfFile: DataService.shareService.getUserClothPlist())
+        if(allClothes == nil){
+            allClothes = NSMutableArray()
+        }
+        self.clothesList = allClothes!
+        println(self.clothesList!.count)
+        self.clothesCollectView!.registerClass(ClothViewCell.self, forCellWithReuseIdentifier: "ClothViewCell")
+        self.clothesCollectView!.delegate = self
+        self.clothesCollectView!.dataSource = self
+//        self.clothesCollectView!.backgroundColor = UIColor.blackColor()
     }
     
     func clickAddBtn(){
@@ -41,6 +97,27 @@ class ClothViewController: UIViewController, NewClothViewControllerDelegate {
         
         })
     }
+    
+    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        let cell:ClothViewCell = collectionView.dequeueReusableCellWithReuseIdentifier("ClothViewCell", forIndexPath: indexPath) as ClothViewCell
+        var cloth = self.clothesList!.objectAtIndex(indexPath.row) as NSMutableDictionary
+        println(cloth.objectForKey("picPath")!)
+        if var imgView = cell.imageView{
+            imgView.image = UIImage(CGImage: cloth.objectForKey("picPath")! as CGImage)
+        }
+        cell.lblText!.text = "22222"
+        return cell
+    }
+    
+    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return self.clothesList!.count
+    }
+    
+    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+        return 1
+    }
+    
+    
     
     func dismissModelView() {
         println("dismiss")
