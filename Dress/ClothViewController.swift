@@ -103,7 +103,11 @@ class ClothViewController: UIViewController, NewClothViewControllerDelegate,UICo
         var cloth = self.clothesList!.objectAtIndex(indexPath.row) as NSMutableDictionary
         println(cloth.objectForKey("picPath")!)
         if var imgView = cell.imageView{
-            imgView.image = UIImage(CGImage: cloth.objectForKey("picPath")! as CGImage)
+            var picPath = cloth.objectForKey("picPath") as String
+            var path = DataService.shareService.getUserClothDirPath().stringByAppendingPathComponent(picPath)
+            
+            imgView.image = UIImage(contentsOfFile: path)
+
         }
         cell.lblText!.text = "22222"
         return cell

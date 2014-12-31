@@ -99,7 +99,6 @@ class NewClothViewController: UIViewController,UIPickerViewDelegate,UIPickerView
 
             var plist = DataService.shareService.getUserClothPlist()
             var result = clothes!.writeToFile(plist, atomically: true)
-            println(result)
             self.dismissViewControllerAnimated(true, completion: {})
             if(self.respondsToSelector("dismissModelView")){
                 self.newClothDelegate?.dismissModelView()
@@ -160,8 +159,9 @@ class NewClothViewController: UIViewController,UIPickerViewDelegate,UIPickerView
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: NSDictionary) {
         var image = info.objectForKey(UIImagePickerControllerEditedImage) as UIImage
         self.photoImgView?.image = image
-        var path = DataService.shareService.getUserClothDirPath() + "/" + gen_uuid()! + ".png"
-        self._picPath = path
+        let uuid = gen_uuid()
+        var path = DataService.shareService.getUserClothDirPath() + "/" + uuid! + ".png"
+        self._picPath = "/" + uuid! + ".png"
         var result:Bool = UIImagePNGRepresentation(image).writeToFile(path, atomically: true)
         if(false == result){
             println("failed")
