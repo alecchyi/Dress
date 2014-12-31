@@ -17,7 +17,8 @@ class ClothViewCell: UICollectionViewCell {
         let frame = CGRectMake(0, 0, frame.size.width, frame.size.height)
         self.imageView = UIImageView(frame: frame)
         self.lblText = UILabel(frame: CGRectMake(0, frame.size.height, frame.size.width, 30))
-        
+        self.viewForBaselineLayout()?.addSubview(self.imageView!)
+        self.viewForBaselineLayout()?.addSubview(self.lblText!)
     }
     
 

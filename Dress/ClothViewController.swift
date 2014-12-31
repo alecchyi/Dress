@@ -34,6 +34,7 @@ class ClothViewController: UIViewController, NewClothViewControllerDelegate,UICo
         frame.size.height = 400
         self.tagsView!.frame.size.width = frame.size.width
         self.clothesCollectView!.frame = frame
+        
         frame.size.height = 50
         frame.origin.x = 0
         frame.origin.y = 64
@@ -102,13 +103,15 @@ class ClothViewController: UIViewController, NewClothViewControllerDelegate,UICo
         let cell:ClothViewCell = collectionView.dequeueReusableCellWithReuseIdentifier("ClothViewCell", forIndexPath: indexPath) as ClothViewCell
         var cloth = self.clothesList!.objectAtIndex(indexPath.row) as NSMutableDictionary
         println(cloth.objectForKey("picPath")!)
-        if var imgView = cell.imageView{
+//        if var imgView = cell.imageView{
             var picPath = cloth.objectForKey("picPath") as String
             var path = DataService.shareService.getUserClothDirPath().stringByAppendingPathComponent(picPath)
             
-            imgView.image = UIImage(contentsOfFile: path)
+//            imgView.image = UIImage(contentsOfFile: path)
 
-        }
+//        }
+        println(path)
+        cell.imageView!.image = UIImage(contentsOfFile: path)
         cell.lblText!.text = "22222"
         return cell
     }
@@ -130,6 +133,17 @@ class ClothViewController: UIViewController, NewClothViewControllerDelegate,UICo
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        var allClothes = NSMutableArray(contentsOfFile: DataService.shareService.getUserClothPlist())
+        if(allClothes == nil){
+            allClothes = NSMutableArray()
+        }
+        self.clothesList = allClothes!
+        println(3333)
+        
+        self.clothesCollectView!.reloadData()
     }
 }
 
