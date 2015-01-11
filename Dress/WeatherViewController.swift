@@ -16,7 +16,7 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("sssss")
+//        print("sssss")
         // Do any additional setup after loading the view.
         initMainView()
     }
