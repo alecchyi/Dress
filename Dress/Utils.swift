@@ -10,6 +10,8 @@ import Foundation
 
 let kClothPlist = "clothes.plist"
 let kTagPlist = "tags.plist"
+let kSeasons = ["春季","夏季","秋季","冬季"]
+let kCategories = ["帽子","上衣","裤子","鞋子"]
 
 func gen_uuid() -> String? {
     var uuid = NSUUID()

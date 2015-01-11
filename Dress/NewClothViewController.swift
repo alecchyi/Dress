@@ -66,14 +66,14 @@ class NewClothViewController: UIViewController,UIPickerViewDelegate,UIPickerView
     }
     
     @IBAction func clickCategoryBtn(){
-        self.categories = ["帽子","上衣","裤子","鞋子"]
+        self.categories = kCategories
         self.pickViewType = 0
         showToolBar()
         
     }
     
     @IBAction func clickSeasonBtn(){
-        self.categories = ["春季","夏季","秋季","冬季"];
+        self.categories = kSeasons
         self.pickViewType = 1
         showToolBar()
         

@@ -83,7 +83,6 @@ class ClothViewController: UIViewController, NewClothViewControllerDelegate,UICo
             allClothes = NSMutableArray()
         }
         self.clothesList = allClothes!
-        println(self.clothesList!.count)
         self.clothesCollectView!.registerClass(ClothViewCell.self, forCellWithReuseIdentifier: "ClothViewCell")
         self.clothesCollectView!.delegate = self
         self.clothesCollectView!.dataSource = self
@@ -102,7 +101,6 @@ class ClothViewController: UIViewController, NewClothViewControllerDelegate,UICo
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell:ClothViewCell = collectionView.dequeueReusableCellWithReuseIdentifier("ClothViewCell", forIndexPath: indexPath) as ClothViewCell
         var cloth = self.clothesList!.objectAtIndex(indexPath.row) as NSMutableDictionary
-        println(cloth.objectForKey("picPath")!)
 //        if var imgView = cell.imageView{
             var picPath = cloth.objectForKey("picPath") as String
             var path = DataService.shareService.getUserClothDirPath().stringByAppendingPathComponent(picPath)
@@ -110,9 +108,11 @@ class ClothViewController: UIViewController, NewClothViewControllerDelegate,UICo
 //            imgView.image = UIImage(contentsOfFile: path)
 
 //        }
-        println(path)
+        let season = cloth.objectForKey("season") as Int
+        let type = cloth.objectForKey("type") as Int
+//        println(kSeasons[season])
         cell.imageView!.image = UIImage(contentsOfFile: path)
-        cell.lblText!.text = "22222"
+        cell.lblText!.text = kSeasons[season] + " " + kCategories[type]
         return cell
     }
     
