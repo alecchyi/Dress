@@ -16,6 +16,8 @@
 		708E1AAD1A4B067800FF27A1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 708E1AAC1A4B067800FF27A1 /* Foundation.framework */; };
 		708E1AAF1A4B068400FF27A1 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 708E1AAE1A4B068400FF27A1 /* MobileCoreServices.framework */; };
 		708E1AB11A4B068C00FF27A1 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 708E1AB01A4B068C00FF27A1 /* Security.framework */; };
+		709767C61A51815200183867 /* TagToolBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 709767C51A51815200183867 /* TagToolBar.swift */; };
+		709767C81A51A50500183867 /* ClothViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 709767C71A51A50500183867 /* ClothViewCell.swift */; };
 		70A6634A1A49B75600CB2662 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A663491A49B75600CB2662 /* AppDelegate.swift */; };
 		70A663511A49B75600CB2662 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 70A6634F1A49B75600CB2662 /* Main.storyboard */; };
 		70A663531A49B75600CB2662 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 70A663521A49B75600CB2662 /* Images.xcassets */; };
@@ -59,6 +61,8 @@
 		708E1AAC1A4B067800FF27A1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		708E1AAE1A4B068400FF27A1 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		708E1AB01A4B068C00FF27A1 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		709767C51A51815200183867 /* TagToolBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagToolBar.swift; sourceTree = "<group>"; };
+		709767C71A51A50500183867 /* ClothViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClothViewCell.swift; sourceTree = "<group>"; };
 		70A663441A49B75600CB2662 /* Dress.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Dress.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		70A663481A49B75600CB2662 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		70A663491A49B75600CB2662 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -212,6 +216,8 @@
 				70A663811A49BCE800CB2662 /* DataService.swift */,
 				70AC70171A4BBBCE00F396AA /* PickViewToolBar.swift */,
 				70AB758F1A4D37F000B9D6C2 /* Utils.swift */,
+				709767C51A51815200183867 /* TagToolBar.swift */,
+				709767C71A51A50500183867 /* ClothViewCell.swift */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -382,12 +388,14 @@
 				708E1AA71A4B035800FF27A1 /* Cloth.swift in Sources */,
 				70AC70181A4BBBCE00F396AA /* PickViewToolBar.swift in Sources */,
 				70AB758A1A4CEC4C00B9D6C2 /* NewClothViewController.swift in Sources */,
+				709767C81A51A50500183867 /* ClothViewCell.swift in Sources */,
 				70A663731A49BC9900CB2662 /* FindViewController.swift in Sources */,
 				70A663721A49BC9900CB2662 /* ClothViewController.swift in Sources */,
 				70A6634A1A49B75600CB2662 /* AppDelegate.swift in Sources */,
 				70A663831A49BCE800CB2662 /* DataService.swift in Sources */,
 				70AB75901A4D37F000B9D6C2 /* Utils.swift in Sources */,
 				70AB75921A4D3B9A00B9D6C2 /* User.swift in Sources */,
+				709767C61A51815200183867 /* TagToolBar.swift in Sources */,
 				70A663751A49BC9900CB2662 /* WeatherViewController.swift in Sources */,
 				70A663741A49BC9900CB2662 /* PersonalViewController.swift in Sources */,
 				708E1AA51A4B021100FF27A1 /* Weather.swift in Sources */,
