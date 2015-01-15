@@ -81,14 +81,63 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
         manager!.GET(url,
             parameters:params,
             success:{(operation:AFHTTPRequestOperation!, responseObject:AnyObject! ) in
-                    println(responseObject.description)
-        
+                
+                self.saveWeatherData(responseObject as NSDictionary!)
             },
             failure:{(operation:AFHTTPRequestOperation!, error:NSError!) in
                 println("Error," + error.localizedDescription)
         
         })
         
+    }
+    
+    func saveWeatherData(weatherData:NSDictionary){
+        let status = weatherData.objectForKey("status") as NSString!
+        let error = weatherData.objectForKey("error") as Int!
+        let date = weatherData.objectForKey("date") as NSString!
+        var weather = NSMutableDictionary()
+        if(status! == "success" && error == 0){
+            var results = weatherData.objectForKey("results") as NSArray!
+            var datas:NSDictionary = results.objectAtIndex(0) as NSDictionary
+            let currentCity = datas.objectForKey("currentCity") as NSString!
+//            println(currentCity)
+            var idxs = datas.objectForKey("index") as NSArray!
+            for idx in idxs{
+                let des = (idx as NSDictionary).objectForKey("des") as NSString!
+                let title = (idx as NSDictionary).objectForKey("title") as NSString!
+                let tipt = (idx as NSDictionary).objectForKey("tipt") as NSString!
+                let zs = (idx as NSDictionary).objectForKey("zs") as NSString!
+                if(tipt! == "穿衣指数"){
+                    weather.setObject(tipt!, forKey: "dress")
+                    weather.setObject(des!, forKey: "dressDes")
+                    weather.setObject(zs!, forKey: "dressIndexZs")
+                    break
+                }
+            }
+            let pm25:AnyObject? = datas.objectForKey("pm25")
+            weather.setObject(pm25!, forKey: "pm25")
+            var w_datas = datas.objectForKey("weather_data") as NSArray!
+            for w_data in w_datas {
+                let item = w_data as NSDictionary
+                let date:NSString = item.objectForKey("date") as NSString!
+                weather.setObject(date, forKey: "date")
+                let dayPicUrl:NSString = item.objectForKey("dayPictureUrl") as NSString!
+                weather.setObject(dayPicUrl, forKey: "dayPicUrl")
+                let nightPicUrl:NSString = item.objectForKey("nightPictureUrl") as NSString!
+                weather.setObject(nightPicUrl, forKey: "nightPicUrl")
+                let temp:NSString = item.objectForKey("temperature") as NSString!
+                weather.setObject(temp, forKey: "temp")
+                let weatherDesc:NSString = item.objectForKey("weather") as NSString!
+                weather.setObject(weatherDesc, forKey: "weatherDesc")
+                let wind:NSString = item.objectForKey("wind") as NSString!
+                weather.setObject(wind, forKey: "wind")
+                break
+            }
+            
+        }
+
+        DataService.shareService.setWeather(weather)
+//        println(DataService.shareService.weather!)
     }
 
 }

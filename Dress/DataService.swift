@@ -16,6 +16,7 @@ class DataService {
     var _url : String?
     var managers:[AnyObject] = [0,1]
     var userToken:String? = nil
+    var weather:NSMutableDictionary? = nil
     
     class var shareService: DataService {
         
@@ -44,6 +45,12 @@ class DataService {
     func setUserToken(){
         if(self.userToken == nil){
             self.userToken = gen_uuid()
+        }
+    }
+    
+    func setWeather(data:NSMutableDictionary){
+        if(self.weather == nil){
+            self.weather = data
         }
     }
     

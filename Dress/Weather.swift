@@ -15,9 +15,9 @@ class Weather {
     let _temp:String?
     let _wind:String?
     let _dress:String?
-    let _data:Dictionary<String,String>?
+    let _data:NSMutableDictionary?
     
-    init(data:Dictionary<String,String>) {
+    init(data:NSMutableDictionary) {
         self._data! = data
     }
     
