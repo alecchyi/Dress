@@ -47,11 +47,30 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
         locationManager!.startUpdatingLocation()
     }
     
-    func initMainView() {
-        fetchWeatherData()
+    func drawWeatherView(){
         self.weatherView!.backgroundColor = UIColor.clearColor()
+        var frame = CGRectMake(0, 60, self.view.bounds.width, 110)
+        self.weatherView!.frame = frame
+        frame.origin.y = 0
+        println(frame)
+        var dataView = WeatherView(frame: frame)
+        dataView.setCustomView()
+        self.weatherView!.addSubview(dataView)
+    }
+    
+    func drawRulerView(){
+        var frame = CGRectMake(5, 0, 20, self.view.bounds.height - 100)
+        var rulerBar = RulerViewBar(frame: frame)
+        self.clothesMainView!.addSubview(rulerBar)
+    }
+    
+    func initMainView() {
         
-        self.clothesMainView!.frame = CGRectMake(0, 160, self.view.bounds.width, self.view.bounds.height - 68)
+        fetchWeatherData()
+        
+        drawRulerView()
+        
+        self.clothesMainView!.frame = CGRectMake(0, 180, self.view.bounds.width, self.view.bounds.height - 68)
         
         //init user Id
         
@@ -109,7 +128,7 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
                 let zs = (idx as NSDictionary).objectForKey("zs") as NSString!
                 if(tipt! == "穿衣指数"){
                     weather.setObject(tipt!, forKey: "dress")
-                    weather.setObject(des!, forKey: "dressDes")
+                    weather.setObject(des!, forKey: "dressDesc")
                     weather.setObject(zs!, forKey: "dressIndexZs")
                     break
                 }
@@ -138,6 +157,7 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
 
         DataService.shareService.setWeather(weather)
 //        println(DataService.shareService.weather!)
+        drawWeatherView()
     }
 
 }
