@@ -31,7 +31,7 @@ class RulerViewBar: UIView {
         CGContextMoveToPoint(context,0,400)
         CGContextAddLineToPoint(context, 18, 400)
         
-        for var i=1;i<15;i++ {
+        for var i=1;i<20;i++ {
             let y:CGFloat = CGFloat(i * 20)
             if(i%2 == 0){
                 CGContextMoveToPoint(context,0, y)

@@ -24,7 +24,7 @@ class ClothViewController: UIViewController, NewClothViewControllerDelegate,UICo
     
     func initClothView(){
         //add new btn
-        var rightBarBtnItem = UIBarButtonItem(title:"add", style: UIBarButtonItemStyle.Plain, target: self, action: "clickAddBtn")
+        var rightBarBtnItem = UIBarButtonItem(title:"添加", style: UIBarButtonItemStyle.Plain, target: self, action: "clickAddBtn")
         self.navigationItem.rightBarButtonItem = rightBarBtnItem
         
         //init clothes view

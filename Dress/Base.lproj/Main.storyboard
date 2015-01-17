@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="49e-Tb-3d3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="49e-Tb-3d3">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
     </dependencies>
@@ -56,23 +56,23 @@
                         <subviews>
                             <view autoresizesSubviews="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XHK-17-Km5">
                                 <rect key="frame" x="0.0" y="60" width="600" height="90"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <view multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="b8g-2N-PR3">
-                                <rect key="frame" x="0.0" y="150" width="295" height="600"/>
+                                <rect key="frame" x="0.0" y="150" width="375" height="600"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="header.jpg" highlightedImage="header.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="jRU-cp-aQY">
-                                        <rect key="frame" x="110" y="8" width="80" height="80"/>
+                                    <imageView multipleTouchEnabled="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="header.jpg" highlightedImage="header.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="jRU-cp-aQY">
+                                        <rect key="frame" x="118" y="8" width="80" height="80"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </imageView>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="shirt.jpg" highlightedImage="shirt.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="4r3-48-CqP">
-                                        <rect key="frame" x="79" y="96" width="153" height="116"/>
+                                        <rect key="frame" x="87" y="96" width="153" height="116"/>
                                     </imageView>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="trouser.jpg" highlightedImage="trouser.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="HE1-s2-8CB">
-                                        <rect key="frame" x="79" y="220" width="153" height="192"/>
+                                        <rect key="frame" x="87" y="220" width="153" height="192"/>
                                     </imageView>
                                 </subviews>
-                                <color key="backgroundColor" red="0.12584732510589447" green="1" blue="0.6941174356644213" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.95379682816854072" green="0.95430086096938771" blue="0.94676066418083338" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -80,6 +80,7 @@
                     <navigationItem key="navigationItem" title="看天气，选衣服" id="F4w-FL-Wjz"/>
                     <connections>
                         <outlet property="clothesMainView" destination="b8g-2N-PR3" id="r0a-RP-RDd"/>
+                        <outlet property="headerImgView" destination="jRU-cp-aQY" id="4tO-b5-IZa"/>
                         <outlet property="weatherView" destination="XHK-17-Km5" id="g2f-id-Au3"/>
                     </connections>
                 </viewController>
@@ -382,8 +383,8 @@
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="n6f-Il-2ir">
                                 <rect key="frame" x="0.0" y="114" width="320" height="400"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="20" minimumInteritemSpacing="10" id="rcW-aB-HWa">
-                                    <size key="itemSize" width="150" height="180"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="rcW-aB-HWa">
+                                    <size key="itemSize" width="156" height="180"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -397,16 +398,17 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
+                                        <size key="customSize" width="150" height="180"/>
                                     </collectionViewCell>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="KhC-aV-c8g" customClass="ClothViewCell" customModule="Dress" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="150" height="180"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="156" height="180"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>

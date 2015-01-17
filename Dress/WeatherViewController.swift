@@ -13,6 +13,7 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
     
     @IBOutlet var weatherView:UIView?
     @IBOutlet var clothesMainView:UIView?
+    @IBOutlet var headerImgView:UIImageView?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -64,13 +65,27 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
         self.clothesMainView!.addSubview(rulerBar)
     }
     
+    func setClothesMainView(){
+        self.clothesMainView!.frame = CGRectMake(0, 180, self.view.bounds.width, self.view.bounds.height - 68)
+        let swipeSelector:Selector = "swipeSelector:"
+        let leftSwipe = UISwipeGestureRecognizer(target: self, action: swipeSelector)
+        leftSwipe.direction = UISwipeGestureRecognizerDirection.Left
+        self.headerImgView?.addGestureRecognizer(leftSwipe)
+    }
+    
+    func swipeSelector(sender:UISwipeGestureRecognizer){
+        println("swipe")
+        self.headerImgView!.image = UIImage(named: "shirt.jpg")
+    }
+    
     func initMainView() {
         
         fetchWeatherData()
         
         drawRulerView()
         
-        self.clothesMainView!.frame = CGRectMake(0, 180, self.view.bounds.width, self.view.bounds.height - 68)
+        setClothesMainView()
+        
         
         //init user Id
         
@@ -120,6 +135,7 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
             var datas:NSDictionary = results.objectAtIndex(0) as NSDictionary
             let currentCity = datas.objectForKey("currentCity") as NSString!
 //            println(currentCity)
+            weather.setValue(currentCity, forKey: "currentCity")
             var idxs = datas.objectForKey("index") as NSArray!
             for idx in idxs{
                 let des = (idx as NSDictionary).objectForKey("des") as NSString!
