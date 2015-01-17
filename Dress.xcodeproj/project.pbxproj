@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		703365891A4B202E0078EBEB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 703365881A4B202E0078EBEB /* UIKit.framework */; };
 		7033658B1A4B20370078EBEB /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7033658A1A4B20370078EBEB /* SystemConfiguration.framework */; };
+		7067E7C81A694E4000E143D1 /* WeatherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7067E7C71A694E4000E143D1 /* WeatherView.swift */; };
+		7067E7CA1A696F4C00E143D1 /* RulerViewBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7067E7C91A696F4C00E143D1 /* RulerViewBar.swift */; };
 		708E1AA51A4B021100FF27A1 /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 708E1AA41A4B021100FF27A1 /* Weather.swift */; };
 		708E1AA71A4B035800FF27A1 /* Cloth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 708E1AA61A4B035800FF27A1 /* Cloth.swift */; };
 		708E1AA91A4B055700FF27A1 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 708E1AA81A4B055700FF27A1 /* CoreLocation.framework */; };
@@ -54,6 +56,8 @@
 		5FA990867593A7835004F6DD /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		703365881A4B202E0078EBEB /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		7033658A1A4B20370078EBEB /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		7067E7C71A694E4000E143D1 /* WeatherView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherView.swift; sourceTree = "<group>"; };
+		7067E7C91A696F4C00E143D1 /* RulerViewBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RulerViewBar.swift; sourceTree = "<group>"; };
 		708E1AA41A4B021100FF27A1 /* Weather.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
 		708E1AA61A4B035800FF27A1 /* Cloth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cloth.swift; sourceTree = "<group>"; };
 		708E1AA81A4B055700FF27A1 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -218,6 +222,8 @@
 				70AB758F1A4D37F000B9D6C2 /* Utils.swift */,
 				709767C51A51815200183867 /* TagToolBar.swift */,
 				709767C71A51A50500183867 /* ClothViewCell.swift */,
+				7067E7C71A694E4000E143D1 /* WeatherView.swift */,
+				7067E7C91A696F4C00E143D1 /* RulerViewBar.swift */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -385,12 +391,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7067E7C81A694E4000E143D1 /* WeatherView.swift in Sources */,
 				708E1AA71A4B035800FF27A1 /* Cloth.swift in Sources */,
 				70AC70181A4BBBCE00F396AA /* PickViewToolBar.swift in Sources */,
 				70AB758A1A4CEC4C00B9D6C2 /* NewClothViewController.swift in Sources */,
 				709767C81A51A50500183867 /* ClothViewCell.swift in Sources */,
 				70A663731A49BC9900CB2662 /* FindViewController.swift in Sources */,
 				70A663721A49BC9900CB2662 /* ClothViewController.swift in Sources */,
+				7067E7CA1A696F4C00E143D1 /* RulerViewBar.swift in Sources */,
 				70A6634A1A49B75600CB2662 /* AppDelegate.swift in Sources */,
 				70A663831A49BCE800CB2662 /* DataService.swift in Sources */,
 				70AB75901A4D37F000B9D6C2 /* Utils.swift in Sources */,
