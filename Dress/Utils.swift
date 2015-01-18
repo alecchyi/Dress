@@ -10,6 +10,7 @@ import Foundation
 
 let kClothPlist = "clothes.plist"
 let kTagPlist = "tags.plist"
+let kWeatherPlist = "weather.plist"
 let kSeasons = ["春季","夏季","秋季","冬季"]
 let kCategories = ["帽子","上衣","裤子","鞋子"]
 
@@ -19,8 +20,8 @@ func gen_uuid() -> String? {
 }
 
 func initLogin() {
-    var userDefaults = NSUserDefaults.standardUserDefaults()
-    var userToken = userDefaults.stringForKey("userToken")
+    let userDefaults = NSUserDefaults.standardUserDefaults()
+    let userToken = userDefaults.stringForKey("userToken")
     if((userToken?.isEmpty) == nil){
         DataService.shareService.setUserToken()
         userDefaults.setValue(DataService.shareService.userToken!, forKey: "userToken")
@@ -29,3 +30,4 @@ func initLogin() {
     }
     
 }
+

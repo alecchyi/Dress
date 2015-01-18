@@ -53,7 +53,6 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
         var frame = CGRectMake(0, 60, self.view.bounds.width, 110)
         self.weatherView!.frame = frame
         frame.origin.y = 0
-        println(frame)
         var dataView = WeatherView(frame: frame)
         dataView.setCustomView()
         self.weatherView!.addSubview(dataView)
@@ -66,7 +65,7 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     func setClothesMainView(){
-        self.clothesMainView!.frame = CGRectMake(0, 180, self.view.bounds.width, self.view.bounds.height - 68)
+        self.clothesMainView!.frame = CGRectMake(0, 180, self.view.bounds.width, self.view.bounds.height)
         let swipeSelector:Selector = "swipeSelector:"
         let leftSwipe = UISwipeGestureRecognizer(target: self, action: swipeSelector)
         leftSwipe.direction = UISwipeGestureRecognizerDirection.Left
@@ -78,6 +77,15 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
         self.headerImgView!.image = UIImage(named: "shirt.jpg")
     }
     
+    func initClothesData(){
+        if let weather = DataService.shareService.weather? {
+            DataService.shareService.getRecommandClothes(DataService.shareService.weather!)
+        }else{
+          println("no weather data")
+        }
+        
+    }
+    
     func initMainView() {
         
         fetchWeatherData()
@@ -86,6 +94,7 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
         
         setClothesMainView()
         
+        initClothesData()
         
         //init user Id
         
@@ -104,7 +113,8 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     func locationManager(manager: CLLocationManager!, didFailWithError error: NSError!) {
-        println(error)
+        println("location error")
+        self.drawWeatherView()
     }
     
     func updateWeatherData(lon:CLLocationDegrees,lat:CLLocationDegrees){
@@ -117,10 +127,11 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
             success:{(operation:AFHTTPRequestOperation!, responseObject:AnyObject! ) in
                 
                 self.saveWeatherData(responseObject as NSDictionary!)
+                self.drawWeatherView()
             },
             failure:{(operation:AFHTTPRequestOperation!, error:NSError!) in
                 println("Error," + error.localizedDescription)
-        
+                self.drawWeatherView()
         })
         
     }
@@ -134,7 +145,6 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
             var results = weatherData.objectForKey("results") as NSArray!
             var datas:NSDictionary = results.objectAtIndex(0) as NSDictionary
             let currentCity = datas.objectForKey("currentCity") as NSString!
-//            println(currentCity)
             weather.setValue(currentCity, forKey: "currentCity")
             var idxs = datas.objectForKey("index") as NSArray!
             for idx in idxs{
@@ -169,11 +179,32 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
                 break
             }
             
+            DataService.shareService.setWeather(weather)
+            var weatherList = NSArray(contentsOfFile: DataService.shareService.getWeatherPlist()) as NSArray!
+            var newList = NSMutableArray()
+            println(weatherList)
+            if(weatherList == nil){
+                newList.addObject(weather)
+            }else{
+                let wData:NSMutableDictionary = weatherList.lastObject as NSMutableDictionary!
+                let lastDate:NSString = wData.objectForKey("date") as NSString!
+                let curDate:NSString = weather.objectForKey("date") as NSString!
+                newList = NSMutableArray(array: weatherList!)
+                if(curDate == lastDate){
+                    newList.removeLastObject()
+                    newList.addObject(weather)
+                }else{
+                    newList.addObject(weather)
+                }
+            }
+            newList.writeToFile(DataService.shareService.getWeatherPlist(), atomically: true)
+            DataService.shareService.getRecommandClothes(DataService.shareService.weather!)
+        }else{
+            println("weather status error")
         }
 
-        DataService.shareService.setWeather(weather)
-//        println(DataService.shareService.weather!)
-        drawWeatherView()
+
+        
     }
 
 }

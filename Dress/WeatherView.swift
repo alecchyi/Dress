@@ -21,7 +21,6 @@ class WeatherView: UIView {
     }
     
     func setCustomView(){
-        println(DataService.shareService.weather!)
         if let weather = DataService.shareService.weather? {
             var wImgView = UIImageView(frame: CGRectMake(5, 25, 45, 45))
             wImgView.contentMode = UIViewContentMode.ScaleAspectFit

@@ -90,4 +90,21 @@ class DataService {
         return path
     }
     
+    func getWeatherPlist() -> String{
+        let fileManager = NSFileManager.defaultManager()
+        let storeFilePath = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true)
+        var documentDir = storeFilePath[0] as String
+        let path = documentDir.stringByAppendingPathComponent(kWeatherPlist)
+        if(!fileManager.fileExistsAtPath(path)){
+            fileManager.createFileAtPath(path, contents: nil, attributes: nil)
+        }
+        return path
+    }
+    
+    func getRecommandClothes(data:NSMutableDictionary?) {
+        println(data!)
+        var weather:Weather = Weather(data: data!)
+        weather.anlysic()
+    }
+    
 }

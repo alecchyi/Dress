@@ -198,7 +198,7 @@ class NewClothViewController: UIViewController,UIPickerViewDelegate,UIPickerView
     }
     
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        println(self.categories[row])
+//        println(self.categories[row])
         if(self.pickViewType==0){
             self.lblCategory!.tag = 1000 + row
             self.lblSeason!.tag = 1100
