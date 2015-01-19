@@ -31,3 +31,9 @@ func initLogin() {
     
 }
 
+func formateCurDate() -> NSString{
+    let formate = NSDateFormatter()
+    formate.dateFormat = "yyyyMMdd"
+    return formate.stringFromDate(NSDate())
+}
+

@@ -101,10 +101,35 @@ class DataService {
         return path
     }
     
-    func getRecommandClothes(data:NSMutableDictionary?) {
-        println(data!)
+    func getRecommandClothes(data:NSMutableDictionary?) -> NSArray? {
+//        println(data!)
         var weather:Weather = Weather(data: data!)
-        weather.anlysic()
+        let result = weather.anlysic() as NSArray!
+        println(result!)
+        let myClothes = NSArray(contentsOfFile: DataService.shareService.getUserClothPlist())
+        var headArr = NSMutableArray()
+        var shirtArr = NSMutableArray()
+        var trouserArr = NSMutableArray()
+        var shoesArr = NSMutableArray()
+        if let x = myClothes? {
+            for cloth in myClothes! {
+                let season = cloth.objectForKey("season") as Int
+                let type = cloth.objectForKey("type") as Int
+                if(season == (result!.objectAtIndex(1) as Int)){
+                    if(type == 0 && (result!.objectAtIndex(0) as Int) == 1){
+                        headArr.addObject(cloth)
+                    }else if(type == 1){
+                        shirtArr.addObject(cloth)
+                    }else if(type == 2){
+                        trouserArr.addObject(cloth)
+                    }else if(type == 3){
+                        shoesArr.addObject(cloth)
+                    }
+                }
+            }
+        }
+        println(headArr)
+        return [headArr,shirtArr,trouserArr,shoesArr]
     }
     
 }

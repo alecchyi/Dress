@@ -14,6 +14,12 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
     @IBOutlet var weatherView:UIView?
     @IBOutlet var clothesMainView:UIView?
     @IBOutlet var headerImgView:UIImageView?
+    
+    var recommandedClothes:NSArray?
+    var headerIdx:Int = 0
+    var shirtIdx:Int = 0
+    var trouserIdx:Int = 0
+    var shoesIndx:Int = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -74,12 +80,36 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
     
     func swipeSelector(sender:UISwipeGestureRecognizer){
         println("swipe")
-        self.headerImgView!.image = UIImage(named: "shirt.jpg")
+        
+        var headerArr: NSArray = self.recommandedClothes?.objectAtIndex(0) as NSArray!
+        if(headerArr.count==0){
+            println("no hat")
+        }else{
+            println("change hat")
+            self.headerIdx++
+            if(headerArr.count == self.headerIdx){
+                self.headerIdx = 0
+            }
+            let header = headerArr.objectAtIndex(self.headerIdx) as NSMutableDictionary
+            let picPath = header.objectForKey("picPath") as NSString
+            let path = DataService.shareService.getUserClothDirPath().stringByAppendingString(picPath)
+            self.headerImgView!.image = UIImage(contentsOfFile: path)
+        }
     }
     
     func initClothesData(){
         if let weather = DataService.shareService.weather? {
-            DataService.shareService.getRecommandClothes(DataService.shareService.weather!)
+            self.recommandedClothes = DataService.shareService.getRecommandClothes(DataService.shareService.weather!)
+            println(self.recommandedClothes!)
+            var headerArr: NSArray = self.recommandedClothes?.objectAtIndex(0) as NSArray!
+            if(headerArr.count>0){
+                let header = headerArr.objectAtIndex(0) as NSMutableDictionary
+                let picPath = header.objectForKey("picPath") as NSString
+                let path = DataService.shareService.getUserClothDirPath().stringByAppendingString(picPath)
+                self.headerImgView!.image = UIImage(contentsOfFile: picPath)
+            }else{
+                println("no header cloth")
+            }
         }else{
           println("no weather data")
         }
@@ -165,7 +195,7 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
             for w_data in w_datas {
                 let item = w_data as NSDictionary
                 let date:NSString = item.objectForKey("date") as NSString!
-                weather.setObject(date, forKey: "date")
+                weather.setObject(formateCurDate(), forKey: "date")
                 let dayPicUrl:NSString = item.objectForKey("dayPictureUrl") as NSString!
                 weather.setObject(dayPicUrl, forKey: "dayPicUrl")
                 let nightPicUrl:NSString = item.objectForKey("nightPictureUrl") as NSString!
@@ -198,7 +228,17 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
                 }
             }
             newList.writeToFile(DataService.shareService.getWeatherPlist(), atomically: true)
-            DataService.shareService.getRecommandClothes(DataService.shareService.weather!)
+            self.recommandedClothes = DataService.shareService.getRecommandClothes(DataService.shareService.weather!)
+            println(self.recommandedClothes!)
+            var headerArr: NSArray = self.recommandedClothes?.objectAtIndex(0) as NSArray!
+            if(headerArr.count>0){
+                let header = headerArr.objectAtIndex(0) as NSMutableDictionary
+                let picPath = header.objectForKey("picPath") as NSString
+                let path = DataService.shareService.getUserClothDirPath().stringByAppendingString(picPath)
+                self.headerImgView!.image = UIImage(contentsOfFile: path)
+            }else{
+                println("no header cloth")
+            }
         }else{
             println("weather status error")
         }
