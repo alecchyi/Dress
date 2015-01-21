@@ -29,7 +29,7 @@
         <scene sceneID="I2B-vW-T2N">
             <objects>
                 <navigationController title="Weather" id="YoZ-qe-WX4" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="天气" image="second" id="f8n-Pg-kro"/>
+                    <tabBarItem key="tabBarItem" title="天气" image="weather_icon.png" selectedImage="weather_selected_icon.png" id="f8n-Pg-kro"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="lLV-FK-VV8">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -94,7 +94,9 @@
         <scene sceneID="hNq-Zr-YAE">
             <objects>
                 <navigationController title="衣服" id="gIr-8y-jFk" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="衣服" id="W9d-cR-Gnz"/>
+                    <tabBarItem key="tabBarItem" title="衣服" image="clothes_icon.png" selectedImage="clothes_icon.png" id="W9d-cR-Gnz">
+                        <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="0.0"/>
+                    </tabBarItem>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="nth-D8-9ZY">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -273,7 +275,7 @@
         <scene sceneID="Txo-JU-3SN">
             <objects>
                 <navigationController title="发现" id="sUF-tz-EeK" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="发现" id="TPp-LX-BHM"/>
+                    <tabBarItem key="tabBarItem" title="发现" image="find_icon.png" selectedImage="find_icon.png" id="TPp-LX-BHM"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="JSD-6I-9lM">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -317,7 +319,9 @@
         <scene sceneID="hym-aj-4Fj">
             <objects>
                 <navigationController title="我" id="3Dr-2h-wIJ" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="我" id="USl-Pq-bJt"/>
+                    <tabBarItem key="tabBarItem" title="我" image="me_icon.png" selectedImage="me_icon.png" id="USl-Pq-bJt">
+                        <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="0.0"/>
+                    </tabBarItem>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="JDu-mg-jdV">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -429,10 +433,14 @@
         </scene>
     </scenes>
     <resources>
+        <image name="clothes_icon.png" width="29" height="29"/>
+        <image name="find_icon.png" width="29" height="30"/>
         <image name="hat_icon.png" width="79" height="71"/>
-        <image name="second" width="30" height="30"/>
+        <image name="me_icon.png" width="29" height="29"/>
         <image name="shirt.jpg" width="180" height="153"/>
         <image name="shirt_icon.png" width="139" height="127"/>
         <image name="trousers_icon.png" width="128" height="128"/>
+        <image name="weather_icon.png" width="29" height="29"/>
+        <image name="weather_selected_icon.png" width="29" height="29"/>
     </resources>
 </document>
