@@ -14,6 +14,8 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
     @IBOutlet var weatherView:UIView?
     @IBOutlet var clothesMainView:UIView?
     @IBOutlet var headerImgView:UIImageView?
+    @IBOutlet var shirtImgView:UIImageView?
+    @IBOutlet var trouserImgView:UIImageView?
     
     var recommandedClothes:NSArray?
     var headerIdx:Int = 0
@@ -75,26 +77,62 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
         let swipeSelector:Selector = "swipeSelector:"
         let leftSwipe = UISwipeGestureRecognizer(target: self, action: swipeSelector)
         leftSwipe.direction = UISwipeGestureRecognizerDirection.Left
+        self.headerImgView?.tag = 1001
         self.headerImgView?.addGestureRecognizer(leftSwipe)
+        
+        let swipeShirtSelector:Selector = "swipeShirtSelector:"
+        let leftShirtSwipe = UISwipeGestureRecognizer(target: self, action: swipeShirtSelector)
+        leftShirtSwipe.direction = UISwipeGestureRecognizerDirection.Left
+        self.shirtImgView!.tag = 2001
+        self.shirtImgView!.addGestureRecognizer(leftShirtSwipe)
     }
     
     func swipeSelector(sender:UISwipeGestureRecognizer){
         println("swipe")
-        
-        var headerArr: NSArray = self.recommandedClothes?.objectAtIndex(0) as NSArray!
-        if(headerArr.count==0){
-            println("no hat")
-        }else{
-            println("change hat")
-            self.headerIdx++
-            if(headerArr.count == self.headerIdx){
-                self.headerIdx = 0
+        if let clothes = self.recommandedClothes? {
+            var headerArr: NSArray = self.recommandedClothes?.objectAtIndex(0) as NSArray!
+            if(headerArr.count==0){
+                println("no hat")
+            }else{
+                println("change hat")
+                self.headerIdx++
+                if(headerArr.count == self.headerIdx){
+                    self.headerIdx = 0
+                }
+                let header = headerArr.objectAtIndex(self.headerIdx) as NSMutableDictionary
+                let picPath = header.objectForKey("picPath") as NSString
+                let path = DataService.shareService.getUserClothDirPath().stringByAppendingString(picPath)
+//                UIView.beginAnimations("swipeForChangeHat", context: nil)
+//                UIView.setAnimationDuration(0.7)
+//                UIView.setAnimationCurve(UIViewAnimationCurve.EaseInOut)
+//                UIView.setAnimationRepeatAutoreverses(false)
+//                UIView.setAnimationTransition(UIViewAnimationTransition.None, forView: self.headerImgView!, cache: false)
+                self.headerImgView!.image = UIImage(contentsOfFile: path)
+//                UIView.commitAnimations()
             }
-            let header = headerArr.objectAtIndex(self.headerIdx) as NSMutableDictionary
-            let picPath = header.objectForKey("picPath") as NSString
-            let path = DataService.shareService.getUserClothDirPath().stringByAppendingString(picPath)
-            self.headerImgView!.image = UIImage(contentsOfFile: path)
         }
+        
+    }
+    
+    func swipeShirtSelector(sender:UISwipeGestureRecognizer){
+        println("swipe shirt")
+        if let clothes = self.recommandedClothes? {
+            var arr: NSArray = self.recommandedClothes?.objectAtIndex(1) as NSArray!
+            if(arr.count==0){
+                println("no shirt")
+            }else{
+                println("change shirt")
+                self.shirtIdx++
+                if(arr.count == self.shirtIdx){
+                    self.shirtIdx = 0
+                }
+                let shirt = arr.objectAtIndex(self.shirtIdx) as NSMutableDictionary
+                let picPath = shirt.objectForKey("picPath") as NSString
+                let path = DataService.shareService.getUserClothDirPath().stringByAppendingString(picPath)
+                self.shirtImgView!.image = UIImage(contentsOfFile: path)
+            }
+        }
+        
     }
     
     func initClothesData(){

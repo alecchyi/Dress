@@ -61,14 +61,14 @@
                             <view multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="b8g-2N-PR3">
                                 <rect key="frame" x="0.0" y="150" width="375" height="600"/>
                                 <subviews>
-                                    <imageView multipleTouchEnabled="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="header.jpg" highlightedImage="header.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="jRU-cp-aQY">
-                                        <rect key="frame" x="118" y="8" width="80" height="80"/>
+                                    <imageView multipleTouchEnabled="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="hat_icon.png" highlightedImage="hat_icon.png" translatesAutoresizingMaskIntoConstraints="NO" id="jRU-cp-aQY">
+                                        <rect key="frame" x="123" y="8" width="80" height="80"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </imageView>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="shirt.jpg" highlightedImage="shirt.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="4r3-48-CqP">
+                                    <imageView multipleTouchEnabled="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="shirt.jpg" highlightedImage="shirt.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="4r3-48-CqP">
                                         <rect key="frame" x="87" y="96" width="153" height="116"/>
                                     </imageView>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="trouser.jpg" highlightedImage="trouser.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="HE1-s2-8CB">
+                                    <imageView multipleTouchEnabled="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="trouser.jpg" highlightedImage="trouser.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="HE1-s2-8CB">
                                         <rect key="frame" x="87" y="220" width="153" height="192"/>
                                     </imageView>
                                 </subviews>
@@ -81,6 +81,8 @@
                     <connections>
                         <outlet property="clothesMainView" destination="b8g-2N-PR3" id="r0a-RP-RDd"/>
                         <outlet property="headerImgView" destination="jRU-cp-aQY" id="4tO-b5-IZa"/>
+                        <outlet property="shirtImgView" destination="4r3-48-CqP" id="p9w-oT-q14"/>
+                        <outlet property="trouserImgView" destination="HE1-s2-8CB" id="MqM-QA-B1q"/>
                         <outlet property="weatherView" destination="XHK-17-Km5" id="g2f-id-Au3"/>
                     </connections>
                 </viewController>
@@ -427,7 +429,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="header.jpg" width="83" height="83"/>
+        <image name="hat_icon.png" width="72" height="72"/>
         <image name="second" width="30" height="30"/>
         <image name="shirt.jpg" width="180" height="153"/>
         <image name="trouser.jpg" width="149" height="225"/>
