@@ -25,9 +25,16 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-//        print("sssss")
         // Do any additional setup after loading the view.
         initMainView()
+        println("did load")
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        
+        fetchWeatherData()
+        initClothesData()
+        println("will appear")
     }
 
     override func didReceiveMemoryWarning() {
@@ -47,13 +54,18 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
     */
 
     func fetchWeatherData() {
-        var locationManager = DataService.shareService.locationManager()
-        locationManager!.delegate = self
-        locationManager!.desiredAccuracy = kCLLocationAccuracyBest
-        if(atof(UIDevice.currentDevice().systemVersion)>=8.0){
-            locationManager!.requestAlwaysAuthorization()
+        if(DataService.shareService.weather? == nil){
+            var locationManager = DataService.shareService.locationManager()
+            locationManager!.delegate = self
+            locationManager!.desiredAccuracy = kCLLocationAccuracyBest
+            if(atof(UIDevice.currentDevice().systemVersion)>=8.0){
+                locationManager!.requestAlwaysAuthorization()
+            }
+            locationManager!.startUpdatingLocation()
+        }else{
+            println("has weather data")
         }
-        locationManager!.startUpdatingLocation()
+
     }
     
     func drawWeatherView(){
@@ -85,6 +97,12 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
         leftShirtSwipe.direction = UISwipeGestureRecognizerDirection.Left
         self.shirtImgView!.tag = 2001
         self.shirtImgView!.addGestureRecognizer(leftShirtSwipe)
+        
+        let swipeTrouserSelector:Selector = "swipeTrouserSelector:"
+        let leftTrouserSwipe = UISwipeGestureRecognizer(target: self, action: swipeTrouserSelector)
+        leftTrouserSwipe.direction = UISwipeGestureRecognizerDirection.Left
+        self.trouserImgView!.tag = 2001
+        self.trouserImgView!.addGestureRecognizer(leftTrouserSwipe)
     }
     
     func swipeSelector(sender:UISwipeGestureRecognizer){
@@ -102,13 +120,7 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
                 let header = headerArr.objectAtIndex(self.headerIdx) as NSMutableDictionary
                 let picPath = header.objectForKey("picPath") as NSString
                 let path = DataService.shareService.getUserClothDirPath().stringByAppendingString(picPath)
-//                UIView.beginAnimations("swipeForChangeHat", context: nil)
-//                UIView.setAnimationDuration(0.7)
-//                UIView.setAnimationCurve(UIViewAnimationCurve.EaseInOut)
-//                UIView.setAnimationRepeatAutoreverses(false)
-//                UIView.setAnimationTransition(UIViewAnimationTransition.None, forView: self.headerImgView!, cache: false)
                 self.headerImgView!.image = UIImage(contentsOfFile: path)
-//                UIView.commitAnimations()
             }
         }
         
@@ -132,22 +144,32 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
                 self.shirtImgView!.image = UIImage(contentsOfFile: path)
             }
         }
-        
+    }
+    
+    func swipeTrouserSelector(sender:UISwipeGestureRecognizer){
+        println("swipe trouser")
+        if let clothes = self.recommandedClothes? {
+            var arr: NSArray = self.recommandedClothes?.objectAtIndex(2) as NSArray!
+            if(arr.count==0){
+                println("no trouser")
+            }else{
+                println("change trouser")
+                self.trouserIdx++
+                if(arr.count == self.trouserIdx){
+                    self.trouserIdx = 0
+                }
+                let trouser = arr.objectAtIndex(self.trouserIdx) as NSMutableDictionary
+                let picPath = trouser.objectForKey("picPath") as NSString
+                let path = DataService.shareService.getUserClothDirPath().stringByAppendingString(picPath)
+                self.trouserImgView!.image = UIImage(contentsOfFile: path)
+            }
+        }
     }
     
     func initClothesData(){
         if let weather = DataService.shareService.weather? {
             self.recommandedClothes = DataService.shareService.getRecommandClothes(DataService.shareService.weather!)
             println(self.recommandedClothes!)
-            var headerArr: NSArray = self.recommandedClothes?.objectAtIndex(0) as NSArray!
-            if(headerArr.count>0){
-                let header = headerArr.objectAtIndex(0) as NSMutableDictionary
-                let picPath = header.objectForKey("picPath") as NSString
-                let path = DataService.shareService.getUserClothDirPath().stringByAppendingString(picPath)
-                self.headerImgView!.image = UIImage(contentsOfFile: picPath)
-            }else{
-                println("no header cloth")
-            }
         }else{
           println("no weather data")
         }
@@ -156,14 +178,10 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
     
     func initMainView() {
         
-        fetchWeatherData()
-        
         drawRulerView()
         
         setClothesMainView()
-        
-        initClothesData()
-        
+
         //init user Id
         
         
@@ -175,7 +193,7 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
     func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
         var location:CLLocation = locations[locations.count - 1] as CLLocation
         if(location.horizontalAccuracy>0){
-            updateWeatherData(location.coordinate.longitude, lat: location.coordinate.latitude)
+            self.updateWeatherData(location.coordinate.longitude, lat: location.coordinate.latitude)
             manager.stopUpdatingLocation()
         }
     }
@@ -267,16 +285,6 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
             }
             newList.writeToFile(DataService.shareService.getWeatherPlist(), atomically: true)
             self.recommandedClothes = DataService.shareService.getRecommandClothes(DataService.shareService.weather!)
-            println(self.recommandedClothes!)
-            var headerArr: NSArray = self.recommandedClothes?.objectAtIndex(0) as NSArray!
-            if(headerArr.count>0){
-                let header = headerArr.objectAtIndex(0) as NSMutableDictionary
-                let picPath = header.objectForKey("picPath") as NSString
-                let path = DataService.shareService.getUserClothDirPath().stringByAppendingString(picPath)
-                self.headerImgView!.image = UIImage(contentsOfFile: path)
-            }else{
-                println("no header cloth")
-            }
         }else{
             println("weather status error")
         }

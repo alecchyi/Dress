@@ -37,7 +37,7 @@ class WeatherView: UIView {
                 var lblTempView = UILabel(frame: CGRectMake(5, 10, 80, 20))
                 let temp:NSString = DataService.shareService.weather!.objectForKey("temp") as NSString!
                 lblTempView.text = temp
-                lblTempView.font = UIFont.systemFontOfSize(16)
+                lblTempView.font = UIFont.systemFontOfSize(14)
                 self.addSubview(lblTempView)
                 
                 var lblCity = UILabel(frame: CGRectMake(5, 65, 80, 20))
@@ -45,15 +45,17 @@ class WeatherView: UIView {
                 lblCity.font = UIFont.systemFontOfSize(14)
                 self.addSubview(lblCity)
                 
-                var lblWeather = UILabel(frame: CGRectMake(70, 10, 140, 20))
+                var lblWeather = UILabel(frame: CGRectMake(65, 10, 170, 20))
                 lblWeather.text = (DataService.shareService.weather!.objectForKey("weatherDesc") as NSString!) + " " + (DataService.shareService.weather!.objectForKey("wind") as NSString!)
+                lblWeather.font = UIFont.systemFontOfSize(14)
                 self.addSubview(lblWeather)
                 
                 var lblIndexZs = UILabel(frame: CGRectMake(240, 10, 70, 20))
                 lblIndexZs.text = DataService.shareService.weather!.objectForKey("dressIndexZs") as NSString!
+                lblIndexZs.font = UIFont.systemFontOfSize(14)
                 self.addSubview(lblIndexZs)
                 
-                var dressTextView = UITextView(frame: CGRectMake(65, 30, 250, 70))
+                var dressTextView = UITextView(frame: CGRectMake(60, 30, 250, 70))
                 dressTextView.editable = false
                 dressTextView.selectable = false
                 dressTextView.backgroundColor = self.bgColor
