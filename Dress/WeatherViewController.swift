@@ -89,34 +89,46 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
         let swipeSelector:Selector = "swipeSelector:"
         let leftSwipe = UISwipeGestureRecognizer(target: self, action: swipeSelector)
         leftSwipe.direction = UISwipeGestureRecognizerDirection.Left
-        self.headerImgView?.tag = 1001
         self.headerImgView?.addGestureRecognizer(leftSwipe)
+        let rightSwipe = UISwipeGestureRecognizer(target: self, action: swipeSelector)
+        rightSwipe.direction = UISwipeGestureRecognizerDirection.Right
+        self.headerImgView?.addGestureRecognizer(rightSwipe)
         
         let swipeShirtSelector:Selector = "swipeShirtSelector:"
         let leftShirtSwipe = UISwipeGestureRecognizer(target: self, action: swipeShirtSelector)
         leftShirtSwipe.direction = UISwipeGestureRecognizerDirection.Left
-        self.shirtImgView!.tag = 2001
-        self.shirtImgView!.addGestureRecognizer(leftShirtSwipe)
+        self.shirtImgView?.addGestureRecognizer(leftShirtSwipe)
+        let rightShirtSwipe = UISwipeGestureRecognizer(target: self, action: swipeShirtSelector)
+        rightShirtSwipe.direction = UISwipeGestureRecognizerDirection.Right
+        self.shirtImgView?.addGestureRecognizer(rightShirtSwipe)
         
         let swipeTrouserSelector:Selector = "swipeTrouserSelector:"
         let leftTrouserSwipe = UISwipeGestureRecognizer(target: self, action: swipeTrouserSelector)
         leftTrouserSwipe.direction = UISwipeGestureRecognizerDirection.Left
-        self.trouserImgView!.tag = 2001
-        self.trouserImgView!.addGestureRecognizer(leftTrouserSwipe)
+        self.trouserImgView?.addGestureRecognizer(leftTrouserSwipe)
+        let rightTrouserSwipe = UISwipeGestureRecognizer(target: self, action: swipeTrouserSelector)
+        rightTrouserSwipe.direction = UISwipeGestureRecognizerDirection.Right
+        self.trouserImgView?.addGestureRecognizer(rightTrouserSwipe)
     }
     
     func swipeSelector(sender:UISwipeGestureRecognizer){
-        println("swipe")
         if let clothes = self.recommandedClothes? {
             var headerArr: NSArray = self.recommandedClothes?.objectAtIndex(0) as NSArray!
             if(headerArr.count==0){
                 println("no hat")
             }else{
-                println("change hat")
-                self.headerIdx++
-                if(headerArr.count == self.headerIdx){
-                    self.headerIdx = 0
+                if(sender.direction == UISwipeGestureRecognizerDirection.Left){
+                    self.headerIdx++
+                    if(headerArr.count == self.headerIdx){
+                        self.headerIdx = 0
+                    }
+                }else{
+                    self.headerIdx--
+                    if(-1 == self.headerIdx){
+                        self.headerIdx = headerArr.count - 1
+                    }
                 }
+                
                 let header = headerArr.objectAtIndex(self.headerIdx) as NSMutableDictionary
                 let picPath = header.objectForKey("picPath") as NSString
                 let path = DataService.shareService.getUserClothDirPath().stringByAppendingString(picPath)
@@ -127,17 +139,23 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     func swipeShirtSelector(sender:UISwipeGestureRecognizer){
-        println("swipe shirt")
         if let clothes = self.recommandedClothes? {
             var arr: NSArray = self.recommandedClothes?.objectAtIndex(1) as NSArray!
             if(arr.count==0){
                 println("no shirt")
             }else{
-                println("change shirt")
-                self.shirtIdx++
-                if(arr.count == self.shirtIdx){
-                    self.shirtIdx = 0
+                if(sender.direction == UISwipeGestureRecognizerDirection.Left){
+                    self.shirtIdx++
+                    if(arr.count == self.shirtIdx){
+                        self.shirtIdx = 0
+                    }
+                }else{
+                    self.shirtIdx--
+                    if(-1 == self.shirtIdx){
+                        self.shirtIdx = arr.count - 1
+                    }
                 }
+                
                 let shirt = arr.objectAtIndex(self.shirtIdx) as NSMutableDictionary
                 let picPath = shirt.objectForKey("picPath") as NSString
                 let path = DataService.shareService.getUserClothDirPath().stringByAppendingString(picPath)
@@ -147,16 +165,21 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     func swipeTrouserSelector(sender:UISwipeGestureRecognizer){
-        println("swipe trouser")
         if let clothes = self.recommandedClothes? {
             var arr: NSArray = self.recommandedClothes?.objectAtIndex(2) as NSArray!
             if(arr.count==0){
                 println("no trouser")
             }else{
-                println("change trouser")
-                self.trouserIdx++
-                if(arr.count == self.trouserIdx){
-                    self.trouserIdx = 0
+                if(sender.direction == UISwipeGestureRecognizerDirection.Left){
+                    self.trouserIdx++
+                    if(arr.count == self.trouserIdx){
+                        self.trouserIdx = 0
+                    }
+                }else{
+                    self.trouserIdx--
+                    if(-1 == self.trouserIdx){
+                        self.trouserIdx = arr.count - 1
+                    }
                 }
                 let trouser = arr.objectAtIndex(self.trouserIdx) as NSMutableDictionary
                 let picPath = trouser.objectForKey("picPath") as NSString
@@ -177,7 +200,10 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     func initMainView() {
-        
+//        let shareSelector:Selector = "shareSeletor:"
+        var rightBarBtn:UIBarButtonItem = UIBarButtonItem(title:"分享", style: .Plain, target: self, action: "clickShareBtn")
+        self.navigationItem.rightBarButtonItem = rightBarBtn
+
         drawRulerView()
         
         setClothesMainView()
@@ -188,6 +214,10 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
         //init ruler view
         
         //
+    }
+    
+    func clickShareBtn() {
+        
     }
     
     func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
