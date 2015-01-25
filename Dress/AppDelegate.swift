@@ -9,7 +9,7 @@
 import UIKit
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, WeiboSDKDelegate {
 
     var window: UIWindow?
 
@@ -19,6 +19,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         initLogin()
         
+//        [WeiboSDK  .enableDebugMode]
+        WeiboSDK.enableDebugMode(true)
+        WeiboSDK.registerApp(kAppKeyForWeibo)
         return true
     }
 
@@ -45,5 +48,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
 
+    func application(application: UIApplication, handleOpenURL url: NSURL) -> Bool {
+        return WeiboSDK.handleOpenURL(url, delegate: self)
+    }
+    
+    func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject?) -> Bool {
+        return WeiboSDK.handleOpenURL(url, delegate: self)
+    }
+    
+    func didReceiveWeiboRequest(request:WBBaseRequest!){
+        
+    }
+    
+    func didReceiveWeiboResponse(response: WBBaseResponse!) {
+        
+    }
 }
 
