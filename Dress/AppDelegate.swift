@@ -61,7 +61,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WeiboSDKDelegate {
     }
     
     func didReceiveWeiboResponse(response: WBBaseResponse!) {
-        
+        if(response.isKindOfClass(WBAuthorizeResponse.self)){
+            println("3eeeeee")
+            println(response.statusCode)
+//            println(response.userID())
+            println(response.userInfo)
+        }
     }
 }
 

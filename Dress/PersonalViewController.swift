@@ -22,14 +22,17 @@ class PersonalViewController: UIViewController {
     }
     
 
-    /*
-    // MARK: - Navigation
+    override func viewWillAppear(animated: Bool) {
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue!, sender: AnyObject!) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        var rightBarBtnItem = UIBarButtonItem(title:"登录", style: UIBarButtonItemStyle.Plain, target: self, action: "clickLoginBtn")
+        self.navigationItem.rightBarButtonItem = rightBarBtnItem
     }
-    */
 
+    func clickLoginBtn(){
+        let mainStoryBoard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
+        var loginViewController = mainStoryBoard.instantiateViewControllerWithIdentifier("loginViewController") as LoginViewController
+//        var authView = AuthWeiboViewController()
+        
+        self.navigationController?.pushViewController(loginViewController, animated: true)
+    }
 }
