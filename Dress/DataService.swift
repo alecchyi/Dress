@@ -42,9 +42,9 @@ class DataService {
         
     }
     
-    func setUserToken(){
+    func setUserToken(token:NSString){
         if(self.userToken == nil){
-            self.userToken = gen_uuid()
+            self.userToken = token
         }
     }
     
@@ -95,6 +95,17 @@ class DataService {
         let storeFilePath = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true)
         var documentDir = storeFilePath[0] as String
         let path = documentDir.stringByAppendingPathComponent(kWeatherPlist)
+        if(!fileManager.fileExistsAtPath(path)){
+            fileManager.createFileAtPath(path, contents: nil, attributes: nil)
+        }
+        return path
+    }
+    
+    func getUsersPlist() -> String{
+        let fileManager = NSFileManager.defaultManager()
+        let storeFilePath = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true)
+        var documentDir = storeFilePath[0] as String
+        let path = documentDir.stringByAppendingPathComponent(kUsersPlist)
         if(!fileManager.fileExistsAtPath(path)){
             fileManager.createFileAtPath(path, contents: nil, attributes: nil)
         }
