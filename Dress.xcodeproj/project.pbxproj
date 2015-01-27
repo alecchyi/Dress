@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		70146D841A76391600D6EB4E /* weddingreality-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 70146D831A76391600D6EB4E /* weddingreality-icon.png */; };
-		70146D861A76416B00D6EB4E /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70146D851A76416B00D6EB4E /* RegisterViewController.swift */; };
+		70146D861A76416B00D6EB4E /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70146D851A76416B00D6EB4E /* LoginViewController.swift */; };
 		703365891A4B202E0078EBEB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 703365881A4B202E0078EBEB /* UIKit.framework */; };
 		7033658B1A4B20370078EBEB /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7033658A1A4B20370078EBEB /* SystemConfiguration.framework */; };
 		7067E7C81A694E4000E143D1 /* WeatherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7067E7C71A694E4000E143D1 /* WeatherView.swift */; };
@@ -73,7 +73,7 @@
 		296AE8601D1EEA675BE5771F /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		5FA990867593A7835004F6DD /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		70146D831A76391600D6EB4E /* weddingreality-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "weddingreality-icon.png"; sourceTree = "<group>"; };
-		70146D851A76416B00D6EB4E /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		70146D851A76416B00D6EB4E /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		703365881A4B202E0078EBEB /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		7033658A1A4B20370078EBEB /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		7067E7C71A694E4000E143D1 /* WeatherView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherView.swift; sourceTree = "<group>"; };
@@ -224,7 +224,7 @@
 				70A663761A49BCA200CB2662 /* Resources */,
 				70A6636E1A49BC9900CB2662 /* ClothViewController.swift */,
 				70AB75891A4CEC4C00B9D6C2 /* NewClothViewController.swift */,
-				70146D851A76416B00D6EB4E /* RegisterViewController.swift */,
+				70146D851A76416B00D6EB4E /* LoginViewController.swift */,
 				70A6636F1A49BC9900CB2662 /* FindViewController.swift */,
 				70A663701A49BC9900CB2662 /* PersonalViewController.swift */,
 				70A663711A49BC9900CB2662 /* WeatherViewController.swift */,
@@ -501,7 +501,7 @@
 				70AB75901A4D37F000B9D6C2 /* Utils.swift in Sources */,
 				70AB75921A4D3B9A00B9D6C2 /* User.swift in Sources */,
 				709767C61A51815200183867 /* TagToolBar.swift in Sources */,
-				70146D861A76416B00D6EB4E /* RegisterViewController.swift in Sources */,
+				70146D861A76416B00D6EB4E /* LoginViewController.swift in Sources */,
 				70A663751A49BC9900CB2662 /* WeatherViewController.swift in Sources */,
 				70A663741A49BC9900CB2662 /* PersonalViewController.swift in Sources */,
 				708E1AA51A4B021100FF27A1 /* Weather.swift in Sources */,
