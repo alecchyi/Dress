@@ -388,10 +388,10 @@
             </objects>
             <point key="canvasLocation" x="941" y="1491"/>
         </scene>
-        <!--登录-->
+        <!--注册-->
         <scene sceneID="uBa-2j-cYA">
             <objects>
-                <viewController storyboardIdentifier="loginViewController" title="登录" id="3cl-H6-Xso" customClass="LoginViewController" customModule="Dress" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="loginViewController" title="注册" id="3cl-H6-Xso" customClass="RegisterViewController" customModule="Dress" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="R06-0N-LOr"/>
                         <viewControllerLayoutGuide type="bottom" id="nCl-Xe-5eq"/>
