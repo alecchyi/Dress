@@ -45,16 +45,32 @@ func saveUser(user:NSDictionary) -> Bool{
     var users = NSMutableArray(contentsOfFile: DataService.shareService.getUsersPlist())
     if(users == nil){
         users = NSMutableArray()
-        
     }
+    var x:Int = 0
+    var obj:NSMutableDictionary?
     for(var i=0;i<users!.count;i++){
         let item:NSDictionary = users?.objectAtIndex(i) as NSDictionary
         if((item.objectForKey("userToken") as String) == (user.objectForKey("userToken") as String)){
+            obj = NSMutableDictionary(dictionary: item)
+            x = 1
             users!.removeObjectAtIndex(i)
             break
         }
     }
-    users?.addObject(user)
+    if(x==0){
+        users?.addObject(user)
+    }else{
+        obj!.setValue(user.objectForKey("loginType"), forKey: "loginType")
+        obj!.setValue(user.objectForKey("access_token"), forKey: "access_token")
+        obj!.setValue(user.objectForKey("weibo_uid"), forKey: "weibo_uid")
+        obj!.setValue(user.objectForKey("nickname"), forKey: "nickname")
+        obj!.setValue(user.objectForKey("profile_image_url"), forKey: "profile_image_url")
+        obj!.setValue(user.objectForKey("followers_count"), forKey: "followers_count")
+        obj!.setValue(user.objectForKey("friends_count"), forKey: "friends_count")
+        obj!.setValue(user.objectForKey("clothes_count"), forKey: "clothes_count")
+        
+        users?.addObject(obj!)
+    }
     println(users!)
     return true
 }
@@ -62,48 +78,59 @@ func saveUser(user:NSDictionary) -> Bool{
 func userLogin(data:NSDictionary, type:Int){
     var user:NSMutableDictionary = NSMutableDictionary()
     if(type==1){
-        user.setValue(data.objectForKey("uid"), forKey: "uid")
+        //login with weibo
+        user.setValue(data.objectForKey("uid"), forKey: "weibo_uid")
         user.setValue(data.objectForKey("access_token"), forKey: "access_token")
         let token:String = gen_uuid()! as String
         user.setValue(token, forKey: "userToken")
         user.setValue("sina_weibo", forKey: "loginType")
-        user = fetchUserData(user, type)
         saveUser(user)
         DataService.shareService.setUserToken(token)
-        DataService.shareService.currentUser = user
+        
+        fetchUserData(user, type)
     }
 }
 
 func fetchUserData(data:NSMutableDictionary, type:Int) -> NSMutableDictionary{
+    var user = NSMutableDictionary(dictionary: data)
     if(type == 1){
+        println("fetch user data")
         let manager = DataService.shareService.requestManager()
         let url = kWeiboApi + "2/users/show.json"
-        let uid:String = data.objectForKey("uid") as String
+        let uid:String = data.objectForKey("weibo_uid") as String
         let token:String = data.objectForKey("access_token") as String
         let params = ["uid":"\(uid)","access_token":"\(token)"]
+        println(data)
+        println(params)
         manager!.GET(url,
             parameters:params,
             success: {(operation:AFHTTPRequestOperation!, response:AnyObject!) in
                 let resp:NSDictionary = response as NSDictionary
-                data.setValue(resp.objectForKey("screen_name"), forKey: "nickname")
-                data.setValue(resp.objectForKey("profile_image_url"), forKey: "profile_image_url")
-                data.setValue(resp.objectForKey("followers_count"), forKey: "followers_count")
-                data.setValue(resp.objectForKey("friends_count"), forKey: "friends_count")
-                
+                println(resp)
+                user.setValue(resp.objectForKey("name"), forKey: "nickname")
+                user.setValue(resp.objectForKey("profile_image_url"), forKey: "profile_image_url")
+                user.setValue(resp.objectForKey("followers_count"), forKey: "followers_count")
+                user.setValue(resp.objectForKey("friends_count"), forKey: "friends_count")
+                println("get user data successfully")
+                saveUser(user)
+                DataService.shareService.currentUser = user
+                NSNotificationCenter.defaultCenter().postNotificationName("finishedLogin", object: nil)
             },
             failure: {(operation:AFHTTPRequestOperation!, error:NSError!) in
                 
         })
     }
-    
-    return data
+    return user
 }
 
 func has_bind_weibo() -> Bool {
     if(DataService.shareService.userToken != nil){
-        let login_type:String = DataService.shareService.currentUser?.objectForKey("loginType") as String
-        if(login_type != "" && login_type == "sina_weibo"){
-            return true
+        if(DataService.shareService.currentUser != nil){
+            let login_type:String = DataService.shareService.currentUser?.objectForKey("loginType") as String
+            println(login_type)
+            if(login_type != "" && login_type == "sina_weibo"){
+                return true
+            }
         }
     }
     return false

@@ -377,6 +377,24 @@
                                 </subviews>
                                 <color key="backgroundColor" red="0.91514228255891372" green="1" blue="0.92825042244480216" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
+                            <view hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nyM-Pg-34m" userLabel="logout">
+                                <rect key="frame" x="5" y="487" width="310" height="44"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eO0-Ys-efe">
+                                        <rect key="frame" x="85" y="8" width="140" height="30"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                        <state key="normal" title="退出当前账号">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="clickLogoutBtn" destination="BsH-vq-539" eventType="touchUpInside" id="8nR-qj-UuR"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.9547991071428571" green="0.10316109815907562" blue="0.18184103343329217" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="tintColor" red="0.95479910710000004" green="0.1031610982" blue="0.18184103339999999" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -387,6 +405,7 @@
                         <outlet property="lblFriendsNum" destination="hQc-AL-UKq" id="Acd-Hd-8Kj"/>
                         <outlet property="lblNickname" destination="IOM-t5-T7c" id="Uz5-Rf-RVJ"/>
                         <outlet property="lblSharedNum" destination="qgY-dL-YSn" id="iQk-hR-bjV"/>
+                        <outlet property="logoutView" destination="nyM-Pg-34m" id="wR3-hR-uwN"/>
                         <outlet property="profileImg" destination="beQ-bg-FxV" id="JKP-17-NBx"/>
                     </connections>
                 </viewController>
@@ -451,6 +470,9 @@
                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="clickWechatLoginBtn" destination="3cl-H6-Xso" eventType="touchUpInside" id="gTl-zK-Tsn"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
