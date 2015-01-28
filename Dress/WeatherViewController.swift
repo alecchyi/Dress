@@ -191,8 +191,12 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
     
     func initClothesData(){
         if let weather = DataService.shareService.weather? {
-            self.recommandedClothes = DataService.shareService.getRecommandClothes(DataService.shareService.weather!)
-            println(self.recommandedClothes!)
+            if(DataService.shareService.userToken != nil){
+                self.recommandedClothes = DataService.shareService.getRecommandClothes(DataService.shareService.weather!)
+            }
+            
+            println("xxxxxxxxxxxxxxx")
+            println(self.recommandedClothes?)
         }else{
           println("no weather data")
         }
@@ -314,7 +318,10 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
                 }
             }
             newList.writeToFile(DataService.shareService.getWeatherPlist(), atomically: true)
-            self.recommandedClothes = DataService.shareService.getRecommandClothes(DataService.shareService.weather!)
+            if(DataService.shareService.userToken != nil){
+                self.recommandedClothes = DataService.shareService.getRecommandClothes(DataService.shareService.weather!)
+            }
+            
         }else{
             println("weather status error")
         }
