@@ -299,14 +299,6 @@
                     <view key="view" contentMode="scaleToFill" id="Iec-e5-Zan">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="看好友怎么穿" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="goh-ig-Eyd">
-                                <rect key="frame" x="186" y="156" width="102" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="发现" id="I7J-h4-dw0"/>
@@ -365,13 +357,19 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="关注" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hQc-AL-UKq">
-                                        <rect key="frame" x="223" y="203" width="66" height="30"/>
+                                        <rect key="frame" x="195" y="203" width="66" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="粉丝" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uva-c5-85K">
+                                        <rect key="frame" x="266" y="203" width="66" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="分享" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qgY-dL-YSn">
-                                        <rect key="frame" x="125" y="203" width="66" height="30"/>
+                                        <rect key="frame" x="115" y="203" width="66" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
@@ -383,6 +381,14 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="个人中心" id="gal-OM-LGv"/>
+                    <connections>
+                        <outlet property="lblClothNum" destination="Kfw-JT-nOt" id="iI2-bL-w9r"/>
+                        <outlet property="lblFollowersNum" destination="Uva-c5-85K" id="Ckp-D5-5LC"/>
+                        <outlet property="lblFriendsNum" destination="hQc-AL-UKq" id="Acd-Hd-8Kj"/>
+                        <outlet property="lblNickname" destination="IOM-t5-T7c" id="Uz5-Rf-RVJ"/>
+                        <outlet property="lblSharedNum" destination="qgY-dL-YSn" id="iQk-hR-bjV"/>
+                        <outlet property="profileImg" destination="beQ-bg-FxV" id="JKP-17-NBx"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FR5-ee-xJ8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

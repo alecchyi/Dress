@@ -39,8 +39,12 @@ class ClothViewController: UIViewController, NewClothViewControllerDelegate,UICo
         frame.origin.x = 0
         frame.origin.y = 64
 //        self.tagsView = TagToolBar(frame: frame)
-        initTagView()
-        initCollectView()
+        if(DataService.shareService.userToken == nil){
+        
+        }else{
+            initTagView()
+            initCollectView()
+        }
     }
     
     func initTagView(){
@@ -130,14 +134,16 @@ class ClothViewController: UIViewController, NewClothViewControllerDelegate,UICo
     }
     
     override func viewWillAppear(animated: Bool) {
-        var allClothes = NSMutableArray(contentsOfFile: DataService.shareService.getUserClothPlist())
-        if(allClothes == nil){
-            allClothes = NSMutableArray()
-        }
-        self.clothesList = allClothes!
-        println(3333)
+        if(DataService.shareService.userToken==nil){
         
-        self.clothesCollectView!.reloadData()
+        }else{
+            var allClothes = NSMutableArray(contentsOfFile: DataService.shareService.getUserClothPlist())
+            if(allClothes == nil){
+                allClothes = NSMutableArray()
+            }
+            self.clothesList = allClothes!
+            self.clothesCollectView!.reloadData()
+        }
     }
 }
 

@@ -17,6 +17,7 @@ class DataService {
     var managers:[AnyObject] = [0,1]
     var userToken:String? = nil
     var weather:NSMutableDictionary? = nil
+    var currentUser:NSMutableDictionary? = nil
     
     class var shareService: DataService {
         
