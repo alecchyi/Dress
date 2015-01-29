@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		70146D841A76391600D6EB4E /* weddingreality-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 70146D831A76391600D6EB4E /* weddingreality-icon.png */; };
 		70146D861A76416B00D6EB4E /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70146D851A76416B00D6EB4E /* LoginViewController.swift */; };
+		70272B751A7A1B6C004870C1 /* default_dress.png in Resources */ = {isa = PBXBuildFile; fileRef = 70272B741A7A1B6C004870C1 /* default_dress.png */; };
+		70272B771A7A1D2E004870C1 /* ad_banner.png in Resources */ = {isa = PBXBuildFile; fileRef = 70272B761A7A1D2E004870C1 /* ad_banner.png */; };
 		703365891A4B202E0078EBEB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 703365881A4B202E0078EBEB /* UIKit.framework */; };
 		7033658B1A4B20370078EBEB /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7033658A1A4B20370078EBEB /* SystemConfiguration.framework */; };
 		7067E7C81A694E4000E143D1 /* WeatherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7067E7C71A694E4000E143D1 /* WeatherView.swift */; };
@@ -74,6 +76,8 @@
 		5FA990867593A7835004F6DD /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		70146D831A76391600D6EB4E /* weddingreality-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "weddingreality-icon.png"; sourceTree = "<group>"; };
 		70146D851A76416B00D6EB4E /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		70272B741A7A1B6C004870C1 /* default_dress.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = default_dress.png; sourceTree = "<group>"; };
+		70272B761A7A1D2E004870C1 /* ad_banner.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ad_banner.png; sourceTree = "<group>"; };
 		703365881A4B202E0078EBEB /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		7033658A1A4B20370078EBEB /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		7067E7C71A694E4000E143D1 /* WeatherView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherView.swift; sourceTree = "<group>"; };
@@ -274,6 +278,8 @@
 		70A663771A49BCAF00CB2662 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				70272B761A7A1D2E004870C1 /* ad_banner.png */,
+				70272B741A7A1B6C004870C1 /* default_dress.png */,
 				708909001A778CF4006D7B84 /* default_head.png */,
 				708908FE1A7788CC006D7B84 /* wechat_btn.png */,
 				708908FC1A77851B006D7B84 /* weibo_btn.png */,
@@ -418,6 +424,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				70AAD13B1A6F6D2800ADD40B /* me_icon@2x.png in Resources */,
+				70272B771A7A1D2E004870C1 /* ad_banner.png in Resources */,
+				70272B751A7A1B6C004870C1 /* default_dress.png in Resources */,
 				70AAD1351A6F69F100ADD40B /* weather_selected_icon.png in Resources */,
 				70A663511A49B75600CB2662 /* Main.storyboard in Resources */,
 				70A663561A49B75600CB2662 /* LaunchScreen.xib in Resources */,
