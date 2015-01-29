@@ -309,7 +309,7 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
             DataService.shareService.setWeather(weather)
             var weatherList = NSArray(contentsOfFile: DataService.shareService.getWeatherPlist()) as NSArray!
             var newList = NSMutableArray()
-            println(weatherList)
+//            println(weatherList)
             if(weatherList == nil){
                 newList.addObject(weather)
             }else{

@@ -20,6 +20,7 @@ class FindViewController: UIViewController, UITableViewDelegate,UITableViewDataS
         initTabbarItem()
         
         initFindView()
+        
     }
     
     func initFindView(){
@@ -63,18 +64,22 @@ class FindViewController: UIViewController, UITableViewDelegate,UITableViewDataS
     }
     
     func fetchPersonalWeibo(){
+        MBProgressHUD.showHUDAddedTo(self.weiboTableView, animated: true)
         let manager = DataService.shareService.requestManager()
         let url = kWeiboApi + "2/statuses/home_timeline.json"
         let access_token:String = DataService.shareService.currentUser?.objectForKey("access_token") as String
-        let params = ["uid":access_token,"source":kAppKeyForWeibo,"trim_user":1]
+        let params = ["access_token":access_token,"source":kAppKeyForWeibo,"trim_user":1]
+        println(params)
         manager!.GET(url,
             parameters: params,
             success: {(operation:AFHTTPRequestOperation!,response:AnyObject!) in
                 let resp:NSDictionary = response as NSDictionary
                 println(resp)
+                MBProgressHUD.hideHUDForView(self.weiboTableView, animated: true)
         },
             failure: {(operation:AFHTTPRequestOperation!, error:NSError!) in
                 println("get weibo error")
+                MBProgressHUD.hideHUDForView(self.weiboTableView, animated: true)
         })
     }
     
