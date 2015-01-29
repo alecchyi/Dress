@@ -4,10 +4,10 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
     </dependencies>
     <scenes>
-        <!--Tab Bar Controller-->
+        <!--root view-->
         <scene sceneID="yl2-sM-qoP">
             <objects>
-                <tabBarController id="49e-Tb-3d3" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="rootTabViewController" title="root view" id="49e-Tb-3d3" sceneMemberID="viewController">
                     <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="W28-zg-YXA">
                         <rect key="frame" x="0.0" y="975" width="768" height="49"/>
@@ -29,7 +29,7 @@
         <scene sceneID="I2B-vW-T2N">
             <objects>
                 <navigationController title="Weather" id="YoZ-qe-WX4" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="天气" image="weather_icon.png" selectedImage="weather_selected_icon.png" id="f8n-Pg-kro"/>
+                    <tabBarItem key="tabBarItem" title="天气" image="weather_icon.png" selectedImage="weather_icon.png" id="f8n-Pg-kro"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="lLV-FK-VV8">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -94,9 +94,7 @@
         <scene sceneID="hNq-Zr-YAE">
             <objects>
                 <navigationController title="衣服" id="gIr-8y-jFk" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="衣服" image="clothes_icon.png" selectedImage="clothes_icon.png" id="W9d-cR-Gnz">
-                        <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="0.0"/>
-                    </tabBarItem>
+                    <tabBarItem key="tabBarItem" title="衣服" image="clothes_icon.png" selectedImage="clothes_icon.png" id="W9d-cR-Gnz"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="nth-D8-9ZY">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -234,7 +232,7 @@
                                         </attributedString>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="shirt.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="myh-tz-e5l">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="default_dress.png" highlightedImage="default_dress.png" translatesAutoresizingMaskIntoConstraints="NO" id="myh-tz-e5l">
                                         <rect key="frame" x="120" y="204" width="180" height="180"/>
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mhh-cT-EdG">
@@ -249,7 +247,7 @@
                                 </subviews>
                                 <color key="backgroundColor" red="0.87058823529411766" green="0.88627450980392153" blue="0.87450980392156863" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AuI-7t-X74">
+                            <imageView userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="ad_banner.png" highlightedImage="ad_banner.png" translatesAutoresizingMaskIntoConstraints="NO" id="AuI-7t-X74">
                                 <rect key="frame" x="0.0" y="415" width="600" height="150"/>
                             </imageView>
                         </subviews>
@@ -311,9 +309,7 @@
         <scene sceneID="hym-aj-4Fj">
             <objects>
                 <navigationController title="我" id="3Dr-2h-wIJ" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="我" image="me_icon.png" selectedImage="me_icon.png" id="USl-Pq-bJt">
-                        <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="0.0"/>
-                    </tabBarItem>
+                    <tabBarItem key="tabBarItem" title="我" image="me_icon.png" selectedImage="me_icon.png" id="USl-Pq-bJt"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="JDu-mg-jdV">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -554,16 +550,16 @@
         </scene>
     </scenes>
     <resources>
+        <image name="ad_banner.png" width="500" height="150"/>
         <image name="clothes_icon.png" width="29" height="29"/>
+        <image name="default_dress.png" width="89" height="126"/>
         <image name="default_head.png" width="64" height="64"/>
         <image name="find_icon.png" width="29" height="30"/>
         <image name="hat_icon.png" width="79" height="71"/>
         <image name="me_icon.png" width="29" height="29"/>
-        <image name="shirt.jpg" width="180" height="153"/>
         <image name="shirt_icon.png" width="139" height="127"/>
         <image name="trousers_icon.png" width="128" height="128"/>
         <image name="weather_icon.png" width="29" height="29"/>
-        <image name="weather_selected_icon.png" width="29" height="29"/>
         <image name="wechat_btn.png" width="28" height="28"/>
         <image name="weibo_btn.png" width="32" height="32"/>
     </resources>

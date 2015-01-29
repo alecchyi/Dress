@@ -24,14 +24,19 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
     var shoesIndx:Int = 0
 
     override func viewDidLoad() {
+        
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
+        initTabbarItem()
+        
         initMainView()
+        
         println("did load")
+        
     }
     
     override func viewWillAppear(animated: Bool) {
-        
+        setCurrentUser()
         fetchWeatherData()
         initClothesData()
         println("will appear")
@@ -42,7 +47,12 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
         // Dispose of any resources that can be recreated.
     }
     
-
+    func initTabbarItem(){
+        let tabbarImg:UIImage = UIImage(named: "weather_icon.png")!
+        tabbarImg.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal)
+        self.navigationController?.tabBarItem = UITabBarItem(title: "天气", image: tabbarImg, selectedImage: tabbarImg)
+    }
+    
     /*
     // MARK: - Navigation
 
@@ -89,26 +99,26 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
         let swipeSelector:Selector = "swipeSelector:"
         let leftSwipe = UISwipeGestureRecognizer(target: self, action: swipeSelector)
         leftSwipe.direction = UISwipeGestureRecognizerDirection.Left
-        self.headerImgView?.addGestureRecognizer(leftSwipe)
+        self.headerImgView!.addGestureRecognizer(leftSwipe)
         let rightSwipe = UISwipeGestureRecognizer(target: self, action: swipeSelector)
         rightSwipe.direction = UISwipeGestureRecognizerDirection.Right
-        self.headerImgView?.addGestureRecognizer(rightSwipe)
+        self.headerImgView!.addGestureRecognizer(rightSwipe)
         
         let swipeShirtSelector:Selector = "swipeShirtSelector:"
         let leftShirtSwipe = UISwipeGestureRecognizer(target: self, action: swipeShirtSelector)
         leftShirtSwipe.direction = UISwipeGestureRecognizerDirection.Left
-        self.shirtImgView?.addGestureRecognizer(leftShirtSwipe)
+        self.shirtImgView!.addGestureRecognizer(leftShirtSwipe)
         let rightShirtSwipe = UISwipeGestureRecognizer(target: self, action: swipeShirtSelector)
         rightShirtSwipe.direction = UISwipeGestureRecognizerDirection.Right
-        self.shirtImgView?.addGestureRecognizer(rightShirtSwipe)
+        self.shirtImgView!.addGestureRecognizer(rightShirtSwipe)
         
         let swipeTrouserSelector:Selector = "swipeTrouserSelector:"
         let leftTrouserSwipe = UISwipeGestureRecognizer(target: self, action: swipeTrouserSelector)
         leftTrouserSwipe.direction = UISwipeGestureRecognizerDirection.Left
-        self.trouserImgView?.addGestureRecognizer(leftTrouserSwipe)
+        self.trouserImgView!.addGestureRecognizer(leftTrouserSwipe)
         let rightTrouserSwipe = UISwipeGestureRecognizer(target: self, action: swipeTrouserSelector)
         rightTrouserSwipe.direction = UISwipeGestureRecognizerDirection.Right
-        self.trouserImgView?.addGestureRecognizer(rightTrouserSwipe)
+        self.trouserImgView!.addGestureRecognizer(rightTrouserSwipe)
     }
     
     func swipeSelector(sender:UISwipeGestureRecognizer){
@@ -194,9 +204,6 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
             if(DataService.shareService.userToken != nil){
                 self.recommandedClothes = DataService.shareService.getRecommandClothes(DataService.shareService.weather!)
             }
-            
-            println("xxxxxxxxxxxxxxx")
-            println(self.recommandedClothes?)
         }else{
           println("no weather data")
         }

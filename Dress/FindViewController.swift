@@ -16,7 +16,9 @@ class FindViewController: UIViewController, UITableViewDelegate,UITableViewDataS
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        initTabbarItem()
+        
         initFindView()
     }
     
@@ -40,6 +42,12 @@ class FindViewController: UIViewController, UITableViewDelegate,UITableViewDataS
         
         self.pullRefreshControl = refreshControl
         self.weiboTableView!.addSubview(self.pullRefreshControl!)
+    }
+    
+    func initTabbarItem(){
+        let tabbarImg:UIImage = UIImage(named: "find_icon.png")!
+        tabbarImg.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal)
+        self.navigationController?.tabBarItem = UITabBarItem(title: "发现", image: tabbarImg, selectedImage: tabbarImg)
     }
 
     override func didReceiveMemoryWarning() {

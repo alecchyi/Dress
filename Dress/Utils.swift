@@ -26,8 +26,7 @@ func initLogin() {
     let userDefaults = NSUserDefaults.standardUserDefaults()
     let userToken = userDefaults.stringForKey("userToken")
     if((userToken?.isEmpty) == nil){
-//        DataService.shareService.setUserToken()
-        
+        NSNotificationCenter.defaultCenter().postNotificationName("unLoginNotify", object: nil)
     }else{
         DataService.shareService.userToken = userToken
         userDefaults.setValue(DataService.shareService.userToken!, forKey: "userToken")
@@ -58,7 +57,7 @@ func saveUser(user:NSDictionary) -> Bool{
         }
     }
     if(x==0){
-        users?.addObject(user)
+        users!.addObject(user)
     }else{
         obj!.setValue(user.objectForKey("loginType"), forKey: "loginType")
         obj!.setValue(user.objectForKey("access_token"), forKey: "access_token")
@@ -69,9 +68,10 @@ func saveUser(user:NSDictionary) -> Bool{
         obj!.setValue(user.objectForKey("friends_count"), forKey: "friends_count")
         obj!.setValue(user.objectForKey("clothes_count"), forKey: "clothes_count")
         
-        users?.addObject(obj!)
+        users!.addObject(obj!)
     }
     println(users!)
+    users!.writeToFile(DataService.shareService.getUsersPlist(), atomically: true)
     return true
 }
 
@@ -100,7 +100,6 @@ func fetchUserData(data:NSMutableDictionary, type:Int) -> NSMutableDictionary{
         let uid:String = data.objectForKey("weibo_uid") as String
         let token:String = data.objectForKey("access_token") as String
         let params = ["uid":"\(uid)","access_token":"\(token)"]
-        println(data)
         println(params)
         manager!.GET(url,
             parameters:params,
@@ -134,5 +133,28 @@ func has_bind_weibo() -> Bool {
         }
     }
     return false
+}
+
+func setCurrentUser(){
+    if(DataService.shareService.userToken != nil){
+        var users = NSMutableArray(contentsOfFile: DataService.shareService.getUsersPlist())
+        println(DataService.shareService.getUsersPlist())
+        let token:String = DataService.shareService.userToken! as String
+        println(token)
+        if(users == nil){
+            println("nil users")
+        }else{
+            for(var i=0;i<users!.count;i++){
+                let item:NSDictionary = users?.objectAtIndex(i) as NSDictionary
+                println(item.objectForKey("userToken"))
+                if((item.objectForKey("userToken") as String) == token){
+                    DataService.shareService.currentUser = item as? NSMutableDictionary
+                    println("has login token")
+                    break
+                }
+            }
+        }
+        
+    }
 }
 

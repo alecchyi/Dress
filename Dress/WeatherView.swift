@@ -32,7 +32,9 @@ class WeatherView: UIView {
             }else{
                 let picUrl = NSURL(string: picPath!)
                 let imgData:NSData = NSData(contentsOfURL: picUrl!)!
-                wImgView.image = UIImage(data: imgData, scale: 1.0)!
+                var img:UIImage = UIImage(data: imgData, scale: 1.0)!
+                
+                wImgView.image = img
                 self.addSubview(wImgView)
                 var lblTempView = UILabel(frame: CGRectMake(5, 10, 80, 20))
                 let temp:NSString = DataService.shareService.weather!.objectForKey("temp") as NSString!

@@ -21,17 +21,9 @@ class PersonalViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-
-    override func viewWillAppear(animated: Bool) {
+        
+        initTabbarItem()
+        
         if(DataService.shareService.userToken == nil){
             var rightBarBtnItem = UIBarButtonItem(title:"登录", style: UIBarButtonItemStyle.Plain, target: self, action: "clickLoginBtn")
             self.navigationItem.rightBarButtonItem = rightBarBtnItem
@@ -39,7 +31,6 @@ class PersonalViewController: UIViewController {
             if(DataService.shareService.currentUser != nil){
                 println("init view")
                 let path:String = DataService.shareService.currentUser?.objectForKey("profile_image_url") as String
-                println(path)
                 let url = NSURL(string: path)
                 let imgData:NSData = NSData(contentsOfURL: url!)!
                 self.profileImg?.image = UIImage(data: imgData)
@@ -64,7 +55,20 @@ class PersonalViewController: UIViewController {
             }
             
         }
-        
+
+        // Do any additional setup after loading the view.
+    }
+
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+
+    func initTabbarItem(){
+        let tabbarImg:UIImage = UIImage(named: "me_icon.png")!
+        tabbarImg.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal)
+        self.navigationController?.tabBarItem = UITabBarItem(title: "我的", image: tabbarImg, selectedImage: tabbarImg)
     }
 
     func clickLoginBtn(){

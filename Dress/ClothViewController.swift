@@ -18,8 +18,16 @@ class ClothViewController: UIViewController, NewClothViewControllerDelegate,UICo
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        initTabbarItem()
+        
         initClothView()
+    }
+    
+    func initTabbarItem(){
+        let tabbarImg:UIImage = UIImage(named: "clothes_icon.png")!
+        tabbarImg.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal)
+        self.navigationController?.tabBarItem = UITabBarItem(title: "衣橱", image: tabbarImg, selectedImage: tabbarImg)
     }
     
     func initClothView(){

@@ -16,7 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WeiboSDKDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
-        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "showLoginPage", name: "unLoginNotify", object: nil)
         initLogin()
         
 //        [WeiboSDK  .enableDebugMode]
@@ -74,6 +74,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WeiboSDKDelegate {
             
             
         }
+    }
+    
+    func showLoginPage(){
+        println("wwwwww")
+        let mainStoryBoard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
+        var loginViewController = mainStoryBoard.instantiateViewControllerWithIdentifier("loginViewController") as LoginViewController
+        
+        self.window!.rootViewController = loginViewController
+        let notificationCenter = NSNotificationCenter.defaultCenter()
+        notificationCenter.addObserver(self, selector: "dismissLoginView", name: "finishedLogin", object: nil)
+    }
+    
+    func dismissLoginView(){
+        println("dismiss login view")
+        let mainStoryBoard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
+        let rootViewController = mainStoryBoard.instantiateViewControllerWithIdentifier("rootTabViewController") as UITabBarController
+        self.window!.rootViewController = rootViewController
     }
 }
 

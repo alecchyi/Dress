@@ -14,8 +14,7 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         println(33333)
-        let notificationCenter = NSNotificationCenter.defaultCenter()
-        notificationCenter.addObserver(self, selector: "dismissLoginView", name: "finishedLogin", object: nil)
+        
     }
     
     override func viewWillAppear(animated: Bool) {

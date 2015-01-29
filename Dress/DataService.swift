@@ -20,7 +20,6 @@ class DataService {
     var currentUser:NSMutableDictionary? = nil
     
     class var shareService: DataService {
-        
         return _SingletonInstance
     }
     
@@ -40,12 +39,13 @@ class DataService {
     
     func requestByUrl(params:NSMutableDictionary) {
         
-        
     }
     
     func setUserToken(token:NSString){
         if(self.userToken == nil){
             self.userToken = token
+            var userDefaults = NSUserDefaults.standardUserDefaults()
+            userDefaults.setValue(token, forKey: "userToken")
         }
     }
     
@@ -61,7 +61,6 @@ class DataService {
         var documentDir = storeFilePath[0] as String
         let path = documentDir.stringByAppendingPathComponent(DataService.shareService.userToken! + "/" + kClothPlist)
         if(!fileManager.fileExistsAtPath(path)){
-            //            println(path)
             fileManager.createFileAtPath(path, contents: nil, attributes: nil)
         }
         return path
@@ -74,7 +73,6 @@ class DataService {
         let path = documentDir.stringByAppendingPathComponent(DataService.shareService.userToken! + "/Clothes")
         var isDir:ObjCBool = false
         if(!fileManager.fileExistsAtPath(path, isDirectory: &isDir)){
-            //            println(path)
             fileManager.createDirectoryAtPath(path, withIntermediateDirectories: true, attributes: nil, error: nil)
         }
         return path
@@ -114,10 +112,10 @@ class DataService {
     }
     
     func getRecommandClothes(data:NSMutableDictionary?) -> NSArray? {
-//        println(data!)
+
         var weather:Weather = Weather(data: data!)
         let result = weather.anlysic() as NSArray!
-        println(result!)
+//        println(result!)
         let myClothes = NSArray(contentsOfFile: DataService.shareService.getUserClothPlist())
         var headArr = NSMutableArray()
         var shirtArr = NSMutableArray()
@@ -140,7 +138,6 @@ class DataService {
                 }
             }
         }
-        println(headArr)
         return [headArr,shirtArr,trouserArr,shoesArr]
     }
     
