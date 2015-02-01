@@ -18,10 +18,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WeiboSDKDelegate {
         // Override point for customization after application launch.
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "showLoginPage", name: "unLoginNotify", object: nil)
         initLogin()
-        
+        initDataDB()
 //        [WeiboSDK  .enableDebugMode]
         WeiboSDK.enableDebugMode(true)
         WeiboSDK.registerApp(kAppKeyForWeibo)
+        
+        AVOSCloud.setApplicationId("ypyeenvnsp2thiyhrbs9zkbvguwi0c29h2b1nv06jp19o65j", clientKey: "o6wa72uxorqtn0fym50qojxmdj82uwi59nyi18hs3472u72b")
+        AVAnalytics.trackAppOpenedWithLaunchOptions(launchOptions)
+        
         return true
     }
 

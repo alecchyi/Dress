@@ -14,6 +14,7 @@ let kWeatherPlist = "weather.plist"
 let kUsersPlist = "users.plist"
 let kWeiboApi = "https://api.weibo.com/"
 let kWeiboOpeatorId = 5421836100
+let kDBName = "data.db"
 let kSeasons = ["春季","夏季","秋季","冬季"]
 let kCategories = ["帽子","上衣","裤子","鞋子"]
 
@@ -156,5 +157,12 @@ func setCurrentUser(){
         }
         
     }
+}
+
+func initDataDB(){
+    let path = DataService.shareService.getDBPath()
+    println(path)
+    
+    
 }
 

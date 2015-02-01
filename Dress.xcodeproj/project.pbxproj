@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7011C1BA1A7B223E002AE2A8 /* SQLiteDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7011C1B81A7B223E002AE2A8 /* SQLiteDB.swift */; };
+		7011C1BB1A7B223E002AE2A8 /* String-Extras.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7011C1B91A7B223E002AE2A8 /* String-Extras.swift */; };
+		7011C1BD1A7B225D002AE2A8 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7011C1BC1A7B225D002AE2A8 /* libsqlite3.0.dylib */; };
+		7011C1C11A7B7934002AE2A8 /* InfoListItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7011C1C01A7B7934002AE2A8 /* InfoListItemCell.swift */; };
+		7011C1C61A7B8610002AE2A8 /* InfoListItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7011C1C51A7B8610002AE2A8 /* InfoListItemCell.xib */; };
+		7011C1C81A7BC451002AE2A8 /* like_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 7011C1C71A7BC451002AE2A8 /* like_icon.png */; };
+		7011C1CA1A7BC4AD002AE2A8 /* active_like_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 7011C1C91A7BC4AD002AE2A8 /* active_like_icon.png */; };
+		7011C1CC1A7BC59B002AE2A8 /* share_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 7011C1CB1A7BC59B002AE2A8 /* share_icon.png */; };
 		70146D841A76391600D6EB4E /* weddingreality-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 70146D831A76391600D6EB4E /* weddingreality-icon.png */; };
 		70146D861A76416B00D6EB4E /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70146D851A76416B00D6EB4E /* LoginViewController.swift */; };
 		70272B751A7A1B6C004870C1 /* default_dress.png in Resources */ = {isa = PBXBuildFile; fileRef = 70272B741A7A1B6C004870C1 /* default_dress.png */; };
@@ -74,6 +82,14 @@
 /* Begin PBXFileReference section */
 		296AE8601D1EEA675BE5771F /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		5FA990867593A7835004F6DD /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		7011C1B81A7B223E002AE2A8 /* SQLiteDB.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SQLiteDB.swift; sourceTree = "<group>"; };
+		7011C1B91A7B223E002AE2A8 /* String-Extras.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String-Extras.swift"; sourceTree = "<group>"; };
+		7011C1BC1A7B225D002AE2A8 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
+		7011C1C01A7B7934002AE2A8 /* InfoListItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoListItemCell.swift; sourceTree = "<group>"; };
+		7011C1C51A7B8610002AE2A8 /* InfoListItemCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InfoListItemCell.xib; sourceTree = "<group>"; };
+		7011C1C71A7BC451002AE2A8 /* like_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = like_icon.png; sourceTree = "<group>"; };
+		7011C1C91A7BC4AD002AE2A8 /* active_like_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = active_like_icon.png; sourceTree = "<group>"; };
+		7011C1CB1A7BC59B002AE2A8 /* share_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = share_icon.png; sourceTree = "<group>"; };
 		70146D831A76391600D6EB4E /* weddingreality-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "weddingreality-icon.png"; sourceTree = "<group>"; };
 		70146D851A76416B00D6EB4E /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		70272B741A7A1B6C004870C1 /* default_dress.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = default_dress.png; sourceTree = "<group>"; };
@@ -147,6 +163,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7011C1BD1A7B225D002AE2A8 /* libsqlite3.0.dylib in Frameworks */,
 				707591F51A74969F005DFA11 /* ImageIO.framework in Frameworks */,
 				707591F31A749699005DFA11 /* QuartzCore.framework in Frameworks */,
 				7033658B1A4B20370078EBEB /* SystemConfiguration.framework in Frameworks */,
@@ -171,6 +188,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7011C1C21A7B855B002AE2A8 /* CustomView */ = {
+			isa = PBXGroup;
+			children = (
+				7011C1C51A7B8610002AE2A8 /* InfoListItemCell.xib */,
+			);
+			name = CustomView;
+			sourceTree = "<group>";
+		};
 		707591E41A748C9C005DFA11 /* libWeiboSDK */ = {
 			isa = PBXGroup;
 			children = (
@@ -222,6 +247,7 @@
 		70A663461A49B75600CB2662 /* Dress */ = {
 			isa = PBXGroup;
 			children = (
+				7011C1C21A7B855B002AE2A8 /* CustomView */,
 				707591E41A748C9C005DFA11 /* libWeiboSDK */,
 				708E1AA31A4B01F400FF27A1 /* Models */,
 				70A663801A49BCCF00CB2662 /* Utils */,
@@ -278,6 +304,9 @@
 		70A663771A49BCAF00CB2662 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				7011C1CB1A7BC59B002AE2A8 /* share_icon.png */,
+				7011C1C91A7BC4AD002AE2A8 /* active_like_icon.png */,
+				7011C1C71A7BC451002AE2A8 /* like_icon.png */,
 				70272B761A7A1D2E004870C1 /* ad_banner.png */,
 				70272B741A7A1B6C004870C1 /* default_dress.png */,
 				708909001A778CF4006D7B84 /* default_head.png */,
@@ -304,6 +333,8 @@
 		70A663801A49BCCF00CB2662 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				7011C1B81A7B223E002AE2A8 /* SQLiteDB.swift */,
+				7011C1B91A7B223E002AE2A8 /* String-Extras.swift */,
 				70A663811A49BCE800CB2662 /* DataService.swift */,
 				70AC70171A4BBBCE00F396AA /* PickViewToolBar.swift */,
 				70AB758F1A4D37F000B9D6C2 /* Utils.swift */,
@@ -311,6 +342,7 @@
 				709767C71A51A50500183867 /* ClothViewCell.swift */,
 				7067E7C71A694E4000E143D1 /* WeatherView.swift */,
 				7067E7C91A696F4C00E143D1 /* RulerViewBar.swift */,
+				7011C1C01A7B7934002AE2A8 /* InfoListItemCell.swift */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -318,6 +350,7 @@
 		89277E932F2A70B1BE8B1753 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7011C1BC1A7B225D002AE2A8 /* libsqlite3.0.dylib */,
 				707591F41A74969F005DFA11 /* ImageIO.framework */,
 				707591F21A749699005DFA11 /* QuartzCore.framework */,
 				7033658A1A4B20370078EBEB /* SystemConfiguration.framework */,
@@ -430,12 +463,15 @@
 				70A663511A49B75600CB2662 /* Main.storyboard in Resources */,
 				70A663561A49B75600CB2662 /* LaunchScreen.xib in Resources */,
 				708908FF1A7788CC006D7B84 /* wechat_btn.png in Resources */,
+				7011C1CA1A7BC4AD002AE2A8 /* active_like_icon.png in Resources */,
 				70AAD1411A6F6F1D00ADD40B /* weather_icon@2x.png in Resources */,
 				70AAD1311A6F679400ADD40B /* weather_icon.png in Resources */,
+				7011C1C81A7BC451002AE2A8 /* like_icon.png in Resources */,
 				708909011A778CF4006D7B84 /* default_head.png in Resources */,
 				70AAD1391A6F6B0400ADD40B /* me_icon.png in Resources */,
 				70AAD13D1A6F6DA400ADD40B /* find_icon@2x.png in Resources */,
 				70AAD1331A6F694800ADD40B /* clothes_icon.png in Resources */,
+				7011C1CC1A7BC59B002AE2A8 /* share_icon.png in Resources */,
 				70AAD1371A6F6A8800ADD40B /* find_icon.png in Resources */,
 				70AAD12E1A6F51C700ADD40B /* shirt_icon.png in Resources */,
 				70146D841A76391600D6EB4E /* weddingreality-icon.png in Resources */,
@@ -443,6 +479,7 @@
 				70AAD12B1A6F3D7700ADD40B /* hat_icon.png in Resources */,
 				708908FD1A77851B006D7B84 /* weibo_btn.png in Resources */,
 				70A663531A49B75600CB2662 /* Images.xcassets in Resources */,
+				7011C1C61A7B8610002AE2A8 /* InfoListItemCell.xib in Resources */,
 				70AAD12F1A6F51C700ADD40B /* trousers_icon.png in Resources */,
 				707591F11A748C9C005DFA11 /* WeiboSDK.bundle in Resources */,
 				708908F81A775E3E006D7B84 /* close_btn.png in Resources */,
@@ -498,7 +535,10 @@
 			files = (
 				7067E7C81A694E4000E143D1 /* WeatherView.swift in Sources */,
 				708E1AA71A4B035800FF27A1 /* Cloth.swift in Sources */,
+				7011C1BB1A7B223E002AE2A8 /* String-Extras.swift in Sources */,
 				70AC70181A4BBBCE00F396AA /* PickViewToolBar.swift in Sources */,
+				7011C1C11A7B7934002AE2A8 /* InfoListItemCell.swift in Sources */,
+				7011C1BA1A7B223E002AE2A8 /* SQLiteDB.swift in Sources */,
 				70AB758A1A4CEC4C00B9D6C2 /* NewClothViewController.swift in Sources */,
 				709767C81A51A50500183867 /* ClothViewCell.swift in Sources */,
 				70A663731A49BC9900CB2662 /* FindViewController.swift in Sources */,

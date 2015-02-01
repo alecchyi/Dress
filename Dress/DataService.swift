@@ -141,4 +141,20 @@ class DataService {
         return [headArr,shirtArr,trouserArr,shoesArr]
     }
     
+    func getDBPath() -> String{
+        let fileManager = NSFileManager.defaultManager()
+        let storeFilePath = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true)
+        var documentDir = storeFilePath[0] as String
+        let path = documentDir.stringByAppendingPathComponent(kDBName)
+        if(!fileManager.fileExistsAtPath(path)){
+            fileManager.createFileAtPath(path, contents: nil, attributes: nil)
+            
+            let db = SQLiteDB.sharedInstance()
+            let y = db.execute("drop table if exists infos", parameters: nil)
+            println("y=\(y)")
+            let x = db.execute("CREATE  TABLE 'infos' ('id' INTEGER PRIMARY KEY  AUTOINCREMENT  NOT NULL , 'user_token' VARCHAR NOT NULL  UNIQUE , 'content' VARCHAR, 'title' VARCHAR, 'user_id' varchar,'sourceType' varchar, 'small_img_url' varchar,'thumb_img_url' varchar,'link' varchar, 'created_at' datetime,'status' integer not null default 0, 'likes_count' integer default 0, 'shared_count' integer default 0,'author_name' varchar,'author_avatar_url' varchar,'tag_id' integer)", parameters: nil)
+            println("x=\(x)")
+        }
+        return path
+    }
 }

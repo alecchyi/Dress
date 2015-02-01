@@ -31,6 +31,7 @@ class WeatherView: UIView {
                 self.addSubview(lblWeather)
             }else{
                 let picUrl = NSURL(string: picPath!)
+                println(picUrl)
                 let imgData:NSData = NSData(contentsOfURL: picUrl!)!
                 var img:UIImage = UIImage(data: imgData, scale: 1.0)!
                 
