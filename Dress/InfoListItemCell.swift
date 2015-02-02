@@ -42,7 +42,6 @@ class InfoListItemCell: UITableViewCell {
             frame.size.width = 0
             frame.size.height = 0
             self.smallImg!.frame = frame
-//            println("hidden")
         }
         frame.origin.y = frame.origin.y + frame.size.height + 5
         frame.size.width = self.btnView!.frame.size.width

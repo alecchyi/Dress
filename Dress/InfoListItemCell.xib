@@ -101,6 +101,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
+                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             </tableViewCellContentView>
             <color key="backgroundColor" red="0.91514228259999997" green="1" blue="0.9282504224" alpha="1" colorSpace="calibratedRGB"/>
             <connections>

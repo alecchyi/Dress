@@ -79,7 +79,6 @@ class FindViewController: UIViewController, UITableViewDelegate,UITableViewDataS
             }else{
                 println(error)
             }
-            
             MBProgressHUD.hideHUDForView(self.infoTableView, animated: true)
         })
     }
