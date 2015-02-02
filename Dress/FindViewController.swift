@@ -27,7 +27,7 @@ class FindViewController: UIViewController, UITableViewDelegate,UITableViewDataS
         //add AD view
         
         //add tableview for weibo
-        var frame:CGRect = CGRectMake(0, 40, self.view.bounds.size.width, self.view.bounds.size.height - 100)
+        var frame:CGRect = CGRectMake(0, -30, self.view.bounds.size.width, self.view.bounds.size.height)
         self.infoTableView = UITableView(frame: frame, style: UITableViewStyle.Grouped)
         
         self.infoTableView!.delegate = self
@@ -59,6 +59,7 @@ class FindViewController: UIViewController, UITableViewDelegate,UITableViewDataS
     }
 
     override func viewWillAppear(animated: Bool) {
+        
         if(has_bind_weibo()){
             fetchPersonalWeibo()
         }
@@ -93,15 +94,16 @@ class FindViewController: UIViewController, UITableViewDelegate,UITableViewDataS
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell:InfoListItemCell = tableView.dequeueReusableCellWithIdentifier("InfoListItemCell", forIndexPath: indexPath) as InfoListItemCell
-//        let cell:InfoListItemCell = InfoListItemCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: "InfoListItemCell")
+        
         let item = self.infoList?.objectAtIndex(indexPath.row) as AVObject
-//        cell.contentView.setNeedsLayout()
-//        cell.contentView.layoutIfNeeded()
         cell.lblTitle!.text = item.objectForKey("title") as? String
         
-        cell.contentTextView!.text = item.objectForKey("content") as? String
-        var frame = CGRectMake(5, 55, 310, cell.contentTextView!.contentSize.height)
-        cell.contentTextView!.frame = frame
+        cell.lblContent!.text = item.objectForKey("content") as? String
+        let size:CGSize = cell.lblContent!.sizeThatFits(cell.lblContent!.frame.size)
+        cell.lblContent!.numberOfLines = 0
+        cell.lblContent!.frame = CGRectMake(8, 58, 307, size.height)
+        cell.lblContent!.lineBreakMode = NSLineBreakMode.ByCharWrapping
+        cell.lblContent!.sizeToFit()
         
         let like:Int = item.objectForKey("likes_count") as Int
         cell.lblLike?.text = "赞(\(like))"
@@ -111,7 +113,7 @@ class FindViewController: UIViewController, UITableViewDelegate,UITableViewDataS
         cell.lblSource?.text = "来源:\(source)"
         cell.lblAuthor?.text = item.objectForKey("author_name") as? String
         let avatar_url = item.objectForKey("author_avatar_url") as? String
-        println("dddddddddd")
+
         if (avatar_url != nil) {
             let head_url = NSURL(string: avatar_url!)
             let imgData:NSData = NSData(contentsOfURL: head_url!)!
@@ -122,15 +124,14 @@ class FindViewController: UIViewController, UITableViewDelegate,UITableViewDataS
         }
         let small_img_url = item.objectForKey("small_img_url") as? String
         if(small_img_url != nil){
-            cell.smallImg!.hidden = false
             let img_url = NSURL(string: small_img_url!)
             let imgData:NSData = NSData(contentsOfURL: img_url!)!
             cell.smallImg!.image = UIImage(data: imgData, scale: 1.0)
+            cell.has_small_img = true
         }else{
-//            cell.smallImg!.frame = frame
-            cell.smallImg?.hidden = true
+            cell.has_small_img = false
         }
-//        cell.contentView.layoutSubviews()
+//        println("has_smalll_img----\(indexPath.row)-----\(cell.has_small_img)")
         cell.selectionStyle = UITableViewCellSelectionStyle.None
         return cell
     }
@@ -145,21 +146,22 @@ class FindViewController: UIViewController, UITableViewDelegate,UITableViewDataS
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        let item = self.infoList?.objectAtIndex(indexPath.row) as AVObject
-        let content:NSString = (item.objectForKey("content") as? NSString)!
-//        var attrs:NSMutableArray = NSMutableArray()
-        var dict:NSMutableDictionary = NSMutableDictionary()
-        dict.setObject(UIFont(name: "HelveticaNeue", size: 17)!, forKey: NSFontAttributeName)
-        let size = content.sizeWithAttributes(dict)
-        println(size)
-//        var cell = tableView.cellForRowAtIndexPath(indexPath) as InfoListItemCell
-//        size = cell.contentTextView!.contentSize
-        let height = 55 + 10 + size.height + 25
-        println(height)
-        if let url:String = item.objectForKey("small_img_url") as? String {
-            return height + 100
+        if let items = self.infoList? {
+            let item = self.infoList!.objectAtIndex(indexPath.row) as AVObject
+            let content:NSString = (item.objectForKey("content") as? NSString)!
+            var dict:NSMutableDictionary = NSMutableDictionary()
+            dict.setObject(UIFont(name: "HelveticaNeue", size: 17)!, forKey: NSFontAttributeName)
+            let size = content.sizeWithAttributes(dict)
+//            println(size)
+            let height = 58 + 10 + size.height + 25 + 5
+            if let url:String = item.objectForKey("small_img_url") as? String {
+                return height + 100 + 10
+            }else{
+                return height
+            }
         }
-        return height + 15
+
+        return 0
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -173,8 +175,6 @@ class FindViewController: UIViewController, UITableViewDelegate,UITableViewDataS
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         println("did selected")
-        var cell = tableView.cellForRowAtIndexPath(indexPath)
-        cell?.contentView.layoutSubviews()
     }
     
     func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
