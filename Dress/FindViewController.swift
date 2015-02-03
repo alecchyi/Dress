@@ -70,7 +70,7 @@ class FindViewController: UIViewController, UITableViewDelegate,UITableViewDataS
     func fetchPersonalWeibo(){
         MBProgressHUD.showHUDAddedTo(self.infoTableView, animated: true)
         var avQuery = AVQuery(className: "Infos")
-        avQuery.cachePolicy = AVCachePolicy.CacheElseNetwork
+        avQuery.cachePolicy = AVCachePolicy.NetworkElseCache
         avQuery.whereKey("status", equalTo: 1)
         avQuery.findObjectsInBackgroundWithBlock({(objs:[AnyObject]!,error:NSError!) in
             if((error) == nil){
