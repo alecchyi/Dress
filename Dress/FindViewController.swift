@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Haneke
 
 class FindViewController: UIViewController, UITableViewDelegate,UITableViewDataSource {
 
@@ -69,6 +70,7 @@ class FindViewController: UIViewController, UITableViewDelegate,UITableViewDataS
     func fetchPersonalWeibo(){
         MBProgressHUD.showHUDAddedTo(self.infoTableView, animated: true)
         var avQuery = AVQuery(className: "Infos")
+        avQuery.cachePolicy = AVCachePolicy.CacheElseNetwork
         avQuery.whereKey("status", equalTo: 1)
         avQuery.findObjectsInBackgroundWithBlock({(objs:[AnyObject]!,error:NSError!) in
             if((error) == nil){
@@ -115,17 +117,14 @@ class FindViewController: UIViewController, UITableViewDelegate,UITableViewDataS
 
         if (avatar_url != nil) {
             let head_url = NSURL(string: avatar_url!)
-            let imgData:NSData = NSData(contentsOfURL: head_url!)!
-            let head_img:UIImage = UIImage(data: imgData)!
-            cell.headImg!.image = head_img
+            cell.headImg!.hnk_setImageFromURL(head_url!, placeholder: nil, format: nil, failure: nil, success: nil)
         }else{
             cell.headImg!.image = UIImage(named: "default_head.png")
         }
         let small_img_url = item.objectForKey("small_img_url") as? String
         if(small_img_url != nil){
             let img_url = NSURL(string: small_img_url!)
-            let imgData:NSData = NSData(contentsOfURL: img_url!)!
-            cell.smallImg!.image = UIImage(data: imgData, scale: 1.0)
+            cell.smallImg!.hnk_setImageFromURL(img_url!, placeholder: nil, format: nil, failure: nil, success: nil)
             cell.has_small_img = true
         }else{
             cell.has_small_img = false
