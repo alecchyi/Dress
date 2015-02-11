@@ -14,7 +14,7 @@ protocol NewClothViewControllerDelegate {
 
 class NewClothViewController: UIViewController,UIPickerViewDelegate,UIPickerViewDataSource,PickViewToolBarDelegate, UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIActionSheetDelegate {
     
-    @IBOutlet var tagView:UIView?
+    @IBOutlet var tagsView:UIView?
     @IBOutlet var categoryBtn:UIButton?
     @IBOutlet var seasonBtn:UIButton?
     @IBOutlet var photoSeg:UISegmentedControl?
@@ -23,35 +23,67 @@ class NewClothViewController: UIViewController,UIPickerViewDelegate,UIPickerView
     @IBOutlet var addClothView:UIView?
     @IBOutlet var lblCategory:UILabel?
     @IBOutlet var lblSeason:UILabel?
+    
     var newClothDelegate:NewClothViewControllerDelegate?
     var _picPath:String?
     
-    var categories = ["帽子","上衣","裤子","鞋子"] as [String]
-    var pickViewType:Int = 0
+    var categories:NSArray?
+    var seasons:NSArray?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         initClothView()
+        initTagView()
     }
     
     func initClothView(){
         //add save btn
-        var rightBarBtnItem = UIBarButtonItem(title:"save", style: UIBarButtonItemStyle.Done, target: self, action: "clickSaveBtn")
-        self.navigationItem.rightBarButtonItem = rightBarBtnItem
+//        var rightBarBtnItem = UIBarButtonItem(title:"save", style: UIBarButtonItemStyle.Done, target: self, action: "clickSaveBtn")
+//        self.navigationItem.rightBarButtonItem = rightBarBtnItem
         self.lblCategory?.tag = 1000
         self.lblSeason?.tag = 1100
+
+    }
+    
+    func initTagView(){
+        var frame = UIScreen.mainScreen().bounds
+        self.tagsView!.frame.size.width = frame.size.width
         
-//        self.view.backGroundColor = UIColor.
+        var allTags = NSMutableArray(contentsOfFile: DataService.shareService.getTagsPlist())
         
+        var scrollView = UIScrollView(frame: self.tagsView!.bounds)
+        scrollView.scrollsToTop = false
+        scrollView.showsVerticalScrollIndicator = false
+        scrollView.autoresizingMask = UIViewAutoresizing.FlexibleWidth | UIViewAutoresizing.FlexibleHeight
         
+        self.tagsView!.addSubview(scrollView)
+        
+        var sWidth:CGFloat = 0.0
+        for var i:Int = 0; i < allTags?.count; i++ {
+            var x:CGFloat = CGFloat(50) + CGFloat(i * 80)
+            var frame:CGRect = CGRectMake(x, 12, 60, 26)
+            var btn = UIButton(frame: frame)
+            sWidth += frame.size.width + 30
+            btn.setTitle((allTags?.objectAtIndex(i) as NSDictionary).objectForKey("name") as? String, forState: UIControlState.Normal)
+            btn.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
+            btn.titleLabel?.font = UIFont.systemFontOfSize(14.0)
+            btn.backgroundColor = UIColor(red: 241/255.0, green: 103/255.0, blue: 214/255.0, alpha: 1.0)
+            btn.layer.cornerRadius = frame.size.height * 0.5
+            
+            scrollView.addSubview(btn)
+            var scrollSize:CGSize = scrollView.contentSize as CGSize
+            scrollSize.width = sWidth
+            scrollView.contentSize = scrollSize
+        }
+
     }
     
     func showToolBar(){
         hideToolBar()
-        UIView.animateWithDuration(0.3, delay: 0.0, options:UIViewAnimationOptions.CurveEaseOut, animations:{
+        UIView.animateWithDuration(0.3, delay: 0.0, options:UIViewAnimationOptions.TransitionCurlUp, animations:{
             var frame = UIScreen.mainScreen().bounds
-            frame.origin.y = frame.size.height - 244
+            frame.origin.y = frame.size.height - 200
             frame.size.height = 200
             var pickView = PickViewToolBar(frame: frame)
             pickView.tag = 1024
@@ -67,17 +99,11 @@ class NewClothViewController: UIViewController,UIPickerViewDelegate,UIPickerView
     
     @IBAction func clickCategoryBtn(){
         self.categories = kCategories
-        self.pickViewType = 0
+        self.seasons = kSeasons
         showToolBar()
         
     }
-    
-    @IBAction func clickSeasonBtn(){
-        self.categories = kSeasons
-        self.pickViewType = 1
-        showToolBar()
-        
-    }
+
     
     @IBAction func clickSaveBtn(){
         println("saving")
@@ -112,7 +138,7 @@ class NewClothViewController: UIViewController,UIPickerViewDelegate,UIPickerView
     }
     
     @IBAction func clickPhotoBtn(){
-        
+        hideToolBar()
         var sheet:UIActionSheet = UIActionSheet()
         if(UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera)){
             sheet.addButtonWithTitle("取消")
@@ -186,22 +212,31 @@ class NewClothViewController: UIViewController,UIPickerViewDelegate,UIPickerView
     }
     
     func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return self.categories.count
+        if(self.categories!.count > self.seasons!.count){
+            return self.categories!.count
+        }
+        return self.seasons!.count
     }
     
     func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
-        return 1
+        return 2
     }
     
     func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String! {
-        return self.categories[row]
+        if(component == 0){
+            return self.categories!.objectAtIndex(row) as String
+        }else{
+            return self.seasons!.objectAtIndex(row) as String
+        }
     }
     
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        if(self.pickViewType==0){
+        if(component == 0){
             self.lblCategory!.tag = 1000 + row
+            self.lblCategory!.text = self.categories!.objectAtIndex(row) as? String
         }else{
             self.lblSeason!.tag = 1100 + row
+            self.lblSeason!.text = self.seasons!.objectAtIndex(row) as? String
         }
     }
     
@@ -209,7 +244,7 @@ class NewClothViewController: UIViewController,UIPickerViewDelegate,UIPickerView
         let subviews = self.view.subviews
         for subview in subviews as [UIView] {
             if(subview.tag==1024){
-                UIView.animateWithDuration(0.3, delay: 0.0, options: UIViewAnimationOptions.CurveEaseIn, animations: {
+                UIView.animateWithDuration(0.3, delay: 0.0, options: UIViewAnimationOptions.TransitionCurlDown, animations: {
                     subview.removeFromSuperview()
                     }, completion: {(BOOL isFinished) in
                 })
@@ -223,12 +258,12 @@ class NewClothViewController: UIViewController,UIPickerViewDelegate,UIPickerView
     }
     
     func clickToolBarDoneBtn(){
-        let row = self.pickViewType == 0 ? self.lblCategory!.tag - 1000 : self.lblSeason!.tag - 1100
-        if(self.pickViewType==0){
-            self.lblCategory!.text = self.categories[row]
-        }else{
-            self.lblSeason!.text = self.categories[row]
-        }
+//        let row = self.pickViewType == 0 ? self.lblCategory!.tag - 1000 : self.lblSeason!.tag - 1100
+//        if(self.pickViewType==0){
+//            self.lblCategory!.text = self.categories[row]
+//        }else{
+//            self.lblSeason!.text = self.categories[row]
+//        }
         
         hideToolBar()
     }

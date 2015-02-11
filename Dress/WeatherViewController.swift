@@ -50,18 +50,12 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
     func initTabbarItem(){
         let tabbarImg:UIImage = UIImage(named: "weather_icon.png")!
         tabbarImg.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal)
-        self.navigationController?.tabBarItem = UITabBarItem(title: "天气", image: tabbarImg, selectedImage: tabbarImg)
+        var tabBarItem:UITabBarItem = UITabBarItem(title: "天气", image: tabbarImg, selectedImage: tabbarImg)
+        self.tabBarController?.tabBar.tintColor = mainBtnColor()
+        self.navigationController?.tabBarItem = tabBarItem
+        
     }
-    
-    /*
-    // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue!, sender: AnyObject!) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
     func fetchWeatherData() {
         if(DataService.shareService.weather? == nil){
@@ -79,7 +73,7 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     func drawWeatherView(){
-        self.weatherView!.backgroundColor = UIColor.clearColor()
+        self.weatherView!.backgroundColor = UIColor(red: 243/255.0, green: 243/255.0, blue: 230/255.0, alpha: 0.75)
         var frame = CGRectMake(0, 60, self.view.bounds.width, 110)
         self.weatherView!.frame = frame
         frame.origin.y = 0
@@ -213,6 +207,7 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
     func initMainView() {
 //        let shareSelector:Selector = "shareSeletor:"
         var rightBarBtn:UIBarButtonItem = UIBarButtonItem(title:"分享", style: .Plain, target: self, action: "clickShareBtn")
+        rightBarBtn.tintColor = mainBtnColor()
         self.navigationItem.rightBarButtonItem = rightBarBtn
 
         drawRulerView()
