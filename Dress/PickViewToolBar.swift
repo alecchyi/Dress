@@ -23,7 +23,7 @@ class PickViewToolBar:UIView {
     
     override init(frame: CGRect) {
         super.init(frame:frame)
-        self.backgroundColor = UIColor.grayColor()
+        self.backgroundColor = UIColor.whiteColor()
         self.pickerView = UIPickerView(frame: CGRectMake(0, 44, frame.size.width, frame.size.height - 44))
         self.toolBar = UIToolbar(frame: CGRectMake(0, 0, frame.size.width, 44))
         self.toolBar?.barStyle = UIBarStyle.Default

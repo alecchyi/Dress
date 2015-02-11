@@ -22,8 +22,9 @@ class ClothViewCell: UICollectionViewCell {
 //        self.lblText?.textColor = UIColor.whiteColor()
         self.contentView.addSubview(self.imageView!)
         self.contentView.addSubview(self.lblText!)
-        self.contentView.backgroundColor = UIColor(red: 243/255.0, green: 243/255.0, blue: 241/255.0, alpha: 1.0)
+//        self.contentView.backgroundColor = UIColor(red: 243/255.0, green: 243/255.0, blue: 241/255.0, alpha: 1.0)
         self.lblText?.textAlignment = NSTextAlignment.Center
+        self.lblText?.textColor = mainWordColor()
     }
     
 

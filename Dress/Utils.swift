@@ -166,3 +166,15 @@ func initDataDB(){
     
 }
 
+func mainColor() -> UIColor {
+    return UIColor(red: 253/255.0, green: 219/255.0, blue: 251/255.0, alpha: 1.0)
+}
+
+func mainBtnColor() -> UIColor {
+    return UIColor(red: 253/255.0, green: 103/255.0, blue: 85/255.0, alpha: 1.0)
+}
+
+func mainWordColor() -> UIColor {
+    return UIColor(red: 80/255.0, green: 80/255.0, blue: 80/255.0, alpha: 1.0)
+}
+

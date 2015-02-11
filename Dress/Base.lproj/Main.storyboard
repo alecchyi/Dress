@@ -13,6 +13,7 @@
                         <rect key="frame" x="0.0" y="975" width="768" height="49"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <color key="tintColor" red="0.99215686270000003" green="0.4039215686" blue="0.33333333329999998" alpha="1" colorSpace="calibratedRGB"/>
                     </tabBar>
                     <connections>
                         <segue destination="YoZ-qe-WX4" kind="relationship" relationship="viewControllers" id="9kL-jT-AJG"/>
@@ -33,6 +34,10 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="lLV-FK-VV8">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <textAttributes key="titleTextAttributes">
+                            <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="17"/>
+                            <color key="textColor" red="0.31372549020000001" green="0.31372549020000001" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
+                        </textAttributes>
                     </navigationBar>
                     <connections>
                         <segue destination="Y6G-ba-LOl" kind="relationship" relationship="rootViewController" id="Ncp-bc-vw5"/>
@@ -61,14 +66,14 @@
                             <view multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="b8g-2N-PR3">
                                 <rect key="frame" x="0.0" y="150" width="375" height="600"/>
                                 <subviews>
-                                    <imageView multipleTouchEnabled="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="hat_icon.png" highlightedImage="hat_icon.png" translatesAutoresizingMaskIntoConstraints="NO" id="jRU-cp-aQY">
+                                    <imageView multipleTouchEnabled="YES" alpha="0.64999999999999969" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="hat_icon.png" highlightedImage="hat_icon.png" translatesAutoresizingMaskIntoConstraints="NO" id="jRU-cp-aQY">
                                         <rect key="frame" x="127" y="8" width="72" height="72"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </imageView>
-                                    <imageView multipleTouchEnabled="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="shirt_icon.png" highlightedImage="shirt_icon.png" translatesAutoresizingMaskIntoConstraints="NO" id="4r3-48-CqP">
+                                    <imageView multipleTouchEnabled="YES" alpha="0.69999999999999973" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="shirt_icon.png" highlightedImage="shirt_icon.png" translatesAutoresizingMaskIntoConstraints="NO" id="4r3-48-CqP">
                                         <rect key="frame" x="99" y="81" width="128" height="128"/>
                                     </imageView>
-                                    <imageView multipleTouchEnabled="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="trousers_icon.png" highlightedImage="trousers_icon.png" translatesAutoresizingMaskIntoConstraints="NO" id="HE1-s2-8CB">
+                                    <imageView multipleTouchEnabled="YES" alpha="0.69999999999999973" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="trousers_icon.png" highlightedImage="trousers_icon.png" translatesAutoresizingMaskIntoConstraints="NO" id="HE1-s2-8CB">
                                         <rect key="frame" x="83" y="214" width="160" height="160"/>
                                     </imageView>
                                 </subviews>
@@ -98,6 +103,11 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="nth-D8-9ZY">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <textAttributes key="titleTextAttributes">
+                            <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="17"/>
+                            <color key="textColor" red="0.31372549020000001" green="0.31372549020000001" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
+                            <offsetWrapper key="textShadowOffset" horizontal="0.0" vertical="0.0"/>
+                        </textAttributes>
                     </navigationBar>
                     <connections>
                         <segue destination="OLH-ZO-5xx" kind="relationship" relationship="rootViewController" id="u3Y-QV-Mr5"/>
@@ -119,59 +129,35 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eU9-zY-IbY">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="415"/>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eU9-zY-IbY" userLabel="addClothView">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="415"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ll0-oc-HLx">
-                                        <rect key="frame" x="143" y="163" width="127" height="26"/>
-                                        <attributedString key="attributedText">
-                                            <fragment content="春季">
-                                                <attributes>
-                                                    <color key="NSColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <font key="NSFont" size="17" name="STHeitiSC-Light"/>
-                                                    <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
-                                                </attributes>
-                                            </fragment>
-                                        </attributedString>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="春季" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ll0-oc-HLx">
+                                        <rect key="frame" x="220" y="128" width="80" height="26"/>
+                                        <fontDescription key="fontDescription" name="STHeitiSC-Light" family="Heiti SC" pointSize="17"/>
+                                        <color key="textColor" red="0.31372549020000001" green="0.31372549020000001" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <view clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yH9-mn-esP">
-                                        <rect key="frame" x="0.0" y="64" width="600" height="50"/>
+                                    <view clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yH9-mn-esP" userLabel="tagsView">
+                                        <rect key="frame" x="0.0" y="64" width="320" height="50"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bUY-fI-n4f">
-                                                <rect key="frame" x="91" y="10" width="30" height="30"/>
-                                                <state key="normal" title="休闲">
-                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tst-eZ-wGB">
-                                                <rect key="frame" x="150" y="10" width="30" height="30"/>
-                                                <state key="normal" title="商务">
-                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U3d-6E-Ma6">
-                                                <rect key="frame" x="204" y="10" width="30" height="30"/>
-                                                <state key="normal" title="运动">
-                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                            </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="标签" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RkV-jD-ABQ">
-                                                <rect key="frame" x="10" y="16" width="34" height="21"/>
-                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <rect key="frame" x="12" y="14" width="34" height="21"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                                                <color key="textColor" red="0.99215686270000003" green="0.4039215686" blue="0.33333333329999998" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
-                                        <color key="backgroundColor" red="0.87060903284671531" green="0.88580634124087587" blue="0.87306113138686137" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" red="0.99123086729999998" green="0.85996960700000002" blue="0.98254052049999996" alpha="1" colorSpace="calibratedRGB"/>
                                     </view>
-                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QYR-62-RRH">
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QYR-62-RRH" userLabel="navToolBar">
                                         <rect key="frame" x="0.0" y="20" width="600" height="44"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cdb-SC-9og">
-                                                <rect key="frame" x="10" y="10" width="50" height="30"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                <rect key="frame" x="2" y="10" width="50" height="30"/>
+                                                <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="16"/>
                                                 <state key="normal" title="取消">
+                                                    <color key="titleColor" red="0.99215686274509807" green="0.40392156862745099" blue="0.33333333333333331" alpha="1" colorSpace="calibratedRGB"/>
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
                                                 <connections>
@@ -180,64 +166,45 @@
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="添加衣物" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fvr-aV-b7E">
                                                 <rect key="frame" x="90" y="14" width="140" height="21"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="17"/>
+                                                <color key="textColor" red="0.31457270408163263" green="0.31457270408163263" blue="0.31457270408163263" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dzD-PZ-b8w">
-                                                <rect key="frame" x="260" y="10" width="50" height="30"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                <rect key="frame" x="267" y="10" width="50" height="30"/>
+                                                <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="16"/>
                                                 <state key="normal" title="完成">
-                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <color key="titleColor" red="0.99123086729999998" green="0.40456561814895498" blue="0.33433487087189456" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
                                                 <connections>
                                                     <action selector="clickSaveBtn" destination="2qO-Iy-RT4" eventType="touchUpInside" id="6Z1-Zf-PeT"/>
                                                 </connections>
                                             </button>
                                         </subviews>
-                                        <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </view>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="选图片：" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w78-D2-4Fh">
-                                        <rect key="frame" x="0.0" y="195" width="89" height="26"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pKZ-EK-zeF">
-                                        <rect key="frame" x="0.0" y="126" width="80" height="30"/>
-                                        <state key="normal" title="选择类别"/>
+                                        <rect key="frame" x="5" y="126" width="119" height="30"/>
+                                        <state key="normal" title="选择类别和季节">
+                                            <color key="titleColor" red="0.99215686270000003" green="0.4039215686" blue="0.33333333329999998" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
                                         <connections>
                                             <action selector="clickCategoryBtn" destination="2qO-Iy-RT4" eventType="touchUpInside" id="Shu-cp-Rva"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f4J-Po-MPa">
-                                        <rect key="frame" x="0.0" y="161" width="80" height="30"/>
-                                        <state key="normal" title="选择季节">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="clickSeasonBtn" destination="2qO-Iy-RT4" eventType="touchUpInside" id="b4t-v5-Tfe"/>
-                                        </connections>
-                                    </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XyA-QG-z5n">
-                                        <rect key="frame" x="143" y="124" width="127" height="33"/>
-                                        <attributedString key="attributedText">
-                                            <fragment content="类别">
-                                                <attributes>
-                                                    <color key="NSColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <font key="NSFont" size="17" name="STHeitiSC-Light"/>
-                                                    <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
-                                                </attributes>
-                                            </fragment>
-                                        </attributedString>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="帽子" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XyA-QG-z5n">
+                                        <rect key="frame" x="126" y="124" width="80" height="33"/>
+                                        <fontDescription key="fontDescription" name="STHeitiSC-Light" family="Heiti SC" pointSize="17"/>
+                                        <color key="textColor" red="0.31372549020000001" green="0.31372549020000001" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="default_dress.png" highlightedImage="default_dress.png" translatesAutoresizingMaskIntoConstraints="NO" id="myh-tz-e5l">
-                                        <rect key="frame" x="120" y="204" width="180" height="180"/>
+                                        <rect key="frame" x="76" y="177" width="180" height="180"/>
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mhh-cT-EdG">
-                                        <rect key="frame" x="8" y="224" width="60" height="30"/>
-                                        <state key="normal" title="找照片">
+                                        <rect key="frame" x="5" y="173" width="60" height="30"/>
+                                        <state key="normal" title="选照片">
+                                            <color key="titleColor" red="0.99215686270000003" green="0.4039215686" blue="0.33333333329999998" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
@@ -245,7 +212,7 @@
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" red="0.87058823529411766" green="0.88627450980392153" blue="0.87450980392156863" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
                             <imageView userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="ad_banner.png" highlightedImage="ad_banner.png" translatesAutoresizingMaskIntoConstraints="NO" id="AuI-7t-X74">
                                 <rect key="frame" x="0.0" y="415" width="600" height="150"/>
@@ -262,7 +229,7 @@
                         <outlet property="lblCategory" destination="XyA-QG-z5n" id="h3C-1M-kKE"/>
                         <outlet property="lblSeason" destination="ll0-oc-HLx" id="Nrz-cn-K0N"/>
                         <outlet property="photoImgView" destination="myh-tz-e5l" id="Its-Cs-nQZ"/>
-                        <outlet property="tagView" destination="yH9-mn-esP" id="dlV-zS-0hA"/>
+                        <outlet property="tagsView" destination="yH9-mn-esP" id="ujC-Ss-bKv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="S6r-w7-6X1" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -277,6 +244,10 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="JSD-6I-9lM">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <textAttributes key="titleTextAttributes">
+                            <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="17"/>
+                            <color key="textColor" red="0.31372549020000001" green="0.31372549020000001" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
+                        </textAttributes>
                     </navigationBar>
                     <connections>
                         <segue destination="Mas-l0-qpr" kind="relationship" relationship="rootViewController" id="isg-M2-QsG"/>
@@ -313,6 +284,10 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="JDu-mg-jdV">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <textAttributes key="titleTextAttributes">
+                            <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="17"/>
+                            <color key="textColor" red="0.31372549020000001" green="0.31372549020000001" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
+                        </textAttributes>
                     </navigationBar>
                     <connections>
                         <segue destination="BsH-vq-539" kind="relationship" relationship="rootViewController" id="nsM-NC-67V"/>
@@ -343,31 +318,31 @@
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Nickname" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IOM-t5-T7c">
                                         <rect key="frame" x="40" y="167" width="221" height="22"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <color key="textColor" red="0.31372549020000001" green="0.31372549020000001" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="衣服" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kfw-JT-nOt">
                                         <rect key="frame" x="16" y="203" width="66" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <color key="textColor" red="0.31372549020000001" green="0.31372549020000001" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="关注" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hQc-AL-UKq">
                                         <rect key="frame" x="164" y="203" width="66" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <color key="textColor" red="0.31372549020000001" green="0.31372549020000001" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="粉丝" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uva-c5-85K">
                                         <rect key="frame" x="240" y="203" width="66" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <color key="textColor" red="0.31372549020000001" green="0.31372549020000001" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="分享" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qgY-dL-YSn">
                                         <rect key="frame" x="89" y="203" width="66" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <color key="textColor" red="0.31372549020000001" green="0.31372549020000001" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
@@ -490,17 +465,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view alpha="0.74999999999999978" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NdX-3v-hFG">
-                                <rect key="frame" x="0.0" y="64" width="600" height="50"/>
+                            <view alpha="0.74999999999999978" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NdX-3v-hFG" userLabel="tagsView">
+                                <rect key="frame" x="0.0" y="64" width="320" height="50"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="标签" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yhU-um-6i9">
-                                        <rect key="frame" x="10" y="14" width="34" height="21"/>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="标签" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ukf-47-uKw">
+                                        <rect key="frame" x="7" y="14" width="34" height="21"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                                        <color key="textColor" red="0.99215686270000003" green="0.4039215686" blue="0.33333333329999998" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.99123086729999998" green="0.85996960700000002" blue="0.98254052049999996" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="n6f-Il-2ir">
@@ -541,7 +516,8 @@
                     <navigationItem key="navigationItem" title="我的衣服" id="Xeb-mb-Qd2"/>
                     <connections>
                         <outlet property="clothesCollectView" destination="n6f-Il-2ir" id="XbS-cC-pQX"/>
-                        <outlet property="tagsView" destination="NdX-3v-hFG" id="JOW-o2-d0M"/>
+                        <outlet property="tagsView" destination="NdX-3v-hFG" id="GQE-4G-6hL"/>
+                        <outlet property="view" destination="QjC-dQ-RY9" id="gXl-j1-TWu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mim-qu-83m" userLabel="First Responder" sceneMemberID="firstResponder"/>
