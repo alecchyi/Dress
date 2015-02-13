@@ -4,3 +4,5 @@ pod 'MBProgressHUD', '~> 0.8'
 pod 'AVOSCloud'
 pod 'AVOSCloudUI'
 pod 'AVOSCloudSNS'
+
+xcodeproj 'Dress.xcodeproj'
