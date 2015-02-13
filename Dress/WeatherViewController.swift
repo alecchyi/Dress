@@ -33,6 +33,8 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
         
         println("did load")
         
+        fetchSystemTags()
+        
     }
     
     override func viewWillAppear(animated: Bool) {

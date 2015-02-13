@@ -267,6 +267,7 @@ class NewClothViewController: UIViewController,UIPickerViewDelegate,UIPickerView
         
         hideToolBar()
     }
+
     
 }
 

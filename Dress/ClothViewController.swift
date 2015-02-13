@@ -58,57 +58,42 @@ class ClothViewController: UIViewController, NewClothViewControllerDelegate,UICo
     
     func initTagView(){
         self.tagsView!.backgroundColor = mainColor()
-        var allTags = NSMutableArray(contentsOfFile: DataService.shareService.getTagsPlist())
-        if(allTags == nil){
-            var tag:NSMutableDictionary = NSMutableDictionary()
-            tag.setValue(0, forKey: "id")
-            tag.setValue("运动", forKey: "name")
-            
-            var tag1 = NSMutableDictionary()
-            tag1.setValue(1, forKey: "id")
-            tag1.setValue("休闲", forKey: "name")
-            
-            var tag2 = NSMutableDictionary()
-            tag2.setValue(2, forKey: "id")
-            tag2.setValue("商务", forKey: "name")
-            
-            var tag3 = NSMutableDictionary()
-            tag3.setValue(3, forKey: "id")
-            tag3.setValue("流行", forKey: "name")
-            
-            var tag4 = NSMutableDictionary()
-            tag4.setValue(4, forKey: "id")
-            tag4.setValue("复古", forKey: "name")
-            
-            allTags = NSMutableArray(array: [tag,tag1,tag2,tag3,tag4])
-            
-            allTags!.writeToFile(DataService.shareService.getTagsPlist(), atomically: true)
-        }
-        var scrollView = UIScrollView(frame: self.tagsView!.bounds)
-        scrollView.scrollsToTop = false
-        scrollView.showsVerticalScrollIndicator = false
-        scrollView.autoresizingMask = UIViewAutoresizing.FlexibleWidth | UIViewAutoresizing.FlexibleHeight
-        
-        self.tagsView!.addSubview(scrollView)
-        
-        var sWidth:CGFloat = 0.0
-        for var i:Int = 0; i < allTags?.count; i++ {
-            var x:CGFloat = CGFloat(40) + CGFloat(i * 80)
-            var frame:CGRect = CGRectMake(x, 12, 60, 26)
-            var btn = UIButton(frame: frame)
-            sWidth += frame.size.width + 30
-            btn.setTitle((allTags?.objectAtIndex(i) as NSDictionary).objectForKey("name") as? String, forState: UIControlState.Normal)
-            btn.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
-            btn.titleLabel?.font = UIFont.systemFontOfSize(14.0)
-            btn.backgroundColor = UIColor(red: 241/255.0, green: 103/255.0, blue: 214/255.0, alpha: 1.0)
-            btn.layer.cornerRadius = frame.size.height * 0.5
-            
-            scrollView.addSubview(btn)
-            var scrollSize:CGSize = scrollView.contentSize as CGSize
-            scrollSize.width = sWidth
-            scrollView.contentSize = scrollSize
-        }
 
+        for view:AnyObject in self.tagsView!.subviews {
+            if view is UIScrollView {
+                view.removeFromSuperview()
+                break
+            }
+        }
+        var allTags = NSMutableArray(contentsOfFile: DataService.shareService.getTagsPlist())
+        if(allTags != nil){
+            var scrollView = UIScrollView(frame: self.tagsView!.bounds)
+            scrollView.scrollsToTop = false
+            scrollView.showsVerticalScrollIndicator = false
+            scrollView.autoresizingMask = UIViewAutoresizing.FlexibleWidth | UIViewAutoresizing.FlexibleHeight
+            
+            self.tagsView!.addSubview(scrollView)
+            
+            var sWidth:CGFloat = 0.0
+            for var i:Int = 0; i < allTags?.count; i++ {
+                var x:CGFloat = CGFloat(40) + CGFloat(i * 80)
+                var frame:CGRect = CGRectMake(x, 12, 60, 26)
+                var btn = UIButton(frame: frame)
+                sWidth += frame.size.width + 30
+                btn.setTitle((allTags?.objectAtIndex(i) as NSDictionary).objectForKey("name") as? String, forState: UIControlState.Normal)
+                btn.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
+                btn.titleLabel?.font = UIFont.systemFontOfSize(14.0)
+                btn.backgroundColor = UIColor(red: 241/255.0, green: 103/255.0, blue: 214/255.0, alpha: 1.0)
+                btn.layer.cornerRadius = frame.size.height * 0.5
+                
+                scrollView.addSubview(btn)
+                var scrollSize:CGSize = scrollView.contentSize as CGSize
+                scrollSize.width = sWidth
+                scrollView.contentSize = scrollSize
+            }
+        }else{
+            println(4343434)
+        }
     }
     
     func initCollectView(){
@@ -164,9 +149,11 @@ class ClothViewController: UIViewController, NewClothViewControllerDelegate,UICo
     }
     
     override func viewWillAppear(animated: Bool) {
+        
         if(DataService.shareService.userToken==nil){
         
         }else{
+            initTagView()
             var allClothes = NSMutableArray(contentsOfFile: DataService.shareService.getUserClothPlist())
             if(allClothes == nil){
                 allClothes = NSMutableArray()

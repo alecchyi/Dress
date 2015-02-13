@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PersonalViewController: UIViewController {
+class PersonalViewController: UIViewController,UITableViewDataSource,UITableViewDelegate {
     
     @IBOutlet var profileImg:UIImageView?
     @IBOutlet var lblFriendsNum:UILabel?
@@ -16,7 +16,10 @@ class PersonalViewController: UIViewController {
     @IBOutlet var lblNickname:UILabel?
     @IBOutlet var lblClothNum:UILabel?
     @IBOutlet var lblSharedNum:UILabel?
-    @IBOutlet var logoutView:UIView?
+    @IBOutlet var detailTableView:UITableView?
+    @IBOutlet var personalView:UIView?
+    
+    var detailArr:NSArray = ["我喜欢的风格","我喜欢的品牌","意见反馈","帮助","关于我们","退出当前账号"]
     
 
     override func viewDidLoad() {
@@ -25,8 +28,8 @@ class PersonalViewController: UIViewController {
         initTabbarItem()
         
         if(DataService.shareService.userToken == nil){
-            var rightBarBtnItem = UIBarButtonItem(title:"登录", style: UIBarButtonItemStyle.Plain, target: self, action: "clickLoginBtn")
-            self.navigationItem.rightBarButtonItem = rightBarBtnItem
+//            var rightBarBtnItem = UIBarButtonItem(title:"登录", style: UIBarButtonItemStyle.Plain, target: self, action: "clickLoginBtn")
+//            self.navigationItem.rightBarButtonItem = rightBarBtnItem
         }else{
             if(DataService.shareService.currentUser != nil){
                 println("init view")
@@ -36,27 +39,32 @@ class PersonalViewController: UIViewController {
                 self.profileImg?.image = UIImage(data: imgData)
                 self.lblNickname?.text = (DataService.shareService.currentUser!.objectForKey("nickname") as String)
                 let followers_count:Int = (DataService.shareService.currentUser?.objectForKey("followers_count") as Int)
-                self.lblFollowersNum?.text = "粉丝 \(followers_count)"
+                self.lblFollowersNum?.text = "粉丝\n\(followers_count)"
                 let friends:Int = (DataService.shareService.currentUser?.objectForKey("friends_count") as Int)
-                self.lblFriendsNum?.text = "关注 \(friends)"
+                self.lblFriendsNum?.text = "关注\n\(friends)"
                 var clothes:Int = 0
                 if(DataService.shareService.currentUser?.objectForKey("cloth_count") != nil){
                     clothes = (DataService.shareService.currentUser?.objectForKey("cloth_count") as Int)
                 }
-                self.lblClothNum?.text = "衣服 \(clothes)"
+                self.lblClothNum?.text = "衣服\n\(clothes)"
                 var share:Int = 0
                 if(DataService.shareService.currentUser?.objectForKey("shared_count") != nil){
                     share = DataService.shareService.currentUser?.objectForKey("shared_count") as Int
                 }
-                self.lblSharedNum?.text = "分享 \(share)"
+                self.lblSharedNum?.text = "分享\n\(share)"
                 
                 self.navigationItem.rightBarButtonItem = nil
-                self.logoutView?.hidden = false
             }
             
         }
-
+        
+        
+        initTableView()
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        initPersonalView()
     }
 
     override func didReceiveMemoryWarning() {
@@ -64,6 +72,16 @@ class PersonalViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    func initPersonalView(){
+        var idx:Int = Int(arc4random_uniform(UInt32(5)))
+        self.personalView!.backgroundColor = UIColor(patternImage: UIImage(named: "personal_bg_\(idx).png")!)
+    }
+    
+    func initTableView(){
+        self.detailTableView!.registerClass(UITableViewCell.self, forCellReuseIdentifier: "DetailTableCell")
+        self.detailTableView!.delegate = self
+        
+    }
 
     func initTabbarItem(){
         let tabbarImg:UIImage = UIImage(named: "me_icon.png")!
@@ -79,11 +97,54 @@ class PersonalViewController: UIViewController {
         self.navigationController?.pushViewController(loginViewController, animated: true)
     }
     
-    @IBAction func clickLogoutBtn(){
+    func clickLogoutBtn(){
         DataService.shareService.currentUser = nil
         DataService.shareService.userToken = nil
         let userDefaults = NSUserDefaults.standardUserDefaults()
         userDefaults.removeObjectForKey("userToken")
         
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        var cell:UITableViewCell = tableView.dequeueReusableCellWithIdentifier("DetailTableCell", forIndexPath: indexPath) as UITableViewCell
+        cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
+        cell.selectionStyle = UITableViewCellSelectionStyle.None
+        cell.textLabel.text = self.detailArr.objectAtIndex(indexPath.row) as? String
+        return cell
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        if(indexPath.row == 4){
+            let mainStoryBoard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
+            var aboutViewController = mainStoryBoard.instantiateViewControllerWithIdentifier("aboutViewController") as AboutViewController
+            self.navigationController?.pushViewController(aboutViewController, animated: true)
+        }else if(indexPath.row == 3){
+            let mainStoryBoard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
+            var helpViewController = mainStoryBoard.instantiateViewControllerWithIdentifier("helpViewController") as HelpViewController
+            self.navigationController?.pushViewController(helpViewController, animated: true)
+        }else if(indexPath.row == 2){
+            let mainStoryBoard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
+            var feedbackViewController = mainStoryBoard.instantiateViewControllerWithIdentifier("feedbackViewController") as FeedbackViewController
+            self.navigationController?.pushViewController(feedbackViewController, animated: true)
+        }else if(indexPath.row == self.detailArr.count - 1){
+            clickLogoutBtn()
+        }else if(indexPath.row == 1){
+            let mainStoryBoard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
+            var brandViewController = mainStoryBoard.instantiateViewControllerWithIdentifier("brandViewController") as BrandTableViewController
+            self.navigationController?.pushViewController(brandViewController, animated: true)
+        }else if(indexPath.row == 0){
+            let mainStoryBoard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
+            var styleViewController = mainStoryBoard.instantiateViewControllerWithIdentifier("styleViewController") as StyleTableViewController
+            self.navigationController?.pushViewController(styleViewController, animated: true)
+        }
+        
+    }
+    
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.detailArr.count
     }
 }

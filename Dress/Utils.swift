@@ -178,3 +178,31 @@ func mainWordColor() -> UIColor {
     return UIColor(red: 80/255.0, green: 80/255.0, blue: 80/255.0, alpha: 1.0)
 }
 
+func fetchSystemTags(){
+    var allTags = NSMutableArray()
+    var query = AVQuery(className: "Tags")
+    query.whereKey("parent_id", equalTo: "system")
+    query.getFirstObjectInBackgroundWithBlock({(obj:AVObject!, error:NSError!) in
+        if(error==nil && obj !=  nil){
+            var req = AVQuery(className: "Tags")
+            req.whereKey("parent_id", equalTo: (obj.objectForKey("objectId") as String))
+            req.findObjectsInBackgroundWithBlock({(tags:[AnyObject]!, err:NSError!) in
+                if(err==nil && tags != nil){
+                    let arr:NSArray = tags as NSArray
+                    for(var i=0;i<arr.count;i++){
+                        let item = arr.objectAtIndex(i) as AVObject
+                        var tag:NSMutableDictionary = NSMutableDictionary()
+                        tag.setValue(item.objectForKey("objectId"), forKey: "id")
+                        tag.setValue(item.objectForKey("name"), forKey: "name")
+                        tag.setValue(item.objectForKey("tagId"), forKey: "tagId")
+                        allTags.addObject(tag)
+//                        println("idx:\(i)")
+                    }
+                    allTags.writeToFile(DataService.shareService.getTagsPlist(), atomically: true)
+                }
+            })
+        }
+    })
+    
+}
+
