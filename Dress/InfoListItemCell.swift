@@ -47,6 +47,11 @@ class InfoListItemCell: UITableViewCell {
         frame.size.width = self.btnView!.frame.size.width
         frame.size.height = 25
         self.btnView!.frame = frame
+        self.btnView!.backgroundColor = UIColor.clearColor()
+        var bottomLayer = CALayer(layer: nil)
+        bottomLayer.frame = CGRectMake(0, 0, frame.size.width, 1)
+        bottomLayer.backgroundColor = mainColor().CGColor
+        self.btnView!.layer.addSublayer(bottomLayer)
     }
     
     override func awakeFromNib() {

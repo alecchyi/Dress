@@ -4,6 +4,8 @@
 <dict>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
+	<key>CFBundleDisplayName</key>
+	<string>Dress</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -28,6 +30,69 @@
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>wb292424940</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>com.wechat</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>wx9d9213045b2bdc44</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>com.sina.weibo</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>sina.548f99f4fd98c55e540004b9</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>com.tencent.weibo</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>wb801559755</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>com.tencent.qq</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>QQ110428A356</string>
+			</array>
+			<key>CFBundleURLTypes</key>
+			<array>
+				<dict>
+					<key>CFBundleTypeRole</key>
+					<string>Editor</string>
+					<key>CFBundleURLName</key>
+					<string>com.tencent.qq</string>
+					<key>CFBundleURLSchemes</key>
+					<array>
+						<string>QQ110428A356</string>
+					</array>
+				</dict>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>com.tencent.qzone</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>tencent1104289356</string>
 			</array>
 		</dict>
 	</array>

@@ -10,7 +10,20 @@
 #import "sqlite3.h"
 #import <time.h>
 #import <AVOSCloud/AVOSCloud.h>
+#import "UMSocial.h"
+#import "UMSocialWechatHandler.h"
+#import "UMSocialSinaHandler.h"
+#import "UMSocialQQHandler.h"
 
 
 #define kAppKeyForWeibo @"292424940"
 #define kWeiboRedirectURL @"https://api.weibo.com/oauth2/default.html"
+
+#define kUMKey @"548f99f4fd98c55e540004b9"
+#define kWeChatSecret @"8d7c1d1b2c56543c5ae86b426c354efb"
+#define kWeChatAppId @"wx9d9213045b2bdc44"
+#define kQQAppId @"1104289356"
+#define kQQKey @"vB8oYcFKEe3sDbh5"
+
+#define kAVCloudAppId @"ypyeenvnsp2thiyhrbs9zkbvguwi0c29h2b1nv06jp19o65j"
+#define kAVCloudClientKey @"o6wa72uxorqtn0fym50qojxmdj82uwi59nyi18hs3472u72b"

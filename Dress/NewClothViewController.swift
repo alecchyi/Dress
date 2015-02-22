@@ -56,6 +56,7 @@ class NewClothViewController: UIViewController,UIPickerViewDelegate,UIPickerView
         scrollView.scrollsToTop = false
         scrollView.showsVerticalScrollIndicator = false
         scrollView.autoresizingMask = UIViewAutoresizing.FlexibleWidth | UIViewAutoresizing.FlexibleHeight
+        scrollView.showsHorizontalScrollIndicator = false
         
         self.tagsView!.addSubview(scrollView)
         

@@ -59,11 +59,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view autoresizesSubviews="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XHK-17-Km5">
+                            <view autoresizesSubviews="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XHK-17-Km5" userLabel="weatherView">
                                 <rect key="frame" x="0.0" y="60" width="600" height="90"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.95294117647058818" green="0.95294117647058818" blue="0.90196078431372551" alpha="0.75" colorSpace="calibratedRGB"/>
                             </view>
-                            <view multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="b8g-2N-PR3">
+                            <view multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="b8g-2N-PR3" userLabel="clothesMainView">
                                 <rect key="frame" x="0.0" y="150" width="375" height="600"/>
                                 <subviews>
                                     <imageView multipleTouchEnabled="YES" alpha="0.64999999999999969" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="hat_icon.png" highlightedImage="hat_icon.png" translatesAutoresizingMaskIntoConstraints="NO" id="jRU-cp-aQY">
@@ -80,7 +80,7 @@
                                 <color key="backgroundColor" red="0.95379682816854072" green="0.95430086096938771" blue="0.94676066418083338" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.95294117649999999" green="0.95294117649999999" blue="0.90196078430000004" alpha="0.75" colorSpace="calibratedRGB"/>
                     </view>
                     <navigationItem key="navigationItem" title="看天气，选衣服" id="F4w-FL-Wjz"/>
                     <connections>
@@ -390,38 +390,34 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="或者" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JJT-wz-ug2">
-                                <rect key="frame" x="25" y="227" width="34" height="21"/>
+                                <rect key="frame" x="16" y="195" width="34" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.97379225127551017" green="0.93897449848241732" blue="0.92096900812601101" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" usesAttributedText="YES" borderStyle="roundedRect" placeholder="手机号\邮箱" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="S2x-ye-VTb">
-                                <rect key="frame" x="63" y="87" width="193" height="30"/>
+                                <rect key="frame" x="63" y="57" width="193" height="30"/>
                                 <attributedString key="attributedText"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="密码" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="tV1-XP-QV4">
-                                <rect key="frame" x="63" y="129" width="193" height="30"/>
+                                <rect key="frame" x="63" y="99" width="193" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pVa-Sl-3rF">
-                                <rect key="frame" x="136" y="175" width="46" height="30"/>
-                                <state key="normal">
-                                    <attributedString key="attributedTitle">
-                                        <fragment content="登录">
-                                            <attributes>
-                                                <font key="NSFont" size="15" name="STHeitiSC-Medium"/>
-                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
-                                            </attributes>
-                                        </fragment>
-                                    </attributedString>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pVa-Sl-3rF">
+                                <rect key="frame" x="117" y="147" width="84" height="32"/>
+                                <color key="backgroundColor" red="0.94465481510000004" green="0.4621421014" blue="0.79328273920000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="STHeitiSC-Medium" family="Heiti SC" pointSize="15"/>
+                                <state key="normal" title="登录">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4vp-i4-Hbc">
-                                <rect key="frame" x="73" y="262" width="173" height="32"/>
-                                <state key="normal" title="用微博登录" image="weibo_btn.png">
-                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <rect key="frame" x="73" y="237" width="173" height="42"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                <state key="normal" title=" 微博账号登录" image="weibo_btn.png">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -429,9 +425,11 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jh3-k5-VMW">
-                                <rect key="frame" x="95" y="302" width="128" height="28"/>
-                                <state key="normal" title="用微信登录" image="wechat_btn.png">
-                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <rect key="frame" x="73" y="302" width="173" height="42"/>
+                                <color key="backgroundColor" red="0.31372549020000001" green="0.31372549020000001" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                <state key="normal" title="QQ账号登录" image="qq_icon.png">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -439,8 +437,14 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.94901960784313721" green="0.36862745098039218" blue="0.49411764705882355" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="tintColor" red="0.94901960780000005" green="0.36862745099999999" blue="0.4941176471" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
+                    <connections>
+                        <outlet property="loginBtn" destination="pVa-Sl-3rF" id="9Ly-uy-RXy"/>
+                        <outlet property="qqBtn" destination="Jh3-k5-VMW" id="1hD-rG-ffv"/>
+                        <outlet property="weiboBtn" destination="4vp-i4-Hbc" id="n7s-Vw-f7I"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bb0-2b-V0s" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -691,10 +695,10 @@
         <image name="find_icon.png" width="29" height="30"/>
         <image name="hat_icon.png" width="79" height="71"/>
         <image name="me_icon.png" width="29" height="29"/>
+        <image name="qq_icon.png" width="39" height="39"/>
         <image name="shirt_icon.png" width="139" height="127"/>
         <image name="trousers_icon.png" width="128" height="128"/>
         <image name="weather_icon.png" width="29" height="29"/>
-        <image name="wechat_btn.png" width="28" height="28"/>
         <image name="weibo_btn.png" width="32" height="32"/>
     </resources>
 </document>

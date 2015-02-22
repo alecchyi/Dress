@@ -10,25 +10,41 @@ import UIKit
 
 class LoginViewController: UIViewController {
 
-    @IBOutlet var closeBtn:UIButton?
+    @IBOutlet var weiboBtn:UIButton?
+    @IBOutlet var qqBtn:UIButton?
+    @IBOutlet var loginBtn:UIButton?
     
     override func viewDidLoad() {
-        println(33333)
         
+        self.weiboBtn?.layer.cornerRadius = 20
+        self.weiboBtn?.backgroundColor = UIColor.brownColor()
+        
+        self.qqBtn?.layer.cornerRadius = 20
+        self.loginBtn?.layer.cornerRadius = 15
+//        self.qqBtn?.backgroundColor = UIColor.blueColor()
     }
     
     override func viewWillAppear(animated: Bool) {
-        println(3232323)
+       
     }
     
     override func viewDidAppear(animated: Bool) {
-            println(44444444444)
+       
     }
     
     func dismissLoginView(){
         println("dismiss")
         self.navigationController?.popViewControllerAnimated(true)
     }
+    
+//    func loginCallBack(resp:UMSocialResponseEntity) -> UMSocialDataServiceCompletion {
+//        if(resp.responseCode == UMSResponseCodeSuccess){
+//            let account:UMSocialAccountEntity = (UMSocialAccountManager.socialAccountDictionary() as NSDictionary).valueForKey(UMShareToSina)
+//            println(account.userName)
+//            println(account.usid)
+//            println(account.accessToken)
+//        }
+//    }
     
     @IBAction func closeLoginView(){
         self.dismissViewControllerAnimated(true, completion: {})
@@ -47,10 +63,30 @@ class LoginViewController: UIViewController {
 //            "Other_Info_3": {"key1": "obj1", "key2": "obj2"}
 //        };
         WeiboSDK.sendRequest(request)
+        
+
     }
     
     @IBAction func clickWechatLoginBtn(){
-    
+        let snsPlatform:UMSocialSnsPlatform = UMSocialSnsPlatformManager.getSocialPlatformWithName(UMShareToQQ) as UMSocialSnsPlatform
+        snsPlatform.loginClickHandler(self,UMSocialControllerService.defaultControllerService(),true, {(resp:UMSocialResponseEntity!) in
+                println(resp.responseCode.value)
+                println("login within umeng")
+                if(resp.responseCode.value == UMSResponseCodeSuccess.value){
+                    let accountDic:NSDictionary = UMSocialAccountManager.socialAccountDictionary()
+                    let account:UMSocialAccountEntity = accountDic.valueForKey(UMShareToQQ) as UMSocialAccountEntity
+                    println(account.userName)
+                    println(account.usid)
+                    println(account.accessToken)
+                    var userInfo = NSMutableDictionary()
+                    userInfo.setValue(account.iconURL, forKey: "profile_image_url")
+                    userInfo.setValue(account.userName, forKey: "nickname")
+                    userInfo.setValue(account.usid, forKey: "uid")
+                    userInfo.setValue(account.accessToken, forKey: "access_token")
+                    userLogin(userInfo, 2)
+                }
+            
+        })
     }
     
 }

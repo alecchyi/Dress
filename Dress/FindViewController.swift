@@ -61,9 +61,9 @@ class FindViewController: UIViewController, UITableViewDelegate,UITableViewDataS
 
     override func viewWillAppear(animated: Bool) {
         
-        if(has_bind_weibo()){
+//        if(has_bind_weibo()){
             fetchPersonalWeibo()
-        }
+//        }
         fetchSharedClothes()
     }
     
@@ -151,9 +151,9 @@ class FindViewController: UIViewController, UITableViewDelegate,UITableViewDataS
             dict.setObject(UIFont(name: "HelveticaNeue", size: 17)!, forKey: NSFontAttributeName)
             let size = content.sizeWithAttributes(dict)
 //            println(size)
-            let height = 58 + 10 + size.height + 25 + 5
+            let height = 58 + 10 + size.height + 25
             if let url:String = item.objectForKey("small_img_url") as? String {
-                return height + 100 + 10
+                return height + 100 + 15
             }else{
                 return height
             }

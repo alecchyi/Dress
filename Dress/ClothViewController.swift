@@ -9,7 +9,7 @@
 import UIKit
 //import PickViewToolBar
 
-class ClothViewController: UIViewController, NewClothViewControllerDelegate,UICollectionViewDelegate,UICollectionViewDataSource {
+class ClothViewController: UIViewController, NewClothViewControllerDelegate,UICollectionViewDelegate,UICollectionViewDataSource,UIActionSheetDelegate,UIGestureRecognizerDelegate {
     
     @IBOutlet var clothesCollectView:UICollectionView?
     @IBOutlet var tagsView:UIView?
@@ -53,7 +53,21 @@ class ClothViewController: UIViewController, NewClothViewControllerDelegate,UICo
         }else{
             initTagView()
             initCollectView()
+            
+            
         }
+    }
+    
+    func initMenuView(tag:Int){
+        
+        var sheet:UIActionSheet = UIActionSheet()
+        sheet.addButtonWithTitle("取消")
+        sheet.addButtonWithTitle("编辑")
+        sheet.addButtonWithTitle("删除")
+        sheet.title = "操作"
+        sheet.delegate = self
+        sheet.tag = 3000 + tag - 2000
+        sheet.showInView(self.view)
     }
     
     func initTagView(){
@@ -71,6 +85,7 @@ class ClothViewController: UIViewController, NewClothViewControllerDelegate,UICo
             scrollView.scrollsToTop = false
             scrollView.showsVerticalScrollIndicator = false
             scrollView.autoresizingMask = UIViewAutoresizing.FlexibleWidth | UIViewAutoresizing.FlexibleHeight
+            scrollView.showsHorizontalScrollIndicator = false
             
             self.tagsView!.addSubview(scrollView)
             
@@ -120,12 +135,20 @@ class ClothViewController: UIViewController, NewClothViewControllerDelegate,UICo
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell:ClothViewCell = collectionView.dequeueReusableCellWithReuseIdentifier("ClothViewCell", forIndexPath: indexPath) as ClothViewCell
         var cloth = self.clothesList!.objectAtIndex(indexPath.row) as NSMutableDictionary
-            var picPath = cloth.objectForKey("picPath") as String
-            var path = DataService.shareService.getUserClothDirPath().stringByAppendingPathComponent(picPath)
+        var picPath = cloth.objectForKey("picPath") as String
+        var path = DataService.shareService.getUserClothDirPath().stringByAppendingPathComponent(picPath)
         let season = cloth.objectForKey("season") as Int
         let type = cloth.objectForKey("type") as Int
         cell.imageView!.image = UIImage(contentsOfFile: path)
         cell.lblText!.text = kSeasons[season] + " " + kCategories[type]
+        
+        cell.tag = 2000 + indexPath.row
+        var longGesture:UILongPressGestureRecognizer = UILongPressGestureRecognizer(target: self, action: "longTapCell:")
+        longGesture.delegate = self
+        longGesture.numberOfTouchesRequired = 1
+        longGesture.allowableMovement = 50.0
+        longGesture.minimumPressDuration = 1.0
+        cell.addGestureRecognizer(longGesture)
         return cell
     }
     
@@ -160,6 +183,39 @@ class ClothViewController: UIViewController, NewClothViewControllerDelegate,UICo
             }
             self.clothesList = allClothes!
             self.clothesCollectView!.reloadData()
+        }
+    }
+    
+    
+    
+    func longTapCell(sender:UILongPressGestureRecognizer){
+        if(sender.state == UIGestureRecognizerState.Began){
+            let tag = sender.view?.tag
+            initMenuView(tag!)
+        }
+    }
+    
+    func actionSheet(actionSheet: UIActionSheet, clickedButtonAtIndex buttonIndex: Int) {
+        if(buttonIndex == 1){
+            
+        }else if(buttonIndex == 2){
+            println("delete:\(actionSheet.tag)")
+            let selectedIndex:Int = (actionSheet.tag - 3000) as Int
+            deleteFileForPath(selectedIndex)
+            
+        }
+    }
+
+    func deleteFileForPath(row:Int){
+        var cloth = self.clothesList!.objectAtIndex(row) as NSMutableDictionary
+        var picPath = cloth.objectForKey("picPath") as String
+        var path = DataService.shareService.getUserClothDirPath().stringByAppendingPathComponent(picPath)
+        let fileManager = NSFileManager.defaultManager()
+        if(fileManager.fileExistsAtPath(path)){
+            fileManager.removeItemAtPath(path, error: nil)
+            self.clothesList!.removeObjectAtIndex(row)
+            self.clothesCollectView!.reloadData()
+            self.clothesList!.writeToFile(DataService.shareService.getUserClothPlist(), atomically: true)
         }
     }
 }

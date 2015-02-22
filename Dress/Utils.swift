@@ -57,11 +57,13 @@ func saveUser(user:NSDictionary) -> Bool{
             break
         }
     }
+    setUserDic(user.objectForKey("userToken") as String)
     if(x==0){
         users!.addObject(user)
     }else{
         obj!.setValue(user.objectForKey("loginType"), forKey: "loginType")
         obj!.setValue(user.objectForKey("access_token"), forKey: "access_token")
+        obj!.setValue(user.objectForKey("qq_uid"), forKey: "qq_uid")
         obj!.setValue(user.objectForKey("weibo_uid"), forKey: "weibo_uid")
         obj!.setValue(user.objectForKey("nickname"), forKey: "nickname")
         obj!.setValue(user.objectForKey("profile_image_url"), forKey: "profile_image_url")
@@ -70,6 +72,7 @@ func saveUser(user:NSDictionary) -> Bool{
         obj!.setValue(user.objectForKey("clothes_count"), forKey: "clothes_count")
         
         users!.addObject(obj!)
+        
     }
     println(users!)
     users!.writeToFile(DataService.shareService.getUsersPlist(), atomically: true)
@@ -89,6 +92,21 @@ func userLogin(data:NSDictionary, type:Int){
         DataService.shareService.setUserToken(token)
         
         fetchUserData(user, type)
+    }else if(type==2){
+        // login with qq
+        user.setValue("tencent_qq", forKey: "loginType")
+        let token:String = gen_uuid()! as String
+        user.setValue(token, forKey: "userToken")
+        user.setValue(data.objectForKey("access_token"), forKey: "access_token")
+        user.setValue(data.objectForKey("uid"), forKey: "qq_uid")
+        user.setValue(data.objectForKey("nickname"), forKey: "nickname")
+        user.setValue(data.objectForKey("profile_image_url"), forKey: "profile_image_url")
+        user.setValue(0, forKey: "followers_count")
+        user.setValue(0, forKey: "friends_count")
+        saveUser(user)
+        DataService.shareService.setUserToken(token)
+        DataService.shareService.currentUser = user
+        NSNotificationCenter.defaultCenter().postNotificationName("finishedLogin", object: nil)
     }
 }
 
@@ -179,7 +197,10 @@ func mainWordColor() -> UIColor {
 }
 
 func fetchSystemTags(){
-    var allTags = NSMutableArray()
+    var allTags = NSMutableArray(contentsOfFile: DataService.shareService.getTagsPlist())
+    if(allTags == nil){
+        allTags = NSMutableArray()
+    }
     var query = AVQuery(className: "Tags")
     query.whereKey("parent_id", equalTo: "system")
     query.getFirstObjectInBackgroundWithBlock({(obj:AVObject!, error:NSError!) in
@@ -195,14 +216,27 @@ func fetchSystemTags(){
                         tag.setValue(item.objectForKey("objectId"), forKey: "id")
                         tag.setValue(item.objectForKey("name"), forKey: "name")
                         tag.setValue(item.objectForKey("tagId"), forKey: "tagId")
-                        allTags.addObject(tag)
+                        allTags!.addObject(tag)
 //                        println("idx:\(i)")
                     }
-                    allTags.writeToFile(DataService.shareService.getTagsPlist(), atomically: true)
+                    allTags!.writeToFile(DataService.shareService.getTagsPlist(), atomically: true)
                 }
             })
+        }else{
+//            println("fetch system tags error")
         }
     })
     
+}
+
+func setUserDic(userToken:String){
+    let fileManager = NSFileManager.defaultManager()
+    let storeFilePath = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true)
+    var documentDir = storeFilePath[0] as String
+    let path = documentDir.stringByAppendingPathComponent(userToken)
+    var isDir:ObjCBool = false
+    if(!fileManager.fileExistsAtPath(path, isDirectory: &isDir)){
+        fileManager.createDirectoryAtPath(path, withIntermediateDirectories: true, attributes: nil, error: nil)
+    }
 }
 

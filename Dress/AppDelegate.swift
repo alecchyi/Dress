@@ -8,6 +8,7 @@
 
 import UIKit
 
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, WeiboSDKDelegate {
 
@@ -23,8 +24,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WeiboSDKDelegate {
         WeiboSDK.enableDebugMode(true)
         WeiboSDK.registerApp(kAppKeyForWeibo)
         
-        AVOSCloud.setApplicationId("ypyeenvnsp2thiyhrbs9zkbvguwi0c29h2b1nv06jp19o65j", clientKey: "o6wa72uxorqtn0fym50qojxmdj82uwi59nyi18hs3472u72b")
+        AVOSCloud.setApplicationId(kAVCloudAppId, clientKey: kAVCloudClientKey)
         AVAnalytics.trackAppOpenedWithLaunchOptions(launchOptions)
+        
+        //add umeng api
+        UMSocialData.setAppKey(kUMKey)
+        UMSocialWechatHandler.setWXAppId(kWeChatAppId, appSecret: kWeChatSecret, url: "http://www.umeng.com/social")
+        UMSocialSinaHandler.openSSOWithRedirectURL("http://sns.whalecloud.com/sina2/callback")
+        UMSocialQQHandler.setQQWithAppId(kQQAppId, appKey: kQQKey, url: "http://www.baidu.com")
         
         return true
     }
@@ -53,10 +60,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WeiboSDKDelegate {
 
 
     func application(application: UIApplication, handleOpenURL url: NSURL) -> Bool {
+        println(url)
+        let str:String = url.scheme! as String
+        if(str.hasPrefix(kWeChatAppId) || str.hasPrefix("tencent")){
+            return UMSocialSnsService.handleOpenURL(url)
+        }
         return WeiboSDK.handleOpenURL(url, delegate: self)
     }
     
     func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject?) -> Bool {
+
+        let str:String = url.scheme! as String
+        if(str.hasPrefix(kWeChatAppId) || str.hasPrefix("tencent")){
+            return UMSocialSnsService.handleOpenURL(url)
+        }
         return WeiboSDK.handleOpenURL(url, delegate: self)
     }
     
@@ -96,5 +113,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WeiboSDKDelegate {
         let rootViewController = mainStoryBoard.instantiateViewControllerWithIdentifier("rootTabViewController") as UITabBarController
         self.window!.rootViewController = rootViewController
     }
+    
+    
 }
 

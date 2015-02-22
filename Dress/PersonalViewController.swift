@@ -102,7 +102,8 @@ class PersonalViewController: UIViewController,UITableViewDataSource,UITableView
         DataService.shareService.userToken = nil
         let userDefaults = NSUserDefaults.standardUserDefaults()
         userDefaults.removeObjectForKey("userToken")
-        
+        DataService.shareService.weather = nil
+        NSNotificationCenter.defaultCenter().postNotificationName("unLoginNotify", object: nil)
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {

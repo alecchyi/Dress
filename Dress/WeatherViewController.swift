@@ -60,7 +60,8 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
 
 
     func fetchWeatherData() {
-        if(DataService.shareService.weather? == nil){
+        if(DataService.shareService.weather == nil){
+            MBProgressHUD.showHUDAddedTo(self.view, animated: true)
             var locationManager = DataService.shareService.locationManager()
             locationManager!.delegate = self
             locationManager!.desiredAccuracy = kCLLocationAccuracyBest
@@ -82,6 +83,7 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
         var dataView = WeatherView(frame: frame)
         dataView.setCustomView()
         self.weatherView!.addSubview(dataView)
+
     }
     
     func drawRulerView(){
@@ -91,7 +93,14 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     func setClothesMainView(){
-        self.clothesMainView!.frame = CGRectMake(0, 180, self.view.bounds.width, self.view.bounds.height)
+        let frame = CGRectMake(0, 180, self.view.bounds.width, self.view.bounds.height)
+        self.clothesMainView!.frame = frame
+        
+        var bottomLayer = CALayer(layer: nil)
+        bottomLayer.frame = CGRectMake(0, 0, frame.size.width, 1)
+        bottomLayer.backgroundColor = mainColor().CGColor
+        self.clothesMainView!.layer.addSublayer(bottomLayer)
+        
         let swipeSelector:Selector = "swipeSelector:"
         let leftSwipe = UISwipeGestureRecognizer(target: self, action: swipeSelector)
         leftSwipe.direction = UISwipeGestureRecognizerDirection.Left
@@ -225,7 +234,8 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     func clickShareBtn() {
-        
+        var img = UIImage(named: "personal_bg_4")
+        UMSocialSnsService.presentSnsIconSheetView(self, appKey: kUMKey, shareText: "share words", shareImage: img, shareToSnsNames: [UMShareToSina,UMShareToWechatSession,UMShareToWechatTimeline,UMShareToTencent,UMShareToQzone,UMShareToQQ,UMShareToEmail], delegate: nil)
     }
     
     func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
@@ -239,6 +249,7 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
     func locationManager(manager: CLLocationManager!, didFailWithError error: NSError!) {
         println("location error")
         self.drawWeatherView()
+        MBProgressHUD.hideHUDForView(self.view, animated: true)
     }
     
     func updateWeatherData(lon:CLLocationDegrees,lat:CLLocationDegrees){
@@ -252,10 +263,13 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
                 
                 self.saveWeatherData(responseObject as NSDictionary!)
                 self.drawWeatherView()
+                
+                MBProgressHUD.hideHUDForView(self.view, animated: true)
             },
             failure:{(operation:AFHTTPRequestOperation!, error:NSError!) in
                 println("Error," + error.localizedDescription)
                 self.drawWeatherView()
+                MBProgressHUD.hideHUDForView(self.view, animated: true)
         })
         
     }
