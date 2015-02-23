@@ -33,14 +33,23 @@ class NewClothViewController: UIViewController,UIPickerViewDelegate,UIPickerView
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        //add save btn
+        var rightBarBtnItem = UIBarButtonItem(title:"完成", style: UIBarButtonItemStyle.Done, target: self, action: "clickSaveBtn")
+        rightBarBtnItem.tintColor = UIColor.whiteColor()
+        self.navigationItem.rightBarButtonItem = rightBarBtnItem
+        
+        var leftBarItem = UIBarButtonItem(title:"取消", style: UIBarButtonItemStyle.Done, target: self, action: "clickBackBtn")
+        leftBarItem.tintColor = UIColor.whiteColor()
+        self.navigationItem.leftBarButtonItem = leftBarItem
+        self.navigationController?.navigationBar.titleTextAttributes = NSDictionary(object: UIColor.whiteColor(), forKey: NSForegroundColorAttributeName)
+        
         initClothView()
         initTagView()
     }
     
     func initClothView(){
-        //add save btn
-//        var rightBarBtnItem = UIBarButtonItem(title:"save", style: UIBarButtonItemStyle.Done, target: self, action: "clickSaveBtn")
-//        self.navigationItem.rightBarButtonItem = rightBarBtnItem
+
         self.lblCategory?.tag = 1000
         self.lblSeason?.tag = 1100
 

@@ -21,7 +21,7 @@ class RulerViewBar: UIView {
     
     override func drawRect(rect: CGRect) {
         var context = UIGraphicsGetCurrentContext()
-        CGContextSetRGBStrokeColor(context,0.1,0.1,0.1,1.0)
+        CGContextSetRGBStrokeColor(context,244/255.0,119/255.0,146/255.0,1.0)
         CGContextMoveToPoint(context,0,2)
         CGContextAddLineToPoint(context, 18, 2)
         

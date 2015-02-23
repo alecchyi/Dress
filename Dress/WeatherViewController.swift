@@ -12,7 +12,7 @@ import CoreLocation
 class WeatherViewController: UIViewController, CLLocationManagerDelegate {
     
     @IBOutlet var weatherView:UIView?
-    @IBOutlet var clothesMainView:UIView?
+    @IBOutlet var clothesMainView:UIScrollView?
     @IBOutlet var headerImgView:UIImageView?
     @IBOutlet var shirtImgView:UIImageView?
     @IBOutlet var trouserImgView:UIImageView?
@@ -54,8 +54,9 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
         tabbarImg.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal)
         var tabBarItem:UITabBarItem = UITabBarItem(title: "天气", image: tabbarImg, selectedImage: tabbarImg)
         self.tabBarController?.tabBar.tintColor = mainBtnColor()
-        self.navigationController?.tabBarItem = tabBarItem
-        
+        self.navigationController!.tabBarItem = tabBarItem
+//        self.navigationController!.navigationBar.barTintColor = mainNavBarColor()
+        self.navigationController!.navigationBar.tintColor = mainBtnColor()
     }
 
 
@@ -76,10 +77,10 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     func drawWeatherView(){
-        self.weatherView!.backgroundColor = UIColor(red: 243/255.0, green: 243/255.0, blue: 230/255.0, alpha: 0.75)
+        self.weatherView!.backgroundColor = UIColor.clearColor()
         var frame = CGRectMake(0, 60, self.view.bounds.width, 110)
         self.weatherView!.frame = frame
-        frame.origin.y = 0
+        frame.origin.y = 2
         var dataView = WeatherView(frame: frame)
         dataView.setCustomView()
         self.weatherView!.addSubview(dataView)
@@ -87,7 +88,7 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     func drawRulerView(){
-        var frame = CGRectMake(5, 0, 20, self.view.bounds.height - 100)
+        var frame = CGRectMake(5, 0, 20, self.view.bounds.height - 50)
         var rulerBar = RulerViewBar(frame: frame)
         self.clothesMainView!.addSubview(rulerBar)
     }
@@ -95,6 +96,12 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
     func setClothesMainView(){
         let frame = CGRectMake(0, 180, self.view.bounds.width, self.view.bounds.height)
         self.clothesMainView!.frame = frame
+        self.clothesMainView!.scrollEnabled = true
+        self.clothesMainView?.scrollsToTop = true
+        self.clothesMainView?.showsHorizontalScrollIndicator = false
+        self.clothesMainView?.showsVerticalScrollIndicator = true
+        self.clothesMainView?.contentSize = CGSizeMake(frame.size.width, frame.size.height - 100)
+        self.clothesMainView!.autoresizingMask = UIViewAutoresizing.FlexibleWidth | UIViewAutoresizing.FlexibleHeight
         
         var bottomLayer = CALayer(layer: nil)
         bottomLayer.frame = CGRectMake(0, 0, frame.size.width, 1)
@@ -218,7 +225,7 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
     func initMainView() {
 //        let shareSelector:Selector = "shareSeletor:"
         var rightBarBtn:UIBarButtonItem = UIBarButtonItem(title:"分享", style: .Plain, target: self, action: "clickShareBtn")
-        rightBarBtn.tintColor = mainBtnColor()
+        rightBarBtn.tintColor = UIColor.whiteColor()
         self.navigationItem.rightBarButtonItem = rightBarBtn
 
         drawRulerView()

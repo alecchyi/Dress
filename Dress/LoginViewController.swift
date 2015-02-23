@@ -17,7 +17,7 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         
         self.weiboBtn?.layer.cornerRadius = 20
-        self.weiboBtn?.backgroundColor = UIColor.brownColor()
+//        self.weiboBtn?.backgroundColor = UIColor.brownColor()
         
         self.qqBtn?.layer.cornerRadius = 20
         self.loginBtn?.layer.cornerRadius = 15

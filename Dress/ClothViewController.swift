@@ -33,7 +33,7 @@ class ClothViewController: UIViewController, NewClothViewControllerDelegate,UICo
     func initClothView(){
         //add new btn
         var rightBarBtnItem = UIBarButtonItem(title:"添加", style: UIBarButtonItemStyle.Plain, target: self, action: "clickAddBtn")
-        rightBarBtnItem.tintColor = mainBtnColor()
+        rightBarBtnItem.tintColor = UIColor.whiteColor()
         self.navigationItem.rightBarButtonItem = rightBarBtnItem
         
         //init clothes view
@@ -53,8 +53,6 @@ class ClothViewController: UIViewController, NewClothViewControllerDelegate,UICo
         }else{
             initTagView()
             initCollectView()
-            
-            
         }
     }
     
@@ -71,7 +69,7 @@ class ClothViewController: UIViewController, NewClothViewControllerDelegate,UICo
     }
     
     func initTagView(){
-        self.tagsView!.backgroundColor = mainColor()
+        self.tagsView!.backgroundColor = mainNavBarColor()
 
         for view:AnyObject in self.tagsView!.subviews {
             if view is UIScrollView {
@@ -127,8 +125,12 @@ class ClothViewController: UIViewController, NewClothViewControllerDelegate,UICo
         let mainStoryBoard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
         var newClothViewController = mainStoryBoard.instantiateViewControllerWithIdentifier("newClothViewController") as NewClothViewController
         newClothViewController.newClothDelegate = self
-        self.presentViewController(newClothViewController, animated: true, completion: {
-        
+        var navModelController = UINavigationController(rootViewController: newClothViewController)
+        navModelController.navigationBar.barTintColor = mainNavBarColor()
+        self.presentViewController(navModelController, animated: true, completion: {
+            self.extendedLayoutIncludesOpaqueBars = false
+            self.modalPresentationCapturesStatusBarAppearance = true
+            
         })
     }
     

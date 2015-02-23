@@ -196,11 +196,17 @@ func mainWordColor() -> UIColor {
     return UIColor(red: 80/255.0, green: 80/255.0, blue: 80/255.0, alpha: 1.0)
 }
 
+func weatherWordColor() -> UIColor {
+    return UIColor(red: 255/255.0, green: 255/255.0, blue: 255/255.0, alpha: 1.0)
+}
+
+func mainNavBarColor() -> UIColor {
+    return UIColor(red: 244/255.0, green: 119/255.0, blue: 146/255.0, alpha: 1.0)
+}
+
 func fetchSystemTags(){
-    var allTags = NSMutableArray(contentsOfFile: DataService.shareService.getTagsPlist())
-    if(allTags == nil){
-        allTags = NSMutableArray()
-    }
+    var allTags = NSMutableArray()
+    
     var query = AVQuery(className: "Tags")
     query.whereKey("parent_id", equalTo: "system")
     query.getFirstObjectInBackgroundWithBlock({(obj:AVObject!, error:NSError!) in
@@ -216,10 +222,10 @@ func fetchSystemTags(){
                         tag.setValue(item.objectForKey("objectId"), forKey: "id")
                         tag.setValue(item.objectForKey("name"), forKey: "name")
                         tag.setValue(item.objectForKey("tagId"), forKey: "tagId")
-                        allTags!.addObject(tag)
+                        allTags.addObject(tag)
 //                        println("idx:\(i)")
                     }
-                    allTags!.writeToFile(DataService.shareService.getTagsPlist(), atomically: true)
+                    allTags.writeToFile(DataService.shareService.getTagsPlist(), atomically: true)
                 }
             })
         }else{

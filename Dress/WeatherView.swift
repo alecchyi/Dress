@@ -13,7 +13,7 @@ class WeatherView: UIView {
 
     override init(frame:CGRect){
         super.init(frame:frame)
-        self.backgroundColor = self.bgColor
+        self.backgroundColor = mainNavBarColor()
     }
 
     required init(coder aDecoder: NSCoder) {
@@ -28,7 +28,7 @@ class WeatherView: UIView {
             if(picPath == nil){
                 var lblWeather = UILabel(frame: CGRectMake(50, 10, 150, 20))
                 lblWeather.text = "暂无天气数据"
-                lblWeather.textColor = mainWordColor()
+                lblWeather.textColor = weatherWordColor()
                 self.addSubview(lblWeather)
             }else{
                 let picUrl = NSURL(string: picPath!)
@@ -42,39 +42,39 @@ class WeatherView: UIView {
                 let temp:NSString = DataService.shareService.weather!.objectForKey("temp") as NSString!
                 lblTempView.text = temp
                 lblTempView.font = UIFont.systemFontOfSize(14)
-                lblTempView.textColor = mainWordColor()
+                lblTempView.textColor = weatherWordColor()
                 self.addSubview(lblTempView)
                 
                 var lblCity = UILabel(frame: CGRectMake(5, 65, 80, 20))
                 lblCity.text = DataService.shareService.weather!.objectForKey("currentCity") as NSString!
                 lblCity.font = UIFont.systemFontOfSize(14)
-                lblCity.textColor = mainWordColor()
+                lblCity.textColor = weatherWordColor()
                 self.addSubview(lblCity)
                 
                 var lblWeather = UILabel(frame: CGRectMake(65, 10, 170, 20))
                 lblWeather.text = (DataService.shareService.weather!.objectForKey("weatherDesc") as NSString!) + " " + (DataService.shareService.weather!.objectForKey("wind") as NSString!)
                 lblWeather.font = UIFont.systemFontOfSize(14)
-                lblWeather.textColor = mainWordColor()
+                lblWeather.textColor = weatherWordColor()
                 self.addSubview(lblWeather)
                 
                 var lblIndexZs = UILabel(frame: CGRectMake(240, 10, 70, 20))
                 lblIndexZs.text = DataService.shareService.weather!.objectForKey("dressIndexZs") as NSString!
                 lblIndexZs.font = UIFont.systemFontOfSize(14)
-                lblIndexZs.textColor = mainWordColor()
+                lblIndexZs.textColor = weatherWordColor()
                 self.addSubview(lblIndexZs)
                 
                 var dressTextView = UITextView(frame: CGRectMake(60, 30, 250, 70))
                 dressTextView.editable = false
                 dressTextView.selectable = false
-                dressTextView.backgroundColor = self.bgColor
+                dressTextView.backgroundColor = UIColor.clearColor()
                 dressTextView.text = (DataService.shareService.weather!.objectForKey("dress") as NSString!) +  ":" + (DataService.shareService.weather!.objectForKey("dressDesc") as NSString!)
-                dressTextView.textColor = mainWordColor()
+                dressTextView.textColor = weatherWordColor()
                 self.addSubview(dressTextView)
             }
         }else {
             var lblWeather = UILabel(frame: CGRectMake(50, 10, 150, 20))
             lblWeather.text = "暂无天气数据"
-            lblWeather.textColor = mainWordColor()
+            lblWeather.textColor = UIColor.whiteColor()
             self.addSubview(lblWeather)
         }
     }
