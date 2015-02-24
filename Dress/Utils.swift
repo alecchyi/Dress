@@ -57,10 +57,11 @@ func saveUser(user:NSDictionary) -> Bool{
             break
         }
     }
-    setUserDic(user.objectForKey("userToken") as String)
+    setUserDir(user.objectForKey("userToken") as String)
     if(x==0){
         users!.addObject(user)
     }else{
+        obj!.setValue(user.objectForKey("userToken"), forKey: "userToken")
         obj!.setValue(user.objectForKey("loginType"), forKey: "loginType")
         obj!.setValue(user.objectForKey("access_token"), forKey: "access_token")
         obj!.setValue(user.objectForKey("qq_uid"), forKey: "qq_uid")
@@ -85,9 +86,10 @@ func userLogin(data:NSDictionary, type:Int){
         //login with weibo
         user.setValue(data.objectForKey("uid"), forKey: "weibo_uid")
         user.setValue(data.objectForKey("access_token"), forKey: "access_token")
-        let token:String = gen_uuid()! as String
+        let token:String = set_user_token("sina_weibo",(data.objectForKey("uid") as String))
         user.setValue(token, forKey: "userToken")
         user.setValue("sina_weibo", forKey: "loginType")
+        user.setValue(0, forKey: "shared_count")
         saveUser(user)
         DataService.shareService.setUserToken(token)
         
@@ -95,7 +97,7 @@ func userLogin(data:NSDictionary, type:Int){
     }else if(type==2){
         // login with qq
         user.setValue("tencent_qq", forKey: "loginType")
-        let token:String = gen_uuid()! as String
+        let token:String = set_user_token("tencent_qq",(data.objectForKey("uid") as String))
         user.setValue(token, forKey: "userToken")
         user.setValue(data.objectForKey("access_token"), forKey: "access_token")
         user.setValue(data.objectForKey("uid"), forKey: "qq_uid")
@@ -103,6 +105,7 @@ func userLogin(data:NSDictionary, type:Int){
         user.setValue(data.objectForKey("profile_image_url"), forKey: "profile_image_url")
         user.setValue(0, forKey: "followers_count")
         user.setValue(0, forKey: "friends_count")
+        user.setValue(0, forKey: "shared_count")
         saveUser(user)
         DataService.shareService.setUserToken(token)
         DataService.shareService.currentUser = user
@@ -124,7 +127,7 @@ func fetchUserData(data:NSMutableDictionary, type:Int) -> NSMutableDictionary{
             parameters:params,
             success: {(operation:AFHTTPRequestOperation!, response:AnyObject!) in
                 let resp:NSDictionary = response as NSDictionary
-                println(resp)
+//                println(resp)
                 user.setValue(resp.objectForKey("name"), forKey: "nickname")
                 user.setValue(resp.objectForKey("profile_image_url"), forKey: "profile_image_url")
                 user.setValue(resp.objectForKey("followers_count"), forKey: "followers_count")
@@ -135,7 +138,7 @@ func fetchUserData(data:NSMutableDictionary, type:Int) -> NSMutableDictionary{
                 NSNotificationCenter.defaultCenter().postNotificationName("finishedLogin", object: nil)
             },
             failure: {(operation:AFHTTPRequestOperation!, error:NSError!) in
-                
+                println("fetch user error")
         })
     }
     return user
@@ -168,7 +171,7 @@ func setCurrentUser(){
                 println(item.objectForKey("userToken"))
                 if((item.objectForKey("userToken") as String) == token){
                     DataService.shareService.currentUser = item as? NSMutableDictionary
-                    println("has login token")
+//                    println("has login token")
                     break
                 }
             }
@@ -201,7 +204,7 @@ func weatherWordColor() -> UIColor {
 }
 
 func mainNavBarColor() -> UIColor {
-    return UIColor(red: 244/255.0, green: 119/255.0, blue: 146/255.0, alpha: 1.0)
+    return UIColor(red: 244/255.0, green: 119/255.0, blue: 146/255.0, alpha: 0.75)
 }
 
 func fetchSystemTags(){
@@ -235,7 +238,7 @@ func fetchSystemTags(){
     
 }
 
-func setUserDic(userToken:String){
+func setUserDir(userToken:String){
     let fileManager = NSFileManager.defaultManager()
     let storeFilePath = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true)
     var documentDir = storeFilePath[0] as String
@@ -243,6 +246,59 @@ func setUserDic(userToken:String){
     var isDir:ObjCBool = false
     if(!fileManager.fileExistsAtPath(path, isDirectory: &isDir)){
         fileManager.createDirectoryAtPath(path, withIntermediateDirectories: true, attributes: nil, error: nil)
+    }
+}
+
+func set_user_token(loginType:String,uid:String) -> String{
+    var users = NSMutableArray(contentsOfFile: DataService.shareService.getUsersPlist())
+    if(users == nil){
+        users = NSMutableArray()
+    }
+    var x:Int = 0
+    var obj:String?
+    for(var i=0;i<users!.count;i++){
+        let item:NSDictionary = users?.objectAtIndex(i) as NSDictionary
+        if((item.objectForKey("loginType") as String) == loginType){
+            if(loginType == "sina_weibo" && (item.objectForKey("weibo_uid") as String) == uid){
+                obj = item.objectForKey("userToken") as? String
+                x = 1
+                break
+            }
+            if(loginType == "tencent_qq" && (item.objectForKey("qq_uid") as String) == uid){
+                obj = item.objectForKey("userToken") as? String
+                x = 1
+                break
+            }
+        }
+    }
+    if(x == 0){
+        obj = gen_uuid()! as String
+    }
+    return obj!
+}
+
+func updateCurrentUserData(type:String){
+    if(DataService.shareService.userToken != nil){
+        var users = NSMutableArray(contentsOfFile: DataService.shareService.getUsersPlist())
+        let token:String = DataService.shareService.userToken! as String
+        println(token)
+        if(users != nil){
+            for(var i=0;i<users!.count;i++){
+                var item:NSMutableDictionary = users?.objectAtIndex(i) as NSMutableDictionary
+//                println(item.objectForKey("userToken"))
+                if((item.objectForKey("userToken") as String) == token){
+                    if(type=="update_share_num"){
+                        var num:Int = item.objectForKey("shared_count") as Int
+                        item.setValue(num + 1, forKey: "shared_count")
+                    }
+                    DataService.shareService.currentUser = item
+                    
+                    println("update share num")
+                    break
+                }
+            }
+        }
+        users!.writeToFile(DataService.shareService.getUsersPlist(), atomically: true)
     }
 }
 

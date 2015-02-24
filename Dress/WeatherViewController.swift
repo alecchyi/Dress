@@ -9,7 +9,7 @@
 import UIKit
 import CoreLocation
 
-class WeatherViewController: UIViewController, CLLocationManagerDelegate {
+class WeatherViewController: UIViewController, CLLocationManagerDelegate,UMSocialUIDelegate {
     
     @IBOutlet var weatherView:UIView?
     @IBOutlet var clothesMainView:UIScrollView?
@@ -88,7 +88,7 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     func drawRulerView(){
-        var frame = CGRectMake(5, 0, 20, self.view.bounds.height - 50)
+        var frame = CGRectMake(5, 0, 20, self.view.bounds.height + 50)
         var rulerBar = RulerViewBar(frame: frame)
         self.clothesMainView!.addSubview(rulerBar)
     }
@@ -242,7 +242,7 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
     
     func clickShareBtn() {
         var img = UIImage(named: "personal_bg_4")
-        UMSocialSnsService.presentSnsIconSheetView(self, appKey: kUMKey, shareText: "share words", shareImage: img, shareToSnsNames: [UMShareToSina,UMShareToWechatSession,UMShareToWechatTimeline,UMShareToTencent,UMShareToQzone,UMShareToQQ,UMShareToEmail], delegate: nil)
+        UMSocialSnsService.presentSnsIconSheetView(self, appKey: kUMKey, shareText: "share words", shareImage: img, shareToSnsNames: [UMShareToSina,UMShareToWechatSession,UMShareToWechatTimeline,UMShareToTencent,UMShareToQzone,UMShareToQQ,UMShareToEmail], delegate: self)
     }
     
     func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
@@ -350,9 +350,11 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
         }else{
             println("weather status error")
         }
-
-
-        
     }
-
+    
+    func didFinishGetUMSocialDataInViewController(response: UMSocialResponseEntity!) {
+        println("sssssshare success")
+        updateCurrentUserData("update_share_num")
+    }
+    
 }

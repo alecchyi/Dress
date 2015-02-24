@@ -15,7 +15,7 @@ protocol PickViewToolBarDelegate {
 protocol PickViewToolBarDataSource {
 }
 
-class PickViewToolBar:UIView {
+class PickViewToolBar:UIView,UIPickerViewDelegate {
 
     let pickerView:UIPickerView?
     let toolBar:UIToolbar?
@@ -24,8 +24,13 @@ class PickViewToolBar:UIView {
     override init(frame: CGRect) {
         super.init(frame:frame)
         self.backgroundColor = UIColor.whiteColor()
-        self.pickerView = UIPickerView(frame: CGRectMake(0, 44, frame.size.width, frame.size.height - 44))
-        self.toolBar = UIToolbar(frame: CGRectMake(0, 0, frame.size.width, 44))
+        self.pickerView = UIPickerView(frame: CGRectMake(0, 34, frame.size.width, frame.size.height - 34))
+        self.pickerView!.autoresizingMask = UIViewAutoresizing.FlexibleHeight | UIViewAutoresizing.FlexibleWidth
+//        self.pickerView!.frame = CGRectMake(0, 44, frame.size.width, frame.size.height - 44)
+        
+        self.pickerView!.showsSelectionIndicator = true
+        
+        self.toolBar = UIToolbar(frame: CGRectMake(0, 0, frame.size.width, 34))
         self.toolBar?.barStyle = UIBarStyle.Default
         var leftBtnItem = UIBarButtonItem(title: "取消", style: UIBarButtonItemStyle.Plain, target: self, action: "clickCancelBtn")
         var fixedBtnItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
@@ -55,8 +60,6 @@ class PickViewToolBar:UIView {
     required init(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
-    
     
     
 }

@@ -69,8 +69,6 @@ class ClothViewController: UIViewController, NewClothViewControllerDelegate,UICo
     }
     
     func initTagView(){
-        self.tagsView!.backgroundColor = mainNavBarColor()
-
         for view:AnyObject in self.tagsView!.subviews {
             if view is UIScrollView {
                 view.removeFromSuperview()
@@ -128,8 +126,6 @@ class ClothViewController: UIViewController, NewClothViewControllerDelegate,UICo
         var navModelController = UINavigationController(rootViewController: newClothViewController)
         navModelController.navigationBar.barTintColor = mainNavBarColor()
         self.presentViewController(navModelController, animated: true, completion: {
-            self.extendedLayoutIncludesOpaqueBars = false
-            self.modalPresentationCapturesStatusBarAppearance = true
             
         })
     }

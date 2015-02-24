@@ -93,8 +93,8 @@ class NewClothViewController: UIViewController,UIPickerViewDelegate,UIPickerView
         hideToolBar()
         UIView.animateWithDuration(0.3, delay: 0.0, options:UIViewAnimationOptions.TransitionCurlUp, animations:{
             var frame = UIScreen.mainScreen().bounds
-            frame.origin.y = frame.size.height - 200
-            frame.size.height = 200
+            frame.origin.y = frame.size.height - 230
+            frame.size.height = 230
             var pickView = PickViewToolBar(frame: frame)
             pickView.tag = 1024
             pickView.pickerView?.delegate = self
@@ -232,12 +232,25 @@ class NewClothViewController: UIViewController,UIPickerViewDelegate,UIPickerView
         return 2
     }
     
-    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String! {
+//    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String! {
+//        if(component == 0){
+//            return self.categories!.objectAtIndex(row) as String
+//        }else{
+//            return self.seasons!.objectAtIndex(row) as String
+//        }
+//    }
+    
+    func pickerView(pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusingView view: UIView!) -> UIView {
+        var lblText = UILabel(frame: CGRectMake(0, 0, 100, 20))
+        lblText.font = UIFont.systemFontOfSize(17)
+        lblText.tintColor = mainWordColor()
+        lblText.textAlignment = NSTextAlignment.Center
         if(component == 0){
-            return self.categories!.objectAtIndex(row) as String
+            lblText.text = self.categories!.objectAtIndex(row) as? String
         }else{
-            return self.seasons!.objectAtIndex(row) as String
+            lblText.text = self.seasons!.objectAtIndex(row) as? String
         }
+        return lblText
     }
     
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
@@ -278,6 +291,8 @@ class NewClothViewController: UIViewController,UIPickerViewDelegate,UIPickerView
         hideToolBar()
     }
 
-    
+    func pickerView(pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
+        return 25
+    }
 }
 

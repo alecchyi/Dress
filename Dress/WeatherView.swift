@@ -14,6 +14,7 @@ class WeatherView: UIView {
     override init(frame:CGRect){
         super.init(frame:frame)
         self.backgroundColor = mainNavBarColor()
+        
     }
 
     required init(coder aDecoder: NSCoder) {
@@ -38,7 +39,7 @@ class WeatherView: UIView {
                 
                 wImgView.image = img
                 self.addSubview(wImgView)
-                var lblTempView = UILabel(frame: CGRectMake(5, 10, 80, 20))
+                var lblTempView = UILabel(frame: CGRectMake(5, 7, 80, 20))
                 let temp:NSString = DataService.shareService.weather!.objectForKey("temp") as NSString!
                 lblTempView.text = temp
                 lblTempView.font = UIFont.systemFontOfSize(14)
@@ -51,19 +52,19 @@ class WeatherView: UIView {
                 lblCity.textColor = weatherWordColor()
                 self.addSubview(lblCity)
                 
-                var lblWeather = UILabel(frame: CGRectMake(65, 10, 170, 20))
+                var lblWeather = UILabel(frame: CGRectMake(65, 7, 170, 20))
                 lblWeather.text = (DataService.shareService.weather!.objectForKey("weatherDesc") as NSString!) + " " + (DataService.shareService.weather!.objectForKey("wind") as NSString!)
                 lblWeather.font = UIFont.systemFontOfSize(14)
                 lblWeather.textColor = weatherWordColor()
                 self.addSubview(lblWeather)
                 
-                var lblIndexZs = UILabel(frame: CGRectMake(240, 10, 70, 20))
+                var lblIndexZs = UILabel(frame: CGRectMake(240, 7, 70, 20))
                 lblIndexZs.text = DataService.shareService.weather!.objectForKey("dressIndexZs") as NSString!
                 lblIndexZs.font = UIFont.systemFontOfSize(14)
                 lblIndexZs.textColor = weatherWordColor()
                 self.addSubview(lblIndexZs)
                 
-                var dressTextView = UITextView(frame: CGRectMake(60, 30, 250, 70))
+                var dressTextView = UITextView(frame: CGRectMake(60, 24, 250, 70))
                 dressTextView.editable = false
                 dressTextView.selectable = false
                 dressTextView.backgroundColor = UIColor.clearColor()

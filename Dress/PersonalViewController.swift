@@ -26,45 +26,34 @@ class PersonalViewController: UIViewController,UITableViewDataSource,UITableView
         super.viewDidLoad()
         
         initTabbarItem()
-        
-        if(DataService.shareService.userToken == nil){
-//            var rightBarBtnItem = UIBarButtonItem(title:"登录", style: UIBarButtonItemStyle.Plain, target: self, action: "clickLoginBtn")
-//            self.navigationItem.rightBarButtonItem = rightBarBtnItem
-        }else{
-            if(DataService.shareService.currentUser != nil){
-                println("init view")
-                let path:String = DataService.shareService.currentUser?.objectForKey("profile_image_url") as String
-                let url = NSURL(string: path)
-                let imgData:NSData = NSData(contentsOfURL: url!)!
-                self.profileImg?.image = UIImage(data: imgData)
-                self.lblNickname?.text = (DataService.shareService.currentUser!.objectForKey("nickname") as String)
-                let followers_count:Int = (DataService.shareService.currentUser?.objectForKey("followers_count") as Int)
-                self.lblFollowersNum?.text = "粉丝\n\(followers_count)"
-                let friends:Int = (DataService.shareService.currentUser?.objectForKey("friends_count") as Int)
-                self.lblFriendsNum?.text = "关注\n\(friends)"
-                var clothes:Int = 0
-                if(DataService.shareService.currentUser?.objectForKey("cloth_count") != nil){
-                    clothes = (DataService.shareService.currentUser?.objectForKey("cloth_count") as Int)
-                }
-                self.lblClothNum?.text = "衣服\n\(clothes)"
-                var share:Int = 0
-                if(DataService.shareService.currentUser?.objectForKey("shared_count") != nil){
-                    share = DataService.shareService.currentUser?.objectForKey("shared_count") as Int
-                }
-                self.lblSharedNum?.text = "分享\n\(share)"
-                
-                self.navigationItem.rightBarButtonItem = nil
-            }
-            
-        }
-        
-        
+
         initTableView()
         // Do any additional setup after loading the view.
     }
     
     override func viewWillAppear(animated: Bool) {
         initPersonalView()
+        if(DataService.shareService.currentUser != nil){
+            let path:String = DataService.shareService.currentUser?.objectForKey("profile_image_url") as String
+            let url = NSURL(string: path)
+            let imgData:NSData = NSData(contentsOfURL: url!)!
+            self.profileImg?.image = UIImage(data: imgData)
+            self.lblNickname?.text = (DataService.shareService.currentUser!.objectForKey("nickname") as String)
+            let followers_count:Int = (DataService.shareService.currentUser?.objectForKey("followers_count") as Int)
+            self.lblFollowersNum?.text = "粉丝\n\(followers_count)"
+            let friends:Int = (DataService.shareService.currentUser?.objectForKey("friends_count") as Int)
+            self.lblFriendsNum?.text = "关注\n\(friends)"
+            var clothes:Int = 0
+            if(DataService.shareService.currentUser?.objectForKey("cloth_count") != nil){
+                clothes = (DataService.shareService.currentUser?.objectForKey("cloth_count") as Int)
+            }
+            self.lblClothNum?.text = "衣服\n\(clothes)"
+            var share:Int = 0
+            if(DataService.shareService.currentUser?.objectForKey("shared_count") != nil){
+                share = DataService.shareService.currentUser?.objectForKey("shared_count") as Int
+            }
+            self.lblSharedNum?.text = "分享\n\(share)"
+        }
     }
 
     override func didReceiveMemoryWarning() {
