@@ -302,3 +302,15 @@ func updateCurrentUserData(type:String){
     }
 }
 
+func save_capture_img(img:NSData) -> String {
+    let fileManager = NSFileManager.defaultManager()
+    let storeFilePath = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true)
+    var documentDir = storeFilePath[0] as String
+    let name = gen_uuid()! as String
+    let path = documentDir.stringByAppendingPathComponent(name + ".jpg")
+    if(!fileManager.fileExistsAtPath(path)){
+        fileManager.createFileAtPath(path, contents: img, attributes: nil)
+    }
+    return path
+}
+

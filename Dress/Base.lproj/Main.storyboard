@@ -71,13 +71,13 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dtf-JX-LSX" userLabel="clothesView">
                                 <rect key="frame" x="0.0" y="150" width="320" height="400"/>
                                 <subviews>
-                                    <imageView multipleTouchEnabled="YES" alpha="0.69999999999999973" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="shirt_icon.png" highlightedImage="shirt_icon.png" translatesAutoresizingMaskIntoConstraints="NO" id="4r3-48-CqP">
-                                        <rect key="frame" x="96" y="72" width="128" height="128"/>
+                                    <imageView multipleTouchEnabled="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="shirt_icon.png" highlightedImage="shirt_icon.png" translatesAutoresizingMaskIntoConstraints="NO" id="4r3-48-CqP">
+                                        <rect key="frame" x="96" y="85" width="128" height="128"/>
                                     </imageView>
-                                    <imageView multipleTouchEnabled="YES" alpha="0.69999999999999973" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="trousers_icon.png" highlightedImage="trousers_icon.png" translatesAutoresizingMaskIntoConstraints="NO" id="HE1-s2-8CB">
-                                        <rect key="frame" x="80" y="210" width="160" height="160"/>
+                                    <imageView multipleTouchEnabled="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="trousers_icon.png" highlightedImage="trousers_icon.png" translatesAutoresizingMaskIntoConstraints="NO" id="HE1-s2-8CB">
+                                        <rect key="frame" x="80" y="222" width="160" height="160"/>
                                     </imageView>
-                                    <imageView multipleTouchEnabled="YES" alpha="0.64999999999999969" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="hat_icon.png" highlightedImage="hat_icon.png" translatesAutoresizingMaskIntoConstraints="NO" id="jRU-cp-aQY">
+                                    <imageView multipleTouchEnabled="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="hat_icon.png" highlightedImage="hat_icon.png" translatesAutoresizingMaskIntoConstraints="NO" id="jRU-cp-aQY">
                                         <rect key="frame" x="124" y="5" width="72" height="72"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </imageView>

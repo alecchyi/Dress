@@ -241,8 +241,24 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate,UMSocia
     }
     
     func clickShareBtn() {
-        var img = UIImage(named: "personal_bg_4")
-        UMSocialSnsService.presentSnsIconSheetView(self, appKey: kUMKey, shareText: "share words", shareImage: img, shareToSnsNames: [UMShareToSina,UMShareToWechatSession,UMShareToWechatTimeline,UMShareToTencent,UMShareToQzone,UMShareToQQ,UMShareToEmail], delegate: self)
+        var img = captureClothesView(self.clothesMainView!)
+        var url:String?
+        if(img != nil){
+            var data:NSData?
+            if(UIImagePNGRepresentation(img) == nil){
+                data = UIImageJPEGRepresentation(img, 1)
+            }else{
+                data = UIImagePNGRepresentation(img)
+            }
+            url = save_capture_img(data!)
+            let str = NSURL(fileURLWithPath: url!)
+//            println(str?.absoluteString)
+            UMSocialData.defaultData().urlResource.setResourceType(UMSocialUrlResourceTypeImage, url: str!.absoluteString)
+            UMSocialSnsService.presentSnsIconSheetView(self, appKey: kUMKey, shareText: "share words", shareImage: nil, shareToSnsNames: [UMShareToSina,UMShareToWechatSession,UMShareToWechatTimeline,UMShareToTencent,UMShareToQzone,UMShareToQQ,UMShareToEmail], delegate: self)
+//            println("ddddddd")
+        }
+//        
+        
     }
     
     func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
@@ -353,8 +369,30 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate,UMSocia
     }
     
     func didFinishGetUMSocialDataInViewController(response: UMSocialResponseEntity!) {
-        println("sssssshare success")
         updateCurrentUserData("update_share_num")
     }
     
+    
+    func captureClothesView(scrollView:UIScrollView) -> UIImage? {
+        var img:UIImage?
+
+        UIGraphicsBeginImageContextWithOptions(scrollView.contentSize,false,2.0)
+        let savedContentOffset = scrollView.contentOffset
+        let savedFrame = scrollView.frame
+        scrollView.contentOffset = CGPointZero
+        scrollView.frame = CGRectMake(0, 0, scrollView.contentSize.width, scrollView.contentSize.height)
+        scrollView.layer.renderInContext(UIGraphicsGetCurrentContext())
+        img = UIGraphicsGetImageFromCurrentImageContext()
+        scrollView.contentOffset = savedContentOffset
+        scrollView.frame = savedFrame
+        
+        UIGraphicsEndPDFContext()
+        if(img != nil){
+            println("has img")
+            return img!
+        }
+        println("no capture img")
+        return img
+        
+    }
 }
