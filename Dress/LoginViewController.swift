@@ -51,21 +51,15 @@ class LoginViewController: UIViewController,GADBannerViewDelegate {
         var infos = NSMutableDictionary()
         infos.setValue("LoginViewController", forKey: "SSO_From")
         request.userInfo = infos
-//            "SSO_From": "LoginViewController",
-//            "Other_Info_1": 123,
-//            "Other_Info_2": ["obj1", "obj2"],
-//            "Other_Info_3": {"key1": "obj1", "key2": "obj2"}
-//        };
         WeiboSDK.sendRequest(request)
         
-
     }
     
     @IBAction func clickWechatLoginBtn(){
         let snsPlatform:UMSocialSnsPlatform = UMSocialSnsPlatformManager.getSocialPlatformWithName(UMShareToQQ) as UMSocialSnsPlatform
         snsPlatform.loginClickHandler(self,UMSocialControllerService.defaultControllerService(),true, {(resp:UMSocialResponseEntity!) in
-                println(resp.responseCode.value)
-                println("login within umeng")
+//                println(resp.responseCode.value)
+//                println("login within umeng")
                 if(resp.responseCode.value == UMSResponseCodeSuccess.value){
                     let accountDic:NSDictionary = UMSocialAccountManager.socialAccountDictionary()
                     let account:UMSocialAccountEntity = accountDic.valueForKey(UMShareToQQ) as UMSocialAccountEntity
