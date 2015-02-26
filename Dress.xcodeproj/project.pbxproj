@@ -67,6 +67,11 @@
 		702FB64C1A9A0D08009693C1 /* qq_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 702FB64B1A9A0D08009693C1 /* qq_icon@2x.png */; };
 		703365891A4B202E0078EBEB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 703365881A4B202E0078EBEB /* UIKit.framework */; };
 		7033658B1A4B20370078EBEB /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7033658A1A4B20370078EBEB /* SystemConfiguration.framework */; };
+		7048E4AB1A9F190100157BE0 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7048E4AA1A9F190100157BE0 /* AVFoundation.framework */; };
+		7048E4AD1A9F190800157BE0 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7048E4AC1A9F190800157BE0 /* AudioToolbox.framework */; };
+		7048E4AF1A9F190D00157BE0 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7048E4AE1A9F190D00157BE0 /* MessageUI.framework */; };
+		7048E4B11A9F191200157BE0 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7048E4B01A9F191200157BE0 /* StoreKit.framework */; };
+		7048E4B31A9F192400157BE0 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7048E4B21A9F192400157BE0 /* AdSupport.framework */; };
 		70631DD01A80AEE90005C555 /* Haneke.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7050A9DF1A80A6180024523D /* Haneke.framework */; };
 		70631DD21A80AF2A0005C555 /* Haneke.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7050A9DF1A80A6180024523D /* Haneke.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		7067E7C81A694E4000E143D1 /* WeatherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7067E7C71A694E4000E143D1 /* WeatherView.swift */; };
@@ -229,6 +234,11 @@
 		702FB64B1A9A0D08009693C1 /* qq_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "qq_icon@2x.png"; sourceTree = "<group>"; };
 		703365881A4B202E0078EBEB /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		7033658A1A4B20370078EBEB /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		7048E4AA1A9F190100157BE0 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		7048E4AC1A9F190800157BE0 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		7048E4AE1A9F190D00157BE0 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		7048E4B01A9F191200157BE0 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		7048E4B21A9F192400157BE0 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		7050A9DF1A80A6180024523D /* Haneke.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Haneke.framework; path = "../../Library/Developer/Xcode/DerivedData/Dress-aelsyudqwsethzfenehvqbylrfef/Build/Products/Debug-iphoneos/Haneke.framework"; sourceTree = "<group>"; };
 		7067E7C71A694E4000E143D1 /* WeatherView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherView.swift; sourceTree = "<group>"; };
 		7067E7C91A696F4C00E143D1 /* RulerViewBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RulerViewBar.swift; sourceTree = "<group>"; };
@@ -297,6 +307,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7048E4B31A9F192400157BE0 /* AdSupport.framework in Frameworks */,
+				708E1AAB1A4B067000FF27A1 /* CoreGraphics.framework in Frameworks */,
+				7048E4B11A9F191200157BE0 /* StoreKit.framework in Frameworks */,
+				7048E4AF1A9F190D00157BE0 /* MessageUI.framework in Frameworks */,
+				7048E4AD1A9F190800157BE0 /* AudioToolbox.framework in Frameworks */,
+				7048E4AB1A9F190100157BE0 /* AVFoundation.framework in Frameworks */,
+				7033658B1A4B20370078EBEB /* SystemConfiguration.framework in Frameworks */,
 				702FB6481A997942009693C1 /* libz.dylib in Frameworks */,
 				702FB6461A997939009693C1 /* libstdc++.dylib in Frameworks */,
 				702FB6441A997928009693C1 /* CoreTelephony.framework in Frameworks */,
@@ -309,7 +326,6 @@
 				707591F51A74969F005DFA11 /* ImageIO.framework in Frameworks */,
 				707591F31A749699005DFA11 /* QuartzCore.framework in Frameworks */,
 				702FB62F1A9977C5009693C1 /* libSocialInstagram.a in Frameworks */,
-				7033658B1A4B20370078EBEB /* SystemConfiguration.framework in Frameworks */,
 				702FB6321A9977C6009693C1 /* libSocialSina.a in Frameworks */,
 				703365891A4B202E0078EBEB /* UIKit.framework in Frameworks */,
 				708E1AB11A4B068C00FF27A1 /* Security.framework in Frameworks */,
@@ -319,7 +335,6 @@
 				702FB6331A9977C6009693C1 /* libSocialQQ.a in Frameworks */,
 				708E1AAD1A4B067800FF27A1 /* Foundation.framework in Frameworks */,
 				702FB63D1A9977C6009693C1 /* libWeChatSDK.a in Frameworks */,
-				708E1AAB1A4B067000FF27A1 /* CoreGraphics.framework in Frameworks */,
 				702FB6391A9977C6009693C1 /* libUMSocial_Sdk_ScreenShot_1.0.a in Frameworks */,
 				708E1AA91A4B055700FF27A1 /* CoreLocation.framework in Frameworks */,
 				702FB6361A9977C6009693C1 /* libSocialTumblr.a in Frameworks */,
@@ -691,6 +706,11 @@
 		89277E932F2A70B1BE8B1753 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7048E4B21A9F192400157BE0 /* AdSupport.framework */,
+				7048E4B01A9F191200157BE0 /* StoreKit.framework */,
+				7048E4AE1A9F190D00157BE0 /* MessageUI.framework */,
+				7048E4AC1A9F190800157BE0 /* AudioToolbox.framework */,
+				7048E4AA1A9F190100157BE0 /* AVFoundation.framework */,
 				702FB6471A997942009693C1 /* libz.dylib */,
 				702FB6451A997939009693C1 /* libstdc++.dylib */,
 				702FB6431A997928009693C1 /* CoreTelephony.framework */,
