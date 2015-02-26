@@ -30,4 +30,7 @@
 #define kAVCloudAppId @"ypyeenvnsp2thiyhrbs9zkbvguwi0c29h2b1nv06jp19o65j"
 #define kAVCloudClientKey @"o6wa72uxorqtn0fym50qojxmdj82uwi59nyi18hs3472u72b"
 
-#define APP_ADMOB_AD_UNIT_ID @"ca-app-pub-5080103747035592/4632179868"
+//for admob banner
+#define APP_LOGIN_ADMOB_AD_UNIT_ID @"ca-app-pub-5080103747035592/4632179868"
+#define APP_DISCOVER_ADMOB_AD_UNIT_ID @"ca-app-pub-5080103747035592/5088008268"
+#define APP_FEEDBACK_ADMOB_AD_UNIT_ID @"ca-app-pub-5080103747035592/8327349464"

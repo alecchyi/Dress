@@ -36,8 +36,13 @@ class PersonalViewController: UIViewController,UITableViewDataSource,UITableView
         if(DataService.shareService.currentUser != nil){
             let path:String = DataService.shareService.currentUser?.objectForKey("profile_image_url") as String
             let url = NSURL(string: path)
-            let imgData:NSData = NSData(contentsOfURL: url!)!
-            self.profileImg?.image = UIImage(data: imgData)
+            if let imgData = NSData(contentsOfURL: url!){
+                self.profileImg?.image = UIImage(data: imgData)
+            }else{
+                self.profileImg?.image = UIImage(named: "default_head")
+            }
+            
+            
             self.lblNickname?.text = (DataService.shareService.currentUser!.objectForKey("nickname") as String)
             let followers_count:Int = (DataService.shareService.currentUser?.objectForKey("followers_count") as Int)
             self.lblFollowersNum?.text = "粉丝\n\(followers_count)"

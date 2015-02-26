@@ -81,16 +81,16 @@ class LoginViewController: UIViewController,GADBannerViewDelegate {
         var frame = self.view.bounds
         frame.origin.y -= 50
         self._bannerView?.frame = frame
-        self._bannerView?.adUnitID = APP_ADMOB_AD_UNIT_ID
+        self._bannerView?.adUnitID = APP_LOGIN_ADMOB_AD_UNIT_ID
         self._bannerView?.rootViewController = self
         self._bannerView?.delegate = self
         var request = GADRequest()
-        request.testDevices = ["5B95C192-07BA-49FD-B572-AA23540A","cc95f15c6a339431d0d16e3184949be81f2"]
+        request.testDevices = ["5B95C192-07BA-49FD-B572-AA23540AD9E0","cc95f15c6a339431d0d16e3184949be81f2"]
         
         self._bannerView?.loadRequest(request)
     }
     
     func adViewDidReceiveAd(view: GADBannerView!) {
-        
+        println("ads login")
     }
 }

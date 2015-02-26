@@ -78,7 +78,7 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate,UMSocia
     
     func drawWeatherView(){
         self.weatherView!.backgroundColor = UIColor.clearColor()
-        var frame = CGRectMake(0, 60, self.view.bounds.width, 110)
+        var frame = CGRectMake(0, 60, self.view.bounds.width, 90)
         self.weatherView!.frame = frame
         frame.origin.y = 2
         var dataView = WeatherView(frame: frame)

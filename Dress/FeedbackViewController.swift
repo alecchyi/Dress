@@ -8,10 +8,13 @@
 
 import UIKit
 
-class FeedbackViewController: UIViewController,UITextViewDelegate {
+class FeedbackViewController: UIViewController,UITextViewDelegate,GADBannerViewDelegate {
 
     @IBOutlet var feedbackView:UITextView?
     @IBOutlet var submitBtn:UIButton?
+    
+    @IBOutlet var parentView:UIView?
+    @IBOutlet var _bannerView:GADBannerView?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,8 +24,23 @@ class FeedbackViewController: UIViewController,UITextViewDelegate {
         // Do any additional setup after loading the view.
         
         self.submitBtn?.layer.cornerRadius = 5
-//        self.feedbackView?.textAlignment = NSTextAlignment.Left
         self.feedbackView?.delegate = self
+        
+        self._bannerView?.adUnitID = APP_FEEDBACK_ADMOB_AD_UNIT_ID
+        self._bannerView?.rootViewController = self
+        self._bannerView?.delegate = self
+        var request = GADRequest()
+        request.testDevices = ["5B95C192-07BA-49FD-B572-AA23540A","cc95f15c6a339431d0d16e3184949be81f2"]
+        self._bannerView?.loadRequest(request)
+        
+    }
+    
+    func adViewDidReceiveAd(view: GADBannerView!) {
+        println("ads feedback")
+        var frame = view.frame
+        let h = self.view.bounds.size.height
+        frame.origin.y = h - 100
+        view.frame = frame
     }
 
     override func didReceiveMemoryWarning() {

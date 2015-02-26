@@ -9,9 +9,10 @@
 import UIKit
 import Haneke
 
-class FindViewController: UIViewController, UITableViewDelegate,UITableViewDataSource {
+class FindViewController: UIViewController, UITableViewDelegate,UITableViewDataSource,GADBannerViewDelegate {
 
     @IBOutlet var infoTableView:UITableView?
+    @IBOutlet var _bannerView:GADBannerView?
     var infoList:NSMutableArray?
     var pullRefreshControl:UIRefreshControl?
     
@@ -25,12 +26,12 @@ class FindViewController: UIViewController, UITableViewDelegate,UITableViewDataS
     }
     
     func initFindView(){
-        //add AD view
+
         
         //add tableview for weibo
-        var frame:CGRect = CGRectMake(0, -30, self.view.bounds.size.width, self.view.bounds.size.height)
+        var frame:CGRect = CGRectMake(0, 50, self.view.bounds.size.width, self.view.bounds.size.height)
         self.infoTableView = UITableView(frame: frame, style: UITableViewStyle.Grouped)
-        
+        self.infoTableView?.backgroundColor = UIColor.whiteColor()
         self.infoTableView!.delegate = self
         self.infoTableView!.dataSource = self
         var cellNib:UINib = UINib(nibName: "InfoListItemCell", bundle: nil)
@@ -46,6 +47,18 @@ class FindViewController: UIViewController, UITableViewDelegate,UITableViewDataS
         
         self.pullRefreshControl = refreshControl
         self.infoTableView!.addSubview(self.pullRefreshControl!)
+        
+        //add AD view
+        self._bannerView = GADBannerView(frame: CGRectMake(0, 64, 320, 50))
+        
+        self._bannerView?.adUnitID = APP_DISCOVER_ADMOB_AD_UNIT_ID
+        self._bannerView?.rootViewController = self
+        self._bannerView?.delegate = self
+
+        self.view.addSubview(self._bannerView!)
+        var request = GADRequest()
+        request.testDevices = ["5B95C192-07BA-49FD-B572-AA23540A","cc95f15c6a339431d0d16e3184949be81f2"]
+        self._bannerView?.loadRequest(request)
     }
     
     func initTabbarItem(){
@@ -177,6 +190,20 @@ class FindViewController: UIViewController, UITableViewDelegate,UITableViewDataS
     
     func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
         println("did deselected")
+    }
+    
+    func adViewDidReceiveAd(view: GADBannerView!) {
+        
+        UIView.animateWithDuration(0.3, delay: 0.0, options:UIViewAnimationOptions.TransitionFlipFromBottom, animations:{
+            var frame = view.frame
+            println("ads receive")
+            frame = self.infoTableView!.frame
+            frame.origin.y = 20
+            self.infoTableView?.frame = frame
+            println(frame)
+            }, completion:{(BOOL isFinished) in
+                
+        })
     }
 }
 
