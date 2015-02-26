@@ -420,11 +420,16 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LUo-tu-mKa" customClass="GADBannerView">
+                                <rect key="frame" x="0.0" y="518" width="320" height="50"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.95686274510000002" green="0.46666666670000001" blue="0.57254901960000004" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="tintColor" red="0.95686274510000002" green="0.46666666670000001" blue="0.57254901960000004" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <connections>
+                        <outlet property="_bannerView" destination="LUo-tu-mKa" id="bfi-yA-Yfd"/>
                         <outlet property="loginBtn" destination="pVa-Sl-3rF" id="9Ly-uy-RXy"/>
                         <outlet property="qqBtn" destination="Jh3-k5-VMW" id="1hD-rG-ffv"/>
                         <outlet property="weiboBtn" destination="4vp-i4-Hbc" id="n7s-Vw-f7I"/>

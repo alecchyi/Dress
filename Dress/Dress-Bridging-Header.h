@@ -15,6 +15,8 @@
 #import "UMSocialSinaHandler.h"
 #import "UMSocialQQHandler.h"
 
+@import GoogleMobileAds;
+
 
 #define kAppKeyForWeibo @"292424940"
 #define kWeiboRedirectURL @"https://api.weibo.com/oauth2/default.html"
@@ -27,3 +29,5 @@
 
 #define kAVCloudAppId @"ypyeenvnsp2thiyhrbs9zkbvguwi0c29h2b1nv06jp19o65j"
 #define kAVCloudClientKey @"o6wa72uxorqtn0fym50qojxmdj82uwi59nyi18hs3472u72b"
+
+#define APP_ADMOB_AD_UNIT_ID @"ca-app-pub-5080103747035592/4632179868"

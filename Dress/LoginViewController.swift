@@ -8,11 +8,12 @@
 
 import UIKit
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController,GADBannerViewDelegate {
 
     @IBOutlet var weiboBtn:UIButton?
     @IBOutlet var qqBtn:UIButton?
     @IBOutlet var loginBtn:UIButton?
+    @IBOutlet var _bannerView:GADBannerView?
     
     override func viewDidLoad() {
         
@@ -22,6 +23,8 @@ class LoginViewController: UIViewController {
         self.qqBtn?.layer.cornerRadius = 20
         self.loginBtn?.layer.cornerRadius = 15
 //        self.qqBtn?.backgroundColor = UIColor.blueColor()
+        
+        initBannerView()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -36,15 +39,6 @@ class LoginViewController: UIViewController {
         println("dismiss")
         self.navigationController?.popViewControllerAnimated(true)
     }
-    
-//    func loginCallBack(resp:UMSocialResponseEntity) -> UMSocialDataServiceCompletion {
-//        if(resp.responseCode == UMSResponseCodeSuccess){
-//            let account:UMSocialAccountEntity = (UMSocialAccountManager.socialAccountDictionary() as NSDictionary).valueForKey(UMShareToSina)
-//            println(account.userName)
-//            println(account.usid)
-//            println(account.accessToken)
-//        }
-//    }
     
     @IBAction func closeLoginView(){
         self.dismissViewControllerAnimated(true, completion: {})
@@ -89,4 +83,20 @@ class LoginViewController: UIViewController {
         })
     }
     
+    func initBannerView(){
+        var frame = self.view.bounds
+        frame.origin.y -= 50
+        self._bannerView?.frame = frame
+        self._bannerView?.adUnitID = APP_ADMOB_AD_UNIT_ID
+        self._bannerView?.rootViewController = self
+        self._bannerView?.delegate = self
+        var request = GADRequest()
+        request.testDevices = ["5B95C192-07BA-49FD-B572-AA23540A","cc95f15c6a339431d0d16e3184949be81f2"]
+        
+        self._bannerView?.loadRequest(request)
+    }
+    
+    func adViewDidReceiveAd(view: GADBannerView!) {
+        
+    }
 }
