@@ -13,10 +13,10 @@ let _SingletonInstance:DataService = DataService()
 
 class DataService {
     
-    var _url : String?
+    var _url:String?
     var managers:[AnyObject] = [0,1]
     var userToken:String? = nil
-    var weather:NSMutableDictionary? = nil
+    var weather:NSMutableDictionary?
     var currentUser:NSMutableDictionary? = nil
     
     class var shareService: DataService {
