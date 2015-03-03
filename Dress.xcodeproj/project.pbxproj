@@ -29,6 +29,7 @@
 		70211A6B1A8DF7D400C0A60F /* HRToast+UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70211A6A1A8DF7D400C0A60F /* HRToast+UIView.swift */; };
 		70211A6D1A8E40DC00C0A60F /* BrandTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70211A6C1A8E40DC00C0A60F /* BrandTableViewController.swift */; };
 		70211A6F1A8E42BC00C0A60F /* StyleTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70211A6E1A8E42BC00C0A60F /* StyleTableViewController.swift */; };
+		702187CB1AA064580087263C /* InfoDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702187CA1AA064580087263C /* InfoDetailViewController.swift */; };
 		70272B751A7A1B6C004870C1 /* default_dress.png in Resources */ = {isa = PBXBuildFile; fileRef = 70272B741A7A1B6C004870C1 /* default_dress.png */; };
 		70272B771A7A1D2E004870C1 /* ad_banner.png in Resources */ = {isa = PBXBuildFile; fileRef = 70272B761A7A1D2E004870C1 /* ad_banner.png */; };
 		702FB5F01A99770E009693C1 /* UMSocialLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 702FB5D51A99770E009693C1 /* UMSocialLocalizable.strings */; };
@@ -170,6 +171,7 @@
 		70211A6A1A8DF7D400C0A60F /* HRToast+UIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "HRToast+UIView.swift"; sourceTree = "<group>"; };
 		70211A6C1A8E40DC00C0A60F /* BrandTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BrandTableViewController.swift; sourceTree = "<group>"; };
 		70211A6E1A8E42BC00C0A60F /* StyleTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StyleTableViewController.swift; sourceTree = "<group>"; };
+		702187CA1AA064580087263C /* InfoDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoDetailViewController.swift; sourceTree = "<group>"; };
 		70272B741A7A1B6C004870C1 /* default_dress.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = default_dress.png; sourceTree = "<group>"; };
 		70272B761A7A1D2E004870C1 /* ad_banner.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ad_banner.png; sourceTree = "<group>"; };
 		702FB5D61A99770E009693C1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/UMSocialLocalizable.strings; sourceTree = "<group>"; };
@@ -617,6 +619,7 @@
 				70211A681A8DDABA00C0A60F /* FeedbackViewController.swift */,
 				70211A6C1A8E40DC00C0A60F /* BrandTableViewController.swift */,
 				70211A6E1A8E42BC00C0A60F /* StyleTableViewController.swift */,
+				702187CA1AA064580087263C /* InfoDetailViewController.swift */,
 			);
 			path = Dress;
 			sourceTree = "<group>";
@@ -934,6 +937,7 @@
 				709767C81A51A50500183867 /* ClothViewCell.swift in Sources */,
 				70211A691A8DDABA00C0A60F /* FeedbackViewController.swift in Sources */,
 				70211A6F1A8E42BC00C0A60F /* StyleTableViewController.swift in Sources */,
+				702187CB1AA064580087263C /* InfoDetailViewController.swift in Sources */,
 				70A663731A49BC9900CB2662 /* FindViewController.swift in Sources */,
 				70A663721A49BC9900CB2662 /* ClothViewController.swift in Sources */,
 				70211A651A8DD52E00C0A60F /* HelpViewController.swift in Sources */,
