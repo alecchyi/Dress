@@ -38,6 +38,8 @@ class FindViewController: UIViewController, UITableViewDelegate,UITableViewDataS
         self.infoTableView!.registerNib(cellNib, forCellReuseIdentifier: "InfoListItemCell")
 //        self.infoTableView!.registerClass(InfoListItemCell.self, forCellReuseIdentifier: "InfoListItemCell")
         self.view.addSubview(self.infoTableView!)
+
+            self.infoTableView?.separatorInset = UIEdgeInsetsZero
         
         frame.size.height = 30
         var refreshControl:UIRefreshControl = UIRefreshControl(frame: frame)
@@ -143,7 +145,7 @@ class FindViewController: UIViewController, UITableViewDelegate,UITableViewDataS
             cell.has_small_img = false
         }
 //        println("has_smalll_img----\(indexPath.row)-----\(cell.has_small_img)")
-        cell.selectionStyle = UITableViewCellSelectionStyle.None
+        cell.selectionStyle = UITableViewCellSelectionStyle.Default
         return cell
     }
     
@@ -186,6 +188,10 @@ class FindViewController: UIViewController, UITableViewDelegate,UITableViewDataS
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         println("did selected")
+        let mainStoryBoard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
+        var infoDetailViewController = mainStoryBoard.instantiateViewControllerWithIdentifier("infoDetailViewController") as InfoDetailViewController
+        self.navigationController?.pushViewController(infoDetailViewController, animated: true)
+        
     }
     
     func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {

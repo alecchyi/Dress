@@ -78,7 +78,7 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate,UMSocia
     
     func drawWeatherView(){
         self.weatherView!.backgroundColor = UIColor.clearColor()
-        var frame = CGRectMake(0, 60, self.view.bounds.width, 90)
+        var frame = CGRectMake(0, 60, self.view.bounds.width, 85)
         self.weatherView!.frame = frame
         frame.origin.y = 2
         var dataView = WeatherView(frame: frame)
@@ -252,13 +252,9 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate,UMSocia
             }
             url = save_capture_img(data!)
             let str = NSURL(fileURLWithPath: url!)
-//            println(str?.absoluteString)
             UMSocialData.defaultData().urlResource.setResourceType(UMSocialUrlResourceTypeImage, url: str!.absoluteString)
             UMSocialSnsService.presentSnsIconSheetView(self, appKey: kUMKey, shareText: "share words", shareImage: nil, shareToSnsNames: [UMShareToSina,UMShareToWechatSession,UMShareToWechatTimeline,UMShareToTencent,UMShareToQzone,UMShareToQQ,UMShareToEmail], delegate: self)
-//            println("ddddddd")
         }
-//        
-        
     }
     
     func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
