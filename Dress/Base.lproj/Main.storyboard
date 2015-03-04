@@ -365,16 +365,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="W1j-BV-TLG">
-                                <rect key="frame" x="40" y="104" width="123" height="29"/>
-                                <segments>
-                                    <segment title="First"/>
-                                    <segment title="Second"/>
-                                </segments>
-                            </segmentedControl>
+                            <webView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="B58-Zv-RXL" userLabel="detailWebView">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="600"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </webView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <outlet property="detailWebView" destination="B58-Zv-RXL" id="fuh-8h-dVC"/>
+                        <outlet property="view" destination="2HC-Un-XQR" id="9Qh-5E-Ob8"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Fvv-UV-rXQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -675,6 +676,9 @@
                             <outlet property="delegate" destination="6vY-ab-bnq" id="djr-Un-PxO"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <outlet property="infoTableView" destination="Oey-wp-Cu9" id="DHl-lf-gcj"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Vs1-jQ-WKZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -684,7 +688,7 @@
         <scene sceneID="P7U-uy-YNW">
             <objects>
                 <tableViewController storyboardIdentifier="styleViewController" title="我喜欢的风格" id="jeB-G9-J2c" customClass="StyleTableViewController" customModule="Dress" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="kkf-gS-h4c">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="kkf-gS-h4c" userLabel="styleTableView">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -701,6 +705,9 @@
                             <outlet property="delegate" destination="jeB-G9-J2c" id="rp3-Tn-3S3"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <outlet property="infoTableView" destination="kkf-gS-h4c" id="gvx-wn-Ejh"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="y1q-gx-1zd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

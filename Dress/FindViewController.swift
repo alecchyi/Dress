@@ -188,8 +188,11 @@ class FindViewController: UIViewController, UITableViewDelegate,UITableViewDataS
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         println("did selected")
+        let item = self.infoList?.objectAtIndex(indexPath.row) as AVObject
+        
         let mainStoryBoard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
         var infoDetailViewController = mainStoryBoard.instantiateViewControllerWithIdentifier("infoDetailViewController") as InfoDetailViewController
+        infoDetailViewController.infoObjId = item.objectForKey("objectId") as? String
         self.navigationController?.pushViewController(infoDetailViewController, animated: true)
         
     }
