@@ -88,9 +88,7 @@ class InfoListItemCell: UITableViewCell {
     }
     
     func clickMainView(sender:UITapGestureRecognizer) {
-        println(3434343)
         if(self.respondsToSelector("clickMainView:")){
-            println(666666)
             delegate?.clickMainView(sender)
         }
     }
