@@ -6,6 +6,12 @@
 //  Copyright (c) 2015年 Alec. All rights reserved.
 //
 
+protocol InfoListItemCellDelegate {
+    func clickMainView(sender:UITapGestureRecognizer)
+    func clickLikeBtn(tag:Int)
+    func clickShareBtn(tag:Int)
+}
+
 class InfoListItemCell: UITableViewCell {
 
     @IBOutlet var headImg:UIImageView?
@@ -13,13 +19,18 @@ class InfoListItemCell: UITableViewCell {
     @IBOutlet var lblSource:UILabel?
     @IBOutlet var lblTag:UILabel?
     @IBOutlet var lblContent:UILabel?
-    @IBOutlet var likeImg:UIImageView?
+    @IBOutlet var likeBtn:UIButton?
     @IBOutlet var lblLike:UILabel?
-    @IBOutlet var shareImg:UIImageView?
+    @IBOutlet var shareBtn:UIButton?
     @IBOutlet var lblShare:UILabel?
     @IBOutlet var lblAuthor:UILabel?
     @IBOutlet var smallImg:UIImageView?
     @IBOutlet var btnView:UIView?
+    @IBOutlet var mainView:UIView?
+    
+    var delegate:InfoListItemCellDelegate?
+    var indexPath:NSIndexPath?
+    
     var has_small_img:Bool = false
     
     
@@ -47,15 +58,50 @@ class InfoListItemCell: UITableViewCell {
         frame.size.width = self.btnView!.frame.size.width
         frame.size.height = 25
         self.btnView!.frame = frame
+        let height = frame.origin.y
+        frame = self.mainView!.frame
+        frame.size.height = height
+        self.mainView!.frame = frame
         self.btnView!.backgroundColor = UIColor.clearColor()
         var bottomLayer = CALayer(layer: nil)
-        bottomLayer.frame = CGRectMake(0, 0, frame.size.width, 1)
+        bottomLayer.frame = CGRectMake(0, 0, frame.size.width - 15, 1)
         bottomLayer.backgroundColor = mainColor().CGColor
         self.btnView!.layer.addSublayer(bottomLayer)
+        
+        let clickMainView:Selector = "clickMainView:"
+        let tapActionGesture = UITapGestureRecognizer(target: self, action: clickMainView)
+        self.mainView?.removeGestureRecognizer(tapActionGesture)
+        self.mainView?.addGestureRecognizer(tapActionGesture)
     }
     
     override func awakeFromNib() {
         super.awakeFromNib()
     }
 
+    override init() {
+        super.init()
+        
+    }
+
+    required init(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
+    
+    func clickMainView(sender:UITapGestureRecognizer) {
+        println(3434343)
+        if(self.respondsToSelector("clickMainView:")){
+            println(666666)
+            delegate?.clickMainView(sender)
+        }
+    }
+    
+    @IBAction func clickLikeBtn(){
+        let tag = self.likeBtn?.tag
+        delegate?.clickLikeBtn(tag!)
+    }
+    
+    @IBAction func clickShareBtn(){
+        let tag = self.shareBtn?.tag
+        delegate?.clickShareBtn(tag!)
+    }
 }

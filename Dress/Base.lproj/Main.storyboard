@@ -239,10 +239,23 @@
                     <view key="view" contentMode="scaleToFill" id="Iec-e5-Zan">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="ubX-Xi-pfU" userLabel="infoTableView">
+                                <rect key="frame" x="0.0" y="30" width="320" height="600"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="separatorColor" red="0.99123086729999998" green="0.85996960700000002" blue="0.98254052049999996" alpha="1" colorSpace="calibratedRGB"/>
+                                <inset key="separatorInset" minX="10" minY="0.0" maxX="10" maxY="0.0"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="Mas-l0-qpr" id="rEi-cS-Lcb"/>
+                                    <outlet property="delegate" destination="Mas-l0-qpr" id="kAY-3D-4pH"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="发现身边的美" id="I7J-h4-dw0"/>
                     <connections>
+                        <outlet property="infoTableView" destination="ubX-Xi-pfU" id="XNL-Ca-hk5"/>
                         <outlet property="view" destination="Iec-e5-Zan" id="hTM-lq-sqJ"/>
                     </connections>
                 </viewController>
@@ -688,10 +701,12 @@
         <scene sceneID="P7U-uy-YNW">
             <objects>
                 <tableViewController storyboardIdentifier="styleViewController" title="我喜欢的风格" id="jeB-G9-J2c" customClass="StyleTableViewController" customModule="Dress" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="kkf-gS-h4c" userLabel="styleTableView">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="kkf-gS-h4c" userLabel="styleTableView">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="separatorColor" red="0.95686274510000002" green="0.46666666670000001" blue="0.57254901960000004" alpha="1" colorSpace="calibratedRGB"/>
+                        <inset key="separatorInset" minX="15" minY="0.0" maxX="15" maxY="0.0"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="n55-vd-onq">
                                 <autoresizingMask key="autoresizingMask"/>

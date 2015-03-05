@@ -32,8 +32,6 @@ class InfoDetailViewController: UIViewController,UIWebViewDelegate {
 
 
     func initNavBarView(){
-        var navBar = self.navigationController?.navigationBar
-        navBar?.tintColor = UIColor.whiteColor()
         self.navigationItem.title = "详情"
     }
     

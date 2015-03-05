@@ -9,7 +9,7 @@
 import UIKit
 import Haneke
 
-class FindViewController: UIViewController, UITableViewDelegate,UITableViewDataSource,GADBannerViewDelegate {
+class FindViewController: UIViewController, UITableViewDelegate,UITableViewDataSource,GADBannerViewDelegate,InfoListItemCellDelegate,UMSocialUIDelegate {
 
     @IBOutlet var infoTableView:UITableView?
     @IBOutlet var _bannerView:GADBannerView?
@@ -29,17 +29,9 @@ class FindViewController: UIViewController, UITableViewDelegate,UITableViewDataS
 
         
         //add tableview for weibo
-        var frame:CGRect = CGRectMake(0, 50, self.view.bounds.size.width, self.view.bounds.size.height)
-        self.infoTableView = UITableView(frame: frame, style: UITableViewStyle.Grouped)
-        self.infoTableView?.backgroundColor = UIColor.whiteColor()
-        self.infoTableView!.delegate = self
-        self.infoTableView!.dataSource = self
+        var frame:CGRect = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height)
         var cellNib:UINib = UINib(nibName: "InfoListItemCell", bundle: nil)
         self.infoTableView!.registerNib(cellNib, forCellReuseIdentifier: "InfoListItemCell")
-//        self.infoTableView!.registerClass(InfoListItemCell.self, forCellReuseIdentifier: "InfoListItemCell")
-        self.view.addSubview(self.infoTableView!)
-
-            self.infoTableView?.separatorInset = UIEdgeInsetsZero
         
         frame.size.height = 30
         var refreshControl:UIRefreshControl = UIRefreshControl(frame: frame)
@@ -64,6 +56,8 @@ class FindViewController: UIViewController, UITableViewDelegate,UITableViewDataS
     }
     
     func initTabbarItem(){
+        var navBar = self.navigationController?.navigationBar
+        navBar?.tintColor = UIColor.whiteColor()
         let tabbarImg:UIImage = UIImage(named: "find_icon.png")!
         tabbarImg.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal)
         self.navigationController?.tabBarItem = UITabBarItem(title: "发现", image: tabbarImg, selectedImage: tabbarImg)
@@ -80,6 +74,20 @@ class FindViewController: UIViewController, UITableViewDelegate,UITableViewDataS
             fetchPersonalWeibo()
 //        }
         fetchSharedClothes()
+        
+        for view:AnyObject in self.view.subviews {
+            if view is GADBannerView {
+                var bannerFrame = view.frame
+                var frame = self.pullRefreshControl?.frame
+                frame?.origin.y = bannerFrame.size.height
+                self.pullRefreshControl?.frame = frame!
+                frame = self.infoTableView!.frame
+                frame?.origin.y = bannerFrame.size.height + 10
+                self.infoTableView?.frame = frame!
+                println("appear in bannerview")
+                break
+            }
+        }
     }
     
     func fetchPersonalWeibo(){
@@ -110,9 +118,11 @@ class FindViewController: UIViewController, UITableViewDelegate,UITableViewDataS
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell:InfoListItemCell = tableView.dequeueReusableCellWithIdentifier("InfoListItemCell", forIndexPath: indexPath) as InfoListItemCell
-        
+
         let item = self.infoList?.objectAtIndex(indexPath.row) as AVObject
         cell.lblTitle!.text = item.objectForKey("title") as? String
+        cell.lblTitle?.numberOfLines = 0
+        cell.lblTitle?.sizeToFit()
         
         cell.lblContent!.text = item.objectForKey("content") as? String
         let size:CGSize = cell.lblContent!.sizeThatFits(cell.lblContent!.frame.size)
@@ -146,6 +156,10 @@ class FindViewController: UIViewController, UITableViewDelegate,UITableViewDataS
         }
 //        println("has_smalll_img----\(indexPath.row)-----\(cell.has_small_img)")
         cell.selectionStyle = UITableViewCellSelectionStyle.Default
+        cell.mainView?.tag = 1000 + indexPath.row
+        cell.likeBtn?.tag = 2000 + indexPath.row
+        cell.shareBtn?.tag = 3000 + indexPath.row
+        cell.delegate = self
         return cell
     }
     
@@ -188,12 +202,7 @@ class FindViewController: UIViewController, UITableViewDelegate,UITableViewDataS
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         println("did selected")
-        let item = self.infoList?.objectAtIndex(indexPath.row) as AVObject
         
-        let mainStoryBoard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
-        var infoDetailViewController = mainStoryBoard.instantiateViewControllerWithIdentifier("infoDetailViewController") as InfoDetailViewController
-        infoDetailViewController.infoObjId = item.objectForKey("objectId") as? String
-        self.navigationController?.pushViewController(infoDetailViewController, animated: true)
         
     }
     
@@ -204,15 +213,67 @@ class FindViewController: UIViewController, UITableViewDelegate,UITableViewDataS
     func adViewDidReceiveAd(view: GADBannerView!) {
         
         UIView.animateWithDuration(0.3, delay: 0.0, options:UIViewAnimationOptions.TransitionFlipFromBottom, animations:{
-            var frame = view.frame
+            let bannerFrame = view.frame
             println("ads receive")
+            
+            var frame = self.pullRefreshControl?.frame
+            frame?.origin.y = bannerFrame.size.height
+//            self.pullRefreshControl?.frame = frame!
             frame = self.infoTableView!.frame
-            frame.origin.y = 20
-            self.infoTableView?.frame = frame
-            println(frame)
+            frame?.origin.y = bannerFrame.size.height + 10
+            self.infoTableView?.frame = frame!
+//            println(frame)
             }, completion:{(BOOL isFinished) in
                 
         })
+    }
+    
+    func clickMainView(sender:UITapGestureRecognizer) {
+        let tag = sender.view?.tag
+        let item = self.infoList?.objectAtIndex(tag! - 1000) as AVObject
+        
+        let mainStoryBoard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
+        var infoDetailViewController = mainStoryBoard.instantiateViewControllerWithIdentifier("infoDetailViewController") as InfoDetailViewController
+        infoDetailViewController.infoObjId = item.objectForKey("objectId") as? String
+        self.navigationController?.pushViewController(infoDetailViewController, animated: true)
+    }
+    
+    func clickLikeBtn(tag:Int) {
+        let item = self.infoList?.objectAtIndex(tag - 2000) as AVObject
+        var query = AVQuery(className: "Infos")
+        let objId = item.objectForKey("objectId") as? String
+        query.getObjectInBackgroundWithId(objId, block: {(obj:AVObject!,error:NSError!) in
+            if(error == nil){
+                var likes = obj.objectForKey("likes_count") as Int
+                likes++
+                obj.setObject(likes, forKey: "likes_count")
+                obj.saveInBackgroundWithBlock({(flag:Bool,error:NSError!) in
+                    
+                })
+            }
+        })
+    }
+    
+    func clickShareBtn(tag: Int) {
+        let item = self.infoList?.objectAtIndex(tag - 3000) as AVObject
+        let content = item.objectForKey("content") as? String
+        UMSocialSnsService.presentSnsIconSheetView(self, appKey: kUMKey, shareText: content!, shareImage: nil, shareToSnsNames: [UMShareToSina,UMShareToWechatSession,UMShareToWechatTimeline,UMShareToTencent,UMShareToQzone,UMShareToQQ,UMShareToEmail], delegate: self)
+        var query = AVQuery(className: "Infos")
+        let objId = item.objectForKey("objectId") as? String
+        query.getObjectInBackgroundWithId(objId, block: {(obj:AVObject!,error:NSError!) in
+            if(error == nil){
+                var shared = obj.objectForKey("shared_count") as Int
+                shared++
+                obj.setObject(shared, forKey: "shared_count")
+                obj.saveInBackgroundWithBlock({(flag:Bool,error:NSError!) in
+                    
+                })
+            }
+        })
+    }
+    
+    func didFinishGetUMSocialDataInViewController(response: UMSocialResponseEntity!) {
+//        println(response)
     }
 }
 

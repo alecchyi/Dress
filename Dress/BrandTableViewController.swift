@@ -22,8 +22,7 @@ class BrandTableViewController: UITableViewController,UITableViewDelegate,UITabl
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
-        
-        initNavBarView()
+
         
         self.infoTableView?.registerClass(UITableViewCell.self, forCellReuseIdentifier: "reuseIdentifier")
         self.infoTableView?.delegate = self
@@ -31,11 +30,6 @@ class BrandTableViewController: UITableViewController,UITableViewDelegate,UITabl
         
     }
     
-    func initNavBarView(){
-        
-        var navBar = self.navigationController?.navigationBar
-        navBar?.tintColor = UIColor.whiteColor()
-    }
     
     override func viewWillAppear(animated: Bool) {
         var innerQuery = AVQuery(className: "Brands")
@@ -62,7 +56,6 @@ class BrandTableViewController: UITableViewController,UITableViewDelegate,UITabl
                         }
                     }
                 }
-//                println(infos)
                 self.infoList = NSMutableArray(array: infos)
                 self.infoTableView?.reloadData()
             }
@@ -76,7 +69,6 @@ class BrandTableViewController: UITableViewController,UITableViewDelegate,UITabl
                 let brands = obj.objectForKey("brands") as NSArray
                 self.selectedInfos = NSMutableArray(array: brands)
                 self.infoTableView?.reloadData()
-                println(self.selectedInfos)
             }
         })
     }
@@ -156,11 +148,9 @@ class BrandTableViewController: UITableViewController,UITableViewDelegate,UITabl
         query.getFirstObjectInBackgroundWithBlock({(obj:AVObject!,error:NSError!) in
             var user_brands = AVObject(className: "UserBrands")
             if(error == nil){
-//                obj.deleteInBackground()
-                obj.deleteInBackgroundWithBlock({(flag:Bool!,error:NSError!) in
-
-                })
+                obj.deleteInBackground()
             }
+            
             if(self.selectedInfos!.count > 0){
                 user_brands.setObject(DataService.shareService.userToken!, forKey: "user_id")
                 user_brands.addUniqueObjectsFromArray(self.selectedInfos!, forKey: "brands")

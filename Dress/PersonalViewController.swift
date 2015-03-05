@@ -78,6 +78,8 @@ class PersonalViewController: UIViewController,UITableViewDataSource,UITableView
     }
 
     func initTabbarItem(){
+        var navBar = self.navigationController?.navigationBar
+        navBar?.tintColor = UIColor.whiteColor()
         let tabbarImg:UIImage = UIImage(named: "me_icon.png")!
         tabbarImg.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal)
         self.navigationController?.tabBarItem = UITabBarItem(title: "我的", image: tabbarImg, selectedImage: tabbarImg)
