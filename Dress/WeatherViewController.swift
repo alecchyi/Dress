@@ -38,7 +38,7 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate,UMSocia
     }
     
     override func viewWillAppear(animated: Bool) {
-        setCurrentUser()
+//        setCurrentUser()
         fetchWeatherData()
         initClothesData()
         println("will appear")

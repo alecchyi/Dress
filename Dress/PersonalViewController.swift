@@ -33,29 +33,25 @@ class PersonalViewController: UIViewController,UITableViewDataSource,UITableView
     
     override func viewWillAppear(animated: Bool) {
         initPersonalView()
-        if(DataService.shareService.currentUser != nil){
-            let path:String = DataService.shareService.currentUser?.objectForKey("profile_image_url") as String
+        let currentUser = AVUser.currentUser()
+        if(currentUser != nil){
+            let path:String = currentUser?.objectForKey("header_url") as String
             let url = NSURL(string: path)
-            if let imgData = NSData(contentsOfURL: url!){
-                self.profileImg?.image = UIImage(data: imgData)
-            }else{
-                self.profileImg?.image = UIImage(named: "default_head")
-            }
-            
-            
-            self.lblNickname?.text = (DataService.shareService.currentUser!.objectForKey("nickname") as String)
-            let followers_count:Int = (DataService.shareService.currentUser?.objectForKey("followers_count") as Int)
+            self.profileImg?.hnk_setImageFromURL(url!, placeholder: UIImage(named: "default_head"), format: nil, failure: nil, success: nil)
+
+            self.lblNickname?.text = (currentUser?.objectForKey("nickname") as String)
+            let followers_count:Int = (currentUser?.objectForKey("followers_count") as Int)
             self.lblFollowersNum?.text = "粉丝\n\(followers_count)"
-            let friends:Int = (DataService.shareService.currentUser?.objectForKey("friends_count") as Int)
+            let friends:Int = (currentUser?.objectForKey("friends_count") as Int)
             self.lblFriendsNum?.text = "关注\n\(friends)"
             var clothes:Int = 0
-            if(DataService.shareService.currentUser?.objectForKey("cloth_count") != nil){
-                clothes = (DataService.shareService.currentUser?.objectForKey("cloth_count") as Int)
+            if(currentUser?.objectForKey("cloth_count") != nil){
+                clothes = (currentUser?.objectForKey("cloth_count") as Int)
             }
             self.lblClothNum?.text = "衣服\n\(clothes)"
             var share:Int = 0
-            if(DataService.shareService.currentUser?.objectForKey("shared_count") != nil){
-                share = DataService.shareService.currentUser?.objectForKey("shared_count") as Int
+            if(currentUser?.objectForKey("shared_count") != nil){
+                share = currentUser?.objectForKey("shared_count") as Int
             }
             self.lblSharedNum?.text = "分享\n\(share)"
         }
@@ -94,7 +90,7 @@ class PersonalViewController: UIViewController,UITableViewDataSource,UITableView
     }
     
     func clickLogoutBtn(){
-        DataService.shareService.currentUser = nil
+        AVUser.logOut()
         DataService.shareService.userToken = nil
         let userDefaults = NSUserDefaults.standardUserDefaults()
         userDefaults.removeObjectForKey("userToken")

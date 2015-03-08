@@ -30,6 +30,8 @@ class FindViewController: UIViewController, UITableViewDelegate,UITableViewDataS
         
         //add tableview for weibo
         var frame:CGRect = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height)
+        frame.size.height = frame.size.height - 44
+        self.infoTableView?.frame = frame
         var cellNib:UINib = UINib(nibName: "InfoListItemCell", bundle: nil)
         self.infoTableView!.registerNib(cellNib, forCellReuseIdentifier: "InfoListItemCell")
         
@@ -70,9 +72,7 @@ class FindViewController: UIViewController, UITableViewDelegate,UITableViewDataS
 
     override func viewWillAppear(animated: Bool) {
         
-//        if(has_bind_weibo()){
-            fetchPersonalWeibo()
-//        }
+        fetchArticals()
         fetchSharedClothes()
         
         for view:AnyObject in self.view.subviews {
@@ -90,7 +90,7 @@ class FindViewController: UIViewController, UITableViewDelegate,UITableViewDataS
         }
     }
     
-    func fetchPersonalWeibo(){
+    func fetchArticals(){
         MBProgressHUD.showHUDAddedTo(self.infoTableView, animated: true)
         var avQuery = AVQuery(className: "Infos")
         avQuery.cachePolicy = AVCachePolicy.NetworkElseCache
@@ -202,7 +202,6 @@ class FindViewController: UIViewController, UITableViewDelegate,UITableViewDataS
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         println("did selected")
-        
         
     }
     
