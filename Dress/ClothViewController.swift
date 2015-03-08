@@ -15,6 +15,7 @@ class ClothViewController: UIViewController, NewClothViewControllerDelegate,UICo
     @IBOutlet var tagsView:UIView?
     
     var clothesList:NSMutableArray?
+    var selectedTags:NSMutableArray?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,7 +61,7 @@ class ClothViewController: UIViewController, NewClothViewControllerDelegate,UICo
         
         var sheet:UIActionSheet = UIActionSheet()
         sheet.addButtonWithTitle("取消")
-        sheet.addButtonWithTitle("编辑")
+//        sheet.addButtonWithTitle("编辑")
         sheet.addButtonWithTitle("删除")
         sheet.title = "操作"
         sheet.delegate = self
@@ -75,6 +76,7 @@ class ClothViewController: UIViewController, NewClothViewControllerDelegate,UICo
                 break
             }
         }
+        self.selectedTags = NSMutableArray()
         var allTags = NSMutableArray(contentsOfFile: DataService.shareService.getTagsPlist())
         if(allTags != nil){
             var scrollView = UIScrollView(frame: self.tagsView!.bounds)
@@ -96,14 +98,16 @@ class ClothViewController: UIViewController, NewClothViewControllerDelegate,UICo
                 btn.titleLabel?.font = UIFont.systemFontOfSize(14.0)
                 btn.backgroundColor = UIColor(red: 241/255.0, green: 103/255.0, blue: 214/255.0, alpha: 1.0)
                 btn.layer.cornerRadius = frame.size.height * 0.5
+                btn.setTitleColor(UIColor.brownColor(), forState: UIControlState.Highlighted)
+                btn.addTarget(self, action: "seletedTagBtn:", forControlEvents: UIControlEvents.TouchUpInside)
+                var item:NSDictionary = allTags?.objectAtIndex(i) as NSDictionary
+                btn.tag = 5000 + (item.objectForKey("tagId") as Int)
                 
                 scrollView.addSubview(btn)
                 var scrollSize:CGSize = scrollView.contentSize as CGSize
                 scrollSize.width = sWidth
                 scrollView.contentSize = scrollSize
             }
-        }else{
-            println(4343434)
         }
     }
     
@@ -126,7 +130,7 @@ class ClothViewController: UIViewController, NewClothViewControllerDelegate,UICo
         var navModelController = UINavigationController(rootViewController: newClothViewController)
         navModelController.navigationBar.barTintColor = mainNavBarColor()
         self.presentViewController(navModelController, animated: true, completion: {
-            
+            newClothViewController.selectedTags = NSMutableArray()
         })
     }
     
@@ -147,6 +151,10 @@ class ClothViewController: UIViewController, NewClothViewControllerDelegate,UICo
         longGesture.allowableMovement = 50.0
         longGesture.minimumPressDuration = 1.0
         cell.addGestureRecognizer(longGesture)
+        
+        var tapImgGesture = UITapGestureRecognizer(target: self, action: "tapImgGesture:")
+        cell.imageView?.addGestureRecognizer(tapImgGesture)
+        
         return cell
     }
     
@@ -194,9 +202,9 @@ class ClothViewController: UIViewController, NewClothViewControllerDelegate,UICo
     }
     
     func actionSheet(actionSheet: UIActionSheet, clickedButtonAtIndex buttonIndex: Int) {
-        if(buttonIndex == 1){
+        if(buttonIndex == 0){
             
-        }else if(buttonIndex == 2){
+        }else if(buttonIndex == 1){
             println("delete:\(actionSheet.tag)")
             let selectedIndex:Int = (actionSheet.tag - 3000) as Int
             deleteFileForPath(selectedIndex)
@@ -215,6 +223,52 @@ class ClothViewController: UIViewController, NewClothViewControllerDelegate,UICo
             self.clothesCollectView!.reloadData()
             self.clothesList!.writeToFile(DataService.shareService.getUserClothPlist(), atomically: true)
         }
+    }
+    
+    func seletedTagBtn(sender:UIButton){
+        if(self.selectedTags?.containsObject(sender.tag) == true){
+            self.selectedTags?.removeObject(sender.tag)
+            sender.backgroundColor = mainTagBgColor()
+        }else{
+            self.selectedTags?.addObject(sender.tag)
+            sender.backgroundColor = UIColor.brownColor()
+        }
+        
+        var allClothes = NSMutableArray(contentsOfFile: DataService.shareService.getUserClothPlist())
+        if(allClothes == nil){
+            allClothes = NSMutableArray()
+        }
+        if(self.selectedTags?.count>0){
+            var clothes = NSMutableArray()
+            for(var i=0;i<allClothes?.count;i++){
+                let cloth:NSDictionary = allClothes?.objectAtIndex(i) as NSDictionary
+                let tags:NSArray = cloth.objectForKey("tags") as NSArray
+                for(var j=0;j<self.selectedTags?.count;j++){
+                    let tag:Int = self.selectedTags?.objectAtIndex(j) as Int
+                    if(tags.containsObject(tag - 5000)){
+                        clothes.addObject(cloth)
+                        break
+                    }
+                }
+            }
+            allClothes = clothes
+        }
+        self.clothesList = allClothes
+        self.clothesCollectView?.reloadData()
+    }
+    
+    func tapImgGesture(sender:UITapGestureRecognizer){
+        let imgView:UIImageView = sender.view as UIImageView
+        var info = JTSImageInfo()
+        info.image = imgView.image
+        info.referenceRect = imgView.frame
+        info.referenceView = imgView.superview
+        info.referenceContentMode = imgView.contentMode
+        info.referenceCornerRadius = imgView.layer.cornerRadius
+        
+        var imgViewer = JTSImageViewController(imageInfo: info, mode: JTSImageViewControllerMode.Image, backgroundStyle: JTSImageViewControllerBackgroundOptions.Scaled)
+        
+        imgViewer.showFromViewController(self, transition: JTSImageViewControllerTransition._FromOriginalPosition)
     }
 }
 

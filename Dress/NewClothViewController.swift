@@ -29,6 +29,8 @@ class NewClothViewController: UIViewController,UIPickerViewDelegate,UIPickerView
     
     var categories:NSArray?
     var seasons:NSArray?
+    var selectedTags:NSMutableArray?
+    var allTags:NSArray?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,7 +61,7 @@ class NewClothViewController: UIViewController,UIPickerViewDelegate,UIPickerView
         var frame = UIScreen.mainScreen().bounds
         self.tagsView!.frame.size.width = frame.size.width
         
-        var allTags = NSMutableArray(contentsOfFile: DataService.shareService.getTagsPlist())
+        self.allTags = NSMutableArray(contentsOfFile: DataService.shareService.getTagsPlist())
         
         var scrollView = UIScrollView(frame: self.tagsView!.bounds)
         scrollView.scrollsToTop = false
@@ -78,8 +80,11 @@ class NewClothViewController: UIViewController,UIPickerViewDelegate,UIPickerView
             btn.setTitle((allTags?.objectAtIndex(i) as NSDictionary).objectForKey("name") as? String, forState: UIControlState.Normal)
             btn.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
             btn.titleLabel?.font = UIFont.systemFontOfSize(14.0)
-            btn.backgroundColor = UIColor(red: 241/255.0, green: 103/255.0, blue: 214/255.0, alpha: 1.0)
+            btn.backgroundColor = mainTagBgColor()
             btn.layer.cornerRadius = frame.size.height * 0.5
+            btn.setTitleColor(UIColor.brownColor(), forState: UIControlState.Highlighted)
+            btn.addTarget(self, action: "seletedTagBtn:", forControlEvents: UIControlEvents.TouchUpInside)
+            btn.tag = 5000 + i
             
             scrollView.addSubview(btn)
             var scrollSize:CGSize = scrollView.contentSize as CGSize
@@ -125,12 +130,13 @@ class NewClothViewController: UIViewController,UIPickerViewDelegate,UIPickerView
             params.setValue(self.lblSeason!.tag - 1100, forKey: "season")
             params.setValue(self.lblCategory!.tag - 1000, forKey: "type")
             params.setValue(self._picPath!, forKey: "picPath")
-            params.setValue([0,1], forKey: "tags")
+            params.setValue(getSelectedTags(), forKey: "tags")
             
             var clothes = NSMutableArray(contentsOfFile: DataService.shareService.getUserClothPlist())
             if(clothes == nil){
                 clothes = NSMutableArray()
             }
+
             clothes!.addObject(params)
 
             var plist = DataService.shareService.getUserClothPlist()
@@ -232,14 +238,6 @@ class NewClothViewController: UIViewController,UIPickerViewDelegate,UIPickerView
         return 2
     }
     
-//    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String! {
-//        if(component == 0){
-//            return self.categories!.objectAtIndex(row) as String
-//        }else{
-//            return self.seasons!.objectAtIndex(row) as String
-//        }
-//    }
-    
     func pickerView(pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusingView view: UIView!) -> UIView {
         var lblText = UILabel(frame: CGRectMake(0, 0, 100, 20))
         lblText.font = UIFont.systemFontOfSize(17)
@@ -281,18 +279,34 @@ class NewClothViewController: UIViewController,UIPickerViewDelegate,UIPickerView
     }
     
     func clickToolBarDoneBtn(){
-//        let row = self.pickViewType == 0 ? self.lblCategory!.tag - 1000 : self.lblSeason!.tag - 1100
-//        if(self.pickViewType==0){
-//            self.lblCategory!.text = self.categories[row]
-//        }else{
-//            self.lblSeason!.text = self.categories[row]
-//        }
-        
         hideToolBar()
     }
 
     func pickerView(pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
         return 25
+    }
+    
+    func seletedTagBtn(sender:UIButton){
+        if(self.selectedTags?.containsObject(sender.tag) == true){
+            self.selectedTags?.removeObject(sender.tag)
+            sender.backgroundColor = mainTagBgColor()
+        }else{
+            self.selectedTags?.addObject(sender.tag)
+            sender.backgroundColor = UIColor.brownColor()
+        }
+        println(self.selectedTags!)
+    }
+    
+    func getSelectedTags() -> NSArray {
+        var arr = NSMutableArray()
+        if(self.selectedTags?.count > 0){
+            for(var i=0;i<self.selectedTags?.count;i++){
+                var tag:Int = (selectedTags?.objectAtIndex(i) as Int) - 5000
+                var item:NSDictionary = allTags?.objectAtIndex(tag) as NSDictionary
+                arr.addObject(item.objectForKey("tagId")!)
+            }
+        }
+        return arr
     }
 }
 

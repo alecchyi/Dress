@@ -104,7 +104,7 @@ func saveUser(user:NSDictionary) -> Bool{
                             parameters:params,
                             success: {(operation:AFHTTPRequestOperation!, response:AnyObject!) in
                                 let resp:NSDictionary = response as NSDictionary
-                                //                println(resp)
+//                                                println(resp)
                                 let nickname:AnyObject? = resp.objectForKey("name")
                                 if(nickname != nil){
                                     currentUser.setObject(nickname!, forKey: "nickname")
@@ -132,6 +132,7 @@ func saveUser(user:NSDictionary) -> Bool{
                             },
                             failure: {(operation:AFHTTPRequestOperation!, error:NSError!) in
                                 println("fetch user error")
+                                println(error)
                         })
                     }else{
                         let nickname:AnyObject? = user.objectForKey("nickname")
@@ -186,7 +187,7 @@ func saveUser(user:NSDictionary) -> Bool{
             }
             let qq_id:AnyObject? = user.objectForKey("qq_uid")
             if(qq_id != nil) {
-                newUser.setValue(qq_id!, forKey: "qq_id")
+                newUser.setObject(qq_id!, forKey: "qq_id")
             }
             let weibo_id:AnyObject? = user.objectForKey("weibo_uid")
             if(weibo_id != nil) {
@@ -260,7 +261,8 @@ func saveUser(user:NSDictionary) -> Bool{
                                     })
                                 },
                                 failure: {(operation:AFHTTPRequestOperation!, error:NSError!) in
-                                    println("fetch user error")
+                                    println("fetch user error in resg")
+                                    println(error)
                             })
                         }
                         DataService.shareService.setUserToken(uuid!)
@@ -304,7 +306,6 @@ func has_bind_weibo() -> Bool {
         let currentUser = AVUser.currentUser()
         if(currentUser != nil){
             let login_type:String = currentUser?.objectForKey("login_type") as String
-            println(login_type)
             if(login_type != "" && login_type == "sina_weibo"){
                 return true
             }
@@ -314,33 +315,17 @@ func has_bind_weibo() -> Bool {
 }
 
 func setCurrentUser(){
-    if(DataService.shareService.userToken != nil){
-        var users = NSMutableArray(contentsOfFile: DataService.shareService.getUsersPlist())
-        println(DataService.shareService.getUsersPlist())
-        let token:String = DataService.shareService.userToken! as String
-        println(token)
-        if(users == nil){
-            println("nil users")
-        }else{
-            for(var i=0;i<users!.count;i++){
-                let item:NSDictionary = users?.objectAtIndex(i) as NSDictionary
-                println(item.objectForKey("userToken"))
-                if((item.objectForKey("userToken") as String) == token){
-                    DataService.shareService.currentUser = item as? NSMutableDictionary
-//                    println("has login token")
-                    break
-                }
-            }
+    
+    if(DataService.shareService.userToken == nil){
+        let currentUser = AVUser.currentUser()
+        if(currentUser != nil){
+            DataService.shareService.setUserToken(currentUser.objectForKey("userToken") as NSString)
         }
-        
     }
 }
 
 func initDataDB(){
     let path = DataService.shareService.getDBPath()
-    println(path)
-    
-    
 }
 
 func mainColor() -> UIColor {
@@ -361,6 +346,10 @@ func weatherWordColor() -> UIColor {
 
 func mainNavBarColor() -> UIColor {
     return UIColor(red: 244/255.0, green: 119/255.0, blue: 146/255.0, alpha: 0.75)
+}
+
+func mainTagBgColor() -> UIColor {
+    return UIColor(red: 241/255.0, green: 103/255.0, blue: 214/255.0, alpha: 1.0)
 }
 
 func fetchSystemTags(){
@@ -385,10 +374,13 @@ func fetchSystemTags(){
 //                        println("idx:\(i)")
                     }
                     allTags.writeToFile(DataService.shareService.getTagsPlist(), atomically: true)
+                }else{
+                    println("fetch tags error")
+                    println(err)
                 }
             })
         }else{
-//            println("fetch system tags error")
+            println("fetch system tags error")
         }
     })
     

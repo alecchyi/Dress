@@ -15,6 +15,9 @@
 #import "UMSocialSinaHandler.h"
 #import "UMSocialQQHandler.h"
 
+#import "JTSImageViewController.h"
+#import "JTSImageInfo.h"
+
 @import GoogleMobileAds;
 
 

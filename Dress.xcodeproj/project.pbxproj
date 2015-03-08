@@ -21,6 +21,12 @@
 		70211A6D1A8E40DC00C0A60F /* BrandTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70211A6C1A8E40DC00C0A60F /* BrandTableViewController.swift */; };
 		70211A6F1A8E42BC00C0A60F /* StyleTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70211A6E1A8E42BC00C0A60F /* StyleTableViewController.swift */; };
 		702187CB1AA064580087263C /* InfoDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702187CA1AA064580087263C /* InfoDetailViewController.swift */; };
+		7028F3AC1AAC9C9C00E5BFBF /* JTSAnimatedGIFUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 7028F3A11AAC9C9C00E5BFBF /* JTSAnimatedGIFUtility.m */; };
+		7028F3AD1AAC9C9C00E5BFBF /* JTSImageInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 7028F3A31AAC9C9C00E5BFBF /* JTSImageInfo.m */; };
+		7028F3AE1AAC9C9C00E5BFBF /* JTSImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7028F3A51AAC9C9C00E5BFBF /* JTSImageViewController.m */; };
+		7028F3AF1AAC9C9C00E5BFBF /* JTSSimpleImageDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 7028F3A71AAC9C9C00E5BFBF /* JTSSimpleImageDownloader.m */; };
+		7028F3B01AAC9C9C00E5BFBF /* UIApplication+JTSImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7028F3A91AAC9C9C00E5BFBF /* UIApplication+JTSImageViewController.m */; };
+		7028F3B11AAC9C9C00E5BFBF /* UIImage+JTSImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = 7028F3AB1AAC9C9C00E5BFBF /* UIImage+JTSImageEffects.m */; };
 		702FB5F01A99770E009693C1 /* UMSocialLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 702FB5D51A99770E009693C1 /* UMSocialLocalizable.strings */; };
 		702FB5F11A99770E009693C1 /* libUMSocial_Sdk_4.2.1.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 702FB5E31A99770E009693C1 /* libUMSocial_Sdk_4.2.1.a */; };
 		702FB5F21A99770E009693C1 /* libUMSocial_Sdk_Comment_4.2.1.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 702FB5E41A99770E009693C1 /* libUMSocial_Sdk_Comment_4.2.1.a */; };
@@ -134,6 +140,18 @@
 		70211A6C1A8E40DC00C0A60F /* BrandTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BrandTableViewController.swift; sourceTree = "<group>"; };
 		70211A6E1A8E42BC00C0A60F /* StyleTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StyleTableViewController.swift; sourceTree = "<group>"; };
 		702187CA1AA064580087263C /* InfoDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoDetailViewController.swift; sourceTree = "<group>"; };
+		7028F3A01AAC9C9C00E5BFBF /* JTSAnimatedGIFUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JTSAnimatedGIFUtility.h; sourceTree = "<group>"; };
+		7028F3A11AAC9C9C00E5BFBF /* JTSAnimatedGIFUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JTSAnimatedGIFUtility.m; sourceTree = "<group>"; };
+		7028F3A21AAC9C9C00E5BFBF /* JTSImageInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JTSImageInfo.h; sourceTree = "<group>"; };
+		7028F3A31AAC9C9C00E5BFBF /* JTSImageInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JTSImageInfo.m; sourceTree = "<group>"; };
+		7028F3A41AAC9C9C00E5BFBF /* JTSImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JTSImageViewController.h; sourceTree = "<group>"; };
+		7028F3A51AAC9C9C00E5BFBF /* JTSImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JTSImageViewController.m; sourceTree = "<group>"; };
+		7028F3A61AAC9C9C00E5BFBF /* JTSSimpleImageDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JTSSimpleImageDownloader.h; sourceTree = "<group>"; };
+		7028F3A71AAC9C9C00E5BFBF /* JTSSimpleImageDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JTSSimpleImageDownloader.m; sourceTree = "<group>"; };
+		7028F3A81AAC9C9C00E5BFBF /* UIApplication+JTSImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIApplication+JTSImageViewController.h"; sourceTree = "<group>"; };
+		7028F3A91AAC9C9C00E5BFBF /* UIApplication+JTSImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIApplication+JTSImageViewController.m"; sourceTree = "<group>"; };
+		7028F3AA1AAC9C9C00E5BFBF /* UIImage+JTSImageEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+JTSImageEffects.h"; sourceTree = "<group>"; };
+		7028F3AB1AAC9C9C00E5BFBF /* UIImage+JTSImageEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+JTSImageEffects.m"; sourceTree = "<group>"; };
 		702FB5D61A99770E009693C1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/UMSocialLocalizable.strings; sourceTree = "<group>"; };
 		702FB5D81A99770E009693C1 /* UMSocial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMSocial.h; sourceTree = "<group>"; };
 		702FB5D91A99770E009693C1 /* UMSocialAccountManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMSocialAccountManager.h; sourceTree = "<group>"; };
@@ -307,6 +325,25 @@
 				7011C1C51A7B8610002AE2A8 /* InfoListItemCell.xib */,
 			);
 			name = CustomView;
+			sourceTree = "<group>";
+		};
+		7028F39F1AAC9C9C00E5BFBF /* JTSImage */ = {
+			isa = PBXGroup;
+			children = (
+				7028F3A01AAC9C9C00E5BFBF /* JTSAnimatedGIFUtility.h */,
+				7028F3A11AAC9C9C00E5BFBF /* JTSAnimatedGIFUtility.m */,
+				7028F3A21AAC9C9C00E5BFBF /* JTSImageInfo.h */,
+				7028F3A31AAC9C9C00E5BFBF /* JTSImageInfo.m */,
+				7028F3A41AAC9C9C00E5BFBF /* JTSImageViewController.h */,
+				7028F3A51AAC9C9C00E5BFBF /* JTSImageViewController.m */,
+				7028F3A61AAC9C9C00E5BFBF /* JTSSimpleImageDownloader.h */,
+				7028F3A71AAC9C9C00E5BFBF /* JTSSimpleImageDownloader.m */,
+				7028F3A81AAC9C9C00E5BFBF /* UIApplication+JTSImageViewController.h */,
+				7028F3A91AAC9C9C00E5BFBF /* UIApplication+JTSImageViewController.m */,
+				7028F3AA1AAC9C9C00E5BFBF /* UIImage+JTSImageEffects.h */,
+				7028F3AB1AAC9C9C00E5BFBF /* UIImage+JTSImageEffects.m */,
+			);
+			path = JTSImage;
 			sourceTree = "<group>";
 		};
 		702FB5D41A99770E009693C1 /* UMSocial_Sdk_4.2.1 */ = {
@@ -524,6 +561,7 @@
 		70A663461A49B75600CB2662 /* Dress */ = {
 			isa = PBXGroup;
 			children = (
+				7028F39F1AAC9C9C00E5BFBF /* JTSImage */,
 				702FB5D41A99770E009693C1 /* UMSocial_Sdk_4.2.1 */,
 				7011C1C21A7B855B002AE2A8 /* CustomView */,
 				707591E41A748C9C005DFA11 /* libWeiboSDK */,
@@ -795,10 +833,14 @@
 			files = (
 				7067E7C81A694E4000E143D1 /* WeatherView.swift in Sources */,
 				708E1AA71A4B035800FF27A1 /* Cloth.swift in Sources */,
+				7028F3B11AAC9C9C00E5BFBF /* UIImage+JTSImageEffects.m in Sources */,
 				7011C1BB1A7B223E002AE2A8 /* String-Extras.swift in Sources */,
 				70211A631A8DD21D00C0A60F /* AboutViewController.swift in Sources */,
+				7028F3AC1AAC9C9C00E5BFBF /* JTSAnimatedGIFUtility.m in Sources */,
+				7028F3AD1AAC9C9C00E5BFBF /* JTSImageInfo.m in Sources */,
 				70AC70181A4BBBCE00F396AA /* PickViewToolBar.swift in Sources */,
 				7011C1C11A7B7934002AE2A8 /* InfoListItemCell.swift in Sources */,
+				7028F3AE1AAC9C9C00E5BFBF /* JTSImageViewController.m in Sources */,
 				7011C1BA1A7B223E002AE2A8 /* SQLiteDB.swift in Sources */,
 				70AB758A1A4CEC4C00B9D6C2 /* NewClothViewController.swift in Sources */,
 				70211A6B1A8DF7D400C0A60F /* HRToast+UIView.swift in Sources */,
@@ -807,7 +849,9 @@
 				70211A6F1A8E42BC00C0A60F /* StyleTableViewController.swift in Sources */,
 				702187CB1AA064580087263C /* InfoDetailViewController.swift in Sources */,
 				70A663731A49BC9900CB2662 /* FindViewController.swift in Sources */,
+				7028F3B01AAC9C9C00E5BFBF /* UIApplication+JTSImageViewController.m in Sources */,
 				70A663721A49BC9900CB2662 /* ClothViewController.swift in Sources */,
+				7028F3AF1AAC9C9C00E5BFBF /* JTSSimpleImageDownloader.m in Sources */,
 				70211A651A8DD52E00C0A60F /* HelpViewController.swift in Sources */,
 				70211A6D1A8E40DC00C0A60F /* BrandTableViewController.swift in Sources */,
 				7067E7CA1A696F4C00E143D1 /* RulerViewBar.swift in Sources */,

@@ -17,6 +17,7 @@ class ClothViewCell: UICollectionViewCell {
         let frame = CGRectMake(5, 5, frame.size.width - 10, frame.size.height - 30)
         self.imageView = UIImageView(frame: frame)
         self.imageView?.contentMode = UIViewContentMode.ScaleAspectFit
+        self.imageView?.userInteractionEnabled = true
         self.lblText = UILabel(frame: CGRectMake(5, frame.size.height, frame.size.width, 30))
         self.lblText?.font = UIFont.systemFontOfSize(12.0)
 //        self.lblText?.textColor = UIColor.whiteColor()
