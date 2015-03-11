@@ -26,7 +26,7 @@ class WeatherView: UIView {
     
     func setCustomView(){
         if let weather = DataService.shareService.weather {
-            println(weather.objectForKey("dayPicUrl"))
+//            println(weather.objectForKey("dayPicUrl"))
             let picPath = weather.objectForKey("dayPicUrl") as? NSString
             if(picPath == nil){
                 var lblWeather = UILabel(frame: CGRectMake(50, 10, 150, 20))

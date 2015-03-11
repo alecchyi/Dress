@@ -31,7 +31,7 @@
         <scene sceneID="I2B-vW-T2N">
             <objects>
                 <navigationController title="Weather" id="YoZ-qe-WX4" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="天气" image="weather_icon.png" selectedImage="weather_icon.png" id="f8n-Pg-kro"/>
+                    <tabBarItem key="tabBarItem" title="天气" image="weather_icon" selectedImage="weather_icon" id="f8n-Pg-kro"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="lLV-FK-VV8">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -102,7 +102,7 @@
         <scene sceneID="hNq-Zr-YAE">
             <objects>
                 <navigationController title="衣服" id="gIr-8y-jFk" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="衣服" image="clothes_icon.png" selectedImage="clothes_icon.png" id="W9d-cR-Gnz"/>
+                    <tabBarItem key="tabBarItem" title="衣服" image="clothes_icon" selectedImage="clothes_icon" id="W9d-cR-Gnz"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="nth-D8-9ZY">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -213,7 +213,7 @@
         <scene sceneID="Txo-JU-3SN">
             <objects>
                 <navigationController title="发现" id="sUF-tz-EeK" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="发现" image="find_icon.png" selectedImage="find_icon.png" id="TPp-LX-BHM"/>
+                    <tabBarItem key="tabBarItem" title="发现" image="find_icon" selectedImage="find_icon" id="TPp-LX-BHM"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="JSD-6I-9lM">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -272,7 +272,7 @@
         <scene sceneID="hym-aj-4Fj">
             <objects>
                 <navigationController title="我" id="3Dr-2h-wIJ" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="我的" image="me_icon.png" selectedImage="me_icon.png" id="USl-Pq-bJt"/>
+                    <tabBarItem key="tabBarItem" title="我的" image="me_icon" selectedImage="me_icon" id="USl-Pq-bJt"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="JDu-mg-jdV">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -343,7 +343,7 @@
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="z6n-c4-CYc" userLabel="detailItem">
                                 <rect key="frame" x="0.0" y="150" width="320" height="330"/>
-                                <inset key="separatorInset" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <inset key="separatorInset" minX="10" minY="0.0" maxX="10" maxY="0.0"/>
                                 <color key="sectionIndexColor" red="0.31457270409999999" green="0.31457270409999999" blue="0.31457270409999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="sectionIndexBackgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
@@ -443,7 +443,7 @@
                                 <rect key="frame" x="73" y="109" width="173" height="42"/>
                                 <color key="backgroundColor" red="0.70691167091836737" green="0.53961107765658833" blue="0.48968833039508658" alpha="0.75" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
-                                <state key="normal" title=" 微博账号登录" image="weibo_btn.png">
+                                <state key="normal" title=" 微博账号登录" image="weibo_btn">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -455,7 +455,7 @@
                                 <rect key="frame" x="73" y="174" width="173" height="42"/>
                                 <color key="backgroundColor" red="0.31372549020000001" green="0.31372549020000001" blue="0.31372549020000001" alpha="0.81000000000000005" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
-                                <state key="normal" title="QQ账号登录" image="qq_icon.png">
+                                <state key="normal" title="QQ账号登录" image="qq_icon">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -574,18 +574,24 @@
                         <viewControllerLayoutGuide type="bottom" id="rK5-rr-QDJ"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="FUs-Hl-383">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" scrollEnabled="NO" editable="NO" text="we are a team" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6NN-sc-hv6">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="400"/>
+                            <webView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vki-zm-nYh">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="600"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
+                                <connections>
+                                    <outlet property="delegate" destination="eTe-92-LbU" id="MIh-zj-b4b"/>
+                                </connections>
+                            </webView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="320" height="600"/>
+                    <connections>
+                        <outlet property="aboutWebView" destination="vki-zm-nYh" id="fIx-bf-aqm"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cZO-Vr-Hlz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -746,16 +752,16 @@
     </scenes>
     <resources>
         <image name="ad_banner" width="500" height="150"/>
-        <image name="clothes_icon.png" width="29" height="29"/>
+        <image name="clothes_icon" width="29" height="29"/>
         <image name="default_dress" width="89" height="126"/>
         <image name="default_head.png" width="64" height="64"/>
-        <image name="find_icon.png" width="29" height="30"/>
+        <image name="find_icon" width="29" height="30"/>
         <image name="hat_icon" width="79" height="71"/>
-        <image name="me_icon.png" width="29" height="29"/>
-        <image name="qq_icon.png" width="39" height="39"/>
+        <image name="me_icon" width="29" height="29"/>
+        <image name="qq_icon" width="39" height="39"/>
         <image name="shirt_icon" width="139" height="127"/>
         <image name="trousers_icon" width="128" height="128"/>
-        <image name="weather_icon.png" width="29" height="29"/>
-        <image name="weibo_btn.png" width="32" height="32"/>
+        <image name="weather_icon" width="29" height="29"/>
+        <image name="weibo_btn" width="32" height="32"/>
     </resources>
 </document>

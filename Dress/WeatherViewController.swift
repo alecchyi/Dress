@@ -131,6 +131,13 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate,UMSocia
         let rightTrouserSwipe = UISwipeGestureRecognizer(target: self, action: swipeTrouserSelector)
         rightTrouserSwipe.direction = UISwipeGestureRecognizerDirection.Right
         self.trouserImgView!.addGestureRecognizer(rightTrouserSwipe)
+        
+        var tapImgGesture = UITapGestureRecognizer(target: self, action: "tapImgGesture:")
+        var tapImgGesture_1 = UITapGestureRecognizer(target: self, action: "tapImgGesture:")
+        var tapImgGesture_2 = UITapGestureRecognizer(target: self, action: "tapImgGesture:")
+        self.headerImgView!.addGestureRecognizer(tapImgGesture)
+        self.shirtImgView!.addGestureRecognizer(tapImgGesture_1)
+        self.trouserImgView!.addGestureRecognizer(tapImgGesture_2)
     }
     
     func swipeSelector(sender:UISwipeGestureRecognizer){
@@ -223,7 +230,6 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate,UMSocia
     }
     
     func initMainView() {
-//        let shareSelector:Selector = "shareSeletor:"
         var rightBarBtn:UIBarButtonItem = UIBarButtonItem(title:"分享", style: .Plain, target: self, action: "clickShareBtn")
         rightBarBtn.tintColor = UIColor.whiteColor()
         self.navigationItem.rightBarButtonItem = rightBarBtn
@@ -267,7 +273,6 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate,UMSocia
     }
     
     func locationManager(manager: CLLocationManager!, didFailWithError error: NSError!) {
-        println("location error")
         self.drawWeatherView()
         MBProgressHUD.hideHUDForView(self.view, animated: true)
     }
@@ -391,5 +396,19 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate,UMSocia
         println("no capture img")
         return img
         
+    }
+    
+    func tapImgGesture(sender:UITapGestureRecognizer){
+        let imgView:UIImageView = sender.view as UIImageView
+        var info = JTSImageInfo()
+        info.image = imgView.image
+        info.referenceRect = imgView.frame
+        info.referenceView = imgView.superview
+        info.referenceContentMode = imgView.contentMode
+        info.referenceCornerRadius = imgView.layer.cornerRadius
+        
+        var imgViewer = JTSImageViewController(imageInfo: info, mode: JTSImageViewControllerMode.Image, backgroundStyle: JTSImageViewControllerBackgroundOptions.Scaled)
+        
+        imgViewer.showFromViewController(self, transition: JTSImageViewControllerTransition._FromOriginalPosition)
     }
 }
