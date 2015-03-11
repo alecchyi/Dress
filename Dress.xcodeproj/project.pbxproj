@@ -13,6 +13,7 @@
 		7011C1C11A7B7934002AE2A8 /* InfoListItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7011C1C01A7B7934002AE2A8 /* InfoListItemCell.swift */; };
 		7011C1C61A7B8610002AE2A8 /* InfoListItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7011C1C51A7B8610002AE2A8 /* InfoListItemCell.xib */; };
 		70146D861A76416B00D6EB4E /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70146D851A76416B00D6EB4E /* LoginViewController.swift */; };
+		701FEAFB1AAF255F0005735B /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 701FEAFA1AAF255F0005735B /* ImageLoader.swift */; };
 		70211A631A8DD21D00C0A60F /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70211A621A8DD21D00C0A60F /* AboutViewController.swift */; };
 		70211A651A8DD52E00C0A60F /* HelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70211A641A8DD52E00C0A60F /* HelpViewController.swift */; };
 		70211A671A8DD67600C0A60F /* help.html in Resources */ = {isa = PBXBuildFile; fileRef = 70211A661A8DD67600C0A60F /* help.html */; };
@@ -66,8 +67,6 @@
 		7048E4AF1A9F190D00157BE0 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7048E4AE1A9F190D00157BE0 /* MessageUI.framework */; };
 		7048E4B11A9F191200157BE0 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7048E4B01A9F191200157BE0 /* StoreKit.framework */; };
 		7048E4B31A9F192400157BE0 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7048E4B21A9F192400157BE0 /* AdSupport.framework */; };
-		70631DD01A80AEE90005C555 /* Haneke.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7050A9DF1A80A6180024523D /* Haneke.framework */; };
-		70631DD21A80AF2A0005C555 /* Haneke.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7050A9DF1A80A6180024523D /* Haneke.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		7067E7C81A694E4000E143D1 /* WeatherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7067E7C71A694E4000E143D1 /* WeatherView.swift */; };
 		7067E7CA1A696F4C00E143D1 /* RulerViewBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7067E7C91A696F4C00E143D1 /* RulerViewBar.swift */; };
 		707591F01A748C9C005DFA11 /* libWeiboSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 707591E51A748C9C005DFA11 /* libWeiboSDK.a */; };
@@ -117,7 +116,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				70631DD21A80AF2A0005C555 /* Haneke.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -132,6 +130,7 @@
 		7011C1C01A7B7934002AE2A8 /* InfoListItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoListItemCell.swift; sourceTree = "<group>"; };
 		7011C1C51A7B8610002AE2A8 /* InfoListItemCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InfoListItemCell.xib; sourceTree = "<group>"; };
 		70146D851A76416B00D6EB4E /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		701FEAFA1AAF255F0005735B /* ImageLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
 		70211A621A8DD21D00C0A60F /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		70211A641A8DD52E00C0A60F /* HelpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelpViewController.swift; sourceTree = "<group>"; };
 		70211A661A8DD67600C0A60F /* help.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = help.html; sourceTree = "<group>"; };
@@ -217,7 +216,6 @@
 		7048E4AE1A9F190D00157BE0 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		7048E4B01A9F191200157BE0 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		7048E4B21A9F192400157BE0 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
-		7050A9DF1A80A6180024523D /* Haneke.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Haneke.framework; path = "../../Library/Developer/Xcode/DerivedData/Dress-aelsyudqwsethzfenehvqbylrfef/Build/Products/Debug-iphoneos/Haneke.framework"; sourceTree = "<group>"; };
 		7067E7C71A694E4000E143D1 /* WeatherView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherView.swift; sourceTree = "<group>"; };
 		7067E7C91A696F4C00E143D1 /* RulerViewBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RulerViewBar.swift; sourceTree = "<group>"; };
 		707591E51A748C9C005DFA11 /* libWeiboSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeiboSDK.a; sourceTree = "<group>"; };
@@ -281,7 +279,6 @@
 				702FB6441A997928009693C1 /* CoreTelephony.framework in Frameworks */,
 				702FB6421A9978F3009693C1 /* libiconv.dylib in Frameworks */,
 				702FB6301A9977C6009693C1 /* libSocialLaiWang.a in Frameworks */,
-				70631DD01A80AEE90005C555 /* Haneke.framework in Frameworks */,
 				702FB6401A9977C6009693C1 /* libYixinSDK_V2.2.a in Frameworks */,
 				702FB63F1A9977C6009693C1 /* libSocialYiXin.a in Frameworks */,
 				7011C1BD1A7B225D002AE2A8 /* libsqlite3.0.dylib in Frameworks */,
@@ -626,6 +623,7 @@
 		70A663801A49BCCF00CB2662 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				701FEAFA1AAF255F0005735B /* ImageLoader.swift */,
 				70211A6A1A8DF7D400C0A60F /* HRToast+UIView.swift */,
 				7011C1B81A7B223E002AE2A8 /* SQLiteDB.swift */,
 				7011C1B91A7B223E002AE2A8 /* String-Extras.swift */,
@@ -653,7 +651,6 @@
 				702FB6451A997939009693C1 /* libstdc++.dylib */,
 				702FB6431A997928009693C1 /* CoreTelephony.framework */,
 				702FB6411A9978F3009693C1 /* libiconv.dylib */,
-				7050A9DF1A80A6180024523D /* Haneke.framework */,
 				7011C1BC1A7B225D002AE2A8 /* libsqlite3.0.dylib */,
 				707591F41A74969F005DFA11 /* ImageIO.framework */,
 				707591F21A749699005DFA11 /* QuartzCore.framework */,
@@ -730,6 +727,7 @@
 				TargetAttributes = {
 					70A663431A49B75600CB2662 = {
 						CreatedOnToolsVersion = 6.1;
+						DevelopmentTeam = ELW8X6JH83;
 					};
 					70A6635A1A49B75600CB2662 = {
 						CreatedOnToolsVersion = 6.1;
@@ -859,6 +857,7 @@
 				70A663831A49BCE800CB2662 /* DataService.swift in Sources */,
 				70AB75901A4D37F000B9D6C2 /* Utils.swift in Sources */,
 				70AB75921A4D3B9A00B9D6C2 /* User.swift in Sources */,
+				701FEAFB1AAF255F0005735B /* ImageLoader.swift in Sources */,
 				709767C61A51815200183867 /* TagToolBar.swift in Sources */,
 				70146D861A76416B00D6EB4E /* LoginViewController.swift in Sources */,
 				70A663751A49BC9900CB2662 /* WeatherViewController.swift in Sources */,
@@ -1000,6 +999,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEFINES_MODULE = YES;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1008,7 +1008,7 @@
 					"$(PROJECT_DIR)/Dress/UMSocial_Sdk_4.2.1/UMSocial_Sdk_Extra_Frameworks/TencentOpenAPI",
 				);
 				INFOPLIST_FILE = Dress/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1030,6 +1030,7 @@
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Dress/Dress-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				VALID_ARCHS = "arm64 armv7 armv7s";
@@ -1043,6 +1044,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEFINES_MODULE = YES;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1051,7 +1053,7 @@
 					"$(PROJECT_DIR)/Dress/UMSocial_Sdk_4.2.1/UMSocial_Sdk_Extra_Frameworks/TencentOpenAPI",
 				);
 				INFOPLIST_FILE = Dress/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1073,6 +1075,7 @@
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Dress/Dress-Bridging-Header.h";
 				VALID_ARCHS = "arm64 armv7 armv7s";
 			};
