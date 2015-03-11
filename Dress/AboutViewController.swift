@@ -10,6 +10,8 @@ import UIKit
 
 class AboutViewController: UIViewController {
 
+    @IBOutlet var aboutWebView:UIWebView?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -35,6 +37,17 @@ class AboutViewController: UIViewController {
     */
 
     func initContentView(){
-    
+        var query = AVQuery(className: "InfoDetails")
+        query.whereKey("info_id", equalTo: "about")
+        query.getFirstObjectInBackgroundWithBlock({(obj:AVObject!,error:NSError!) in
+            var res = NSBundle.mainBundle().pathForResource("help", ofType: "html")
+            var url:NSURL = NSURL(fileURLWithPath: (res! as String))!
+            
+            if(obj == nil){
+                self.aboutWebView?.loadHTMLString("<p style='text-align:center;'>数据读取有误</p>", baseURL: url)
+            }else{
+                self.aboutWebView?.loadHTMLString(obj.objectForKey("detail") as String, baseURL: url)
+            }
+        })
     }
 }
