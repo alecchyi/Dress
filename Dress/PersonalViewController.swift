@@ -35,9 +35,11 @@ class PersonalViewController: UIViewController,UITableViewDataSource,UITableView
         initPersonalView()
         let currentUser = AVUser.currentUser()
         if(currentUser != nil){
+            self.profileImg?.image = UIImage(named: "default_head")
             if let path:String = currentUser?.objectForKey("header_url") as? String{
-                let url = NSURL(string: path)
-                self.profileImg?.hnk_setImageFromURL(url!, placeholder: UIImage(named: "default_head"), format: nil, failure: nil, success: nil)
+                ImageLoader.sharedLoader.imageForUrl(path, completionHandler: {(image: UIImage?, url: String) in
+                    self.profileImg!.image = image
+                })
             }
             self.lblNickname?.text = (currentUser?.objectForKey("nickname") as String)
             let followers_count:Int = (currentUser?.objectForKey("followers_count") as Int)

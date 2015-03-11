@@ -40,7 +40,7 @@ class InfoListItemCell: UITableViewCell {
         var frame:CGRect = self.lblContent!.frame
         frame.origin.x = 8
         frame.origin.y = 58
-
+        
         if(self.has_small_img){
             frame.origin.x = 8
             frame.origin.y = frame.origin.y + frame.size.height + 5

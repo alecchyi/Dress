@@ -120,7 +120,6 @@ class ClothViewController: UIViewController, NewClothViewControllerDelegate,UICo
         self.clothesCollectView!.registerClass(ClothViewCell.self, forCellWithReuseIdentifier: "ClothViewCell")
         self.clothesCollectView!.delegate = self
         self.clothesCollectView!.dataSource = self
-//        self.clothesCollectView!.backgroundColor = UIColor.blackColor()
     }
     
     func clickAddBtn(){

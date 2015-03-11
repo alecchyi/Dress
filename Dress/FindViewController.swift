@@ -15,6 +15,7 @@ class FindViewController: UIViewController, UITableViewDelegate,UITableViewDataS
     @IBOutlet var _bannerView:GADBannerView?
     var infoList:NSMutableArray?
     var pullRefreshControl:UIRefreshControl?
+    var protoptypeCell:InfoListItemCell?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,11 +30,13 @@ class FindViewController: UIViewController, UITableViewDelegate,UITableViewDataS
 
         
         //add tableview for weibo
-        var frame:CGRect = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height)
-        frame.size.height = frame.size.height - 44
-        self.infoTableView?.frame = frame
+        var frame:CGRect = self.infoTableView!.frame as CGRect
+        frame.size.height = get_main_view_height()
+        
+        self.infoTableView!.frame = frame
         var cellNib:UINib = UINib(nibName: "InfoListItemCell", bundle: nil)
         self.infoTableView!.registerNib(cellNib, forCellReuseIdentifier: "InfoListItemCell")
+        self.protoptypeCell = self.infoTableView?.dequeueReusableCellWithIdentifier("InfoListItemCell") as? InfoListItemCell
         
         frame.size.height = 30
         var refreshControl:UIRefreshControl = UIRefreshControl(frame: frame)
@@ -82,7 +85,8 @@ class FindViewController: UIViewController, UITableViewDelegate,UITableViewDataS
                 frame?.origin.y = bannerFrame.size.height
                 self.pullRefreshControl?.frame = frame!
                 frame = self.infoTableView!.frame
-                frame?.origin.y = bannerFrame.size.height + 10
+                frame?.origin.y = 134
+                frame?.size.height = get_main_view_height() - 40
                 self.infoTableView?.frame = frame!
                 println("appear in bannerview")
                 break
@@ -95,10 +99,10 @@ class FindViewController: UIViewController, UITableViewDelegate,UITableViewDataS
         var avQuery = AVQuery(className: "Infos")
         avQuery.cachePolicy = AVCachePolicy.NetworkElseCache
         avQuery.whereKey("status", equalTo: 1)
+        avQuery.addAscendingOrder("likes_count")
         avQuery.findObjectsInBackgroundWithBlock({(objs:[AnyObject]!,error:NSError!) in
             if((error) == nil){
                 let objs:NSArray = objs as NSArray
-                println(objs.count)
                 self.infoList = NSMutableArray(array: objs)
                 self.infoTableView?.reloadData()
             }else{
@@ -111,10 +115,7 @@ class FindViewController: UIViewController, UITableViewDelegate,UITableViewDataS
     func fetchSharedClothes(){
         
     }
-    
-    func fetchADList(){
-    
-    }
+
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell:InfoListItemCell = tableView.dequeueReusableCellWithIdentifier("InfoListItemCell", forIndexPath: indexPath) as InfoListItemCell
@@ -139,23 +140,23 @@ class FindViewController: UIViewController, UITableViewDelegate,UITableViewDataS
         cell.lblSource?.text = "来源:\(source)"
         cell.lblAuthor?.text = item.objectForKey("author_name") as? String
         let avatar_url = item.objectForKey("author_avatar_url") as? String
-
+        cell.headImg!.image = UIImage(named: "default_head.png")
         if (avatar_url != nil) {
-            let head_url = NSURL(string: avatar_url!)
-            cell.headImg!.hnk_setImageFromURL(head_url!, placeholder: nil, format: nil, failure: nil, success: nil)
-        }else{
-            cell.headImg!.image = UIImage(named: "default_head.png")
+            ImageLoader.sharedLoader.imageForUrl(avatar_url!, completionHandler: {(image: UIImage?, url: String) in
+                cell.headImg!.image = image
+            })
         }
         let small_img_url = item.objectForKey("small_img_url") as? String
         if(small_img_url != nil){
-            let img_url = NSURL(string: small_img_url!)
-            cell.smallImg!.hnk_setImageFromURL(img_url!, placeholder: nil, format: nil, failure: nil, success: nil)
+            ImageLoader.sharedLoader.imageForUrl(small_img_url!, completionHandler: {(image: UIImage?, url: String) in
+                cell.smallImg!.image = image
+            })
             cell.has_small_img = true
         }else{
             cell.has_small_img = false
         }
 //        println("has_smalll_img----\(indexPath.row)-----\(cell.has_small_img)")
-        cell.selectionStyle = UITableViewCellSelectionStyle.Default
+        cell.selectionStyle = UITableViewCellSelectionStyle.None
         cell.mainView?.tag = 1000 + indexPath.row
         cell.likeBtn?.tag = 2000 + indexPath.row
         cell.shareBtn?.tag = 3000 + indexPath.row
@@ -174,15 +175,16 @@ class FindViewController: UIViewController, UITableViewDelegate,UITableViewDataS
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         if let items = self.infoList? {
+            var cell = self.protoptypeCell!
+            
             let item = self.infoList!.objectAtIndex(indexPath.row) as AVObject
             let content:NSString = (item.objectForKey("content") as? NSString)!
-            var dict:NSMutableDictionary = NSMutableDictionary()
-            dict.setObject(UIFont(name: "HelveticaNeue", size: 17)!, forKey: NSFontAttributeName)
-            let size = content.sizeWithAttributes(dict)
-//            println(size)
-            let height = 58 + 10 + size.height + 25
+            cell.lblContent?.text = content
+            var size = cell.lblContent!.sizeThatFits(CGSizeMake(310, 2000))
+
+            let height = 58 + 35 + size.height
             if let url:String = item.objectForKey("small_img_url") as? String {
-                return height + 100 + 15
+                return height + 80
             }else{
                 return height
             }
@@ -217,11 +219,10 @@ class FindViewController: UIViewController, UITableViewDelegate,UITableViewDataS
             
             var frame = self.pullRefreshControl?.frame
             frame?.origin.y = bannerFrame.size.height
-//            self.pullRefreshControl?.frame = frame!
             frame = self.infoTableView!.frame
-            frame?.origin.y = bannerFrame.size.height + 10
+            frame?.origin.y += 20
+            frame?.size.height -= 40
             self.infoTableView?.frame = frame!
-//            println(frame)
             }, completion:{(BOOL isFinished) in
                 
         })

@@ -65,7 +65,7 @@ func saveUser(user:NSDictionary) -> Bool{
                 if(error == nil){
                     println("succcss login with av")
                     var currentUser = AVUser.currentUser()
-                    println(user.objectForKey("friends_count"))
+                    setUserDir(currentUser.objectForKey("userToken") as NSString)
                     DataService.shareService.setUserToken(currentUser.objectForKey("userToken") as NSString)
                     let logintype:String = user.objectForKey("loginType") as String
                     if(logintype != ""){
@@ -77,7 +77,7 @@ func saveUser(user:NSDictionary) -> Bool{
                     }
                     let qq_id:AnyObject? = user.objectForKey("qq_uid")
                     if(qq_id != nil) {
-                        currentUser.setValue(qq_id!, forKey: "qq_id")
+                        currentUser.setObject(qq_id!, forKey: "qq_id")
                     }
                     let weibo_id:AnyObject? = user.objectForKey("weibo_uid")
                     if(weibo_id != nil) {
@@ -371,8 +371,8 @@ func fetchSystemTags(){
                         tag.setValue(item.objectForKey("name"), forKey: "name")
                         tag.setValue(item.objectForKey("tagId"), forKey: "tagId")
                         allTags.addObject(tag)
-//                        println("idx:\(i)")
                     }
+                    println("fectch tag success")
                     allTags.writeToFile(DataService.shareService.getTagsPlist(), atomically: true)
                 }else{
                     println("fetch tags error")
@@ -467,5 +467,22 @@ func save_capture_img(img:NSData) -> String {
         fileManager.createFileAtPath(path, contents: img, attributes: nil)
     }
     return path
+}
+
+func get_screen_height() -> CGFloat {
+    var screen = UIScreen.mainScreen().bounds.size
+    return screen.height
+}
+
+func get_main_view_height() -> CGFloat {
+    let height = get_screen_height()
+    println("height:\(height)")
+    if(height == 480.0){
+        return 420
+    }else if(height == 568.0){
+        return 408
+    }
+    
+    return 538
 }
 

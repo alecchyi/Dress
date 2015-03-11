@@ -9,14 +9,14 @@
 
 class WeatherView: UIView {
     
-    let bgColor = UIColor(red: 243/255.0, green: 243/255.0, blue: 230/255.0, alpha: 0.75)
+    let bgColor = UIColor(red: 244/255.0, green: 119/255.0, blue: 146/255.0, alpha: 1.0)
     
     var lblTemp:UILabel?
     var lblDesc:UILabel?
 
     override init(frame:CGRect){
         super.init(frame:frame)
-        self.backgroundColor = mainNavBarColor()
+        self.backgroundColor = bgColor
         
     }
 
@@ -36,11 +36,9 @@ class WeatherView: UIView {
             }else{
                 var wImgView = UIImageView(frame: CGRectMake(5, 20, 45, 45))
                 wImgView.contentMode = UIViewContentMode.ScaleAspectFit
-                let picUrl = NSURL(string: picPath!)
-                let imgData:NSData = NSData(contentsOfURL: picUrl!)!
-                var img:UIImage = UIImage(data: imgData, scale: 1.0)!
-                
-                wImgView.image = img
+                ImageLoader.sharedLoader.imageForUrl(picPath!, completionHandler: {(image:UIImage?, urlString:String) in
+                    wImgView.image = image
+                })
                 self.addSubview(wImgView)
                 var lblTempView = UILabel(frame: CGRectMake(5, 2, 80, 20))
                 let temp:NSString = weather.objectForKey("temp") as NSString!
@@ -55,13 +53,13 @@ class WeatherView: UIView {
                 lblCity.textColor = weatherWordColor()
                 self.addSubview(lblCity)
                 
-                var lblWeather = UILabel(frame: CGRectMake(65, 2, 170, 20))
+                var lblWeather = UILabel(frame: CGRectMake(70, 2, 170, 20))
                 lblWeather.text = (weather.objectForKey("weatherDesc") as NSString!) + " " + (weather.objectForKey("wind") as NSString!)
                 lblWeather.font = UIFont.systemFontOfSize(14)
                 lblWeather.textColor = weatherWordColor()
                 self.addSubview(lblWeather)
                 
-                var lblIndexZs = UILabel(frame: CGRectMake(240, 2, 70, 20))
+                var lblIndexZs = UILabel(frame: CGRectMake(243, 2, 70, 20))
                 lblIndexZs.text = weather.objectForKey("dressIndexZs") as NSString!
                 lblIndexZs.font = UIFont.systemFontOfSize(14)
                 lblIndexZs.textColor = weatherWordColor()

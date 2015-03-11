@@ -253,6 +253,7 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate,UMSocia
             url = save_capture_img(data!)
             let str = NSURL(fileURLWithPath: url!)
             UMSocialData.defaultData().urlResource.setResourceType(UMSocialUrlResourceTypeImage, url: str!.absoluteString)
+            UMSocialData.defaultData().extConfig.wechatSessionData.url = "http://www.baidu.com"
             UMSocialSnsService.presentSnsIconSheetView(self, appKey: kUMKey, shareText: "share words", shareImage: nil, shareToSnsNames: [UMShareToSina,UMShareToWechatSession,UMShareToWechatTimeline,UMShareToTencent,UMShareToQzone,UMShareToQQ,UMShareToEmail], delegate: self)
         }
     }

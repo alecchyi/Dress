@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="49e-Tb-3d3">
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
     </dependencies>
     <scenes>
@@ -57,23 +58,23 @@
                         <viewControllerLayoutGuide type="bottom" id="6Z5-i6-w0C"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="LCL-vd-mqp">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view autoresizesSubviews="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XHK-17-Km5" userLabel="weatherView">
+                            <view autoresizesSubviews="NO" alpha="0.75" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XHK-17-Km5" userLabel="weatherView">
                                 <rect key="frame" x="0.0" y="63" width="320" height="88"/>
                                 <color key="backgroundColor" red="0.95686274510000002" green="0.46666666670000001" blue="0.57254901960000004" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dtf-JX-LSX" userLabel="clothesView">
                                 <rect key="frame" x="0.0" y="151" width="320" height="400"/>
                                 <subviews>
-                                    <imageView multipleTouchEnabled="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="shirt_icon.png" highlightedImage="shirt_icon.png" translatesAutoresizingMaskIntoConstraints="NO" id="4r3-48-CqP">
-                                        <rect key="frame" x="96" y="85" width="128" height="128"/>
+                                    <imageView multipleTouchEnabled="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="shirt_icon" highlightedImage="shirt_icon" translatesAutoresizingMaskIntoConstraints="NO" id="4r3-48-CqP">
+                                        <rect key="frame" x="96" y="83" width="128" height="128"/>
                                     </imageView>
-                                    <imageView multipleTouchEnabled="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="trousers_icon.png" highlightedImage="trousers_icon.png" translatesAutoresizingMaskIntoConstraints="NO" id="HE1-s2-8CB">
-                                        <rect key="frame" x="80" y="222" width="160" height="160"/>
+                                    <imageView multipleTouchEnabled="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="trousers_icon" highlightedImage="trousers_icon" translatesAutoresizingMaskIntoConstraints="NO" id="HE1-s2-8CB">
+                                        <rect key="frame" x="80" y="221" width="160" height="160"/>
                                     </imageView>
-                                    <imageView multipleTouchEnabled="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="hat_icon.png" highlightedImage="hat_icon.png" translatesAutoresizingMaskIntoConstraints="NO" id="jRU-cp-aQY">
+                                    <imageView multipleTouchEnabled="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="hat_icon" highlightedImage="hat_icon" translatesAutoresizingMaskIntoConstraints="NO" id="jRU-cp-aQY">
                                         <rect key="frame" x="124" y="5" width="72" height="72"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </imageView>
@@ -83,6 +84,8 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="看天气，选衣服" id="F4w-FL-Wjz"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="320" height="600"/>
                     <connections>
                         <outlet property="clothesMainView" destination="dtf-JX-LSX" id="oT5-ZF-LUH"/>
                         <outlet property="headerImgView" destination="jRU-cp-aQY" id="4tO-b5-IZa"/>
@@ -139,7 +142,7 @@
                                         <color key="textColor" red="0.31372549020000001" green="0.31372549020000001" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <view clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yH9-mn-esP" userLabel="tagsView">
+                                    <view clipsSubviews="YES" alpha="0.74999999999999978" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yH9-mn-esP" userLabel="tagsView">
                                         <rect key="frame" x="0.0" y="1" width="320" height="50"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="标签" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RkV-jD-ABQ">
@@ -166,7 +169,7 @@
                                         <color key="textColor" red="0.31372549020000001" green="0.31372549020000001" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="default_dress.png" highlightedImage="default_dress.png" translatesAutoresizingMaskIntoConstraints="NO" id="myh-tz-e5l">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="default_dress" highlightedImage="default_dress" translatesAutoresizingMaskIntoConstraints="NO" id="myh-tz-e5l">
                                         <rect key="frame" x="76" y="118" width="180" height="180"/>
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mhh-cT-EdG">
@@ -182,7 +185,7 @@
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
-                            <imageView userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="ad_banner.png" highlightedImage="ad_banner.png" translatesAutoresizingMaskIntoConstraints="NO" id="AuI-7t-X74">
+                            <imageView userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="ad_banner" highlightedImage="ad_banner" translatesAutoresizingMaskIntoConstraints="NO" id="AuI-7t-X74">
                                 <rect key="frame" x="0.0" y="374" width="600" height="150"/>
                             </imageView>
                         </subviews>
@@ -237,12 +240,12 @@
                         <viewControllerLayoutGuide type="bottom" id="Tye-yF-Ckc"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Iec-e5-Zan">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="ubX-Xi-pfU" userLabel="infoTableView">
-                                <rect key="frame" x="0.0" y="30" width="320" height="600"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <rect key="frame" x="0.0" y="30" width="320" height="538"/>
+                                <color key="backgroundColor" red="0.95568760239999995" green="0.95438285720000005" blue="0.97620376279999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="separatorColor" red="0.99123086729999998" green="0.85996960700000002" blue="0.98254052049999996" alpha="1" colorSpace="calibratedRGB"/>
                                 <inset key="separatorInset" minX="10" minY="0.0" maxX="10" maxY="0.0"/>
                                 <connections>
@@ -254,6 +257,8 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="发现身边的美" id="I7J-h4-dw0"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="320" height="600"/>
                     <connections>
                         <outlet property="infoTableView" destination="ubX-Xi-pfU" id="XNL-Ca-hk5"/>
                         <outlet property="view" destination="Iec-e5-Zan" id="hTM-lq-sqJ"/>
@@ -294,7 +299,7 @@
                         <viewControllerLayoutGuide type="bottom" id="F7U-NL-x4a"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="yvr-t8-i9o" customClass="UIScrollView">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view alpha="0.74999999999999978" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xJX-jl-XSW" userLabel="personalInfo">
@@ -336,8 +341,8 @@
                                 </subviews>
                                 <color key="backgroundColor" red="0.94465481510000004" green="0.40455371639999999" blue="0.83741938120000003" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="z6n-c4-CYc" userLabel="detailItem">
-                                <rect key="frame" x="0.0" y="150" width="320" height="264"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="z6n-c4-CYc" userLabel="detailItem">
+                                <rect key="frame" x="0.0" y="150" width="320" height="330"/>
                                 <inset key="separatorInset" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <color key="sectionIndexColor" red="0.31457270409999999" green="0.31457270409999999" blue="0.31457270409999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="sectionIndexBackgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -350,6 +355,8 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="我的" id="gal-OM-LGv"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="320" height="600"/>
                     <connections>
                         <outlet property="detailTableView" destination="z6n-c4-CYc" id="mhp-Ua-D0p"/>
                         <outlet property="lblClothNum" destination="Kfw-JT-nOt" id="iI2-bL-w9r"/>
@@ -375,7 +382,7 @@
                         <viewControllerLayoutGuide type="bottom" id="BfK-f6-I36"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="2HC-Un-XQR">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <webView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="B58-Zv-RXL" userLabel="detailWebView">
@@ -385,6 +392,8 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="320" height="600"/>
                     <connections>
                         <outlet property="detailWebView" destination="B58-Zv-RXL" id="fuh-8h-dVC"/>
                         <outlet property="view" destination="2HC-Un-XQR" id="9Qh-5E-Ob8"/>
@@ -488,7 +497,7 @@
                         <viewControllerLayoutGuide type="bottom" id="MiN-jy-dww"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="QjC-dQ-RY9">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view alpha="0.74999999999999978" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NdX-3v-hFG" userLabel="tagsView">
@@ -505,10 +514,10 @@
                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="n6f-Il-2ir">
-                                <rect key="frame" x="0.0" y="116" width="320" height="400"/>
+                                <rect key="frame" x="0.0" y="115" width="320" height="453"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="rcW-aB-HWa">
-                                    <size key="itemSize" width="156" height="180"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="GPf-AL-edU">
+                                    <size key="itemSize" width="150" height="180"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -528,18 +537,24 @@
                                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="156" height="180"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="150" height="180"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </collectionViewCell>
                                 </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="OLH-ZO-5xx" id="1De-6n-gMc"/>
+                                    <outlet property="delegate" destination="OLH-ZO-5xx" id="v0w-sL-asX"/>
+                                </connections>
                             </collectionView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="我的衣服" id="Xeb-mb-Qd2"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="320" height="600"/>
                     <connections>
                         <outlet property="clothesCollectView" destination="n6f-Il-2ir" id="XbS-cC-pQX"/>
                         <outlet property="tagsView" destination="NdX-3v-hFG" id="GQE-4G-6hL"/>
@@ -730,16 +745,16 @@
         </scene>
     </scenes>
     <resources>
-        <image name="ad_banner.png" width="500" height="150"/>
+        <image name="ad_banner" width="500" height="150"/>
         <image name="clothes_icon.png" width="29" height="29"/>
-        <image name="default_dress.png" width="89" height="126"/>
+        <image name="default_dress" width="89" height="126"/>
         <image name="default_head.png" width="64" height="64"/>
         <image name="find_icon.png" width="29" height="30"/>
-        <image name="hat_icon.png" width="79" height="71"/>
+        <image name="hat_icon" width="79" height="71"/>
         <image name="me_icon.png" width="29" height="29"/>
         <image name="qq_icon.png" width="39" height="39"/>
-        <image name="shirt_icon.png" width="139" height="127"/>
-        <image name="trousers_icon.png" width="128" height="128"/>
+        <image name="shirt_icon" width="139" height="127"/>
+        <image name="trousers_icon" width="128" height="128"/>
         <image name="weather_icon.png" width="29" height="29"/>
         <image name="weibo_btn.png" width="32" height="32"/>
     </resources>
