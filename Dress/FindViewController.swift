@@ -26,12 +26,23 @@ class FindViewController: UIViewController, UITableViewDelegate,UITableViewDataS
         
     }
     
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        var frame:CGRect = self.infoTableView!.frame as CGRect
+        frame.origin.y = 64
+        frame.size.height = get_main_view_height()
+        
+//        self.infoTableView!.frame = frame
+        self.infoTableView?.contentSize = frame.size
+    }
+    
     func initFindView(){
 
         
         //add tableview for weibo
         var frame:CGRect = self.infoTableView!.frame as CGRect
-        frame.size.height = get_main_view_height()
+        frame.size.height = get_main_view_height() - 44
         
         self.infoTableView!.frame = frame
         var cellNib:UINib = UINib(nibName: "InfoListItemCell", bundle: nil)
@@ -95,7 +106,7 @@ class FindViewController: UIViewController, UITableViewDelegate,UITableViewDataS
     }
     
     func fetchArticals(){
-        MBProgressHUD.showHUDAddedTo(self.infoTableView, animated: true)
+        MBProgressHUD.showHUDAddedTo(self.view, animated: true)
         var avQuery = AVQuery(className: "Infos")
         avQuery.cachePolicy = AVCachePolicy.NetworkElseCache
         avQuery.whereKey("status", equalTo: 1)
@@ -108,7 +119,7 @@ class FindViewController: UIViewController, UITableViewDelegate,UITableViewDataS
             }else{
                 println(error)
             }
-            MBProgressHUD.hideHUDForView(self.infoTableView, animated: true)
+            MBProgressHUD.hideHUDForView(self.view, animated: true)
         })
     }
     

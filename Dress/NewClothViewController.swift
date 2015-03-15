@@ -48,6 +48,13 @@ class NewClothViewController: UIViewController,UIPickerViewDelegate,UIPickerView
         
         initClothView()
         initTagView()
+        
+        
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        initADView()
     }
     
     func initClothView(){
@@ -92,6 +99,12 @@ class NewClothViewController: UIViewController,UIPickerViewDelegate,UIPickerView
             scrollView.contentSize = scrollSize
         }
 
+    }
+    
+    func initADView(){
+        var frame:CGRect = self.advImgView!.bounds
+        frame.origin.y = get_screen_height() - frame.size.height - 44
+        self.advImgView?.frame = frame
     }
     
     func showToolBar(){

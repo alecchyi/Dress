@@ -98,7 +98,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WeiboSDKDelegate {
     }
     
     func showLoginPage(){
-        println("wwwwww")
         let mainStoryBoard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
         var loginViewController = mainStoryBoard.instantiateViewControllerWithIdentifier("loginViewController") as LoginViewController
         
@@ -111,6 +110,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WeiboSDKDelegate {
         println("dismiss login view")
         let mainStoryBoard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
         let rootViewController = mainStoryBoard.instantiateViewControllerWithIdentifier("rootTabViewController") as UITabBarController
+//        ((UITabBarItem *)rootViewController.tabBar.items[0]).selectedImage = [UIImage imageNamed:@"light_filled"]
+//        (rootViewController.tabBar.items![0] as UITabBarItem).selectedImage = UIImage(named: "weather_icon")
         self.window!.rootViewController = rootViewController
     }
     

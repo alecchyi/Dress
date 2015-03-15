@@ -25,6 +25,16 @@ class ClothViewController: UIViewController, NewClothViewControllerDelegate,UICo
         initClothView()
     }
     
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        var frame = UIScreen.mainScreen().bounds
+        frame.origin.x = 0
+        frame.origin.y = 114
+        frame.size.height = get_screen_height() - 114 - 44
+        self.clothesCollectView!.frame = frame
+    }
+    
     func initTabbarItem(){
         let tabbarImg:UIImage = UIImage(named: "clothes_icon.png")!
         tabbarImg.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal)
@@ -41,8 +51,7 @@ class ClothViewController: UIViewController, NewClothViewControllerDelegate,UICo
         var frame = UIScreen.mainScreen().bounds
         frame.origin.x = 0
         frame.origin.y = 114
-        frame.size.height = 400
-        self.tagsView!.frame.size.width = frame.size.width
+        frame.size.height = get_screen_height() - 114 - 44
         self.clothesCollectView!.frame = frame
         
         frame.size.height = 50

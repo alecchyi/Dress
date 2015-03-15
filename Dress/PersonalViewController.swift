@@ -31,6 +31,14 @@ class PersonalViewController: UIViewController,UITableViewDataSource,UITableView
         // Do any additional setup after loading the view.
     }
     
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        var frame = self.detailTableView?.frame
+        frame?.size.height = get_screen_height() - 140 - 64 - 44
+        self.detailTableView?.frame = frame!
+        self.detailTableView?.contentSize = CGSizeMake(320, 320)
+    }
+    
     override func viewWillAppear(animated: Bool) {
         initPersonalView()
         let currentUser = AVUser.currentUser()

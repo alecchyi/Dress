@@ -19,7 +19,7 @@ class ClothViewCell: UICollectionViewCell {
         self.imageView?.contentMode = UIViewContentMode.ScaleAspectFit
         self.imageView?.userInteractionEnabled = true
         self.lblText = UILabel(frame: CGRectMake(5, frame.size.height, frame.size.width, 30))
-        self.lblText?.font = UIFont.systemFontOfSize(12.0)
+        self.lblText?.font = UIFont.systemFontOfSize(14.0)
 //        self.lblText?.textColor = UIColor.whiteColor()
         self.contentView.addSubview(self.imageView!)
         self.contentView.addSubview(self.lblText!)

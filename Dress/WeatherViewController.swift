@@ -9,6 +9,7 @@
 import UIKit
 import CoreLocation
 
+
 class WeatherViewController: UIViewController, CLLocationManagerDelegate,UMSocialUIDelegate {
     
     @IBOutlet var weatherView:UIView?
@@ -31,17 +32,24 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate,UMSocia
         
         initMainView()
         
-        println("did load")
-        
         fetchSystemTags()
         
     }
     
     override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
         setCurrentUser()
         fetchWeatherData()
         initClothesData()
-        println("will appear")
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        let frame = CGRectMake(0, 151, self.view.bounds.width, get_screen_height() - 151 - 44)
+        self.clothesMainView!.frame = frame
+        self.clothesMainView!.scrollsToTop = true
+        self.clothesMainView!.contentSize = CGSizeMake(frame.size.width, 360 + 50)
+        self.clothesMainView!.autoresizingMask = UIViewAutoresizing.FlexibleWidth | UIViewAutoresizing.FlexibleHeight
     }
 
     override func didReceiveMemoryWarning() {
@@ -55,7 +63,6 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate,UMSocia
         var tabBarItem:UITabBarItem = UITabBarItem(title: "天气", image: tabbarImg, selectedImage: tabbarImg)
         self.tabBarController?.tabBar.tintColor = mainBtnColor()
         self.navigationController!.tabBarItem = tabBarItem
-//        self.navigationController!.navigationBar.barTintColor = mainNavBarColor()
         self.navigationController!.navigationBar.tintColor = mainBtnColor()
     }
 
@@ -94,13 +101,9 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate,UMSocia
     }
     
     func setClothesMainView(){
-        let frame = CGRectMake(0, 180, self.view.bounds.width, self.view.bounds.height)
-        self.clothesMainView!.frame = frame
-        self.clothesMainView!.scrollEnabled = true
-        self.clothesMainView?.scrollsToTop = true
-        self.clothesMainView?.showsHorizontalScrollIndicator = false
-        self.clothesMainView?.showsVerticalScrollIndicator = true
-        self.clothesMainView?.contentSize = CGSizeMake(frame.size.width, frame.size.height - 100)
+        println("did load")
+        let frame = CGRectMake(0, 180, self.view.bounds.width, get_screen_height() - 180 - 44)
+        self.clothesMainView!.contentSize = CGSizeMake(frame.size.width, 360)
         self.clothesMainView!.autoresizingMask = UIViewAutoresizing.FlexibleWidth | UIViewAutoresizing.FlexibleHeight
         
         var bottomLayer = CALayer(layer: nil)
@@ -248,6 +251,8 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate,UMSocia
     
     func clickShareBtn() {
         var img = captureClothesView(self.clothesMainView!)
+//        let shoter = UMSocialScreenShoterDefault.screenShoter()
+//        img = shoter.getScreenShot()
         var url:String?
         if(img != nil){
             var data:NSData?
@@ -378,17 +383,33 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate,UMSocia
     func captureClothesView(scrollView:UIScrollView) -> UIImage? {
         var img:UIImage?
 
-        UIGraphicsBeginImageContextWithOptions(scrollView.contentSize,false,2.0)
-        let savedContentOffset = scrollView.contentOffset
-        let savedFrame = scrollView.frame
-        scrollView.contentOffset = CGPointZero
-        scrollView.frame = CGRectMake(0, 0, scrollView.contentSize.width, scrollView.contentSize.height)
-        scrollView.layer.renderInContext(UIGraphicsGetCurrentContext())
-        img = UIGraphicsGetImageFromCurrentImageContext()
-        scrollView.contentOffset = savedContentOffset
-        scrollView.frame = savedFrame
+//        UIGraphicsBeginImageContextWithOptions(scrollView.contentSize,false,2.0)
+//
+//        let savedContentOffset = scrollView.contentOffset
+//        let savedFrame = scrollView.frame
+//        scrollView.contentOffset = CGPointZero
+//        scrollView.frame = CGRectMake(0, 0, scrollView.contentSize.width, scrollView.contentSize.height)
+//        scrollView.layer.renderInContext(UIGraphicsGetCurrentContext())
+//        
+//        img = UIGraphicsGetImageFromCurrentImageContext()
+//        scrollView.contentOffset = savedContentOffset
+//        scrollView.frame = savedFrame
+//        println(savedContentOffset)
+////        UIGraphicsPopContext()
+//        UIGraphicsEndImageContext()
         
-        UIGraphicsEndPDFContext()
+//        CGRect rect = [[UIScreen mainScreen] bounds];
+//        UIGraphicsBeginImageContext(rect.size);
+//        
+//        [view.layer renderInContext:context];
+        
+        let size = UIScreen.mainScreen().bounds.size
+        UIGraphicsBeginImageContext(size)
+        let context = UIGraphicsGetCurrentContext()
+        scrollView.layer.renderInContext(context)
+        img = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
         if(img != nil){
             println("has img")
             return img!
