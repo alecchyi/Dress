@@ -104,17 +104,17 @@ class BrandTableViewController: UITableViewController,UITableViewDelegate,UITabl
         let item = self.infoList?.objectAtIndex(indexPath.row) as NSMutableDictionary
         
         // Configure the cell...
-        cell?.textLabel.text = item.objectForKey("brand_name") as? String
-        cell?.imageView.image = UIImage(named: "default_head")
-        cell?.imageView.contentMode = UIViewContentMode.ScaleAspectFit
+        cell?.textLabel?.text = item.objectForKey("brand_name") as? String
+        cell?.imageView?.image = UIImage(named: "default_head")
+        cell?.imageView?.contentMode = UIViewContentMode.ScaleAspectFit
         cell?.selectionStyle = UITableViewCellSelectionStyle.None
         let logo = item.objectForKey("brand_logo") as AVObject
         var file:AVFile = AVFile.fileWithURL((logo.objectForKey("url") as String)) as AVFile
         file.getThumbnail(true, width: 240, height: 240, withBlock: {(img:UIImage!, error:NSError!) in
             if(error == nil){
-                cell?.imageView.image = img
+                cell?.imageView?.image = img
             }else{
-                cell?.imageView.image = nil
+                cell?.imageView?.image = nil
             }
         
         })

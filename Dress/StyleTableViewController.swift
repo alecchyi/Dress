@@ -109,7 +109,7 @@ class StyleTableViewController: UITableViewController,UITableViewDataSource,UITa
         let item = self.infoList?.objectAtIndex(indexPath.row) as AVObject
         
         // Configure the cell...
-        cell?.textLabel.text = item.objectForKey("name") as? String
+        cell?.textLabel!.text = item.objectForKey("name") as? String
         cell?.selectionStyle = UITableViewCellSelectionStyle.None
         let id:String = item.objectForKey("objectId") as String
         if((self.selectedInfos?.containsObject(id))!  == true){
