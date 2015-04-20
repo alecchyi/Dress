@@ -112,7 +112,7 @@ class PersonalViewController: UIViewController,UITableViewDataSource,UITableView
         var cell:UITableViewCell = tableView.dequeueReusableCellWithIdentifier("DetailTableCell", forIndexPath: indexPath) as UITableViewCell
         cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
         cell.selectionStyle = UITableViewCellSelectionStyle.None
-        cell.textLabel.text = self.detailArr.objectAtIndex(indexPath.row) as? String
+        cell.textLabel?.text = self.detailArr.objectAtIndex(indexPath.row) as? String
         return cell
     }
     
