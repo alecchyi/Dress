@@ -476,9 +476,15 @@ func get_screen_height() -> CGFloat {
 
 func get_main_view_height() -> CGFloat {
     let height = get_screen_height()
-    if(height == 480.0){
+//    if(height == 480.0){
+//        return 420
+//    }else if(height == 568.0){
+//        return 408
+//    }
+    
+    if height == 480.0 {
         return 420
-    }else if(height == 568.0){
+    }else if height == 568.0 {
         return 408
     }
     
