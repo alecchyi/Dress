@@ -144,8 +144,8 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate,UMSocia
     }
     
     func swipeSelector(sender:UISwipeGestureRecognizer){
-        if let clothes = self.recommandedClothes? {
-            var headerArr: NSArray = self.recommandedClothes?.objectAtIndex(0) as NSArray!
+        if let clothes = self.recommandedClothes {
+            var headerArr: NSArray = self.recommandedClothes?.objectAtIndex(0) as! NSArray
             if(headerArr.count==0){
                 println("no hat")
             }else{
@@ -161,8 +161,8 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate,UMSocia
                     }
                 }
                 
-                let header = headerArr.objectAtIndex(self.headerIdx) as NSMutableDictionary
-                let picPath = header.objectForKey("picPath") as NSString
+                let header = headerArr.objectAtIndex(self.headerIdx) as! NSMutableDictionary
+                let picPath = header.objectForKey("picPath") as! String
                 let path = DataService.shareService.getUserClothDirPath().stringByAppendingString(picPath)
                 self.headerImgView!.image = UIImage(contentsOfFile: path)
             }
@@ -171,8 +171,8 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate,UMSocia
     }
     
     func swipeShirtSelector(sender:UISwipeGestureRecognizer){
-        if let clothes = self.recommandedClothes? {
-            var arr: NSArray = self.recommandedClothes?.objectAtIndex(1) as NSArray!
+        if let clothes = self.recommandedClothes {
+            var arr: NSArray = self.recommandedClothes?.objectAtIndex(1) as! NSArray!
             if(arr.count==0){
                 println("no shirt")
             }else{
@@ -188,8 +188,8 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate,UMSocia
                     }
                 }
                 
-                let shirt = arr.objectAtIndex(self.shirtIdx) as NSMutableDictionary
-                let picPath = shirt.objectForKey("picPath") as NSString
+                let shirt = arr.objectAtIndex(self.shirtIdx) as! NSMutableDictionary
+                let picPath:String = shirt.objectForKey("picPath") as! String
                 let path = DataService.shareService.getUserClothDirPath().stringByAppendingString(picPath)
                 self.shirtImgView!.image = UIImage(contentsOfFile: path)
             }
@@ -197,8 +197,8 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate,UMSocia
     }
     
     func swipeTrouserSelector(sender:UISwipeGestureRecognizer){
-        if let clothes = self.recommandedClothes? {
-            var arr: NSArray = self.recommandedClothes?.objectAtIndex(2) as NSArray!
+        if let clothes = self.recommandedClothes {
+            var arr: NSArray = self.recommandedClothes?.objectAtIndex(2) as! NSArray
             if(arr.count==0){
                 println("no trouser")
             }else{
@@ -213,16 +213,16 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate,UMSocia
                         self.trouserIdx = arr.count - 1
                     }
                 }
-                let trouser = arr.objectAtIndex(self.trouserIdx) as NSMutableDictionary
-                let picPath = trouser.objectForKey("picPath") as NSString
-                let path = DataService.shareService.getUserClothDirPath().stringByAppendingString(picPath)
+                let trouser = arr.objectAtIndex(self.trouserIdx) as! NSMutableDictionary
+                let picPath = trouser.objectForKey("picPath") as! NSString
+                let path = DataService.shareService.getUserClothDirPath().stringByAppendingString(picPath as String)
                 self.trouserImgView!.image = UIImage(contentsOfFile: path)
             }
         }
     }
     
     func initClothesData(){
-        if let weather = DataService.shareService.weather? {
+        if let weather = DataService.shareService.weather {
             if(DataService.shareService.userToken != nil){
                 self.recommandedClothes = DataService.shareService.getRecommandClothes(DataService.shareService.weather!)
             }
@@ -270,7 +270,7 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate,UMSocia
     }
     
     func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
-        var location:CLLocation = locations[locations.count - 1] as CLLocation
+        var location:CLLocation = locations[locations.count - 1] as! CLLocation
         if(location.horizontalAccuracy>0){
             self.updateWeatherData(location.coordinate.longitude, lat: location.coordinate.latitude)
             manager.stopUpdatingLocation()
@@ -291,7 +291,7 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate,UMSocia
             parameters:params,
             success:{(operation:AFHTTPRequestOperation!, responseObject:AnyObject! ) in
                 
-                self.saveWeatherData(responseObject as NSDictionary!)
+                self.saveWeatherData(responseObject as! NSDictionary!)
                 self.drawWeatherView()
                 
                 MBProgressHUD.hideHUDForView(self.view, animated: true)
@@ -305,44 +305,44 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate,UMSocia
     }
     
     func saveWeatherData(weatherData:NSDictionary){
-        let status = weatherData.objectForKey("status") as NSString!
-        let error = weatherData.objectForKey("error") as Int!
-        let date = weatherData.objectForKey("date") as NSString!
+        let status = weatherData.objectForKey("status") as! String
+        let error = weatherData.objectForKey("error") as! Int!
+        let date = weatherData.objectForKey("date") as! String
         var weather = NSMutableDictionary()
-        if(status! == "success" && error == 0){
-            var results = weatherData.objectForKey("results") as NSArray!
-            var datas:NSDictionary = results.objectAtIndex(0) as NSDictionary
-            let currentCity = datas.objectForKey("currentCity") as NSString!
+        if(status == "success" && error == 0){
+            var results = weatherData.objectForKey("results") as! NSArray
+            var datas:NSDictionary = results.objectAtIndex(0) as! NSDictionary
+            let currentCity = datas.objectForKey("currentCity") as! NSString
             weather.setValue(currentCity, forKey: "currentCity")
-            var idxs = datas.objectForKey("index") as NSArray!
+            var idxs = datas.objectForKey("index") as! NSArray!
             for idx in idxs{
-                let des = (idx as NSDictionary).objectForKey("des") as NSString!
-                let title = (idx as NSDictionary).objectForKey("title") as NSString!
-                let tipt = (idx as NSDictionary).objectForKey("tipt") as NSString!
-                let zs = (idx as NSDictionary).objectForKey("zs") as NSString!
-                if(tipt! == "穿衣指数"){
-                    weather.setObject(tipt!, forKey: "dress")
-                    weather.setObject(des!, forKey: "dressDesc")
-                    weather.setObject(zs!, forKey: "dressIndexZs")
+                let des = (idx as! NSDictionary).objectForKey("des") as! NSString
+                let title = (idx as! NSDictionary).objectForKey("title") as! NSString
+                let tipt = (idx as! NSDictionary).objectForKey("tipt") as! NSString
+                let zs = (idx as! NSDictionary).objectForKey("zs") as! NSString
+                if(tipt == "穿衣指数"){
+                    weather.setObject(tipt, forKey: "dress")
+                    weather.setObject(des, forKey: "dressDesc")
+                    weather.setObject(zs, forKey: "dressIndexZs")
                     break
                 }
             }
             let pm25:AnyObject? = datas.objectForKey("pm25")
             weather.setObject(pm25!, forKey: "pm25")
-            var w_datas = datas.objectForKey("weather_data") as NSArray!
+            var w_datas = datas.objectForKey("weather_data") as! NSArray
             for w_data in w_datas {
-                let item = w_data as NSDictionary
-                let date:NSString = item.objectForKey("date") as NSString!
+                let item = w_data as! NSDictionary
+                let date:NSString = item.objectForKey("date") as! NSString
                 weather.setObject(formateCurDate(), forKey: "date")
-                let dayPicUrl:NSString = item.objectForKey("dayPictureUrl") as NSString!
+                let dayPicUrl:NSString = item.objectForKey("dayPictureUrl") as! NSString
                 weather.setObject(dayPicUrl, forKey: "dayPicUrl")
-                let nightPicUrl:NSString = item.objectForKey("nightPictureUrl") as NSString!
+                let nightPicUrl:NSString = item.objectForKey("nightPictureUrl") as! NSString
                 weather.setObject(nightPicUrl, forKey: "nightPicUrl")
-                let temp:NSString = item.objectForKey("temperature") as NSString!
+                let temp:NSString = item.objectForKey("temperature") as! NSString
                 weather.setObject(temp, forKey: "temp")
-                let weatherDesc:NSString = item.objectForKey("weather") as NSString!
+                let weatherDesc:NSString = item.objectForKey("weather") as! NSString
                 weather.setObject(weatherDesc, forKey: "weatherDesc")
-                let wind:NSString = item.objectForKey("wind") as NSString!
+                let wind:NSString = item.objectForKey("wind") as! NSString
                 weather.setObject(wind, forKey: "wind")
                 break
             }
@@ -354,9 +354,9 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate,UMSocia
             if(weatherList == nil){
                 newList.addObject(weather)
             }else{
-                let wData:NSMutableDictionary = weatherList.lastObject as NSMutableDictionary!
-                let lastDate:NSString = wData.objectForKey("date") as NSString!
-                let curDate:NSString = weather.objectForKey("date") as NSString!
+                let wData:NSMutableDictionary = weatherList.lastObject as! NSMutableDictionary
+                let lastDate:NSString = wData.objectForKey("date") as! NSString
+                let curDate:NSString = weather.objectForKey("date") as! NSString
                 newList = NSMutableArray(array: weatherList!)
                 if(curDate == lastDate){
                     newList.removeLastObject()
@@ -420,7 +420,7 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate,UMSocia
     }
     
     func tapImgGesture(sender:UITapGestureRecognizer){
-        let imgView:UIImageView = sender.view as UIImageView
+        let imgView:UIImageView = sender.view as! UIImageView
         var info = JTSImageInfo()
         info.image = imgView.image
         info.referenceRect = imgView.frame

@@ -46,7 +46,7 @@ class AboutViewController: UIViewController {
             if(obj == nil){
                 self.aboutWebView?.loadHTMLString("<p style='text-align:center;'>数据读取有误</p>", baseURL: url)
             }else{
-                self.aboutWebView?.loadHTMLString(obj.objectForKey("detail") as String, baseURL: url)
+                self.aboutWebView?.loadHTMLString(obj.objectForKey("detail") as! String, baseURL: url)
             }
         })
     }

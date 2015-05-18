@@ -49,19 +49,19 @@ class PersonalViewController: UIViewController,UITableViewDataSource,UITableView
                     self.profileImg!.image = image
                 })
             }
-            self.lblNickname?.text = (currentUser?.objectForKey("nickname") as String)
-            let followers_count:Int = (currentUser?.objectForKey("followers_count") as Int)
+            self.lblNickname?.text = (currentUser?.objectForKey("nickname") as! String)
+            let followers_count:Int = (currentUser?.objectForKey("followers_count") as! Int)
             self.lblFollowersNum?.text = "粉丝\n\(followers_count)"
-            let friends:Int = (currentUser?.objectForKey("friends_count") as Int)
+            let friends:Int = (currentUser?.objectForKey("friends_count") as! Int)
             self.lblFriendsNum?.text = "关注\n\(friends)"
             var clothes:Int = 0
             if(currentUser?.objectForKey("cloth_count") != nil){
-                clothes = (currentUser?.objectForKey("cloth_count") as Int)
+                clothes = (currentUser?.objectForKey("cloth_count") as! Int)
             }
             self.lblClothNum?.text = "衣服\n\(clothes)"
             var share:Int = 0
             if(currentUser?.objectForKey("shared_count") != nil){
-                share = currentUser?.objectForKey("shared_count") as Int
+                share = currentUser?.objectForKey("shared_count") as! Int
             }
             self.lblSharedNum?.text = "分享\n\(share)"
         }
@@ -93,7 +93,7 @@ class PersonalViewController: UIViewController,UITableViewDataSource,UITableView
 
     func clickLoginBtn(){
         let mainStoryBoard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
-        var loginViewController = mainStoryBoard.instantiateViewControllerWithIdentifier("loginViewController") as LoginViewController
+        var loginViewController = mainStoryBoard.instantiateViewControllerWithIdentifier("loginViewController") as! LoginViewController
 //        var authView = AuthWeiboViewController()
         
         self.navigationController?.pushViewController(loginViewController, animated: true)
@@ -109,7 +109,7 @@ class PersonalViewController: UIViewController,UITableViewDataSource,UITableView
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell:UITableViewCell = tableView.dequeueReusableCellWithIdentifier("DetailTableCell", forIndexPath: indexPath) as UITableViewCell
+        var cell:UITableViewCell = tableView.dequeueReusableCellWithIdentifier("DetailTableCell", forIndexPath: indexPath) as! UITableViewCell
         cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
         cell.selectionStyle = UITableViewCellSelectionStyle.None
         cell.textLabel?.text = self.detailArr.objectAtIndex(indexPath.row) as? String
@@ -119,25 +119,25 @@ class PersonalViewController: UIViewController,UITableViewDataSource,UITableView
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if(indexPath.row == 4){
             let mainStoryBoard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
-            var aboutViewController = mainStoryBoard.instantiateViewControllerWithIdentifier("aboutViewController") as AboutViewController
+            var aboutViewController = mainStoryBoard.instantiateViewControllerWithIdentifier("aboutViewController") as! AboutViewController
             self.navigationController?.pushViewController(aboutViewController, animated: true)
         }else if(indexPath.row == 3){
             let mainStoryBoard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
-            var helpViewController = mainStoryBoard.instantiateViewControllerWithIdentifier("helpViewController") as HelpViewController
+            var helpViewController = mainStoryBoard.instantiateViewControllerWithIdentifier("helpViewController") as! HelpViewController
             self.navigationController?.pushViewController(helpViewController, animated: true)
         }else if(indexPath.row == 2){
             let mainStoryBoard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
-            var feedbackViewController = mainStoryBoard.instantiateViewControllerWithIdentifier("feedbackViewController") as FeedbackViewController
+            var feedbackViewController = mainStoryBoard.instantiateViewControllerWithIdentifier("feedbackViewController") as! FeedbackViewController
             self.navigationController?.pushViewController(feedbackViewController, animated: true)
         }else if(indexPath.row == self.detailArr.count - 1){
             clickLogoutBtn()
         }else if(indexPath.row == 1){
             let mainStoryBoard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
-            var brandViewController = mainStoryBoard.instantiateViewControllerWithIdentifier("brandViewController") as BrandTableViewController
+            var brandViewController = mainStoryBoard.instantiateViewControllerWithIdentifier("brandViewController") as! BrandTableViewController
             self.navigationController?.pushViewController(brandViewController, animated: true)
         }else if(indexPath.row == 0){
             let mainStoryBoard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
-            var styleViewController = mainStoryBoard.instantiateViewControllerWithIdentifier("styleViewController") as StyleTableViewController
+            var styleViewController = mainStoryBoard.instantiateViewControllerWithIdentifier("styleViewController") as! StyleTableViewController
             self.navigationController?.pushViewController(styleViewController, animated: true)
         }
         

@@ -35,7 +35,7 @@ class StyleTableViewController: UITableViewController,UITableViewDataSource,UITa
         query.getFirstObjectInBackgroundWithBlock({(obj:AVObject!, error:NSError!) in
             if(error==nil && obj !=  nil){
                 var req = AVQuery(className: "Tags")
-                req.whereKey("parent_id", equalTo: (obj.objectForKey("objectId") as String))
+                req.whereKey("parent_id", equalTo: (obj.objectForKey("objectId") as! String))
                 req.findObjectsInBackgroundWithBlock({(tags:[AnyObject]!, err:NSError!) in
                     if(err==nil && tags != nil){
                         self.infoList = NSMutableArray(array: tags)
@@ -52,7 +52,7 @@ class StyleTableViewController: UITableViewController,UITableViewDataSource,UITa
         query.whereKey("user_id", equalTo: DataService.shareService.userToken!)
         query.getFirstObjectInBackgroundWithBlock({(obj:AnyObject!,error:NSError!) in
             if(error == nil){
-                let tags = obj.objectForKey("tags") as NSArray
+                let tags = obj.objectForKey("tags") as! NSArray
                 self.selectedInfos = NSMutableArray(array: tags)
                 self.infoTableView?.reloadData()
             }
@@ -69,7 +69,7 @@ class StyleTableViewController: UITableViewController,UITableViewDataSource,UITa
             }
             if(self.selectedInfos!.count > 0){
                 user_tags.setObject(DataService.shareService.userToken!, forKey: "user_id")
-                user_tags.addUniqueObjectsFromArray(self.selectedInfos!, forKey: "tags")
+                user_tags.addUniqueObjectsFromArray(self.selectedInfos! as [AnyObject], forKey: "tags")
                 user_tags.saveInBackground()
             }
             
@@ -93,7 +93,7 @@ class StyleTableViewController: UITableViewController,UITableViewDataSource,UITa
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete method implementation.
         // Return the number of rows in the section.
-        if let infos = self.infoList? {
+        if let infos = self.infoList {
             return infos.count
         }else{
             return 0
@@ -106,12 +106,12 @@ class StyleTableViewController: UITableViewController,UITableViewDataSource,UITa
             cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: "reuseIdentifier")
         }
         
-        let item = self.infoList?.objectAtIndex(indexPath.row) as AVObject
+        let item = self.infoList?.objectAtIndex(indexPath.row) as! AVObject
         
         // Configure the cell...
         cell?.textLabel!.text = item.objectForKey("name") as? String
         cell?.selectionStyle = UITableViewCellSelectionStyle.None
-        let id:String = item.objectForKey("objectId") as String
+        let id:String = item.objectForKey("objectId") as! String
         if((self.selectedInfos?.containsObject(id))!  == true){
             cell?.accessoryType = UITableViewCellAccessoryType.Checkmark
         }else{
@@ -122,8 +122,8 @@ class StyleTableViewController: UITableViewController,UITableViewDataSource,UITa
 
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         var cell = tableView.cellForRowAtIndexPath(indexPath)
-        let item = self.infoList?.objectAtIndex(indexPath.row) as AVObject
-        let id:String = item.objectForKey("objectId") as String
+        let item = self.infoList?.objectAtIndex(indexPath.row) as! AVObject
+        let id:String = item.objectForKey("objectId") as! String
         if((self.selectedInfos?.containsObject(id))!  == true){
             self.selectedInfos?.removeObject(id)
             cell?.accessoryType = UITableViewCellAccessoryType.None

@@ -47,8 +47,8 @@ class BrandTableViewController: UITableViewController,UITableViewDelegate,UITabl
                     var item = NSMutableDictionary()
                     item.setValue(file, forKey: "brand_logo")
                     for(var j=0;j<brands.count;j++){
-                        let brand: AVObject = brands.objectAtIndex(j) as AVObject
-                        if((brand.objectForKey("logo_file_id") as String) == (file.objectForKey("objectId") as String)){
+                        let brand: AVObject = brands.objectAtIndex(j) as! AVObject
+                        if((brand.objectForKey("logo_file_id") as! String) == (file.objectForKey("objectId") as! String)){
                             item.setValue(brand.objectForKey("name"), forKey: "brand_name")
                             item.setValue(brand.objectForKey("objectId"), forKey: "brand_id")
                             infos.addObject(item)
@@ -66,7 +66,7 @@ class BrandTableViewController: UITableViewController,UITableViewDelegate,UITabl
         query.whereKey("user_id", equalTo: DataService.shareService.userToken!)
         query.getFirstObjectInBackgroundWithBlock({(obj:AnyObject!,error:NSError!) in
             if(error == nil){
-                let brands = obj.objectForKey("brands") as NSArray
+                let brands = obj.objectForKey("brands") as! NSArray
                 self.selectedInfos = NSMutableArray(array: brands)
                 self.infoTableView?.reloadData()
             }
@@ -87,7 +87,7 @@ class BrandTableViewController: UITableViewController,UITableViewDelegate,UITabl
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if let infos = self.infoList? {
+        if let infos = self.infoList {
             return infos.count
         }else{
             return 0
@@ -101,15 +101,15 @@ class BrandTableViewController: UITableViewController,UITableViewDelegate,UITabl
             cell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: "reuseIdentifier")
         }
         
-        let item = self.infoList?.objectAtIndex(indexPath.row) as NSMutableDictionary
+        let item = self.infoList?.objectAtIndex(indexPath.row) as! NSMutableDictionary
         
         // Configure the cell...
         cell?.textLabel?.text = item.objectForKey("brand_name") as? String
         cell?.imageView?.image = UIImage(named: "default_head")
         cell?.imageView?.contentMode = UIViewContentMode.ScaleAspectFit
         cell?.selectionStyle = UITableViewCellSelectionStyle.None
-        let logo = item.objectForKey("brand_logo") as AVObject
-        var file:AVFile = AVFile.fileWithURL((logo.objectForKey("url") as String)) as AVFile
+        let logo = item.objectForKey("brand_logo") as! AVObject
+        var file:AVFile = AVFile.fileWithURL((logo.objectForKey("url") as! String)) as! AVFile
         file.getThumbnail(true, width: 240, height: 240, withBlock: {(img:UIImage!, error:NSError!) in
             if(error == nil){
                 cell?.imageView?.image = img
@@ -118,7 +118,7 @@ class BrandTableViewController: UITableViewController,UITableViewDelegate,UITabl
             }
         
         })
-        let id:String = item.objectForKey("brand_id") as String
+        let id:String = item.objectForKey("brand_id") as! String
         if((self.selectedInfos?.containsObject(id))!  == true){
             cell?.accessoryType = UITableViewCellAccessoryType.Checkmark
         }else{
@@ -129,8 +129,8 @@ class BrandTableViewController: UITableViewController,UITableViewDelegate,UITabl
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         var cell = tableView.cellForRowAtIndexPath(indexPath)
-        let item = self.infoList?.objectAtIndex(indexPath.row) as NSMutableDictionary
-        let id:String = item.objectForKey("brand_id") as String
+        let item = self.infoList?.objectAtIndex(indexPath.row) as! NSMutableDictionary
+        let id:String = item.objectForKey("brand_id") as! String
         if((self.selectedInfos?.containsObject(id))!  == true){
             self.selectedInfos?.removeObject(id)
             cell?.accessoryType = UITableViewCellAccessoryType.None
@@ -153,7 +153,7 @@ class BrandTableViewController: UITableViewController,UITableViewDelegate,UITabl
             
             if(self.selectedInfos!.count > 0){
                 user_brands.setObject(DataService.shareService.userToken!, forKey: "user_id")
-                user_brands.addUniqueObjectsFromArray(self.selectedInfos!, forKey: "brands")
+                user_brands.addUniqueObjectsFromArray(self.selectedInfos! as [AnyObject], forKey: "brands")
                 user_brands.saveInBackground()
             }
             

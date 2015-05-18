@@ -44,7 +44,7 @@ class NewClothViewController: UIViewController,UIPickerViewDelegate,UIPickerView
         var leftBarItem = UIBarButtonItem(title:"取消", style: UIBarButtonItemStyle.Done, target: self, action: "clickBackBtn")
         leftBarItem.tintColor = UIColor.whiteColor()
         self.navigationItem.leftBarButtonItem = leftBarItem
-        self.navigationController?.navigationBar.titleTextAttributes = NSDictionary(object: UIColor.whiteColor(), forKey: NSForegroundColorAttributeName)
+        self.navigationController?.navigationBar.titleTextAttributes = NSDictionary(object: UIColor.whiteColor(), forKey: NSForegroundColorAttributeName) as [NSObject : AnyObject]
         
         initClothView()
         initTagView()
@@ -84,7 +84,7 @@ class NewClothViewController: UIViewController,UIPickerViewDelegate,UIPickerView
             var frame:CGRect = CGRectMake(x, 12, 60, 26)
             var btn = UIButton(frame: frame)
             sWidth += frame.size.width + 30
-            btn.setTitle((allTags?.objectAtIndex(i) as NSDictionary).objectForKey("name") as? String, forState: UIControlState.Normal)
+            btn.setTitle((allTags?.objectAtIndex(i) as! NSDictionary).objectForKey("name") as? String, forState: UIControlState.Normal)
             btn.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
             btn.titleLabel?.font = UIFont.systemFontOfSize(14.0)
             btn.backgroundColor = mainTagBgColor()
@@ -211,8 +211,9 @@ class NewClothViewController: UIViewController,UIPickerViewDelegate,UIPickerView
             }
         }
     }
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: NSDictionary) {
-        var image = info.objectForKey(UIImagePickerControllerEditedImage) as UIImage
+    
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
+        var image = info[UIImagePickerControllerEditedImage] as! UIImage
         self.photoImgView?.image = image
         let uuid = gen_uuid()
         var path = DataService.shareService.getUserClothDirPath() + "/" + uuid! + ".png"
@@ -276,7 +277,7 @@ class NewClothViewController: UIViewController,UIPickerViewDelegate,UIPickerView
     
     func hideToolBar(){
         let subviews = self.view.subviews
-        for subview in subviews as [UIView] {
+        for subview in subviews as! [UIView] {
             if(subview.tag==1024){
                 UIView.animateWithDuration(0.3, delay: 0.0, options: UIViewAnimationOptions.TransitionCurlDown, animations: {
                     subview.removeFromSuperview()
@@ -314,8 +315,8 @@ class NewClothViewController: UIViewController,UIPickerViewDelegate,UIPickerView
         var arr = NSMutableArray()
         if(self.selectedTags?.count > 0){
             for(var i=0;i<self.selectedTags?.count;i++){
-                var tag:Int = (selectedTags?.objectAtIndex(i) as Int) - 5000
-                var item:NSDictionary = allTags?.objectAtIndex(tag) as NSDictionary
+                var tag:Int = (selectedTags?.objectAtIndex(i) as! Int) - 5000
+                var item:NSDictionary = allTags?.objectAtIndex(tag) as! NSDictionary
                 arr.addObject(item.objectForKey("tagId")!)
             }
         }

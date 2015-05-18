@@ -45,7 +45,7 @@ class InfoDetailViewController: UIViewController,UIWebViewDelegate {
             if(obj == nil){
                 self.detailWebView?.loadHTMLString("<p style='text-align:center;'>数据读取有误</p>", baseURL: url)
             }else{
-                self.detailWebView?.loadHTMLString(obj.objectForKey("detail") as String, baseURL: url)
+                self.detailWebView?.loadHTMLString(obj.objectForKey("detail") as! String, baseURL: url)
             }
         })
     }

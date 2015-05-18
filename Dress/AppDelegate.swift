@@ -84,7 +84,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WeiboSDKDelegate {
     func didReceiveWeiboResponse(response: WBBaseResponse!) {
         if(response.isKindOfClass(WBAuthorizeResponse.self)){
             if(response.statusCode == WeiboSDKResponseStatusCode.Success){
-                let resp = response as WBAuthorizeResponse
+                let resp = response as! WBAuthorizeResponse
                 
                 println(resp.userID!)
                 let userInfo:NSDictionary = resp.userInfo as NSDictionary
@@ -99,7 +99,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WeiboSDKDelegate {
     
     func showLoginPage(){
         let mainStoryBoard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
-        var loginViewController = mainStoryBoard.instantiateViewControllerWithIdentifier("loginViewController") as LoginViewController
+        var loginViewController = mainStoryBoard.instantiateViewControllerWithIdentifier("loginViewController") as! LoginViewController
         
         self.window!.rootViewController = loginViewController
         let notificationCenter = NSNotificationCenter.defaultCenter()
@@ -109,7 +109,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WeiboSDKDelegate {
     func dismissLoginView(){
         println("dismiss login view")
         let mainStoryBoard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
-        let rootViewController = mainStoryBoard.instantiateViewControllerWithIdentifier("rootTabViewController") as UITabBarController
+        let rootViewController = mainStoryBoard.instantiateViewControllerWithIdentifier("rootTabViewController") as! UITabBarController
 //        ((UITabBarItem *)rootViewController.tabBar.items[0]).selectedImage = [UIImage imageNamed:@"light_filled"]
 //        (rootViewController.tabBar.items![0] as UITabBarItem).selectedImage = UIImage(named: "weather_icon")
         self.window!.rootViewController = rootViewController

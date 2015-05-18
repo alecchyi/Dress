@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import Haneke
+//import Haneke
 
 class FindViewController: UIViewController, UITableViewDelegate,UITableViewDataSource,GADBannerViewDelegate,InfoListItemCellDelegate,UMSocialUIDelegate {
 
@@ -129,9 +129,9 @@ class FindViewController: UIViewController, UITableViewDelegate,UITableViewDataS
 
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell:InfoListItemCell = tableView.dequeueReusableCellWithIdentifier("InfoListItemCell", forIndexPath: indexPath) as InfoListItemCell
+        var cell:InfoListItemCell = tableView.dequeueReusableCellWithIdentifier("InfoListItemCell", forIndexPath: indexPath) as! InfoListItemCell
 
-        let item = self.infoList?.objectAtIndex(indexPath.row) as AVObject
+        let item = self.infoList?.objectAtIndex(indexPath.row) as! AVObject
         cell.lblTitle!.text = item.objectForKey("title") as? String
         cell.lblTitle?.numberOfLines = 0
         cell.lblTitle?.sizeToFit()
@@ -143,11 +143,11 @@ class FindViewController: UIViewController, UITableViewDelegate,UITableViewDataS
         cell.lblContent!.lineBreakMode = NSLineBreakMode.ByCharWrapping
         cell.lblContent!.sizeToFit()
         
-        let like:Int = item.objectForKey("likes_count") as Int
+        let like:Int = item.objectForKey("likes_count") as! Int
         cell.lblLike?.text = "赞(\(like))"
-        let share:Int = item.objectForKey("shared_count") as Int
+        let share:Int = item.objectForKey("shared_count") as! Int
         cell.lblShare?.text = "分享(\(share))"
-        let source = item.objectForKey("source_type") as String
+        let source = item.objectForKey("source_type") as! String
         cell.lblSource?.text = "来源:\(source)"
         cell.lblAuthor?.text = item.objectForKey("author_name") as? String
         let avatar_url = item.objectForKey("author_avatar_url") as? String
@@ -176,7 +176,7 @@ class FindViewController: UIViewController, UITableViewDelegate,UITableViewDataS
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if let infos = self.infoList? {
+        if let infos = self.infoList {
             return infos.count
         }else{
             return 0
@@ -185,11 +185,11 @@ class FindViewController: UIViewController, UITableViewDelegate,UITableViewDataS
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        if let items = self.infoList? {
+        if let items = self.infoList {
             var cell = self.protoptypeCell!
             
-            let item = self.infoList!.objectAtIndex(indexPath.row) as AVObject
-            let content:NSString = (item.objectForKey("content") as? NSString)!
+            let item = self.infoList!.objectAtIndex(indexPath.row) as! AVObject
+            let content:String = item.objectForKey("content") as! String
             cell.lblContent?.text = content
             var size = cell.lblContent!.sizeThatFits(CGSizeMake(310, 2000))
 
@@ -241,21 +241,21 @@ class FindViewController: UIViewController, UITableViewDelegate,UITableViewDataS
     
     func clickMainView(sender:UITapGestureRecognizer) {
         let tag = sender.view?.tag
-        let item = self.infoList?.objectAtIndex(tag! - 1000) as AVObject
+        let item = self.infoList?.objectAtIndex(tag! - 1000) as! AVObject
         
         let mainStoryBoard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
-        var infoDetailViewController = mainStoryBoard.instantiateViewControllerWithIdentifier("infoDetailViewController") as InfoDetailViewController
+        var infoDetailViewController = mainStoryBoard.instantiateViewControllerWithIdentifier("infoDetailViewController") as! InfoDetailViewController
         infoDetailViewController.infoObjId = item.objectForKey("objectId") as? String
         self.navigationController?.pushViewController(infoDetailViewController, animated: true)
     }
     
     func clickLikeBtn(tag:Int) {
-        let item = self.infoList?.objectAtIndex(tag - 2000) as AVObject
+        let item = self.infoList?.objectAtIndex(tag - 2000) as! AVObject
         var query = AVQuery(className: "Infos")
         let objId = item.objectForKey("objectId") as? String
         query.getObjectInBackgroundWithId(objId, block: {(obj:AVObject!,error:NSError!) in
             if(error == nil){
-                var likes = obj.objectForKey("likes_count") as Int
+                var likes = obj.objectForKey("likes_count") as! Int
                 likes++
                 obj.setObject(likes, forKey: "likes_count")
                 obj.saveInBackgroundWithBlock({(flag:Bool,error:NSError!) in
@@ -266,14 +266,14 @@ class FindViewController: UIViewController, UITableViewDelegate,UITableViewDataS
     }
     
     func clickShareBtn(tag: Int) {
-        let item = self.infoList?.objectAtIndex(tag - 3000) as AVObject
+        let item = self.infoList?.objectAtIndex(tag - 3000) as! AVObject
         let content = item.objectForKey("content") as? String
         UMSocialSnsService.presentSnsIconSheetView(self, appKey: kUMKey, shareText: content!, shareImage: nil, shareToSnsNames: [UMShareToSina,UMShareToWechatSession,UMShareToWechatTimeline,UMShareToTencent,UMShareToQzone,UMShareToQQ,UMShareToEmail], delegate: self)
         var query = AVQuery(className: "Infos")
         let objId = item.objectForKey("objectId") as? String
         query.getObjectInBackgroundWithId(objId, block: {(obj:AVObject!,error:NSError!) in
             if(error == nil){
-                var shared = obj.objectForKey("shared_count") as Int
+                var shared = obj.objectForKey("shared_count") as! Int
                 shared++
                 obj.setObject(shared, forKey: "shared_count")
                 obj.saveInBackgroundWithBlock({(flag:Bool,error:NSError!) in

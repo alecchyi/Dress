@@ -102,15 +102,15 @@ class ClothViewController: UIViewController, NewClothViewControllerDelegate,UICo
                 var frame:CGRect = CGRectMake(x, 12, 60, 26)
                 var btn = UIButton(frame: frame)
                 sWidth += frame.size.width + 30
-                btn.setTitle((allTags?.objectAtIndex(i) as NSDictionary).objectForKey("name") as? String, forState: UIControlState.Normal)
+                btn.setTitle((allTags?.objectAtIndex(i) as! NSDictionary).objectForKey("name") as? String, forState: UIControlState.Normal)
                 btn.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
                 btn.titleLabel?.font = UIFont.systemFontOfSize(14.0)
                 btn.backgroundColor = UIColor(red: 241/255.0, green: 103/255.0, blue: 214/255.0, alpha: 1.0)
                 btn.layer.cornerRadius = frame.size.height * 0.5
                 btn.setTitleColor(UIColor.brownColor(), forState: UIControlState.Highlighted)
                 btn.addTarget(self, action: "seletedTagBtn:", forControlEvents: UIControlEvents.TouchUpInside)
-                var item:NSDictionary = allTags?.objectAtIndex(i) as NSDictionary
-                btn.tag = 5000 + (item.objectForKey("tagId") as Int)
+                var item:NSDictionary = allTags?.objectAtIndex(i) as! NSDictionary
+                btn.tag = 5000 + (item.objectForKey("tagId") as! Int)
                 
                 scrollView.addSubview(btn)
                 var scrollSize:CGSize = scrollView.contentSize as CGSize
@@ -133,7 +133,7 @@ class ClothViewController: UIViewController, NewClothViewControllerDelegate,UICo
     
     func clickAddBtn(){
         let mainStoryBoard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
-        var newClothViewController = mainStoryBoard.instantiateViewControllerWithIdentifier("newClothViewController") as NewClothViewController
+        var newClothViewController = mainStoryBoard.instantiateViewControllerWithIdentifier("newClothViewController") as! NewClothViewController
         newClothViewController.newClothDelegate = self
         var navModelController = UINavigationController(rootViewController: newClothViewController)
         navModelController.navigationBar.barTintColor = mainNavBarColor()
@@ -143,12 +143,12 @@ class ClothViewController: UIViewController, NewClothViewControllerDelegate,UICo
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell:ClothViewCell = collectionView.dequeueReusableCellWithReuseIdentifier("ClothViewCell", forIndexPath: indexPath) as ClothViewCell
-        var cloth = self.clothesList!.objectAtIndex(indexPath.row) as NSMutableDictionary
-        var picPath = cloth.objectForKey("picPath") as String
+        let cell:ClothViewCell = collectionView.dequeueReusableCellWithReuseIdentifier("ClothViewCell", forIndexPath: indexPath) as! ClothViewCell
+        var cloth = self.clothesList!.objectAtIndex(indexPath.row) as! NSMutableDictionary
+        var picPath = cloth.objectForKey("picPath") as! String
         var path = DataService.shareService.getUserClothDirPath().stringByAppendingPathComponent(picPath)
-        let season = cloth.objectForKey("season") as Int
-        let type = cloth.objectForKey("type") as Int
+        let season = cloth.objectForKey("season") as! Int
+        let type = cloth.objectForKey("type") as! Int
         cell.imageView!.image = UIImage(contentsOfFile: path)
         cell.lblText!.text = kSeasons[season] + " " + kCategories[type]
         
@@ -221,8 +221,8 @@ class ClothViewController: UIViewController, NewClothViewControllerDelegate,UICo
     }
 
     func deleteFileForPath(row:Int){
-        var cloth = self.clothesList!.objectAtIndex(row) as NSMutableDictionary
-        var picPath = cloth.objectForKey("picPath") as String
+        var cloth = self.clothesList!.objectAtIndex(row) as! NSMutableDictionary
+        var picPath = cloth.objectForKey("picPath") as! String
         var path = DataService.shareService.getUserClothDirPath().stringByAppendingPathComponent(picPath)
         let fileManager = NSFileManager.defaultManager()
         if(fileManager.fileExistsAtPath(path)){
@@ -249,10 +249,10 @@ class ClothViewController: UIViewController, NewClothViewControllerDelegate,UICo
         if(self.selectedTags?.count>0){
             var clothes = NSMutableArray()
             for(var i=0;i<allClothes?.count;i++){
-                let cloth:NSDictionary = allClothes?.objectAtIndex(i) as NSDictionary
-                let tags:NSArray = cloth.objectForKey("tags") as NSArray
+                let cloth:NSDictionary = allClothes?.objectAtIndex(i) as! NSDictionary
+                let tags:NSArray = cloth.objectForKey("tags") as! NSArray
                 for(var j=0;j<self.selectedTags?.count;j++){
-                    let tag:Int = self.selectedTags?.objectAtIndex(j) as Int
+                    let tag:Int = self.selectedTags?.objectAtIndex(j) as! Int
                     if(tags.containsObject(tag - 5000)){
                         clothes.addObject(cloth)
                         break
@@ -266,7 +266,7 @@ class ClothViewController: UIViewController, NewClothViewControllerDelegate,UICo
     }
     
     func tapImgGesture(sender:UITapGestureRecognizer){
-        let imgView:UIImageView = sender.view as UIImageView
+        let imgView:UIImageView = sender.view as! UIImageView
         var info = JTSImageInfo()
         info.image = imgView.image
         info.referenceRect = imgView.frame

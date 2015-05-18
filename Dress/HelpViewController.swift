@@ -52,7 +52,7 @@ class HelpViewController: UIViewController {
             if(obj == nil){
                 self.helpWebView?.loadHTMLString("<p style='text-align:center;'>数据读取有误</p>", baseURL: url)
             }else{
-                self.helpWebView?.loadHTMLString(obj.objectForKey("detail") as String, baseURL: url)
+                self.helpWebView?.loadHTMLString(obj.objectForKey("detail") as! String, baseURL: url)
             }
         })
     }

@@ -73,6 +73,7 @@
 		707591F11A748C9C005DFA11 /* WeiboSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 707591ED1A748C9C005DFA11 /* WeiboSDK.bundle */; };
 		707591F31A749699005DFA11 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 707591F21A749699005DFA11 /* QuartzCore.framework */; };
 		707591F51A74969F005DFA11 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 707591F41A74969F005DFA11 /* ImageIO.framework */; };
+		708659C21B0A34050087A5EE /* GoogleMobileAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 708659C11B0A34050087A5EE /* GoogleMobileAds.framework */; };
 		708E1AA51A4B021100FF27A1 /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 708E1AA41A4B021100FF27A1 /* Weather.swift */; };
 		708E1AA71A4B035800FF27A1 /* Cloth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 708E1AA61A4B035800FF27A1 /* Cloth.swift */; };
 		708E1AA91A4B055700FF27A1 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 708E1AA81A4B055700FF27A1 /* CoreLocation.framework */; };
@@ -231,6 +232,7 @@
 		707591EF1A748C9C005DFA11 /* WeiboUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeiboUser.h; sourceTree = "<group>"; };
 		707591F21A749699005DFA11 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		707591F41A74969F005DFA11 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
+		708659C11B0A34050087A5EE /* GoogleMobileAds.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMobileAds.framework; path = Pods/GoogleAdmob/GoogleMobileAds.framework; sourceTree = "<group>"; };
 		708E1AA41A4B021100FF27A1 /* Weather.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
 		708E1AA61A4B035800FF27A1 /* Cloth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cloth.swift; sourceTree = "<group>"; };
 		708E1AA81A4B055700FF27A1 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -299,6 +301,7 @@
 				702FB6361A9977C6009693C1 /* libSocialTumblr.a in Frameworks */,
 				80683A20745D7C368D6D1046 /* libPods.a in Frameworks */,
 				702FB5F11A99770E009693C1 /* libUMSocial_Sdk_4.2.1.a in Frameworks */,
+				708659C21B0A34050087A5EE /* GoogleMobileAds.framework in Frameworks */,
 				702FB6341A9977C6009693C1 /* TencentOpenAPI.framework in Frameworks */,
 				702FB63B1A9977C6009693C1 /* libUMSocial_Sdk_Shake_1.0.a in Frameworks */,
 				702FB63C1A9977C6009693C1 /* libSocialWechat.a in Frameworks */,
@@ -642,6 +645,7 @@
 		89277E932F2A70B1BE8B1753 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				708659C11B0A34050087A5EE /* GoogleMobileAds.framework */,
 				7048E4B21A9F192400157BE0 /* AdSupport.framework */,
 				7048E4B01A9F191200157BE0 /* StoreKit.framework */,
 				7048E4AE1A9F190D00157BE0 /* MessageUI.framework */,
@@ -727,7 +731,7 @@
 				TargetAttributes = {
 					70A663431A49B75600CB2662 = {
 						CreatedOnToolsVersion = 6.1;
-						DevelopmentTeam = ELW8X6JH83;
+						DevelopmentTeam = FE585627JV;
 					};
 					70A6635A1A49B75600CB2662 = {
 						CreatedOnToolsVersion = 6.1;
@@ -1006,6 +1010,7 @@
 					"$(inherited)",
 					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/Dress-aelsyudqwsethzfenehvqbylrfef/Build/Products/Debug-iphoneos",
 					"$(PROJECT_DIR)/Dress/UMSocial_Sdk_4.2.1/UMSocial_Sdk_Extra_Frameworks/TencentOpenAPI",
+					"$(PROJECT_DIR)/Pods/GoogleAdmob",
 				);
 				INFOPLIST_FILE = Dress/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
@@ -1051,6 +1056,7 @@
 					"$(inherited)",
 					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/Dress-aelsyudqwsethzfenehvqbylrfef/Build/Products/Debug-iphoneos",
 					"$(PROJECT_DIR)/Dress/UMSocial_Sdk_4.2.1/UMSocial_Sdk_Extra_Frameworks/TencentOpenAPI",
+					"$(PROJECT_DIR)/Pods/GoogleAdmob",
 				);
 				INFOPLIST_FILE = Dress/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;

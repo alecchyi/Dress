@@ -45,12 +45,12 @@ class LoginViewController: UIViewController,GADBannerViewDelegate {
     }
     
     @IBAction func clickWeiboLoginBtn(){
-        var request:WBAuthorizeRequest = WBAuthorizeRequest.request() as WBAuthorizeRequest;
+        var request:WBAuthorizeRequest = WBAuthorizeRequest.request() as! WBAuthorizeRequest;
         request.redirectURI = kWeiboRedirectURL
         request.scope = "all"
         var infos = NSMutableDictionary()
         infos.setValue("LoginViewController", forKey: "SSO_From")
-        request.userInfo = infos
+        request.userInfo = infos as [NSObject : AnyObject]
         WeiboSDK.sendRequest(request)
         
     }
@@ -62,7 +62,7 @@ class LoginViewController: UIViewController,GADBannerViewDelegate {
 //                println("login within umeng")
                 if(resp.responseCode.value == UMSResponseCodeSuccess.value){
                     let accountDic:NSDictionary = UMSocialAccountManager.socialAccountDictionary()
-                    let account:UMSocialAccountEntity = accountDic.valueForKey(UMShareToQQ) as UMSocialAccountEntity
+                    let account:UMSocialAccountEntity = accountDic.valueForKey(UMShareToQQ) as! UMSocialAccountEntity
                     println(account.userName)
                     println(account.usid)
                     println(account.accessToken)
