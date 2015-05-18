@@ -13,7 +13,7 @@ let kTagPlist = "tags.plist"
 let kWeatherPlist = "weather.plist"
 let kUsersPlist = "users.plist"
 let kWeiboApi = "https://api.weibo.com/"
-let kWeiboOpeatorId = 5421836100
+let kWeiboOpeatorId = "5421836100"
 let kDBName = "data.db"
 let kSeasons = ["春季","夏季","秋季","冬季"]
 let kCategories = ["帽子","上衣","裤子","鞋子"]
@@ -54,7 +54,7 @@ func saveUser(user:NSDictionary) -> Bool{
 
     query.getFirstObjectInBackgroundWithBlock({(user_info:AVObject!,error:NSError!) in
         if(error == nil){
-            var login_type:String = user_info.objectForKey("login_type") as String
+            var login_type:String = user_info.objectForKey("login_type") as! String
             var username:AnyObject?
             if(login_type == "sina_weibo"){
                 username = user_info.objectForKey("weibo_id")
@@ -65,9 +65,9 @@ func saveUser(user:NSDictionary) -> Bool{
                 if(error == nil){
                     println("succcss login with av")
                     var currentUser = AVUser.currentUser()
-                    setUserDir(currentUser.objectForKey("userToken") as NSString)
-                    DataService.shareService.setUserToken(currentUser.objectForKey("userToken") as NSString)
-                    let logintype:String = user.objectForKey("loginType") as String
+                    setUserDir(currentUser.objectForKey("userToken") as! String)
+                    DataService.shareService.setUserToken(currentUser.objectForKey("userToken") as! NSString)
+                    let logintype:String = user.objectForKey("loginType") as! String
                     if(logintype != ""){
                         currentUser.setObject(logintype, forKey: "login_type")
                     }
@@ -103,7 +103,7 @@ func saveUser(user:NSDictionary) -> Bool{
                         manager!.GET(url,
                             parameters:params,
                             success: {(operation:AFHTTPRequestOperation!, response:AnyObject!) in
-                                let resp:NSDictionary = response as NSDictionary
+                                let resp:NSDictionary = response as! NSDictionary
 //                                                println(resp)
                                 let nickname:AnyObject? = resp.objectForKey("name")
                                 if(nickname != nil){
@@ -177,7 +177,7 @@ func saveUser(user:NSDictionary) -> Bool{
             if(nickname != nil){
                 newUser.setObject(nickname!, forKey: "nickname")
             }
-            let login_type:String = user.objectForKey("loginType") as String
+            let login_type:String = user.objectForKey("loginType") as! String
             if(login_type != ""){
                 newUser.setObject(login_type, forKey: "login_type")
             }
@@ -235,7 +235,7 @@ func saveUser(user:NSDictionary) -> Bool{
                             manager!.GET(url,
                                 parameters:params,
                                 success: {(operation:AFHTTPRequestOperation!, response:AnyObject!) in
-                                    let resp:NSDictionary = response as NSDictionary
+                                    let resp:NSDictionary = response as! NSDictionary
                                     let nickname:AnyObject? = resp.objectForKey("name")
                                     if(nickname != nil){
                                         currentUser.setObject(nickname!, forKey: "nickname")
@@ -305,7 +305,7 @@ func has_bind_weibo() -> Bool {
     if(DataService.shareService.userToken != nil){
         let currentUser = AVUser.currentUser()
         if(currentUser != nil){
-            let login_type:String = currentUser?.objectForKey("login_type") as String
+            let login_type:String = currentUser?.objectForKey("login_type") as! String
             if(login_type != "" && login_type == "sina_weibo"){
                 return true
             }
@@ -319,7 +319,7 @@ func setCurrentUser(){
     if(DataService.shareService.userToken == nil){
         let currentUser = AVUser.currentUser()
         if(currentUser != nil){
-            DataService.shareService.setUserToken(currentUser.objectForKey("userToken") as NSString)
+            DataService.shareService.setUserToken(currentUser.objectForKey("userToken") as! NSString)
         }
     }
 }
@@ -360,12 +360,12 @@ func fetchSystemTags(){
     query.getFirstObjectInBackgroundWithBlock({(obj:AVObject!, error:NSError!) in
         if(error==nil && obj !=  nil){
             var req = AVQuery(className: "Tags")
-            req.whereKey("parent_id", equalTo: (obj.objectForKey("objectId") as String))
+            req.whereKey("parent_id", equalTo: (obj.objectForKey("objectId") as! String))
             req.findObjectsInBackgroundWithBlock({(tags:[AnyObject]!, err:NSError!) in
                 if(err==nil && tags != nil){
                     let arr:NSArray = tags as NSArray
                     for(var i=0;i<arr.count;i++){
-                        let item = arr.objectAtIndex(i) as AVObject
+                        let item = arr.objectAtIndex(i) as! AVObject
                         var tag:NSMutableDictionary = NSMutableDictionary()
                         tag.setValue(item.objectForKey("objectId"), forKey: "id")
                         tag.setValue(item.objectForKey("name"), forKey: "name")
@@ -389,7 +389,7 @@ func fetchSystemTags(){
 func setUserDir(userToken:String){
     let fileManager = NSFileManager.defaultManager()
     let storeFilePath = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true)
-    var documentDir = storeFilePath[0] as String
+    var documentDir = storeFilePath[0] as! String
     let path = documentDir.stringByAppendingPathComponent(userToken)
     var isDir:ObjCBool = false
     if(!fileManager.fileExistsAtPath(path, isDirectory: &isDir)){
@@ -405,14 +405,14 @@ func set_user_token(loginType:String,uid:String) -> String{
     var x:Int = 0
     var obj:String?
     for(var i=0;i<users!.count;i++){
-        let item:NSDictionary = users?.objectAtIndex(i) as NSDictionary
-        if((item.objectForKey("loginType") as String) == loginType){
-            if(loginType == "sina_weibo" && (item.objectForKey("weibo_uid") as String) == uid){
+        let item:NSDictionary = users?.objectAtIndex(i) as! NSDictionary
+        if((item.objectForKey("loginType") as! String) == loginType){
+            if(loginType == "sina_weibo" && (item.objectForKey("weibo_uid") as! String) == uid){
                 obj = item.objectForKey("userToken") as? String
                 x = 1
                 break
             }
-            if(loginType == "tencent_qq" && (item.objectForKey("qq_uid") as String) == uid){
+            if(loginType == "tencent_qq" && (item.objectForKey("qq_uid") as! String) == uid){
                 obj = item.objectForKey("userToken") as? String
                 x = 1
                 break
@@ -449,7 +449,7 @@ func updateCurrentUserData(type:String){
 //        users!.writeToFile(DataService.shareService.getUsersPlist(), atomically: true)
         var currentUser = AVUser.currentUser()
         if(type=="update_share_num"){
-            var num:Int = currentUser.objectForKey("shared_count") as Int
+            var num:Int = currentUser.objectForKey("shared_count") as! Int
             currentUser.setObject(num + 1, forKey: "shared_count")
             currentUser.saveInBackground()
         }
@@ -460,7 +460,7 @@ func updateCurrentUserData(type:String){
 func save_capture_img(img:NSData) -> String {
     let fileManager = NSFileManager.defaultManager()
     let storeFilePath = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true)
-    var documentDir = storeFilePath[0] as String
+    var documentDir = storeFilePath[0] as! String
     let name = gen_uuid()! as String
     let path = documentDir.stringByAppendingPathComponent(name + ".jpg")
     if(!fileManager.fileExistsAtPath(path)){

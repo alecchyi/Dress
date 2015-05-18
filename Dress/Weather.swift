@@ -19,11 +19,12 @@ class Weather {
     
     init(data:NSMutableDictionary?) {
         self._data = data!
-        self._temp = data!.objectForKey("temp") as NSString!
-        self._wind = data!.objectForKey("wind") as NSString!
-        self._weather = data!.objectForKey("weatherDesc") as NSString!
-        self._dress = data!.objectForKey("dress") as NSString!
-        self._city = data!.objectForKey("currentCity") as NSString!
+        self._temp = data!.objectForKey("temp") as? String
+        self._wind = data!.objectForKey("wind") as? String
+        self._weather = data!.objectForKey("weatherDesc") as? String
+        self._dress = data!.objectForKey("dress") as? String
+        self._city = data!.objectForKey("currentCity") as? String
+        self._weather_icon = nil
         
     }
     

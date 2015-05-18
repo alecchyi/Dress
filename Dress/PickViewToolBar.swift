@@ -17,8 +17,8 @@ protocol PickViewToolBarDataSource {
 
 class PickViewToolBar:UIView,UIPickerViewDelegate {
 
-    let pickerView:UIPickerView?
-    let toolBar:UIToolbar?
+    var pickerView:UIPickerView?
+    var toolBar:UIToolbar?
     var delegate:PickViewToolBarDelegate?
     
     override init(frame: CGRect) {

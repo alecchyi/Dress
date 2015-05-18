@@ -57,7 +57,7 @@ class TagToolBar: UIView {
             //            var x:Float = *(i,70)
             var frame:CGRect = CGRectMake(30, 10, 40, 30)
             var btn = UIButton(frame: frame)
-            btn.titleLabel?.text = (allTags?.objectAtIndex(i) as NSDictionary).objectForKey("name") as? String
+            btn.titleLabel?.text = (allTags?.objectAtIndex(i) as! NSDictionary).objectForKey("name") as? String
             btn.titleLabel?.textColor = UIColor.whiteColor()
             btn.backgroundColor = UIColor.blackColor()
             self.addSubview(btn)

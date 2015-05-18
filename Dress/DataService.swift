@@ -24,14 +24,14 @@ class DataService {
     }
     
     func locationManager() -> CLLocationManager? {
-        if((self.managers[0] as? CLLocationManager)? == nil){
+        if((self.managers[0] as? CLLocationManager) == nil){
             self.managers[0] = CLLocationManager()
         }
         return self.managers[0] as? CLLocationManager
     }
     
     func requestManager() -> AFHTTPRequestOperationManager? {
-        if((self.managers[1] as? AFHTTPRequestOperationManager)? == nil){
+        if((self.managers[1] as? AFHTTPRequestOperationManager) == nil){
             self.managers[1] = AFHTTPRequestOperationManager()
         }
         return self.managers[1] as? AFHTTPRequestOperationManager
@@ -43,7 +43,7 @@ class DataService {
     
     func setUserToken(token:NSString){
         if(self.userToken == nil){
-            self.userToken = token
+            self.userToken = token as String
             var userDefaults = NSUserDefaults.standardUserDefaults()
             userDefaults.setValue(token, forKey: "userToken")
         }
@@ -58,7 +58,7 @@ class DataService {
     func getUserClothPlist() -> String{
         let fileManager = NSFileManager.defaultManager()
         let storeFilePath = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true)
-        var documentDir = storeFilePath[0] as String
+        var documentDir = storeFilePath[0] as! String
         let path = documentDir.stringByAppendingPathComponent(DataService.shareService.userToken! + "/" + kClothPlist)
         if(!fileManager.fileExistsAtPath(path)){
             fileManager.createFileAtPath(path, contents: nil, attributes: nil)
@@ -69,7 +69,7 @@ class DataService {
     func getUserClothDirPath() -> String{
         let fileManager = NSFileManager.defaultManager()
         let storeFilePath = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true)
-        var documentDir = storeFilePath[0] as String
+        var documentDir = storeFilePath[0] as! String
         let path = documentDir.stringByAppendingPathComponent(DataService.shareService.userToken! + "/Clothes")
         var isDir:ObjCBool = false
         if(!fileManager.fileExistsAtPath(path, isDirectory: &isDir)){
@@ -81,7 +81,7 @@ class DataService {
     func getTagsPlist() -> String{
         let fileManager = NSFileManager.defaultManager()
         let storeFilePath = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true)
-        var documentDir = storeFilePath[0] as String
+        var documentDir = storeFilePath[0] as! String
         let path = documentDir.stringByAppendingPathComponent(DataService.shareService.userToken! + "/" + kTagPlist)
         if(!fileManager.fileExistsAtPath(path)){
             fileManager.createFileAtPath(path, contents: nil, attributes: nil)
@@ -92,7 +92,7 @@ class DataService {
     func getWeatherPlist() -> String{
         let fileManager = NSFileManager.defaultManager()
         let storeFilePath = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true)
-        var documentDir = storeFilePath[0] as String
+        var documentDir = storeFilePath[0] as! String
         let path = documentDir.stringByAppendingPathComponent(kWeatherPlist)
         if(!fileManager.fileExistsAtPath(path)){
             fileManager.createFileAtPath(path, contents: nil, attributes: nil)
@@ -103,7 +103,7 @@ class DataService {
     func getUsersPlist() -> String{
         let fileManager = NSFileManager.defaultManager()
         let storeFilePath = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true)
-        var documentDir = storeFilePath[0] as String
+        var documentDir = storeFilePath[0] as! String
         let path = documentDir.stringByAppendingPathComponent(kUsersPlist)
         if(!fileManager.fileExistsAtPath(path)){
             fileManager.createFileAtPath(path, contents: nil, attributes: nil)
@@ -121,12 +121,12 @@ class DataService {
         var shirtArr = NSMutableArray()
         var trouserArr = NSMutableArray()
         var shoesArr = NSMutableArray()
-        if let x = myClothes? {
+        if let x = myClothes {
             for cloth in myClothes! {
-                let season = cloth.objectForKey("season") as Int
-                let type = cloth.objectForKey("type") as Int
-                if(season == (result!.objectAtIndex(1) as Int)){
-                    if(type == 0 && (result!.objectAtIndex(0) as Int) == 1){
+                let season = cloth.objectForKey("season") as! Int
+                let type = cloth.objectForKey("type") as! Int
+                if(season == (result!.objectAtIndex(1) as! Int)){
+                    if(type == 0 && (result!.objectAtIndex(0) as! Int) == 1){
                         headArr.addObject(cloth)
                     }else if(type == 1){
                         shirtArr.addObject(cloth)
@@ -144,7 +144,7 @@ class DataService {
     func getDBPath() -> String{
         let fileManager = NSFileManager.defaultManager()
         let storeFilePath = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true)
-        var documentDir = storeFilePath[0] as String
+        var documentDir = storeFilePath[0] as! String
         let path = documentDir.stringByAppendingPathComponent(kDBName)
         if(!fileManager.fileExistsAtPath(path)){
             fileManager.createFileAtPath(path, contents: nil, attributes: nil)
