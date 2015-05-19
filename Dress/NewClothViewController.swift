@@ -12,7 +12,7 @@ protocol NewClothViewControllerDelegate {
     func dismissModelView()
 }
 
-class NewClothViewController: UIViewController,UIPickerViewDelegate,UIPickerViewDataSource,PickViewToolBarDelegate, UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIActionSheetDelegate {
+class NewClothViewController: UIViewController,UIPickerViewDelegate,UIPickerViewDataSource,PickViewToolBarDelegate, UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIActionSheetDelegate,GADBannerViewDelegate {
     
     @IBOutlet var tagsView:UIView?
     @IBOutlet var categoryBtn:UIButton?
@@ -23,6 +23,7 @@ class NewClothViewController: UIViewController,UIPickerViewDelegate,UIPickerView
     @IBOutlet var addClothView:UIView?
     @IBOutlet var lblCategory:UILabel?
     @IBOutlet var lblSeason:UILabel?
+    @IBOutlet var _bannerView:GADBannerView?
     
     var newClothDelegate:NewClothViewControllerDelegate?
     var _picPath:String?
@@ -104,7 +105,20 @@ class NewClothViewController: UIViewController,UIPickerViewDelegate,UIPickerView
     func initADView(){
         var frame:CGRect = self.advImgView!.bounds
         frame.origin.y = get_screen_height() - frame.size.height - 44
-        self.advImgView?.frame = frame
+//        self.advImgView?.frame = frame
+        frame = self.view.bounds
+        frame.origin.y = frame.size.height - 50
+        frame.size.height = 50
+        frame.origin.x = 0
+        println(frame)
+        self._bannerView?.frame = frame
+        self._bannerView?.adUnitID = APP_LOGIN_ADMOB_AD_UNIT_ID
+        self._bannerView?.rootViewController = self
+        self._bannerView?.delegate = self
+        var request = GADRequest()
+        request.testDevices = ["5B95C192-07BA-49FD-B572-AA23540AD9E0","cc95f15c6a339431d0d16e3184949be81f2"]
+        
+        self._bannerView?.loadRequest(request)
     }
     
     func showToolBar(){
@@ -321,6 +335,10 @@ class NewClothViewController: UIViewController,UIPickerViewDelegate,UIPickerView
             }
         }
         return arr
+    }
+    
+    func adViewDidReceiveAd(view: GADBannerView!) {
+        println("received")
     }
 }
 

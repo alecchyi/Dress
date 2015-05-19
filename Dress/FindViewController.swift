@@ -34,7 +34,7 @@ class FindViewController: UIViewController, UITableViewDelegate,UITableViewDataS
         frame.size.height = get_main_view_height()
         
 //        self.infoTableView!.frame = frame
-        self.infoTableView?.contentSize = frame.size
+//        self.infoTableView?.contentSize = frame.size
     }
     
     func initFindView(){
@@ -45,6 +45,7 @@ class FindViewController: UIViewController, UITableViewDelegate,UITableViewDataS
         frame.size.height = get_main_view_height() - 44
         
         self.infoTableView!.frame = frame
+        println(self.infoTableView!.frame);
         var cellNib:UINib = UINib(nibName: "InfoListItemCell", bundle: nil)
         self.infoTableView!.registerNib(cellNib, forCellReuseIdentifier: "InfoListItemCell")
         self.protoptypeCell = self.infoTableView?.dequeueReusableCellWithIdentifier("InfoListItemCell") as? InfoListItemCell
@@ -88,21 +89,23 @@ class FindViewController: UIViewController, UITableViewDelegate,UITableViewDataS
         
         fetchArticals()
         fetchSharedClothes()
-        
-        for view:AnyObject in self.view.subviews {
-            if view is GADBannerView {
-                var bannerFrame = view.frame
-                var frame = self.pullRefreshControl?.frame
-                frame?.origin.y = bannerFrame.size.height
-                self.pullRefreshControl?.frame = frame!
-                frame = self.infoTableView!.frame
-                frame?.origin.y = 134
-                frame?.size.height = get_main_view_height() - 40
-                self.infoTableView?.frame = frame!
-                println("appear in bannerview")
-                break
-            }
-        }
+//        
+//        for view:AnyObject in self.view.subviews {
+//            if view is GADBannerView {
+//                var bannerFrame = view.frame
+//                var frame = self.pullRefreshControl?.frame
+//                frame?.origin.y = bannerFrame.size.height
+////                self.pullRefreshControl?.frame = frame!
+//                frame = self.infoTableView!.frame
+//                frame?.origin.y = 154
+//                frame?.size.height = get_main_view_height() - 44
+////                self.infoTableView?.frame = frame!
+//                println(self.infoTableView?.frame)
+//                println("appear in bannerview")
+//                break
+//            }
+//        }
+//        println(self.infoTableView?.frame)
     }
     
     func fetchArticals(){
@@ -224,19 +227,19 @@ class FindViewController: UIViewController, UITableViewDelegate,UITableViewDataS
     
     func adViewDidReceiveAd(view: GADBannerView!) {
         
-        UIView.animateWithDuration(0.3, delay: 0.0, options:UIViewAnimationOptions.TransitionFlipFromBottom, animations:{
-            let bannerFrame = view.frame
-            println("ads receive")
-            
-            var frame = self.pullRefreshControl?.frame
-            frame?.origin.y = bannerFrame.size.height
-            frame = self.infoTableView!.frame
-            frame?.origin.y += 20
-            frame?.size.height -= 40
-            self.infoTableView?.frame = frame!
-            }, completion:{(BOOL isFinished) in
-                
-        })
+//        UIView.animateWithDuration(0.3, delay: 0.0, options:UIViewAnimationOptions.TransitionFlipFromBottom, animations:{
+//            let bannerFrame = view.frame
+//            println("ads receive")
+//            
+//            var frame = self.pullRefreshControl?.frame
+//            frame?.origin.y = bannerFrame.size.height
+//            frame = self.infoTableView!.frame
+//            frame?.origin.y += 20
+//            frame?.size.height -= 40
+////            self.infoTableView?.frame = frame!
+//            }, completion:{(BOOL isFinished) in
+//                
+//        })
     }
     
     func clickMainView(sender:UITapGestureRecognizer) {

@@ -41,7 +41,8 @@ class InfoDetailViewController: UIViewController,UIWebViewDelegate {
         query.getFirstObjectInBackgroundWithBlock({(obj:AVObject!,error:NSError!) in
             var res = NSBundle.mainBundle().pathForResource("help", ofType: "html")
             var url:NSURL = NSURL(fileURLWithPath: (res! as String))!
-            
+            println(url)
+//            println(obj.objectForKey("detail") as! String)
             if(obj == nil){
                 self.detailWebView?.loadHTMLString("<p style='text-align:center;'>数据读取有误</p>", baseURL: url)
             }else{
@@ -56,7 +57,7 @@ class InfoDetailViewController: UIViewController,UIWebViewDelegate {
     }
     
     func webView(webView: UIWebView, didFailLoadWithError error: NSError) {
-        
+        println(error.description)
     }
     
     func webViewDidFinishLoad(webView: UIWebView) {
