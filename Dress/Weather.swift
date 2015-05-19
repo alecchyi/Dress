@@ -31,7 +31,6 @@ class Weather {
     func anlysic() -> NSArray? {
         //header when temp <=5 need hat
         let idx = advance(self._temp!.endIndex, -1)
-        println(self._temp?.substringToIndex(idx))
         let temp = self._temp!.substringToIndex(idx) as NSString
         var hasHat:Int = 0
         if(temp.intValue <= 5){
