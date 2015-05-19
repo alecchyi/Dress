@@ -47,7 +47,8 @@ install_resource()
       ;;
   esac
 }
-          install_resource "AVOSCloudUI/iOS/release-v2.1.2/AVOSCloudUI.framework/Versions/A/Resources/comopose#@2x.png"
+          install_resource "AVOSCloud/iOS/release-v3.1.1.1/AVOSCloud.framework/AVOSCloud.bundle"
+                    install_resource "AVOSCloudUI/iOS/release-v2.1.2/AVOSCloudUI.framework/Versions/A/Resources/comopose#@2x.png"
                     install_resource "AVOSCloudUI/iOS/release-v2.1.2/AVOSCloudUI.framework/Versions/A/Resources/compose#.png"
                     install_resource "AVOSCloudUI/iOS/release-v2.1.2/AVOSCloudUI.framework/Versions/A/Resources/compose#@2x.png"
                     install_resource "AVOSCloudUI/iOS/release-v2.1.2/AVOSCloudUI.framework/Versions/A/Resources/compose#hover.png"
