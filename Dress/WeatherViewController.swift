@@ -34,6 +34,7 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate,UMSocia
         
         fetchSystemTags()
         
+        get_artical_tags()
     }
     
     override func viewWillAppear(animated: Bool) {

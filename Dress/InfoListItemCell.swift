@@ -8,8 +8,8 @@
 
 protocol InfoListItemCellDelegate {
     func clickMainView(sender:UITapGestureRecognizer)
-    func clickLikeBtn(tag:Int)
-    func clickShareBtn(tag:Int)
+    func clickLikeBtn(tag:Int, cell:InfoListItemCell)
+    func clickShareBtn(tag:Int, cell:InfoListItemCell)
 }
 
 class InfoListItemCell: UITableViewCell {
@@ -72,6 +72,7 @@ class InfoListItemCell: UITableViewCell {
         let tapActionGesture = UITapGestureRecognizer(target: self, action: clickMainView)
         self.mainView?.removeGestureRecognizer(tapActionGesture)
         self.mainView?.addGestureRecognizer(tapActionGesture)
+        
     }
     
     override func awakeFromNib() {
@@ -91,11 +92,11 @@ class InfoListItemCell: UITableViewCell {
     
     @IBAction func clickLikeBtn(){
         let tag = self.likeBtn?.tag
-        delegate?.clickLikeBtn(tag!)
+        delegate?.clickLikeBtn(tag!,cell:self)
     }
     
     @IBAction func clickShareBtn(){
         let tag = self.shareBtn?.tag
-        delegate?.clickShareBtn(tag!)
+        delegate?.clickShareBtn(tag!, cell:self)
     }
 }

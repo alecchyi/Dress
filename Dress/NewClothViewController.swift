@@ -112,7 +112,7 @@ class NewClothViewController: UIViewController,UIPickerViewDelegate,UIPickerView
         frame.origin.x = 0
         println(frame)
         self._bannerView?.frame = frame
-        self._bannerView?.adUnitID = APP_LOGIN_ADMOB_AD_UNIT_ID
+        self._bannerView?.adUnitID = APP_NEW_CLOTH_ADMOB_AD_UNIT_ID
         self._bannerView?.rootViewController = self
         self._bannerView?.delegate = self
         var request = GADRequest()

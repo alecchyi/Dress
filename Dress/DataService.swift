@@ -18,6 +18,11 @@ class DataService {
     var userToken:String? = nil
     var weather:NSMutableDictionary?
     var currentUser:NSMutableDictionary? = nil
+    var artical_tags:NSArray? = nil
+    var tags_colors:[UIColor] = [UIColor(red: 241/255.0, green: 195/255.0, blue: 36/255.0, alpha: 1.0),
+        UIColor(red: 107/255.0, green: 195/255.0, blue: 36/255.0, alpha: 1.0),
+        UIColor(red: 215/255.0, green: 160/255.0, blue: 230/255.0, alpha: 1.0)
+    ]
     
     class var shareService: DataService {
         return _SingletonInstance

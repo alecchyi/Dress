@@ -491,3 +491,16 @@ func get_main_view_height() -> CGFloat {
     return 538
 }
 
+func get_artical_tags() {
+    var avQuery = AVQuery(className: "Tags")
+    avQuery.cachePolicy = AVCachePolicy.NetworkElseCache
+    avQuery.whereKey("parent_id", equalTo: "54cd91fee4b0830c3232382c")
+    avQuery.selectKeys(["objectId","name"])
+    avQuery.findObjectsInBackgroundWithBlock({(objs:[AnyObject]!,error:NSError!) in
+        if((error) == nil){
+            let objs:NSArray = objs as NSArray
+            DataService.shareService.artical_tags = objs
+        }
+    })
+}
+

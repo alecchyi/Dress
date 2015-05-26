@@ -45,7 +45,7 @@ class FindViewController: UIViewController, UITableViewDelegate,UITableViewDataS
         frame.size.height = get_main_view_height() - 44
         
         self.infoTableView!.frame = frame
-        println(self.infoTableView!.frame);
+        
         var cellNib:UINib = UINib(nibName: "InfoListItemCell", bundle: nil)
         self.infoTableView!.registerNib(cellNib, forCellReuseIdentifier: "InfoListItemCell")
         self.protoptypeCell = self.infoTableView?.dequeueReusableCellWithIdentifier("InfoListItemCell") as? InfoListItemCell
@@ -86,26 +86,8 @@ class FindViewController: UIViewController, UITableViewDelegate,UITableViewDataS
     }
 
     override func viewWillAppear(animated: Bool) {
-        
+
         fetchArticals()
-        fetchSharedClothes()
-//        
-//        for view:AnyObject in self.view.subviews {
-//            if view is GADBannerView {
-//                var bannerFrame = view.frame
-//                var frame = self.pullRefreshControl?.frame
-//                frame?.origin.y = bannerFrame.size.height
-////                self.pullRefreshControl?.frame = frame!
-//                frame = self.infoTableView!.frame
-//                frame?.origin.y = 154
-//                frame?.size.height = get_main_view_height() - 44
-////                self.infoTableView?.frame = frame!
-//                println(self.infoTableView?.frame)
-//                println("appear in bannerview")
-//                break
-//            }
-//        }
-//        println(self.infoTableView?.frame)
     }
     
     func fetchArticals(){
@@ -126,8 +108,20 @@ class FindViewController: UIViewController, UITableViewDelegate,UITableViewDataS
         })
     }
     
-    func fetchSharedClothes(){
-        
+    func get_tag_name_by_tag_id(tagId:String) -> [AnyObject]{
+        if((DataService.shareService.artical_tags) != nil){
+            let tags = DataService.shareService.artical_tags
+            
+            for(var i=0;i<tags?.count;i++){
+                let tag = tags?.objectAtIndex(i) as! AVObject
+                if((tag.objectForKey("objectId") as! String) == tagId){
+                    let colors = DataService.shareService.tags_colors
+                    let x = colors.count > i ? i : 0
+                    return [tag.objectForKey("name"), colors[x]]
+                }
+            }
+        }
+        return [""]
     }
 
 
@@ -137,7 +131,7 @@ class FindViewController: UIViewController, UITableViewDelegate,UITableViewDataS
         let item = self.infoList?.objectAtIndex(indexPath.row) as! AVObject
         cell.lblTitle!.text = item.objectForKey("title") as? String
         cell.lblTitle?.numberOfLines = 0
-        cell.lblTitle?.sizeToFit()
+//        cell.lblTitle?.sizeToFit()
         
         cell.lblContent!.text = item.objectForKey("content") as? String
         let size:CGSize = cell.lblContent!.sizeThatFits(cell.lblContent!.frame.size)
@@ -174,7 +168,15 @@ class FindViewController: UIViewController, UITableViewDelegate,UITableViewDataS
         cell.mainView?.tag = 1000 + indexPath.row
         cell.likeBtn?.tag = 2000 + indexPath.row
         cell.shareBtn?.tag = 3000 + indexPath.row
+        cell.shareBtn?.addTarget(self, action: "clickShareBtn", forControlEvents: UIControlEvents.TouchUpOutside)
         cell.delegate = self
+        
+        let tag_id = item.objectForKey("tag_id") as! String
+        let tag_arr = get_tag_name_by_tag_id(tag_id)
+        if(tag_arr.count == 2){
+            cell.lblTag?.text = tag_arr[0] as? String
+            cell.lblTag?.backgroundColor = tag_arr[1] as? UIColor
+        }
         return cell
     }
     
@@ -212,7 +214,8 @@ class FindViewController: UIViewController, UITableViewDelegate,UITableViewDataS
     }
     
     func refreshWeiboData(){
-    
+        println("pull info datas")
+        fetchArticals()
         self.pullRefreshControl!.endRefreshing()
     }
     
@@ -227,19 +230,6 @@ class FindViewController: UIViewController, UITableViewDelegate,UITableViewDataS
     
     func adViewDidReceiveAd(view: GADBannerView!) {
         
-//        UIView.animateWithDuration(0.3, delay: 0.0, options:UIViewAnimationOptions.TransitionFlipFromBottom, animations:{
-//            let bannerFrame = view.frame
-//            println("ads receive")
-//            
-//            var frame = self.pullRefreshControl?.frame
-//            frame?.origin.y = bannerFrame.size.height
-//            frame = self.infoTableView!.frame
-//            frame?.origin.y += 20
-//            frame?.size.height -= 40
-////            self.infoTableView?.frame = frame!
-//            }, completion:{(BOOL isFinished) in
-//                
-//        })
     }
     
     func clickMainView(sender:UITapGestureRecognizer) {
@@ -252,31 +242,33 @@ class FindViewController: UIViewController, UITableViewDelegate,UITableViewDataS
         self.navigationController?.pushViewController(infoDetailViewController, animated: true)
     }
     
-    func clickLikeBtn(tag:Int) {
+    func clickLikeBtn(tag:Int, cell:InfoListItemCell) {
         let item = self.infoList?.objectAtIndex(tag - 2000) as! AVObject
         var query = AVQuery(className: "Infos")
         let objId = item.objectForKey("objectId") as? String
-        query.getObjectInBackgroundWithId(objId, block: {(obj:AVObject!,error:NSError!) in
+        var likes = 0
+        query.getObjectInBackgroundWithId(objId!, block: {(obj:AVObject!,error:NSError!) in
             if(error == nil){
-                var likes = obj.objectForKey("likes_count") as! Int
+                likes = obj.objectForKey("likes_count") as! Int
                 likes++
                 obj.setObject(likes, forKey: "likes_count")
                 obj.saveInBackgroundWithBlock({(flag:Bool,error:NSError!) in
-                    
+                    cell.lblLike?.text = "赞(\(likes))"
                 })
             }
         })
     }
     
-    func clickShareBtn(tag: Int) {
+    func clickShareBtn(tag: Int, cell:InfoListItemCell) {
         let item = self.infoList?.objectAtIndex(tag - 3000) as! AVObject
         let content = item.objectForKey("content") as? String
         UMSocialSnsService.presentSnsIconSheetView(self, appKey: kUMKey, shareText: content!, shareImage: nil, shareToSnsNames: [UMShareToSina,UMShareToWechatSession,UMShareToWechatTimeline,UMShareToTencent,UMShareToQzone,UMShareToQQ,UMShareToEmail], delegate: self)
         var query = AVQuery(className: "Infos")
         let objId = item.objectForKey("objectId") as? String
-        query.getObjectInBackgroundWithId(objId, block: {(obj:AVObject!,error:NSError!) in
+        var shared = 0
+        query.getObjectInBackgroundWithId(objId!, block: {(obj:AVObject!,error:NSError!) in
             if(error == nil){
-                var shared = obj.objectForKey("shared_count") as! Int
+                shared = obj.objectForKey("shared_count") as! Int
                 shared++
                 obj.setObject(shared, forKey: "shared_count")
                 obj.saveInBackgroundWithBlock({(flag:Bool,error:NSError!) in
@@ -287,7 +279,7 @@ class FindViewController: UIViewController, UITableViewDelegate,UITableViewDataS
     }
     
     func didFinishGetUMSocialDataInViewController(response: UMSocialResponseEntity!) {
-//        println(response)
+            fetchArticals()
     }
 }
 
