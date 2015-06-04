@@ -176,7 +176,6 @@ class NewClothViewController: UIViewController,UIPickerViewDelegate,UIPickerView
     }
     
     @IBAction func clickBackBtn(){
-        println("back")
         self.dismissViewControllerAnimated(true, completion: {})
     }
     

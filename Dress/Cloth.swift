@@ -23,9 +23,5 @@ class Cloth {
         
     }
     
-    func add() {
-        
-    }
-    
     
 }

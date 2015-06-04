@@ -93,7 +93,7 @@ class ClothViewController: UIViewController, NewClothViewControllerDelegate,UICo
             scrollView.showsVerticalScrollIndicator = false
             scrollView.autoresizingMask = UIViewAutoresizing.FlexibleWidth | UIViewAutoresizing.FlexibleHeight
             scrollView.showsHorizontalScrollIndicator = false
-            
+            scrollView.decelerationRate = 0.3
             self.tagsView!.addSubview(scrollView)
             
             var sWidth:CGFloat = 0.0
