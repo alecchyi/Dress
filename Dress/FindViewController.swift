@@ -13,6 +13,8 @@ class FindViewController: UIViewController, UITableViewDelegate,UITableViewDataS
 
     @IBOutlet var infoTableView:UITableView?
     @IBOutlet var _bannerView:GADBannerView?
+    @IBOutlet var advImgView:UIImageView?
+    
     var infoList:NSMutableArray?
     var pullRefreshControl:UIRefreshControl?
     var protoptypeCell:InfoListItemCell?

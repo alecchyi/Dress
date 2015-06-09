@@ -34,11 +34,10 @@ class PersonalViewController: UIViewController,UITableViewDataSource,UITableView
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         var frame = self.detailTableView?.frame
-        println(frame)
         frame?.size.height = get_screen_height() - 140 - 64 - 44
-        self.detailTableView?.frame = frame!
-        self.detailTableView?.contentSize = CGSizeMake(320, 320)
-        println(self.detailTableView?.frame)
+//        self.detailTableView?.frame = frame!
+//        self.detailTableView?.contentSize = CGSizeMake(320, 320)
+//        println(self.detailTableView?.frame)
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -51,7 +50,11 @@ class PersonalViewController: UIViewController,UITableViewDataSource,UITableView
                     self.profileImg!.image = image
                 })
             }
-            self.lblNickname?.text = (currentUser?.objectForKey("nickname") as! String)
+            var nickname:String = ""
+            if((currentUser.objectForKey("nickname")) != nil) {
+                nickname = currentUser?.objectForKey("nickname") as! String
+            }
+            self.lblNickname?.text = nickname
             let followers_count:Int = (currentUser?.objectForKey("followers_count") as! Int)
             self.lblFollowersNum?.text = "粉丝\n\(followers_count)"
             let friends:Int = (currentUser?.objectForKey("friends_count") as! Int)
