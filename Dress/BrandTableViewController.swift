@@ -32,45 +32,49 @@ class BrandTableViewController: UITableViewController,UITableViewDelegate,UITabl
     
     
     override func viewWillAppear(animated: Bool) {
+        self.selectedInfos = NSMutableArray()
         var innerQuery = AVQuery(className: "Brands")
-        var brands:NSArray = innerQuery.findObjects()
-        var query = AVQuery(className: "_File")
-        query.whereKey("objectId", matchesKey: "logo_file_id", inQuery: innerQuery)
-        query.findObjectsInBackgroundWithBlock({(objs:[AnyObject]!,error:NSError!) in
-            if(error != nil){
-                println(error)
-            }else{
-                var infos:NSMutableArray = NSMutableArray()
-                var files:NSMutableArray = NSMutableArray(array: objs)
-                for(var i=0;i<files.count;i++){
-                    var file: AnyObject = files.objectAtIndex(i)
-                    var item = NSMutableDictionary()
-                    item.setValue(file, forKey: "brand_logo")
-                    for(var j=0;j<brands.count;j++){
-                        let brand: AVObject = brands.objectAtIndex(j) as! AVObject
-                        if((brand.objectForKey("logo_file_id") as! String) == (file.objectForKey("objectId") as! String)){
-                            item.setValue(brand.objectForKey("name"), forKey: "brand_name")
-                            item.setValue(brand.objectForKey("objectId"), forKey: "brand_id")
-                            infos.addObject(item)
-                            break
+        if(is_network_connected()){
+            var brands:NSArray = innerQuery.findObjects()
+            var query = AVQuery(className: "_File")
+            query.whereKey("objectId", matchesKey: "logo_file_id", inQuery: innerQuery)
+            query.findObjectsInBackgroundWithBlock({(objs:[AnyObject]!,error:NSError!) in
+                if(error != nil){
+                    println(error)
+                }else{
+                    var infos:NSMutableArray = NSMutableArray()
+                    var files:NSMutableArray = NSMutableArray(array: objs)
+                    for(var i=0;i<files.count;i++){
+                        var file: AnyObject = files.objectAtIndex(i)
+                        var item = NSMutableDictionary()
+                        item.setValue(file, forKey: "brand_logo")
+                        for(var j=0;j<brands.count;j++){
+                            let brand: AVObject = brands.objectAtIndex(j) as! AVObject
+                            if((brand.objectForKey("logo_file_id") as! String) == (file.objectForKey("objectId") as! String)){
+                                item.setValue(brand.objectForKey("name"), forKey: "brand_name")
+                                item.setValue(brand.objectForKey("objectId"), forKey: "brand_id")
+                                infos.addObject(item)
+                                break
+                            }
                         }
                     }
+                    self.infoList = NSMutableArray(array: infos)
+                    self.infoTableView?.reloadData()
                 }
-                self.infoList = NSMutableArray(array: infos)
-                self.infoTableView?.reloadData()
-            }
-        })
-        self.selectedInfos = NSMutableArray()
+            })
+            
+            
+            query = AVQuery(className: "UserBrands")
+            query.whereKey("user_id", equalTo: DataService.shareService.userToken!)
+            query.getFirstObjectInBackgroundWithBlock({(obj:AnyObject!,error:NSError!) in
+                if(error == nil){
+                    let brands = obj.objectForKey("brands") as! NSArray
+                    self.selectedInfos = NSMutableArray(array: brands)
+                    self.infoTableView?.reloadData()
+                }
+            })
+        }
         
-        query = AVQuery(className: "UserBrands")
-        query.whereKey("user_id", equalTo: DataService.shareService.userToken!)
-        query.getFirstObjectInBackgroundWithBlock({(obj:AnyObject!,error:NSError!) in
-            if(error == nil){
-                let brands = obj.objectForKey("brands") as! NSArray
-                self.selectedInfos = NSMutableArray(array: brands)
-                self.infoTableView?.reloadData()
-            }
-        })
     }
 
     override func didReceiveMemoryWarning() {
@@ -148,21 +152,23 @@ class BrandTableViewController: UITableViewController,UITableViewDelegate,UITabl
 
     override func viewWillDisappear(animated: Bool) {
 //        println(self.selectedInfos)
-        var query = AVQuery(className: "UserBrands")
-        query.whereKey("user_id", equalTo: DataService.shareService.userToken!)
-        query.getFirstObjectInBackgroundWithBlock({(obj:AVObject!,error:NSError!) in
-            var user_brands = AVObject(className: "UserBrands")
-            if(error == nil){
-                obj.deleteInBackground()
-            }
-            
-            if(self.selectedInfos!.count > 0){
-                user_brands.setObject(DataService.shareService.userToken!, forKey: "user_id")
-                user_brands.addUniqueObjectsFromArray(self.selectedInfos! as [AnyObject], forKey: "brands")
-                user_brands.saveInBackground()
-            }
-            
-        })
-
+        if(is_network_connected()){
+        
+            var query = AVQuery(className: "UserBrands")
+            query.whereKey("user_id", equalTo: DataService.shareService.userToken!)
+            query.getFirstObjectInBackgroundWithBlock({(obj:AVObject!,error:NSError!) in
+                var user_brands = AVObject(className: "UserBrands")
+                if(error == nil){
+                    obj.deleteInBackground()
+                }
+                
+                if(self.selectedInfos!.count > 0){
+                    user_brands.setObject(DataService.shareService.userToken!, forKey: "user_id")
+                    user_brands.addUniqueObjectsFromArray(self.selectedInfos! as [AnyObject], forKey: "brands")
+                    user_brands.saveInBackground()
+                }
+                
+            })
+        }
     }
 }

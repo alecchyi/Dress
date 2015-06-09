@@ -60,21 +60,22 @@ class StyleTableViewController: UITableViewController,UITableViewDataSource,UITa
     }
     
     override func viewWillDisappear(animated: Bool) {
-        var query = AVQuery(className: "UserTags")
-        query.whereKey("user_id", equalTo: DataService.shareService.userToken!)
-        query.getFirstObjectInBackgroundWithBlock({(obj:AVObject!,error:NSError!) in
-            var user_tags = AVObject(className: "UserTags")
-            if(error == nil){
-                obj.deleteInBackground()
-            }
-            if(self.selectedInfos!.count > 0){
-                user_tags.setObject(DataService.shareService.userToken!, forKey: "user_id")
-                user_tags.addUniqueObjectsFromArray(self.selectedInfos! as [AnyObject], forKey: "tags")
-                user_tags.saveInBackground()
-            }
-            
-        })
-        
+        if(is_network_connected()){
+            var query = AVQuery(className: "UserTags")
+            query.whereKey("user_id", equalTo: DataService.shareService.userToken!)
+            query.getFirstObjectInBackgroundWithBlock({(obj:AVObject!,error:NSError!) in
+                var user_tags = AVObject(className: "UserTags")
+                if(error == nil){
+                    obj.deleteInBackground()
+                }
+                if(self.selectedInfos!.count > 0){
+                    user_tags.setObject(DataService.shareService.userToken!, forKey: "user_id")
+                    user_tags.addUniqueObjectsFromArray(self.selectedInfos! as [AnyObject], forKey: "tags")
+                    user_tags.saveInBackground()
+                }
+                
+            })
+        }
     }
 
     override func didReceiveMemoryWarning() {
