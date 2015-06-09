@@ -49,13 +49,14 @@ class NewClothViewController: UIViewController,UIPickerViewDelegate,UIPickerView
         
         initClothView()
         initTagView()
+        initADView()
         
         
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        initADView()
+        
     }
     
     func initClothView(){
@@ -76,7 +77,7 @@ class NewClothViewController: UIViewController,UIPickerViewDelegate,UIPickerView
         scrollView.showsVerticalScrollIndicator = false
         scrollView.autoresizingMask = UIViewAutoresizing.FlexibleWidth | UIViewAutoresizing.FlexibleHeight
         scrollView.showsHorizontalScrollIndicator = false
-        
+        scrollView.decelerationRate = 0.3
         self.tagsView!.addSubview(scrollView)
         
         var sWidth:CGFloat = 0.0
@@ -110,13 +111,12 @@ class NewClothViewController: UIViewController,UIPickerViewDelegate,UIPickerView
         frame.origin.y = frame.size.height - 50
         frame.size.height = 50
         frame.origin.x = 0
-        println(frame)
         self._bannerView?.frame = frame
         self._bannerView?.adUnitID = APP_NEW_CLOTH_ADMOB_AD_UNIT_ID
         self._bannerView?.rootViewController = self
         self._bannerView?.delegate = self
         var request = GADRequest()
-        request.testDevices = ["5B95C192-07BA-49FD-B572-AA23540AD9E0","cc95f15c6a339431d0d16e3184949be81f2"]
+        request.testDevices = ["5B95C192-07BA-49FD-B572-AA23540AD9E0"]
         
         self._bannerView?.loadRequest(request)
     }
@@ -148,7 +148,6 @@ class NewClothViewController: UIViewController,UIPickerViewDelegate,UIPickerView
 
     
     @IBAction func clickSaveBtn(){
-        println("saving")
         if(self._picPath == nil){
             var alert = UIAlertView(title: "提示", message: "请选择衣服照片", delegate: nil, cancelButtonTitle: nil, otherButtonTitles: "好")
             alert.show()

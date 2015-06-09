@@ -85,6 +85,10 @@ class BrandTableViewController: UITableViewController,UITableViewDelegate,UITabl
         // Return the number of sections.
         return 1
     }
+    
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 50
+    }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if let infos = self.infoList {
@@ -108,9 +112,10 @@ class BrandTableViewController: UITableViewController,UITableViewDelegate,UITabl
         cell?.imageView?.image = UIImage(named: "default_head")
         cell?.imageView?.contentMode = UIViewContentMode.ScaleAspectFit
         cell?.selectionStyle = UITableViewCellSelectionStyle.None
+//        cell?.backgroundColor = UIColor.blueColor()
         let logo = item.objectForKey("brand_logo") as! AVObject
         var file:AVFile = AVFile.fileWithURL((logo.objectForKey("url") as! String)) as! AVFile
-        file.getThumbnail(true, width: 240, height: 240, withBlock: {(img:UIImage!, error:NSError!) in
+        file.getThumbnail(true, width: 120, height: 120, withBlock: {(img:UIImage!, error:NSError!) in
             if(error == nil){
                 cell?.imageView?.image = img
             }else{

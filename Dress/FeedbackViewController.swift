@@ -35,8 +35,11 @@ class FeedbackViewController: UIViewController,UITextViewDelegate,GADBannerViewD
         
     }
     
+    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
+        self.feedbackView?.resignFirstResponder()
+    }
+    
     func adViewDidReceiveAd(view: GADBannerView!) {
-        println("ads feedback")
         var frame = view.frame
         let h = self.view.bounds.size.height
         frame.origin.y = h - 100
