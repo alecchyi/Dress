@@ -180,18 +180,42 @@ class NewClothViewController: UIViewController,UIPickerViewDelegate,UIPickerView
     
     @IBAction func clickPhotoBtn(){
         hideToolBar()
+        var alert = UIAlertController(title: "选择照片", message: "", preferredStyle: .ActionSheet)
+        var imgPicker = UIImagePickerController()
+        imgPicker.delegate = self
+        imgPicker.allowsEditing = true
+        
         var sheet:UIActionSheet = UIActionSheet()
         if(UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera)){
-            sheet.addButtonWithTitle("取消")
-            sheet.addButtonWithTitle("拍照")
-            sheet.addButtonWithTitle("相册")
-            sheet.title = "选择照片"
-            sheet.delegate = self
-        }else{
-            sheet = UIActionSheet(title: "选择照片", delegate:self, cancelButtonTitle:nil, destructiveButtonTitle:"取消",otherButtonTitles:"相册")
+//            sheet.addButtonWithTitle("取消")
+//            sheet.addButtonWithTitle("拍照")
+//            sheet.addButtonWithTitle("相册")
+//            sheet.title = "选择照片"
+//            sheet.delegate = self
+            let cameraAction = UIAlertAction(title: "拍照", style: UIAlertActionStyle.Default, handler: {
+                (action:UIAlertAction!) -> Void in
+                imgPicker.sourceType = UIImagePickerControllerSourceType.Camera
+                self.presentViewController(imgPicker, animated: true, completion: {
+                    
+                })
+            })
+            alert.addAction(cameraAction)
+//        }else{
+//            sheet = UIActionSheet(title: "选择照片", delegate:self, cancelButtonTitle:nil, destructiveButtonTitle:"取消",otherButtonTitles:"相册")
         }
+        let photoAction = UIAlertAction(title: "相册", style: UIAlertActionStyle.Default, handler: {
+            (action:UIAlertAction!) -> Void in
+            imgPicker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
+            self.presentViewController(imgPicker, animated: true, completion: {
+                
+            })
+        })
+        alert.addAction(photoAction)
         
-        sheet.showInView(self.view)
+        let cancelAction = UIAlertAction(title: "取消", style: UIAlertActionStyle.Cancel, handler: nil)
+        alert.addAction(cancelAction)
+        self.presentViewController(alert, animated: true, completion: nil)
+//        sheet.showInView(self.view)
     }
     
     func actionSheet(actionSheet: UIActionSheet, clickedButtonAtIndex buttonIndex: Int) {

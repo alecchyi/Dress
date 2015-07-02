@@ -8,7 +8,7 @@
 
 import UIKit
 
-class HelpViewController: UIViewController {
+class HelpViewController: UIViewController,UIWebViewDelegate {
     
     @IBOutlet var helpWebView:UIWebView?
 
@@ -52,9 +52,21 @@ class HelpViewController: UIViewController {
             if(obj == nil){
                 self.helpWebView?.loadHTMLString("<p style='text-align:center;'>数据读取有误</p>", baseURL: url)
             }else{
-                self.helpWebView?.loadHTMLString(obj.objectForKey("detail") as! String, baseURL: url)
+                MBProgressHUD.showHUDAddedTo(self.view, animated: true)
+                let helperString:String = obj.objectForKey("detail") as! String
+                let helperUrl:NSURL = NSURL(string: helperString)!
+                self.helpWebView?.loadRequest(NSURLRequest(URL: helperUrl, cachePolicy: NSURLRequestCachePolicy.ReloadRevalidatingCacheData, timeoutInterval: 30))
             }
         })
+        
+        
     }
 
+    func webViewDidFinishLoad(webView: UIWebView) {
+        MBProgressHUD.hideHUDForView(self.view, animated: true)
+    }
+    
+    func webView(webView: UIWebView, didFailLoadWithError error: NSError) {
+        MBProgressHUD.hideHUDForView(self.view, animated: true)
+    }
 }

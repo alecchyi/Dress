@@ -29,9 +29,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WeiboSDKDelegate {
         
         //add umeng api
         UMSocialData.setAppKey(kUMKey)
-        UMSocialWechatHandler.setWXAppId(kWeChatAppId, appSecret: kWeChatSecret, url: "http://www.baidu.com")
+        UMSocialWechatHandler.setWXAppId(kWeChatAppId, appSecret: kWeChatSecret, url: "https://dn-dress.qbox.me/index.html")
         UMSocialSinaHandler.openSSOWithRedirectURL("http://sns.whalecloud.com/sina2/callback")
-        UMSocialQQHandler.setQQWithAppId(kQQAppId, appKey: kQQKey, url: "http://www.baidu.com")
+        UMSocialQQHandler.setQQWithAppId(kQQAppId, appKey: kQQKey, url: "https://dn-dress.qbox.me/index.html")
         
         return true
     }
