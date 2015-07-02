@@ -60,7 +60,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WeiboSDKDelegate {
 
 
     func application(application: UIApplication, handleOpenURL url: NSURL) -> Bool {
-        println(url)
         let str:String = url.scheme! as String
         if(str.hasPrefix(kWeChatAppId) || str.hasPrefix("tencent")){
             return UMSocialSnsService.handleOpenURL(url)
@@ -84,16 +83,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WeiboSDKDelegate {
     func didReceiveWeiboResponse(response: WBBaseResponse!) {
         if(response.isKindOfClass(WBAuthorizeResponse.self)){
             if(response.statusCode == WeiboSDKResponseStatusCode.Success){
-                let resp = response as! WBAuthorizeResponse
-                
-                println(resp.userID!)
+                let resp = response as! WBAuthorizeResponse                
+//                println(resp.userID!)
                 let userInfo:NSDictionary = resp.userInfo as NSDictionary
                 userLogin(userInfo, 1)
             }
-            
-            println("3eeeeee")
-            
-            
+
         }
     }
     
@@ -107,11 +102,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WeiboSDKDelegate {
     }
     
     func dismissLoginView(){
-        println("dismiss login view")
         let mainStoryBoard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
         let rootViewController = mainStoryBoard.instantiateViewControllerWithIdentifier("rootTabViewController") as! UITabBarController
-//        ((UITabBarItem *)rootViewController.tabBar.items[0]).selectedImage = [UIImage imageNamed:@"light_filled"]
-//        (rootViewController.tabBar.items![0] as UITabBarItem).selectedImage = UIImage(named: "weather_icon")
+
         self.window!.rootViewController = rootViewController
     }
     

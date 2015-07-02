@@ -17,6 +17,7 @@ let kWeiboOpeatorId = "5421836100"
 let kDBName = "data.db"
 let kSeasons = ["春季","夏季","秋季","冬季"]
 let kCategories = ["帽子","上衣","裤子","鞋子"]
+let kShareWords = "嗨，伙伴们，我在使用小衣橱，有它每天穿衣不用愁！"
 
 func gen_uuid() -> String? {
     var uuid = NSUUID()
@@ -42,7 +43,6 @@ func formateCurDate() -> NSString{
 }
 
 func saveUser(user:NSDictionary) -> Bool{
-//    println("=======================")
 //    println(user)
     var query = AVUser.query()
     let loginType:AnyObject? = user.objectForKey("loginType")
@@ -90,7 +90,7 @@ func saveUser(user:NSDictionary) -> Bool{
                         currentUser.setObject(clothes_count!, forKey: "clothes_count")
                     }
                     let shared_count:AnyObject? = user.objectForKey("shared_count")
-                    if(shared_count != nil) {
+                    if(shared_count != nil && (shared_count as! Int) > 0) {
                         currentUser.setObject(shared_count!, forKey: "shared_count")
                     }
                     if(login_type == "sina_weibo"){
@@ -261,7 +261,6 @@ func saveUser(user:NSDictionary) -> Bool{
                                     })
                                 },
                                 failure: {(operation:AFHTTPRequestOperation!, error:NSError!) in
-                                    println("fetch user error in resg")
                                     println(error)
                             })
                         }
@@ -372,14 +371,11 @@ func fetchSystemTags(){
                         tag.setValue(item.objectForKey("tagId"), forKey: "tagId")
                         allTags.addObject(tag)
                     }
-                    println("fectch tag success")
                     allTags.writeToFile(DataService.shareService.getTagsPlist(), atomically: true)
                 }else{
                     println(err)
                 }
             })
-        }else{
-            println("fetch system tags error")
         }
     })
     
@@ -426,26 +422,6 @@ func set_user_token(loginType:String,uid:String) -> String{
 
 func updateCurrentUserData(type:String){
     if(DataService.shareService.userToken != nil){
-//        var users = NSMutableArray(contentsOfFile: DataService.shareService.getUsersPlist())
-//        let token:String = DataService.shareService.userToken! as String
-//        println(token)
-//        if(users != nil){
-//            for(var i=0;i<users!.count;i++){
-//                var item:NSMutableDictionary = users?.objectAtIndex(i) as NSMutableDictionary
-////                println(item.objectForKey("userToken"))
-//                if((item.objectForKey("userToken") as String) == token){
-//                    if(type=="update_share_num"){
-//                        var num:Int = item.objectForKey("shared_count") as Int
-//                        item.setValue(num + 1, forKey: "shared_count")
-//                    }
-//                    DataService.shareService.currentUser = item
-//                    
-//                    println("update share num")
-//                    break
-//                }
-//            }
-//        }
-//        users!.writeToFile(DataService.shareService.getUsersPlist(), atomically: true)
         var currentUser = AVUser.currentUser()
         if(type=="update_share_num"){
             var num:Int = currentUser.objectForKey("shared_count") as! Int

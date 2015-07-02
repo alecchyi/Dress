@@ -17,6 +17,7 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate,UMSocia
     @IBOutlet var headerImgView:UIImageView?
     @IBOutlet var shirtImgView:UIImageView?
     @IBOutlet var trouserImgView:UIImageView?
+    @IBOutlet var leftItemBtn:UIBarButtonItem?
     
     var recommandedClothes:NSArray?
     var headerIdx:Int = 0
@@ -148,7 +149,7 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate,UMSocia
         if let clothes = self.recommandedClothes {
             var headerArr: NSArray = self.recommandedClothes?.objectAtIndex(0) as! NSArray
             if(headerArr.count==0){
-                println("no hat")
+                self.headerImgView!.image = UIImage(named: "hat_icon")
             }else{
                 if(sender.direction == UISwipeGestureRecognizerDirection.Left){
                     self.headerIdx++
@@ -175,7 +176,7 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate,UMSocia
         if let clothes = self.recommandedClothes {
             var arr: NSArray = self.recommandedClothes?.objectAtIndex(1) as! NSArray!
             if(arr.count==0){
-                println("no shirt")
+                self.shirtImgView!.image = UIImage(named: "shirt_icon")
             }else{
                 if(sender.direction == UISwipeGestureRecognizerDirection.Left){
                     self.shirtIdx++
@@ -201,7 +202,7 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate,UMSocia
         if let clothes = self.recommandedClothes {
             var arr: NSArray = self.recommandedClothes?.objectAtIndex(2) as! NSArray
             if(arr.count==0){
-                println("no trouser")
+                self.trouserImgView!.image = UIImage(named: "trousers_icon")
             }else{
                 if(sender.direction == UISwipeGestureRecognizerDirection.Left){
                     self.trouserIdx++
@@ -224,9 +225,7 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate,UMSocia
     
     func initClothesData(){
         if let weather = DataService.shareService.weather {
-            if(DataService.shareService.userToken != nil){
-                self.recommandedClothes = DataService.shareService.getRecommandClothes(DataService.shareService.weather!)
-            }
+            setClothesData()
         }else{
           println("no weather data")
         }
@@ -266,7 +265,7 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate,UMSocia
             let str = NSURL(fileURLWithPath: url!)
             UMSocialData.defaultData().urlResource.setResourceType(UMSocialUrlResourceTypeImage, url: str!.absoluteString)
             UMSocialData.defaultData().extConfig.wechatSessionData.url = "https://dn-dress.qbox.me/index.html"
-            UMSocialSnsService.presentSnsIconSheetView(self, appKey: kUMKey, shareText: "share words", shareImage: nil, shareToSnsNames: [UMShareToSina,UMShareToWechatSession,UMShareToWechatTimeline,UMShareToTencent,UMShareToQzone,UMShareToQQ,UMShareToEmail], delegate: self)
+            UMSocialSnsService.presentSnsIconSheetView(self, appKey: kUMKey, shareText: kShareWords, shareImage: nil, shareToSnsNames: [UMShareToSina,UMShareToWechatSession,UMShareToWechatTimeline,UMShareToTencent,UMShareToQzone,UMShareToQQ,UMShareToEmail], delegate: self)
         }
     }
     
@@ -351,7 +350,6 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate,UMSocia
             DataService.shareService.setWeather(weather)
             var weatherList = NSArray(contentsOfFile: DataService.shareService.getWeatherPlist()) as NSArray!
             var newList = NSMutableArray()
-//            println(weatherList)
             if(weatherList == nil){
                 newList.addObject(weather)
             }else{
@@ -367,9 +365,7 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate,UMSocia
                 }
             }
             newList.writeToFile(DataService.shareService.getWeatherPlist(), atomically: true)
-            if(DataService.shareService.userToken != nil){
-                self.recommandedClothes = DataService.shareService.getRecommandClothes(DataService.shareService.weather!)
-            }
+            setClothesData()
             
         }else{
             println("weather status error")
@@ -412,10 +408,8 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate,UMSocia
         UIGraphicsEndImageContext()
         
         if(img != nil){
-            println("has img")
             return img!
         }
-        println("no capture img")
         return img
         
     }
@@ -432,5 +426,32 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate,UMSocia
         var imgViewer = JTSImageViewController(imageInfo: info, mode: JTSImageViewControllerMode.Image, backgroundStyle: JTSImageViewControllerBackgroundOptions.Scaled)
         
         imgViewer.showFromViewController(self, transition: JTSImageViewControllerTransition._FromOriginalPosition)
+    }
+    
+    @IBAction func clickTipBtn(sender: UIButton) {
+        self.clothesMainView?.makeToast(message: "左右滑动图片切换衣服", duration: 2.0, position: HRToastPositionCenter)
+    }
+    
+    @IBAction func clickLeftItemBtn(sender: UIBarButtonItem) {
+        let title = sender.title
+        if(title == "全部"){
+            sender.title = "推荐"
+        }else{
+            sender.title = "全部"
+        }
+        setClothesData()
+    }
+    
+    func setClothesData() {
+        self.headerIdx = 0
+        self.shirtIdx = 0
+        self.trouserIdx = 0
+        if(DataService.shareService.userToken != nil){
+            self.recommandedClothes = DataService.shareService.getRecommandClothes(DataService.shareService.weather!, dataType:0)
+            let title = self.leftItemBtn?.title
+            if(title == "全部"){
+                self.recommandedClothes = DataService.shareService.getRecommandClothes(DataService.shareService.weather!, dataType:1)
+            }
+        }
     }
 }

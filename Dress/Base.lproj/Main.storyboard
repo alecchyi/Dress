@@ -79,19 +79,38 @@
                                         <rect key="frame" x="115" y="27" width="90" height="40"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="detailDisclosure" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vOB-l6-p8s" userLabel="tip_icon">
+                                        <rect key="frame" x="282" y="8" width="22" height="22"/>
+                                        <accessibility key="accessibilityConfiguration" label=""/>
+                                        <state key="normal">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="clickTipBtn:" destination="Y6G-ba-LOl" eventType="touchUpInside" id="mqc-Tu-luH"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="看天气，选衣服" id="F4w-FL-Wjz"/>
+                    <navigationItem key="navigationItem" title="看天气，选衣服" id="F4w-FL-Wjz">
+                        <barButtonItem key="leftBarButtonItem" title="推荐" id="Q0d-7F-Z2A">
+                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="clickLeftItemBtn:" destination="Y6G-ba-LOl" id="6WO-Dj-Def"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="600"/>
                     <connections>
                         <outlet property="clothesMainView" destination="dtf-JX-LSX" id="oT5-ZF-LUH"/>
                         <outlet property="headerImgView" destination="jRU-cp-aQY" id="4tO-b5-IZa"/>
+                        <outlet property="leftItemBtn" destination="Q0d-7F-Z2A" id="djP-wm-16L"/>
                         <outlet property="shirtImgView" destination="4r3-48-CqP" id="p9w-oT-q14"/>
                         <outlet property="trouserImgView" destination="HE1-s2-8CB" id="MqM-QA-B1q"/>
+                        <outlet property="view" destination="LCL-vd-mqp" id="oDP-w4-bdL"/>
                         <outlet property="weatherView" destination="XHK-17-Km5" id="g2f-id-Au3"/>
                     </connections>
                 </viewController>

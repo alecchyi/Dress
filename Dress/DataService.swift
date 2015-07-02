@@ -116,7 +116,7 @@ class DataService {
         return path
     }
     
-    func getRecommandClothes(data:NSMutableDictionary?) -> NSArray? {
+    func getRecommandClothes(data:NSMutableDictionary?, dataType:Int) -> NSArray? {
 
         var weather:Weather = Weather(data: data!)
         let result = weather.anlysic() as NSArray!
@@ -130,8 +130,8 @@ class DataService {
             for cloth in myClothes! {
                 let season = cloth.objectForKey("season") as! Int
                 let type = cloth.objectForKey("type") as! Int
-                if(season == (result!.objectAtIndex(1) as! Int)){
-                    if(type == 0 && (result!.objectAtIndex(0) as! Int) == 1){
+                if(dataType == 1){
+                    if(type == 0){
                         headArr.addObject(cloth)
                     }else if(type == 1){
                         shirtArr.addObject(cloth)
@@ -139,6 +139,18 @@ class DataService {
                         trouserArr.addObject(cloth)
                     }else if(type == 3){
                         shoesArr.addObject(cloth)
+                    }
+                }else{
+                    if(season == (result!.objectAtIndex(1) as! Int)){
+                        if(type == 0){
+                            headArr.addObject(cloth)
+                        }else if(type == 1){
+                            shirtArr.addObject(cloth)
+                        }else if(type == 2){
+                            trouserArr.addObject(cloth)
+                        }else if(type == 3){
+                            shoesArr.addObject(cloth)
+                        }
                     }
                 }
             }
