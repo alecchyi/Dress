@@ -23,6 +23,7 @@
 
 #define kAppKeyForWeibo @"292424940"
 #define kWeiboRedirectURL @"https://api.weibo.com/oauth2/default.html"
+#define kShareRedirectUrl @"https://dn-dress.qbox.me/index.html"
 
 #define kUMKey @"548f99f4fd98c55e540004b9"
 #define kWeChatSecret @"8d7c1d1b2c56543c5ae86b426c354efb"
@@ -38,3 +39,8 @@
 #define APP_DISCOVER_ADMOB_AD_UNIT_ID @"ca-app-pub-5080103747035592/5088008268"
 #define APP_FEEDBACK_ADMOB_AD_UNIT_ID @"ca-app-pub-5080103747035592/8327349464"
 #define APP_NEW_CLOTH_ADMOB_AD_UNIT_ID @"ca-app-pub-5080103747035592/5908480669"
+
+
+#ifdef MY_DEBUG
+
+#endif
