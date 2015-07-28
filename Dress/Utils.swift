@@ -50,18 +50,24 @@ func saveUser(user:NSDictionary) -> Bool{
         query.whereKey("weibo_id", equalTo:user.objectForKey("weibo_uid")!)
     }else if((loginType as? String) == "tencent_qq"){
         query.whereKey("qq_id", equalTo:user.objectForKey("qq_uid")!)
+    }else if((loginType as? String) == "register"){
+        query.whereKey("username", equalTo:user.objectForKey("username")!)
     }
 
     query.getFirstObjectInBackgroundWithBlock({(user_info:AVObject!,error:NSError!) in
         if(error == nil){
             var login_type:String = user_info.objectForKey("login_type") as! String
             var username:AnyObject?
+            var pwd:AnyObject? = "123456"
             if(login_type == "sina_weibo"){
                 username = user_info.objectForKey("weibo_id")
-            }else{
+            }else if(login_type == "tencent_qq"){
                 username = user_info.objectForKey("qq_id")
+            }else{
+                username = user_info.objectForKey("username")
+                pwd = user_info.objectForKey("password")
             }
-            AVUser.logInWithUsernameInBackground("\(username!)", password: "123456", block: {(obj:AVUser!,error:NSError!) in
+            AVUser.logInWithUsernameInBackground("\(username!)", password: "\(pwd)", block: {(obj:AVUser!,error:NSError!) in
                 if(error == nil){
                     println("succcss login with av")
                     var currentUser = AVUser.currentUser()
@@ -163,11 +169,12 @@ func saveUser(user:NSDictionary) -> Bool{
                     
                 }else{
                     println("login error")
+                    NSNotificationCenter.defaultCenter().postNotificationName("loginFailure", object: nil)
                 }
                 
             })
             
-        }else{
+        }else if((loginType as? String) != "register"){
             var newUser = AVUser()
             let uuid = gen_uuid()
             newUser.setObject(uuid!, forKey: "userToken")
@@ -271,6 +278,8 @@ func saveUser(user:NSDictionary) -> Bool{
                     println("register bad")
                 }
             })
+        }else{
+            NSNotificationCenter.defaultCenter().postNotificationName("loginFailure", object: nil)
         }
     })
 
@@ -293,6 +302,14 @@ func userLogin(data:NSDictionary, type:Int){
         user.setValue(data.objectForKey("uid"), forKey: "qq_uid")
         user.setValue(data.objectForKey("nickname"), forKey: "nickname")
         user.setValue(data.objectForKey("profile_image_url"), forKey: "profile_image_url")
+        user.setValue(0, forKey: "followers_count")
+        user.setValue(0, forKey: "friends_count")
+        user.setValue(0, forKey: "shared_count")
+        saveUser(user)
+    }else if(type == 3){
+        //login with phone number
+        user.setValue("register", forKey: "loginType")
+        user.setValue(data.objectForKey("username"), forKey: "nickname")
         user.setValue(0, forKey: "followers_count")
         user.setValue(0, forKey: "friends_count")
         user.setValue(0, forKey: "shared_count")

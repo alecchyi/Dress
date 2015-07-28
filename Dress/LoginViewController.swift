@@ -14,17 +14,21 @@ class LoginViewController: UIViewController,GADBannerViewDelegate {
     @IBOutlet var qqBtn:UIButton?
     @IBOutlet var loginBtn:UIButton?
     @IBOutlet var _bannerView:GADBannerView?
-    
+
+    @IBOutlet weak var txtPwd: UITextField!
+    @IBOutlet weak var txtPhone: UITextField!
     override func viewDidLoad() {
         
-        self.weiboBtn?.layer.cornerRadius = 20
+        self.weiboBtn?.layer.cornerRadius = 17
 //        self.weiboBtn?.backgroundColor = UIColor.brownColor()
         
-        self.qqBtn?.layer.cornerRadius = 20
-        self.loginBtn?.layer.cornerRadius = 15
+        self.qqBtn?.layer.cornerRadius = 17
+        self.loginBtn?.layer.cornerRadius = 13
 //        self.qqBtn?.backgroundColor = UIColor.blueColor()
         
         initBannerView()
+        let notificationCenter = NSNotificationCenter.defaultCenter()
+        notificationCenter.addObserver(self, selector: "loginFailure", name: "loginFailure", object: nil)
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -93,4 +97,45 @@ class LoginViewController: UIViewController,GADBannerViewDelegate {
     func adViewDidReceiveAd(view: GADBannerView!) {
         println("ads login")
     }
+    
+    @IBAction func clickForgetBtn(sender: AnyObject) {
+        let mainStoryBoard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
+        var forgetViewController = mainStoryBoard.instantiateViewControllerWithIdentifier("forgetViewController") as! ForgetViewController
+        var navModelController = UINavigationController(rootViewController: forgetViewController)
+        navModelController.navigationBar.barTintColor = mainNavBarColor()
+        self.presentViewController(navModelController, animated: true, completion: {
+            //            newClothViewController.selectedTags = NSMutableArray()
+        })
+    }
+    @IBAction func clickLoginBtn(sender: AnyObject) {
+        let phone = self.txtPhone.text
+        let pwd = self.txtPwd.text
+        if(phone.isEmpty || pwd.isEmpty){
+            self.view.makeToast(message: "请输入你的用户名和密码", duration: 2.0, position: HRToastPositionCenter)
+        }else if(count(phone) != 11 || count(pwd) > 20){
+            self.view.makeToast(message: "你输入的字符长度有误", duration: 2.0, position: HRToastPositionCenter)
+        }else{
+            
+            var userInfo = NSMutableDictionary()
+            userInfo.setValue("", forKey: "profile_image_url")
+            userInfo.setValue(phone, forKey: "username")
+            userInfo.setValue(pwd, forKey: "password")
+            userLogin(userInfo, 3)
+        }
+    }
+    
+    @IBAction func clickRegBtn(sender: UIButton) {
+        let mainStoryBoard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
+        var registViewController = mainStoryBoard.instantiateViewControllerWithIdentifier("registViewController") as! RegistViewController
+        var navModelController = UINavigationController(rootViewController: registViewController)
+        navModelController.navigationBar.barTintColor = mainNavBarColor()
+        self.presentViewController(navModelController, animated: true, completion: {
+//            newClothViewController.selectedTags = NSMutableArray()
+        })
+    }
+    
+    func loginFailure(){
+        self.view.makeToast(message: "你的用户名或密码有误", duration: 2.0, position: HRToastPositionCenter)
+    }
+    
 }
