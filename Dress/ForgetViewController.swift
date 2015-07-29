@@ -18,6 +18,7 @@ class ForgetViewController: UIViewController {
     
     var isSendCode:Bool = false
     var timerNum:Int = 60
+    var timer:NSTimer?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,16 +37,18 @@ class ForgetViewController: UIViewController {
     
     
     @IBAction func clickBackBtn(){
+        self.timer?.invalidate()
         self.dismissViewControllerAnimated(true, completion: {})
     }
     
-    @IBAction func clickResetBtn(sender: AnyObject) {
+    @IBAction func clickResetBtn(sender: UIButton) {
         let phone = self.txtPhone.text
         let code = self.txtCode.text
         let pwd = self.txtPwd.text
         if(count(phone) != 11 || count(code) != 6 || count(pwd) < 6 || count(pwd) > 20){
             self.view.makeToast(message: "请输入正确的手机号码,验证码和密码", duration: 2.0, position: HRToastPositionCenter)
         }else{
+            println(444444)
             
         }
     }
@@ -56,12 +59,14 @@ class ForgetViewController: UIViewController {
             let phone = self.txtPhone.text
             if(count(phone) == 11){
                 
+                self.timer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: "stopTimer:", userInfo: nil, repeats: true)
+                self.codeBtn.enabled = false
+                self.isSendCode = true
+                self.txtCode.becomeFirstResponder()
             }else{
                 self.view.makeToast(message: "请输入正确的手机号码", duration: 2.0, position: HRToastPositionCenter)
             }
-            NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: "stopTimer:", userInfo: nil, repeats: true)
-            self.codeBtn.enabled = false
-            self.isSendCode = true
+            
         }
     }
 

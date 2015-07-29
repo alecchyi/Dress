@@ -1079,7 +1079,7 @@
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="请输入6-20位密码" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="O1h-NB-5px">
-                                <rect key="frame" x="26" y="100" width="548" height="40"/>
+                                <rect key="frame" x="26" y="160" width="548" height="40"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="p0W-3V-4Kh"/>
@@ -1093,7 +1093,7 @@
                                 </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WBE-xG-FHc">
-                                <rect key="frame" x="26" y="160" width="548" height="40"/>
+                                <rect key="frame" x="26" y="239" width="548" height="40"/>
                                 <color key="backgroundColor" red="1" green="0.4265779307" blue="0.43176101439999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="Khv-h2-KM4"/>
@@ -1106,6 +1106,30 @@
                                     <action selector="clickRegistBtn:" destination="yLI-fF-h2j" eventType="touchUpInside" id="ZDb-LN-J4f"/>
                                 </connections>
                             </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="验证码" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="HvA-UL-LUa">
+                                <rect key="frame" x="26" y="100" width="353" height="40"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="mcC-Uq-mmu"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="done" secureTextEntry="YES"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0QV-N7-MUI">
+                                <rect key="frame" x="389" y="100" width="185" height="40"/>
+                                <color key="backgroundColor" red="1" green="0.4265779307" blue="0.43176101439999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="185" id="OJa-JY-XNM"/>
+                                    <constraint firstAttribute="height" constant="40" id="TuL-Po-2xj"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <state key="normal" title="获取验证码">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="clickCodeBtn:" destination="yLI-fF-h2j" eventType="touchUpInside" id="3zA-dp-ekh"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.90588235294117647" green="0.90588235294117647" blue="0.90588235294117647" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="tintColor" red="0.90588235294117647" green="0.90588235294117647" blue="0.90588235294117647" alpha="1" colorSpace="calibratedRGB"/>
@@ -1113,17 +1137,24 @@
                             <constraint firstItem="WBE-xG-FHc" firstAttribute="leading" secondItem="O1h-NB-5px" secondAttribute="leading" id="15t-Pi-vNv"/>
                             <constraint firstAttribute="trailingMargin" secondItem="pC6-aT-W78" secondAttribute="trailing" constant="10" id="5gV-gF-6IX"/>
                             <constraint firstItem="O1h-NB-5px" firstAttribute="trailing" secondItem="pC6-aT-W78" secondAttribute="trailing" id="6Pt-73-q9e"/>
-                            <constraint firstItem="O1h-NB-5px" firstAttribute="top" secondItem="pC6-aT-W78" secondAttribute="bottom" constant="20" id="Ab3-78-eiA"/>
+                            <constraint firstItem="O1h-NB-5px" firstAttribute="top" secondItem="pC6-aT-W78" secondAttribute="bottom" constant="80" id="Ab3-78-eiA"/>
                             <constraint firstItem="pC6-aT-W78" firstAttribute="leading" secondItem="jZQ-iD-Tez" secondAttribute="leadingMargin" constant="10" id="B1j-aE-Vzf"/>
                             <constraint firstAttribute="centerX" secondItem="pC6-aT-W78" secondAttribute="centerX" id="H7h-QH-2eJ"/>
+                            <constraint firstItem="0QV-N7-MUI" firstAttribute="trailing" secondItem="pC6-aT-W78" secondAttribute="trailing" id="Kpk-7Q-1et"/>
+                            <constraint firstItem="HvA-UL-LUa" firstAttribute="top" secondItem="pC6-aT-W78" secondAttribute="bottom" constant="20" id="OL0-x5-eHX"/>
                             <constraint firstItem="WBE-xG-FHc" firstAttribute="trailing" secondItem="O1h-NB-5px" secondAttribute="trailing" id="XC9-tw-Wxx"/>
+                            <constraint firstItem="0QV-N7-MUI" firstAttribute="leading" secondItem="HvA-UL-LUa" secondAttribute="trailing" constant="10" id="dwC-x1-oiy"/>
                             <constraint firstItem="pC6-aT-W78" firstAttribute="top" secondItem="2S4-07-vdB" secondAttribute="bottom" constant="20" id="mvX-Ft-pM3"/>
+                            <constraint firstItem="0QV-N7-MUI" firstAttribute="top" secondItem="pC6-aT-W78" secondAttribute="bottom" constant="20" id="nxG-aT-d8O"/>
                             <constraint firstItem="O1h-NB-5px" firstAttribute="leading" secondItem="pC6-aT-W78" secondAttribute="leading" id="q8d-8L-k98"/>
-                            <constraint firstItem="WBE-xG-FHc" firstAttribute="top" secondItem="O1h-NB-5px" secondAttribute="top" constant="60" id="qh1-iz-NNW"/>
+                            <constraint firstItem="WBE-xG-FHc" firstAttribute="top" secondItem="O1h-NB-5px" secondAttribute="top" constant="79" id="qh1-iz-NNW"/>
+                            <constraint firstItem="pC6-aT-W78" firstAttribute="leading" secondItem="HvA-UL-LUa" secondAttribute="leading" id="yL0-5J-Sf4"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="bgView" destination="jZQ-iD-Tez" id="lGB-Qf-iB0"/>
+                        <outlet property="codeBtn" destination="0QV-N7-MUI" id="On6-gG-c9u"/>
+                        <outlet property="txtCode" destination="HvA-UL-LUa" id="ymD-xw-FdO"/>
                         <outlet property="txtPassword" destination="O1h-NB-5px" id="jzj-om-UPu"/>
                         <outlet property="txtUsername" destination="pC6-aT-W78" id="G77-zc-nWx"/>
                     </connections>
@@ -1154,7 +1185,7 @@
                                 <textInputTraits key="textInputTraits" keyboardType="phonePad" returnKeyType="next"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="验证码" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="3xb-Mf-USQ">
-                                <rect key="frame" x="26" y="100" width="388" height="40"/>
+                                <rect key="frame" x="26" y="100" width="353" height="40"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="i34-tE-nga"/>
@@ -1178,13 +1209,13 @@
                                 <textInputTraits key="textInputTraits" returnKeyType="done" secureTextEntry="YES"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tpG-Li-RNG">
-                                <rect key="frame" x="424" y="100" width="150" height="40"/>
+                                <rect key="frame" x="389" y="100" width="185" height="40"/>
                                 <color key="backgroundColor" red="1" green="0.4265779307" blue="0.43176101439999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="2dC-9k-kjp"/>
-                                    <constraint firstAttribute="width" constant="150" id="FRW-D8-bz5"/>
+                                    <constraint firstAttribute="width" constant="185" id="FRW-D8-bz5"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                 <state key="normal" title="获取验证码">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -1192,8 +1223,8 @@
                                     <action selector="clickCodeBtn:" destination="9Ev-Kv-6pH" eventType="touchUpInside" id="kTE-V0-3is"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="af5-gk-8E6">
-                                <rect key="frame" x="26" y="220" width="548" height="40"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="af5-gk-8E6">
+                                <rect key="frame" x="26" y="240" width="548" height="40"/>
                                 <color key="backgroundColor" red="1" green="0.4265779307" blue="0.43176101439999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="EmF-Ey-X5T"/>
@@ -1203,7 +1234,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="clickRestBtn:" destination="9Ev-Kv-6pH" eventType="touchUpInside" id="K3V-wj-adi"/>
+                                    <action selector="clickResetBtn:" destination="9Ev-Kv-6pH" eventType="touchUpInside" id="xIi-uq-fNA"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -1216,7 +1247,7 @@
                             <constraint firstItem="af5-gk-8E6" firstAttribute="leading" secondItem="3xb-Mf-USQ" secondAttribute="leading" constant="207" id="CL1-oL-CRk"/>
                             <constraint firstItem="Bnn-gh-b5C" firstAttribute="top" secondItem="wCf-U0-7Yr" secondAttribute="top" constant="120" id="CYb-6Y-psh"/>
                             <constraint firstItem="Bnn-gh-b5C" firstAttribute="leading" secondItem="wCf-U0-7Yr" secondAttribute="leading" id="Coo-Nl-2bI"/>
-                            <constraint firstItem="af5-gk-8E6" firstAttribute="top" secondItem="Bnn-gh-b5C" secondAttribute="bottom" constant="60" id="FiV-cG-k0e"/>
+                            <constraint firstItem="af5-gk-8E6" firstAttribute="top" secondItem="Bnn-gh-b5C" secondAttribute="bottom" constant="40" id="FiV-cG-k0e"/>
                             <constraint firstItem="af5-gk-8E6" firstAttribute="leading" secondItem="2vq-Lk-WrQ" secondAttribute="leadingMargin" constant="10" id="Ia1-6h-K8J"/>
                             <constraint firstItem="af5-gk-8E6" firstAttribute="top" secondItem="3xb-Mf-USQ" secondAttribute="top" constant="107" id="OeD-we-BsY"/>
                             <constraint firstItem="wCf-U0-7Yr" firstAttribute="leading" secondItem="2vq-Lk-WrQ" secondAttribute="leadingMargin" constant="10" id="SMV-JG-YId"/>
@@ -1258,7 +1289,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="luV-WK-dT5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2198" y="2149"/>
+            <point key="canvasLocation" x="2199" y="2143"/>
         </scene>
     </scenes>
     <resources>

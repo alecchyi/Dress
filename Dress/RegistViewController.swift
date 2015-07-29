@@ -14,6 +14,12 @@ class RegistViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet var bgView: UIView!
     @IBOutlet weak var txtUsername: UITextField!
+    @IBOutlet weak var txtCode: UITextField!
+    @IBOutlet weak var codeBtn: UIButton!
+    
+    var isSendCode:Bool = false
+    var timerNum:Int = 60
+    var timer:NSTimer?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,13 +34,10 @@ class RegistViewController: UIViewController, UITextFieldDelegate {
         self.bgView.addGestureRecognizer(tapBgRecognizer)
     }
 
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
-    
-    @IBAction func clickBackBtn(){
-        self.dismissViewControllerAnimated(true, completion: {})
     }
     
 
@@ -48,6 +51,28 @@ class RegistViewController: UIViewController, UITextFieldDelegate {
     }
     */
    
+    @IBAction func clickBackBtn(){
+        self.timer?.invalidate()
+        self.dismissViewControllerAnimated(true, completion: {})
+    }
+    
+    @IBAction func clickCodeBtn(sender: AnyObject) {
+        self.txtCode.text = ""
+        if(self.isSendCode == false){
+            let phone = self.txtUsername.text
+            if(count(phone) == 11){
+                
+                self.timer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: "stopTimer:", userInfo: nil, repeats: true)
+                self.codeBtn.enabled = false
+                self.isSendCode = true
+                self.txtCode.becomeFirstResponder()
+            }else{
+                self.view.makeToast(message: "请输入正确的手机号码", duration: 2.0, position: HRToastPositionCenter)
+            }
+            
+        }
+    }
+    
     @IBAction func editPaswordEnd(sender: AnyObject) {
         println("end.....")
     }
@@ -57,9 +82,10 @@ class RegistViewController: UIViewController, UITextFieldDelegate {
         self.tapBgView()
         let phone = self.txtUsername.text
         let pwd = self.txtPassword.text
-        if(phone.isEmpty || pwd.isEmpty){
-            self.bgView.makeToast(message: "请输入你的用户名和密码", duration: 2.0, position: HRToastPositionCenter)
-        }else if(count(phone) != 11 || count(pwd) > 20){
+        let code = self.txtCode.text
+        if(phone.isEmpty || pwd.isEmpty || code.isEmpty){
+            self.bgView.makeToast(message: "请输入你的用户名,密码和验证码", duration: 2.0, position: HRToastPositionCenter)
+        }else if(count(phone) != 11 || count(pwd) > 20 || count(code) != 6){
             self.bgView.makeToast(message: "你输入的字符长度有误", duration: 2.0, position: HRToastPositionCenter)
         }else{
 
@@ -95,6 +121,20 @@ class RegistViewController: UIViewController, UITextFieldDelegate {
     func tapBgView(){
         self.txtPassword.resignFirstResponder()
         self.txtUsername.resignFirstResponder()
+    }
+    
+    func stopTimer(sender:NSTimer){
+        timerNum--
+        if(sender.valid && timerNum == 0){
+            sender.invalidate()
+            self.codeBtn.enabled = true
+            self.codeBtn.titleLabel?.text = "获取验证码"
+            self.timerNum = 60
+            self.isSendCode = false
+        }else{
+            self.codeBtn.titleLabel?.text = "重新发送(\(timerNum))"
+            
+        }
     }
 
 }
