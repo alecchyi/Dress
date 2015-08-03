@@ -30,6 +30,8 @@ class RegistViewController: UIViewController, UITextFieldDelegate {
         self.navigationItem.leftBarButtonItem = leftBarItem
         self.navigationController?.navigationBar.titleTextAttributes = NSDictionary(object: UIColor.whiteColor(), forKey: NSForegroundColorAttributeName) as [NSObject : AnyObject]
         
+        self.codeBtn.titleLabel?.textAlignment = NSTextAlignment.Center
+        
         var tapBgRecognizer = UITapGestureRecognizer(target: self, action: "tapBgView")
         self.bgView.addGestureRecognizer(tapBgRecognizer)
     }
@@ -66,6 +68,7 @@ class RegistViewController: UIViewController, UITextFieldDelegate {
                 self.codeBtn.enabled = false
                 self.isSendCode = true
                 self.txtCode.becomeFirstResponder()
+                self.codeBtn.backgroundColor = UIColor(red: 253/255.0, green: 103/255.0, blue: 85/255.0, alpha: 0.6)
             }else{
                 self.view.makeToast(message: "请输入正确的手机号码", duration: 2.0, position: HRToastPositionCenter)
             }
@@ -121,6 +124,7 @@ class RegistViewController: UIViewController, UITextFieldDelegate {
     func tapBgView(){
         self.txtPassword.resignFirstResponder()
         self.txtUsername.resignFirstResponder()
+        self.txtCode.resignFirstResponder()
     }
     
     func stopTimer(sender:NSTimer){
@@ -131,8 +135,9 @@ class RegistViewController: UIViewController, UITextFieldDelegate {
             self.codeBtn.titleLabel?.text = "获取验证码"
             self.timerNum = 60
             self.isSendCode = false
+            self.codeBtn.backgroundColor = mainBtnColor()
         }else{
-            self.codeBtn.titleLabel?.text = "重新发送(\(timerNum))"
+            self.codeBtn.titleLabel?.text = "\(timerNum)秒"
             
         }
     }

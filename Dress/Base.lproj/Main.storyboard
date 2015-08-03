@@ -556,7 +556,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="智能推荐穿衣，仅需登录小衣橱" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ule-JP-SR8">
-                                <rect key="frame" x="16" y="40" width="568" height="40"/>
+                                <rect key="frame" x="26" y="40" width="548" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="mXi-Q2-erN"/>
                                 </constraints>
@@ -565,54 +565,51 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="或者" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JJT-wz-ug2">
-                                <rect key="frame" x="283" y="261" width="34" height="21"/>
+                                <rect key="frame" x="283" y="310" width="34" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.97379225127551017" green="0.93897449848241732" blue="0.92096900812601101" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" usesAttributedText="YES" borderStyle="roundedRect" placeholder="手机号" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="S2x-ye-VTb">
-                                <rect key="frame" x="210" y="91" width="180" height="30"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="手机号" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="S2x-ye-VTb">
+                                <rect key="frame" x="26" y="90" width="548" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="180" id="FRf-Hy-9Ja"/>
+                                    <constraint firstAttribute="height" constant="40" id="YPF-wk-WIf"/>
                                     <constraint firstAttribute="height" constant="30" id="ZxU-5U-oLR"/>
                                 </constraints>
-                                <attributedString key="attributedText"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <textInputTraits key="textInputTraits" spellCheckingType="yes" keyboardType="phonePad"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="FRf-Hy-9Ja"/>
+                                        <exclude reference="ZxU-5U-oLR"/>
+                                    </mask>
+                                </variation>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="密码" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="tV1-XP-QV4">
-                                <rect key="frame" x="210" y="131" width="180" height="30"/>
+                                <rect key="frame" x="26" y="150" width="548" height="40"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="YN7-KL-Imr"/>
+                                    <constraint firstAttribute="height" constant="40" id="YN7-KL-Imr"/>
                                     <constraint firstAttribute="width" constant="180" id="zvf-QS-McI"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="done" secureTextEntry="YES"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="zvf-QS-McI"/>
+                                    </mask>
+                                </variation>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jh3-k5-VMW">
-                                <rect key="frame" x="210" y="356" width="180" height="35"/>
-                                <color key="backgroundColor" red="0.31372549020000001" green="0.31372549020000001" blue="0.31372549020000001" alpha="0.81000000000000005" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="180" id="6IZ-sS-3ur"/>
-                                    <constraint firstAttribute="height" constant="35" id="p4A-vj-QDm"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
-                                <state key="normal" title="QQ登录" image="qq_icon">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="clickWechatLoginBtn" destination="3cl-H6-Xso" eventType="touchUpInside" id="gTl-zK-Tsn"/>
-                                </connections>
-                            </button>
                             <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LUo-tu-mKa" customClass="GADBannerView">
-                                <rect key="frame" x="44" y="550" width="507" height="50"/>
+                                <rect key="frame" x="15" y="550" width="39" height="50"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="yzm-l1-yDa"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gka-p3-ZgO">
-                                <rect key="frame" x="330" y="221" width="60" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gka-p3-ZgO">
+                                <rect key="frame" x="518" y="270" width="56" height="29"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <state key="normal" title="忘记密码">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -622,8 +619,8 @@
                                     <action selector="clickForgetBtn:" destination="3cl-H6-Xso" eventType="touchUpInside" id="L5f-fk-ZgC"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jr3-ag-KN6">
-                                <rect key="frame" x="210" y="221" width="60" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jr3-ag-KN6">
+                                <rect key="frame" x="26" y="270" width="56" height="29"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <state key="normal" title="还没注册">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -634,34 +631,55 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pVa-Sl-3rF">
-                                <rect key="frame" x="210" y="181" width="180" height="30"/>
+                                <rect key="frame" x="26" y="210" width="548" height="40"/>
                                 <color key="backgroundColor" red="0.97940340909090906" green="0.72942280416783378" blue="0.67351243998955057" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="180" id="bC3-p0-NfV"/>
-                                    <constraint firstAttribute="height" constant="30" id="dtP-w3-Znx"/>
+                                    <constraint firstAttribute="height" constant="40" id="dtP-w3-Znx"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                 <state key="normal" title="登录">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="bC3-p0-NfV"/>
+                                    </mask>
+                                </variation>
                                 <connections>
                                     <action selector="clickLoginBtn:" destination="3cl-H6-Xso" eventType="touchUpInside" id="tBY-DN-btH"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4vp-i4-Hbc">
-                                <rect key="frame" x="210" y="301" width="180" height="35"/>
+                                <rect key="frame" x="220" y="350" width="40" height="40"/>
                                 <color key="backgroundColor" red="0.70691167091836737" green="0.53961107765658833" blue="0.48968833039508658" alpha="0.75" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="180" id="TMe-WJ-2Eo"/>
-                                    <constraint firstAttribute="height" constant="35" id="cfa-4u-2PY"/>
+                                    <constraint firstAttribute="width" constant="40" id="TMe-WJ-2Eo"/>
+                                    <constraint firstAttribute="height" constant="40" id="cfa-4u-2PY"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
-                                <state key="normal" title=" 微博登录" image="weibo_btn">
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                <state key="normal" title=" " image="weibo_btn">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="clickWeiboLoginBtn" destination="3cl-H6-Xso" eventType="touchUpInside" id="LUD-fu-JXc"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jh3-k5-VMW">
+                                <rect key="frame" x="340" y="350" width="40" height="40"/>
+                                <color key="backgroundColor" red="0.31372549020000001" green="0.31372549020000001" blue="0.31372549020000001" alpha="0.81000000000000005" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="6IZ-sS-3ur"/>
+                                    <constraint firstAttribute="height" constant="40" id="p4A-vj-QDm"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                <state key="normal" image="qq_icon">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="clickWechatLoginBtn" destination="3cl-H6-Xso" eventType="touchUpInside" id="gTl-zK-Tsn"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -671,32 +689,44 @@
                             <constraint firstItem="S2x-ye-VTb" firstAttribute="top" secondItem="JJT-wz-ug2" secondAttribute="bottom" constant="13" id="1pg-l9-prc"/>
                             <constraint firstItem="ule-JP-SR8" firstAttribute="top" secondItem="R06-0N-LOr" secondAttribute="bottom" constant="20" id="2ov-Z6-73g"/>
                             <constraint firstItem="LUo-tu-mKa" firstAttribute="leading" secondItem="jqc-xz-3lB" secondAttribute="leadingMargin" constant="28" id="366-Tu-C9s"/>
-                            <constraint firstAttribute="centerX" secondItem="Jh3-k5-VMW" secondAttribute="centerX" id="67O-2j-czE"/>
+                            <constraint firstAttribute="centerX" secondItem="Jh3-k5-VMW" secondAttribute="centerX" constant="-60" id="67O-2j-czE"/>
                             <constraint firstItem="pVa-Sl-3rF" firstAttribute="top" secondItem="JJT-wz-ug2" secondAttribute="top" constant="-80" id="7iF-NK-2TX"/>
                             <constraint firstAttribute="centerY" secondItem="4vp-i4-Hbc" secondAttribute="centerY" constant="182" id="9rr-N4-Ket"/>
                             <constraint firstItem="pVa-Sl-3rF" firstAttribute="trailing" secondItem="tV1-XP-QV4" secondAttribute="trailing" constant="10" id="AWb-Lh-pCx"/>
+                            <constraint firstItem="4vp-i4-Hbc" firstAttribute="top" secondItem="pVa-Sl-3rF" secondAttribute="top" constant="140" id="B90-oD-Zpw"/>
                             <constraint firstAttribute="centerX" secondItem="Jr3-ag-KN6" secondAttribute="centerX" constant="61" id="BzB-BW-QaH"/>
                             <constraint firstAttribute="centerX" secondItem="4vp-i4-Hbc" secondAttribute="centerX" id="CwH-Kx-KY9"/>
                             <constraint firstItem="Jr3-ag-KN6" firstAttribute="top" secondItem="tV1-XP-QV4" secondAttribute="bottom" constant="57" id="Dao-aI-bRw"/>
                             <constraint firstItem="pVa-Sl-3rF" firstAttribute="leading" secondItem="tV1-XP-QV4" secondAttribute="trailing" constant="20" id="DgY-qi-OiM"/>
                             <constraint firstAttribute="centerX" secondItem="JJT-wz-ug2" secondAttribute="centerX" id="DuL-TN-YNg"/>
-                            <constraint firstItem="S2x-ye-VTb" firstAttribute="top" secondItem="ule-JP-SR8" secondAttribute="bottom" constant="11" id="EvS-aH-TbR"/>
+                            <constraint firstItem="S2x-ye-VTb" firstAttribute="top" secondItem="ule-JP-SR8" secondAttribute="bottom" constant="10" id="EvS-aH-TbR"/>
                             <constraint firstItem="LUo-tu-mKa" firstAttribute="top" secondItem="jqc-xz-3lB" secondAttribute="top" constant="550" id="G0y-wU-WEz"/>
                             <constraint firstItem="Gka-p3-ZgO" firstAttribute="top" secondItem="tV1-XP-QV4" secondAttribute="bottom" constant="71" id="IHf-8x-hx7"/>
                             <constraint firstItem="Jr3-ag-KN6" firstAttribute="top" secondItem="tV1-XP-QV4" secondAttribute="bottom" constant="10" id="IZd-fb-0Wr"/>
-                            <constraint firstItem="tV1-XP-QV4" firstAttribute="top" secondItem="S2x-ye-VTb" secondAttribute="bottom" constant="10" id="LeN-rB-RYt"/>
+                            <constraint firstItem="tV1-XP-QV4" firstAttribute="top" secondItem="S2x-ye-VTb" secondAttribute="bottom" constant="20" id="LeN-rB-RYt"/>
+                            <constraint firstItem="ule-JP-SR8" firstAttribute="leading" secondItem="S2x-ye-VTb" secondAttribute="leading" id="MHF-Ab-YDG"/>
                             <constraint firstItem="pVa-Sl-3rF" firstAttribute="trailing" secondItem="tV1-XP-QV4" secondAttribute="trailing" id="MPt-Ge-5do"/>
                             <constraint firstItem="4vp-i4-Hbc" firstAttribute="top" secondItem="R06-0N-LOr" secondAttribute="bottom" constant="297" id="Mc3-XW-tGJ"/>
+                            <constraint firstItem="S2x-ye-VTb" firstAttribute="leading" secondItem="tV1-XP-QV4" secondAttribute="leading" id="NHI-tF-HgS"/>
+                            <constraint firstItem="ule-JP-SR8" firstAttribute="trailing" secondItem="S2x-ye-VTb" secondAttribute="trailing" id="OUp-Gp-aQ0"/>
                             <constraint firstItem="S2x-ye-VTb" firstAttribute="top" secondItem="JJT-wz-ug2" secondAttribute="bottom" constant="-194" id="ObT-qz-FHz"/>
+                            <constraint firstItem="ule-JP-SR8" firstAttribute="leading" secondItem="S2x-ye-VTb" secondAttribute="leading" id="QyA-7r-m4Q"/>
                             <constraint firstItem="Gka-p3-ZgO" firstAttribute="leading" secondItem="Jr3-ag-KN6" secondAttribute="leading" constant="60" id="T8i-I3-mDq"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="ule-JP-SR8" secondAttribute="trailing" id="TFB-IO-mlF"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="ule-JP-SR8" secondAttribute="trailing" constant="10" id="TFB-IO-mlF"/>
                             <constraint firstAttribute="centerX" secondItem="Jr3-ag-KN6" secondAttribute="centerX" constant="60" id="Tng-Cr-eFN"/>
                             <constraint firstItem="4vp-i4-Hbc" firstAttribute="centerX" secondItem="pVa-Sl-3rF" secondAttribute="centerX" id="Wkl-tk-boY"/>
+                            <constraint firstItem="tV1-XP-QV4" firstAttribute="trailing" secondItem="S2x-ye-VTb" secondAttribute="trailing" id="YSJ-Ur-4Qy"/>
                             <constraint firstItem="4vp-i4-Hbc" firstAttribute="leading" secondItem="jqc-xz-3lB" secondAttribute="leadingMargin" constant="57" id="YTg-rz-w5K"/>
+                            <constraint firstItem="tV1-XP-QV4" firstAttribute="leading" secondItem="S2x-ye-VTb" secondAttribute="leading" id="ZJP-e4-PeY"/>
+                            <constraint firstItem="Gka-p3-ZgO" firstAttribute="top" secondItem="pVa-Sl-3rF" secondAttribute="bottom" constant="20" id="a7q-BY-XM4"/>
+                            <constraint firstItem="Jr3-ag-KN6" firstAttribute="leading" secondItem="pVa-Sl-3rF" secondAttribute="leading" id="aQn-VH-lmC"/>
                             <constraint firstItem="Gka-p3-ZgO" firstAttribute="top" secondItem="pVa-Sl-3rF" secondAttribute="top" constant="40" id="aSf-L5-0iL"/>
+                            <constraint firstItem="Jr3-ag-KN6" firstAttribute="top" secondItem="pVa-Sl-3rF" secondAttribute="bottom" constant="20" id="ajY-2u-na1"/>
+                            <constraint firstAttribute="centerX" secondItem="4vp-i4-Hbc" secondAttribute="centerX" constant="60" id="bbq-uf-bQQ"/>
                             <constraint firstAttribute="centerX" secondItem="Gka-p3-ZgO" secondAttribute="centerX" constant="60" id="cg5-DQ-CCY"/>
                             <constraint firstItem="pVa-Sl-3rF" firstAttribute="top" secondItem="tV1-XP-QV4" secondAttribute="bottom" constant="10" id="d05-aT-gUb"/>
-                            <constraint firstItem="ule-JP-SR8" firstAttribute="leading" secondItem="jqc-xz-3lB" secondAttribute="leadingMargin" id="djO-pv-iMv"/>
+                            <constraint firstItem="tV1-XP-QV4" firstAttribute="trailing" secondItem="pVa-Sl-3rF" secondAttribute="trailing" id="d2j-Cb-Ybj"/>
+                            <constraint firstItem="ule-JP-SR8" firstAttribute="leading" secondItem="jqc-xz-3lB" secondAttribute="leadingMargin" constant="10" id="djO-pv-iMv"/>
                             <constraint firstItem="pVa-Sl-3rF" firstAttribute="top" secondItem="Jr3-ag-KN6" secondAttribute="top" constant="-40" id="eO9-qi-yZU"/>
                             <constraint firstAttribute="centerX" secondItem="ule-JP-SR8" secondAttribute="centerX" id="f9y-Kd-2NB"/>
                             <constraint firstAttribute="trailingMargin" secondItem="LUo-tu-mKa" secondAttribute="trailing" constant="33" id="g71-0b-cFG"/>
@@ -704,36 +734,51 @@
                             <constraint firstItem="4vp-i4-Hbc" firstAttribute="centerX" secondItem="ule-JP-SR8" secondAttribute="centerX" id="iyT-BH-Z5q"/>
                             <constraint firstItem="4vp-i4-Hbc" firstAttribute="leading" secondItem="Jh3-k5-VMW" secondAttribute="leading" id="jaB-nu-FU8"/>
                             <constraint firstAttribute="centerX" secondItem="S2x-ye-VTb" secondAttribute="centerX" id="k73-OO-JjI"/>
-                            <constraint firstItem="pVa-Sl-3rF" firstAttribute="top" secondItem="tV1-XP-QV4" secondAttribute="top" constant="50" id="kAq-NG-C2P"/>
+                            <constraint firstItem="pVa-Sl-3rF" firstAttribute="top" secondItem="tV1-XP-QV4" secondAttribute="top" constant="60" id="kAq-NG-C2P"/>
                             <constraint firstAttribute="centerX" secondItem="tV1-XP-QV4" secondAttribute="centerX" id="khZ-OJ-zLM"/>
                             <constraint firstItem="4vp-i4-Hbc" firstAttribute="trailing" secondItem="Jh3-k5-VMW" secondAttribute="trailing" id="kqT-eF-STp"/>
                             <constraint firstAttribute="centerY" secondItem="4vp-i4-Hbc" secondAttribute="centerY" id="kuW-tn-cIO"/>
                             <constraint firstItem="4vp-i4-Hbc" firstAttribute="centerX" secondItem="tV1-XP-QV4" secondAttribute="centerX" id="mAs-GQ-ghw"/>
                             <constraint firstItem="JJT-wz-ug2" firstAttribute="top" secondItem="4vp-i4-Hbc" secondAttribute="top" constant="-40" id="q6x-Yn-Rej"/>
+                            <constraint firstItem="S2x-ye-VTb" firstAttribute="trailing" secondItem="tV1-XP-QV4" secondAttribute="trailing" id="qhD-KK-EET"/>
                             <constraint firstAttribute="centerX" secondItem="pVa-Sl-3rF" secondAttribute="centerX" id="rDT-IW-Ctu"/>
                             <constraint firstItem="4vp-i4-Hbc" firstAttribute="centerX" secondItem="S2x-ye-VTb" secondAttribute="centerX" id="rMK-d7-z23"/>
                             <constraint firstItem="pVa-Sl-3rF" firstAttribute="top" relation="lessThanOrEqual" secondItem="R06-0N-LOr" secondAttribute="bottom" constant="273" id="s1C-8n-3Zr"/>
                             <constraint firstItem="tV1-XP-QV4" firstAttribute="top" secondItem="S2x-ye-VTb" secondAttribute="bottom" constant="10" id="sKT-Ff-WGm"/>
                             <constraint firstItem="LUo-tu-mKa" firstAttribute="top" secondItem="ule-JP-SR8" secondAttribute="bottom" constant="451" id="t2S-V1-jWt"/>
+                            <constraint firstItem="4vp-i4-Hbc" firstAttribute="top" secondItem="Jh3-k5-VMW" secondAttribute="top" id="tMo-OI-gZi"/>
                             <constraint firstAttribute="centerX" secondItem="Gka-p3-ZgO" secondAttribute="centerX" constant="-60" id="tk6-VX-nHs"/>
                             <constraint firstItem="LUo-tu-mKa" firstAttribute="bottom" secondItem="nCl-Xe-5eq" secondAttribute="top" id="uUT-bk-nAd"/>
+                            <constraint firstItem="pVa-Sl-3rF" firstAttribute="trailing" secondItem="Gka-p3-ZgO" secondAttribute="trailing" id="w86-3X-8gc"/>
                             <constraint firstItem="JJT-wz-ug2" firstAttribute="top" secondItem="Jh3-k5-VMW" secondAttribute="bottom" constant="-88" id="wBo-SY-IBZ"/>
+                            <constraint firstItem="JJT-wz-ug2" firstAttribute="top" secondItem="pVa-Sl-3rF" secondAttribute="bottom" constant="60" id="woT-YX-zjz"/>
+                            <constraint firstItem="tV1-XP-QV4" firstAttribute="leading" secondItem="pVa-Sl-3rF" secondAttribute="leading" id="x5A-qb-A7F"/>
+                            <constraint firstItem="pVa-Sl-3rF" firstAttribute="top" secondItem="Jh3-k5-VMW" secondAttribute="top" constant="160" id="xUG-ZJ-HeG"/>
                             <constraint firstItem="Jh3-k5-VMW" firstAttribute="top" secondItem="JJT-wz-ug2" secondAttribute="top" constant="95" id="xoU-Le-eHc"/>
                             <constraint firstItem="Jh3-k5-VMW" firstAttribute="top" secondItem="4vp-i4-Hbc" secondAttribute="bottom" constant="-35" id="zxF-G2-gUb"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
+                                <exclude reference="QyA-7r-m4Q"/>
                                 <exclude reference="1pg-l9-prc"/>
                                 <exclude reference="ObT-qz-FHz"/>
+                                <exclude reference="YSJ-Ur-4Qy"/>
+                                <exclude reference="ZJP-e4-PeY"/>
+                                <exclude reference="d2j-Cb-Ybj"/>
                                 <exclude reference="sKT-Ff-WGm"/>
+                                <exclude reference="7iF-NK-2TX"/>
                                 <exclude reference="AWb-Lh-pCx"/>
                                 <exclude reference="DgY-qi-OiM"/>
                                 <exclude reference="d05-aT-gUb"/>
+                                <exclude reference="eO9-qi-yZU"/>
                                 <exclude reference="s1C-8n-3Zr"/>
+                                <exclude reference="xUG-ZJ-HeG"/>
                                 <exclude reference="BzB-BW-QaH"/>
                                 <exclude reference="Dao-aI-bRw"/>
                                 <exclude reference="IZd-fb-0Wr"/>
+                                <exclude reference="Tng-Cr-eFN"/>
                                 <exclude reference="9rr-N4-Ket"/>
+                                <exclude reference="CwH-Kx-KY9"/>
                                 <exclude reference="Mc3-XW-tGJ"/>
                                 <exclude reference="Wkl-tk-boY"/>
                                 <exclude reference="YTg-rz-w5K"/>
@@ -743,16 +788,20 @@
                                 <exclude reference="kuW-tn-cIO"/>
                                 <exclude reference="mAs-GQ-ghw"/>
                                 <exclude reference="rMK-d7-z23"/>
+                                <exclude reference="q6x-Yn-Rej"/>
                                 <exclude reference="wBo-SY-IBZ"/>
-                                <exclude reference="IHf-8x-hx7"/>
-                                <exclude reference="T8i-I3-mDq"/>
-                                <exclude reference="cg5-DQ-CCY"/>
-                                <exclude reference="iir-Hm-cCo"/>
+                                <exclude reference="xoU-Le-eHc"/>
                                 <exclude reference="zxF-G2-gUb"/>
                                 <exclude reference="366-Tu-C9s"/>
                                 <exclude reference="G0y-wU-WEz"/>
                                 <exclude reference="g71-0b-cFG"/>
                                 <exclude reference="t2S-V1-jWt"/>
+                                <exclude reference="IHf-8x-hx7"/>
+                                <exclude reference="T8i-I3-mDq"/>
+                                <exclude reference="aSf-L5-0iL"/>
+                                <exclude reference="cg5-DQ-CCY"/>
+                                <exclude reference="iir-Hm-cCo"/>
+                                <exclude reference="tk6-VX-nHs"/>
                             </mask>
                         </variation>
                     </view>
@@ -1107,7 +1156,7 @@
                                 </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="验证码" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="HvA-UL-LUa">
-                                <rect key="frame" x="26" y="100" width="353" height="40"/>
+                                <rect key="frame" x="26" y="100" width="433" height="40"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="mcC-Uq-mmu"/>
@@ -1116,10 +1165,10 @@
                                 <textInputTraits key="textInputTraits" returnKeyType="done" secureTextEntry="YES"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0QV-N7-MUI">
-                                <rect key="frame" x="389" y="100" width="185" height="40"/>
+                                <rect key="frame" x="469" y="100" width="105" height="40"/>
                                 <color key="backgroundColor" red="1" green="0.4265779307" blue="0.43176101439999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="185" id="OJa-JY-XNM"/>
+                                    <constraint firstAttribute="width" constant="105" id="OJa-JY-XNM"/>
                                     <constraint firstAttribute="height" constant="40" id="TuL-Po-2xj"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
@@ -1185,7 +1234,7 @@
                                 <textInputTraits key="textInputTraits" keyboardType="phonePad" returnKeyType="next"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="验证码" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="3xb-Mf-USQ">
-                                <rect key="frame" x="26" y="100" width="353" height="40"/>
+                                <rect key="frame" x="26" y="100" width="433" height="40"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="i34-tE-nga"/>
@@ -1209,16 +1258,14 @@
                                 <textInputTraits key="textInputTraits" returnKeyType="done" secureTextEntry="YES"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tpG-Li-RNG">
-                                <rect key="frame" x="389" y="100" width="185" height="40"/>
+                                <rect key="frame" x="469" y="100" width="105" height="40"/>
                                 <color key="backgroundColor" red="1" green="0.4265779307" blue="0.43176101439999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="2dC-9k-kjp"/>
-                                    <constraint firstAttribute="width" constant="185" id="FRW-D8-bz5"/>
+                                    <constraint firstAttribute="width" constant="105" id="FRW-D8-bz5"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                <state key="normal" title="获取验证码">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
+                                <fontDescription key="fontDescription" name="STHeitiSC-Light" family="Heiti SC" pointSize="17"/>
+                                <state key="normal" title="获取验证码"/>
                                 <connections>
                                     <action selector="clickCodeBtn:" destination="9Ev-Kv-6pH" eventType="touchUpInside" id="kTE-V0-3is"/>
                                 </connections>

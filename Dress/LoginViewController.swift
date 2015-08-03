@@ -19,16 +19,19 @@ class LoginViewController: UIViewController,GADBannerViewDelegate {
     @IBOutlet weak var txtPhone: UITextField!
     override func viewDidLoad() {
         
-        self.weiboBtn?.layer.cornerRadius = 17
+        self.weiboBtn?.layer.cornerRadius = 10
 //        self.weiboBtn?.backgroundColor = UIColor.brownColor()
         
-        self.qqBtn?.layer.cornerRadius = 17
-        self.loginBtn?.layer.cornerRadius = 13
+        self.qqBtn?.layer.cornerRadius = 10
+//        self.loginBtn?.layer.cornerRadius = 13
 //        self.qqBtn?.backgroundColor = UIColor.blueColor()
         
         initBannerView()
         let notificationCenter = NSNotificationCenter.defaultCenter()
         notificationCenter.addObserver(self, selector: "loginFailure", name: "loginFailure", object: nil)
+        
+        var tapBgRecognizer = UITapGestureRecognizer(target: self, action: "tapBgView")
+        self.view.addGestureRecognizer(tapBgRecognizer)
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -108,6 +111,7 @@ class LoginViewController: UIViewController,GADBannerViewDelegate {
         })
     }
     @IBAction func clickLoginBtn(sender: AnyObject) {
+        self.tapBgView()
         let phone = self.txtPhone.text
         let pwd = self.txtPwd.text
         if(phone.isEmpty || pwd.isEmpty){
@@ -136,6 +140,11 @@ class LoginViewController: UIViewController,GADBannerViewDelegate {
     
     func loginFailure(){
         self.view.makeToast(message: "你的用户名或密码有误", duration: 2.0, position: HRToastPositionCenter)
+    }
+    
+    func tapBgView(){
+        self.txtPhone.resignFirstResponder()
+        self.txtPwd.resignFirstResponder()
     }
     
 }
