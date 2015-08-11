@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		700224581B55F95400EFC2C0 /* RegistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 700224571B55F95400EFC2C0 /* RegistViewController.swift */; };
 		7011C1BA1A7B223E002AE2A8 /* SQLiteDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7011C1B81A7B223E002AE2A8 /* SQLiteDB.swift */; };
 		7011C1BB1A7B223E002AE2A8 /* String-Extras.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7011C1B91A7B223E002AE2A8 /* String-Extras.swift */; };
 		7011C1BD1A7B225D002AE2A8 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7011C1BC1A7B225D002AE2A8 /* libsqlite3.0.dylib */; };
@@ -69,6 +70,10 @@
 		7048E4B31A9F192400157BE0 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7048E4B21A9F192400157BE0 /* AdSupport.framework */; };
 		7067E7C81A694E4000E143D1 /* WeatherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7067E7C71A694E4000E143D1 /* WeatherView.swift */; };
 		7067E7CA1A696F4C00E143D1 /* RulerViewBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7067E7C91A696F4C00E143D1 /* RulerViewBar.swift */; };
+		706BF1C81B4C281900932218 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 706BF1C41B4C281900932218 /* Default-568h@2x.png */; };
+		706BF1C91B4C281900932218 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 706BF1C51B4C281900932218 /* Default.png */; };
+		706BF1CA1B4C281900932218 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 706BF1C61B4C281900932218 /* Default@2x.png */; };
+		706BF1CB1B4C281900932218 /* Default568h.png in Resources */ = {isa = PBXBuildFile; fileRef = 706BF1C71B4C281900932218 /* Default568h.png */; };
 		707591F01A748C9C005DFA11 /* libWeiboSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 707591E51A748C9C005DFA11 /* libWeiboSDK.a */; };
 		707591F11A748C9C005DFA11 /* WeiboSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 707591ED1A748C9C005DFA11 /* WeiboSDK.bundle */; };
 		707591F31A749699005DFA11 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 707591F21A749699005DFA11 /* QuartzCore.framework */; };
@@ -97,6 +102,7 @@
 		70AB75901A4D37F000B9D6C2 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70AB758F1A4D37F000B9D6C2 /* Utils.swift */; };
 		70AB75921A4D3B9A00B9D6C2 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70AB75911A4D3B9A00B9D6C2 /* User.swift */; };
 		70AC70181A4BBBCE00F396AA /* PickViewToolBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70AC70171A4BBBCE00F396AA /* PickViewToolBar.swift */; };
+		70F3ED0B1B56AF1B00AF4E91 /* ForgetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70F3ED0A1B56AF1B00AF4E91 /* ForgetViewController.swift */; };
 		80683A20745D7C368D6D1046 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3491C2872CB1ACE1087C2CD9 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -125,6 +131,7 @@
 /* Begin PBXFileReference section */
 		296AE8601D1EEA675BE5771F /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		3491C2872CB1ACE1087C2CD9 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		700224571B55F95400EFC2C0 /* RegistViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistViewController.swift; sourceTree = "<group>"; };
 		7011C1B81A7B223E002AE2A8 /* SQLiteDB.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SQLiteDB.swift; sourceTree = "<group>"; };
 		7011C1B91A7B223E002AE2A8 /* String-Extras.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String-Extras.swift"; sourceTree = "<group>"; };
 		7011C1BC1A7B225D002AE2A8 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
@@ -219,6 +226,10 @@
 		7048E4B21A9F192400157BE0 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		7067E7C71A694E4000E143D1 /* WeatherView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherView.swift; sourceTree = "<group>"; };
 		7067E7C91A696F4C00E143D1 /* RulerViewBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RulerViewBar.swift; sourceTree = "<group>"; };
+		706BF1C41B4C281900932218 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		706BF1C51B4C281900932218 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		706BF1C61B4C281900932218 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		706BF1C71B4C281900932218 /* Default568h.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default568h.png; sourceTree = "<group>"; };
 		707591E51A748C9C005DFA11 /* libWeiboSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeiboSDK.a; sourceTree = "<group>"; };
 		707591E61A748C9C005DFA11 /* WBHttpRequest+WeiboShare.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WBHttpRequest+WeiboShare.h"; sourceTree = "<group>"; };
 		707591E71A748C9C005DFA11 /* WBHttpRequest+WeiboToken.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WBHttpRequest+WeiboToken.h"; sourceTree = "<group>"; };
@@ -261,6 +272,7 @@
 		70AB758F1A4D37F000B9D6C2 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		70AB75911A4D3B9A00B9D6C2 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		70AC70171A4BBBCE00F396AA /* PickViewToolBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickViewToolBar.swift; sourceTree = "<group>"; };
+		70F3ED0A1B56AF1B00AF4E91 /* ForgetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgetViewController.swift; sourceTree = "<group>"; };
 		B21546195A97146D5333C122 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -575,6 +587,8 @@
 				70A663701A49BC9900CB2662 /* PersonalViewController.swift */,
 				70A663711A49BC9900CB2662 /* WeatherViewController.swift */,
 				70A663491A49B75600CB2662 /* AppDelegate.swift */,
+				700224571B55F95400EFC2C0 /* RegistViewController.swift */,
+				70F3ED0A1B56AF1B00AF4E91 /* ForgetViewController.swift */,
 				70A6634F1A49B75600CB2662 /* Main.storyboard */,
 				70A663521A49B75600CB2662 /* Images.xcassets */,
 				70A663541A49B75600CB2662 /* LaunchScreen.xib */,
@@ -618,6 +632,10 @@
 		70A663761A49BCA200CB2662 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				706BF1C41B4C281900932218 /* Default-568h@2x.png */,
+				706BF1C51B4C281900932218 /* Default.png */,
+				706BF1C61B4C281900932218 /* Default@2x.png */,
+				706BF1C71B4C281900932218 /* Default568h.png */,
 				70211A661A8DD67600C0A60F /* help.html */,
 			);
 			name = Resources;
@@ -731,7 +749,7 @@
 				TargetAttributes = {
 					70A663431A49B75600CB2662 = {
 						CreatedOnToolsVersion = 6.1;
-						DevelopmentTeam = FE585627JV;
+						DevelopmentTeam = ELW8X6JH83;
 					};
 					70A6635A1A49B75600CB2662 = {
 						CreatedOnToolsVersion = 6.1;
@@ -768,6 +786,8 @@
 				70211A671A8DD67600C0A60F /* help.html in Resources */,
 				702FB5F91A99770E009693C1 /* UMSnsAccountViewController.xib in Resources */,
 				702FB5FB1A99770E009693C1 /* UMSocialSDKResourcesNew.bundle in Resources */,
+				706BF1CB1B4C281900932218 /* Default568h.png in Resources */,
+				706BF1C91B4C281900932218 /* Default.png in Resources */,
 				702FB6381A9977C6009693C1 /* ios-social-sdk-shake.html in Resources */,
 				702FB5F41A99770E009693C1 /* UMSCommentInputController.xib in Resources */,
 				70A663511A49B75600CB2662 /* Main.storyboard in Resources */,
@@ -777,7 +797,9 @@
 				702FB5F71A99770E009693C1 /* UMShareEditViewControlleriPad.xib in Resources */,
 				702FB5F31A99770E009693C1 /* UMSCommentDetailController.xib in Resources */,
 				702FB5F81A99770E009693C1 /* UMSLoginViewController.xib in Resources */,
+				706BF1C81B4C281900932218 /* Default-568h@2x.png in Resources */,
 				702FB5F01A99770E009693C1 /* UMSocialLocalizable.strings in Resources */,
+				706BF1CA1B4C281900932218 /* Default@2x.png in Resources */,
 				70A663531A49B75600CB2662 /* Images.xcassets in Resources */,
 				7011C1C61A7B8610002AE2A8 /* InfoListItemCell.xib in Resources */,
 				702FB5F51A99770E009693C1 /* UMSCommentInputControlleriPad.xib in Resources */,
@@ -838,6 +860,7 @@
 				7028F3B11AAC9C9C00E5BFBF /* UIImage+JTSImageEffects.m in Sources */,
 				7011C1BB1A7B223E002AE2A8 /* String-Extras.swift in Sources */,
 				70211A631A8DD21D00C0A60F /* AboutViewController.swift in Sources */,
+				700224581B55F95400EFC2C0 /* RegistViewController.swift in Sources */,
 				7028F3AC1AAC9C9C00E5BFBF /* JTSAnimatedGIFUtility.m in Sources */,
 				7028F3AD1AAC9C9C00E5BFBF /* JTSImageInfo.m in Sources */,
 				70AC70181A4BBBCE00F396AA /* PickViewToolBar.swift in Sources */,
@@ -867,6 +890,7 @@
 				70A663751A49BC9900CB2662 /* WeatherViewController.swift in Sources */,
 				70A663741A49BC9900CB2662 /* PersonalViewController.swift in Sources */,
 				708E1AA51A4B021100FF27A1 /* Weather.swift in Sources */,
+				70F3ED0B1B56AF1B00AF4E91 /* ForgetViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -951,7 +975,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -988,7 +1012,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -1033,7 +1057,7 @@
 					"$(PROJECT_DIR)/Dress/UMSocial_Sdk_4.2.1/UMSocial_Sdk_Extra_Frameworks/Whatsapp",
 					"$(PROJECT_DIR)/Dress/UMSocial_Sdk_4.2.1/UMSocial_Sdk_Extra_Frameworks/YiXin",
 				);
-				ONLY_ACTIVE_ARCH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Dress/Dress-Bridging-Header.h";
@@ -1079,7 +1103,7 @@
 					"$(PROJECT_DIR)/Dress/UMSocial_Sdk_4.2.1/UMSocial_Sdk_Extra_Frameworks/Whatsapp",
 					"$(PROJECT_DIR)/Dress/UMSocial_Sdk_4.2.1/UMSocial_Sdk_Extra_Frameworks/YiXin",
 				);
-				ONLY_ACTIVE_ARCH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Dress/Dress-Bridging-Header.h";
