@@ -51,9 +51,8 @@ func saveUser(user:NSDictionary) -> Bool{
     }else if((loginType as? String) == "tencent_qq"){
         query.whereKey("qq_id", equalTo:user.objectForKey("qq_uid")!)
     }else if((loginType as? String) == "register"){
-        query.whereKey("username", equalTo:user.objectForKey("username")!)
+        query.whereKey("username", equalTo:user.objectForKey("nickname")!)
     }
-
     query.getFirstObjectInBackgroundWithBlock({(user_info:AVObject!,error:NSError!) in
         if(error == nil){
             var login_type:String = user_info.objectForKey("login_type") as! String
@@ -64,11 +63,11 @@ func saveUser(user:NSDictionary) -> Bool{
             }else if(login_type == "tencent_qq"){
                 username = user_info.objectForKey("qq_id")
             }else{
-                username = user_info.objectForKey("username")
-                pwd = user_info.objectForKey("password")
+                username = user.objectForKey("nickname")!
+                pwd = user.objectForKey("password")!
             }
-            AVUser.logInWithUsernameInBackground("\(username!)", password: "\(pwd)", block: {(obj:AVUser!,error:NSError!) in
-                if(error == nil){
+            AVUser.logInWithUsernameInBackground("\(username!)", password: "\(pwd!)", block: {(obj:AVUser!,loginError:NSError!) in
+                if(loginError == nil){
                     println("succcss login with av")
                     var currentUser = AVUser.currentUser()
                     setUserDir(currentUser.objectForKey("userToken") as! String)
@@ -128,17 +127,17 @@ func saveUser(user:NSDictionary) -> Bool{
                                     currentUser.setObject(friends_count!, forKey: "friends_count")
                                 }
                                 println("get user data successfully")
-                                currentUser.saveInBackgroundWithBlock({(succeeded:Bool,error:NSError!) in
+                                currentUser.saveInBackgroundWithBlock({(succeeded:Bool,error1:NSError!) in
                                     if(succeeded){
                                         println("user update success")
                                     }else{
-                                        println(error)
+                                        println(error1)
                                     }
                                 })
                             },
-                            failure: {(operation:AFHTTPRequestOperation!, error:NSError!) in
+                            failure: {(operation:AFHTTPRequestOperation!, error2:NSError!) in
                                 println("fetch user error")
-                                println(error)
+                                println(error2)
                         })
                     }else{
                         let nickname:AnyObject? = user.objectForKey("nickname")
@@ -157,11 +156,11 @@ func saveUser(user:NSDictionary) -> Bool{
                         if(friends_count != nil) {
                             currentUser.setObject(friends_count!, forKey: "friends_count")
                         }
-                        currentUser.saveInBackgroundWithBlock({(succeeded:Bool,error:NSError!) in
+                        currentUser.saveInBackgroundWithBlock({(succeeded:Bool,error3:NSError!) in
                             if(succeeded){
                                 println("user update success")
                             }else{
-                                println(error)
+                                println(error3)
                             }
                         })
                     }
@@ -169,117 +168,119 @@ func saveUser(user:NSDictionary) -> Bool{
                     
                 }else{
                     println("login error")
+                    println(loginError)
                     NSNotificationCenter.defaultCenter().postNotificationName("loginFailure", object: nil)
                 }
                 
             })
             
-        }else if((loginType as? String) != "register"){
-            var newUser = AVUser()
-            let uuid = gen_uuid()
-            newUser.setObject(uuid!, forKey: "userToken")
-            newUser.password = "123456"
-
-            let nickname:AnyObject? = user.objectForKey("nickname")
-            if(nickname != nil){
-                newUser.setObject(nickname!, forKey: "nickname")
-            }
-            let login_type:String = user.objectForKey("loginType") as! String
-            if(login_type != ""){
-                newUser.setObject(login_type, forKey: "login_type")
-            }
-            let header_url:AnyObject? = user.objectForKey("profile_image_url")
-            if(header_url != nil) {
-                newUser.setObject(header_url!, forKey: "header_url")
-            }
-            let qq_id:AnyObject? = user.objectForKey("qq_uid")
-            if(qq_id != nil) {
-                newUser.setObject(qq_id!, forKey: "qq_id")
-            }
-            let weibo_id:AnyObject? = user.objectForKey("weibo_uid")
-            if(weibo_id != nil) {
-                newUser.setObject(weibo_id!, forKey: "weibo_id")
-            }
-            var username:AnyObject?
-            if(login_type == "sina_weibo"){
-                username = weibo_id
-            }else{
-                username = qq_id
-            }
-            newUser.username = "\(username!)"
-            let follwers:AnyObject? = user.objectForKey("followers_count")
-            if(follwers != nil) {
-                newUser.setObject(follwers!, forKey: "followers_count")
-            }
-            let friends_count:AnyObject? = user.objectForKey("friends_count")
-            if(friends_count != nil) {
-                newUser.setObject(friends_count!, forKey: "friends_count")
-            }
-            let clothes_count:AnyObject? = user.objectForKey("clothes_count")
-            if(clothes_count != nil) {
-                newUser.setObject(clothes_count!, forKey: "clothes_count")
-            }
-            let access_token:AnyObject? = user.objectForKey("access_token")
-            if(access_token != nil) {
-                newUser.setObject(access_token!, forKey: "access_token")
-            }
-            let shared_count:AnyObject? = user.objectForKey("shared_count")
-            if(shared_count != nil) {
-                newUser.setObject(shared_count!, forKey: "shared_count")
-            }
-            newUser.signUpInBackgroundWithBlock({(succeeded:Bool,error:NSError!) in
-                if(succeeded){
-                    setUserDir(uuid!)
-                    var currentUser = AVUser.currentUser()
-                    if(currentUser != nil){
-                        if(login_type == "sina_weibo"){
-                            println("fetch user data")
-                            let manager = DataService.shareService.requestManager()
-                            let url = kWeiboApi + "2/users/show.json"
-                            let uid:String = "\(weibo_id!)"
-                            let token:String = "\(access_token!)"
-                            let params = ["uid":"\(uid)","access_token":"\(token)"]
-                            manager!.GET(url,
-                                parameters:params,
-                                success: {(operation:AFHTTPRequestOperation!, response:AnyObject!) in
-                                    let resp:NSDictionary = response as! NSDictionary
-                                    let nickname:AnyObject? = resp.objectForKey("name")
-                                    if(nickname != nil){
-                                        currentUser.setObject(nickname!, forKey: "nickname")
-                                    }
-                                    let header_url:AnyObject? = resp.objectForKey("profile_image_url")
-                                    if(header_url != nil) {
-                                        currentUser.setObject(header_url!, forKey: "header_url")
-                                    }
-                                    let follwers:AnyObject? = resp.objectForKey("followers_count")
-                                    if(follwers != nil) {
-                                        currentUser.setObject(follwers!, forKey: "followers_count")
-                                    }
-                                    let friends_count:AnyObject? = resp.objectForKey("friends_count")
-                                    if(friends_count != nil) {
-                                        currentUser.setObject(friends_count!, forKey: "friends_count")
-                                    }
-                                    currentUser.saveInBackgroundWithBlock({(succeeded:Bool,error:NSError!) in
-                                        if(succeeded){
-                                            println("user update success")
-                                        }else{
-                                            println(error)
-                                        }
-                                    })
-                                },
-                                failure: {(operation:AFHTTPRequestOperation!, error:NSError!) in
-                                    println(error)
-                            })
-                        }
-                        DataService.shareService.setUserToken(uuid!)
-                    }
-                    NSNotificationCenter.defaultCenter().postNotificationName("finishedLogin", object: nil)
-                }else{
-                    println("register bad")
+        }else {
+            if((loginType as? String) != "register"){
+                var newUser = AVUser()
+                let uuid = gen_uuid()
+                newUser.setObject(uuid!, forKey: "userToken")
+                newUser.password = "123456"
+                let nickname:AnyObject? = user.objectForKey("nickname")
+                if(nickname != nil){
+                    newUser.setObject(nickname!, forKey: "nickname")
                 }
-            })
-        }else{
-            NSNotificationCenter.defaultCenter().postNotificationName("loginFailure", object: nil)
+                let login_type:String = user.objectForKey("loginType") as! String
+                if(login_type != ""){
+                    newUser.setObject(login_type, forKey: "login_type")
+                }
+                let header_url:AnyObject? = user.objectForKey("profile_image_url")
+                if(header_url != nil) {
+                    newUser.setObject(header_url!, forKey: "header_url")
+                }
+                let qq_id:AnyObject? = user.objectForKey("qq_uid")
+                if(qq_id != nil) {
+                    newUser.setObject(qq_id!, forKey: "qq_id")
+                }
+                let weibo_id:AnyObject? = user.objectForKey("weibo_uid")
+                if(weibo_id != nil) {
+                    newUser.setObject(weibo_id!, forKey: "weibo_id")
+                }
+                var username:AnyObject?
+                if(login_type == "sina_weibo"){
+                    username = weibo_id
+                }else{
+                    username = qq_id
+                }
+                newUser.username = "\(username!)"
+                let follwers:AnyObject? = user.objectForKey("followers_count")
+                if(follwers != nil) {
+                    newUser.setObject(follwers!, forKey: "followers_count")
+                }
+                let friends_count:AnyObject? = user.objectForKey("friends_count")
+                if(friends_count != nil) {
+                    newUser.setObject(friends_count!, forKey: "friends_count")
+                }
+                let clothes_count:AnyObject? = user.objectForKey("clothes_count")
+                if(clothes_count != nil) {
+                    newUser.setObject(clothes_count!, forKey: "clothes_count")
+                }
+                let access_token:AnyObject? = user.objectForKey("access_token")
+                if(access_token != nil) {
+                    newUser.setObject(access_token!, forKey: "access_token")
+                }
+                let shared_count:AnyObject? = user.objectForKey("shared_count")
+                if(shared_count != nil) {
+                    newUser.setObject(shared_count!, forKey: "shared_count")
+                }
+                newUser.signUpInBackgroundWithBlock({(succeeded:Bool,error4:NSError!) in
+                    if(succeeded){
+                        setUserDir(uuid!)
+                        var currentUser = AVUser.currentUser()
+                        if(currentUser != nil){
+                            if(login_type == "sina_weibo"){
+                                println("fetch user data")
+                                let manager = DataService.shareService.requestManager()
+                                let url = kWeiboApi + "2/users/show.json"
+                                let uid:String = "\(weibo_id!)"
+                                let token:String = "\(access_token!)"
+                                let params = ["uid":"\(uid)","access_token":"\(token)"]
+                                manager!.GET(url,
+                                    parameters:params,
+                                    success: {(operation:AFHTTPRequestOperation!, response:AnyObject!) in
+                                        let resp:NSDictionary = response as! NSDictionary
+                                        let nickname:AnyObject? = resp.objectForKey("name")
+                                        if(nickname != nil){
+                                            currentUser.setObject(nickname!, forKey: "nickname")
+                                        }
+                                        let header_url:AnyObject? = resp.objectForKey("profile_image_url")
+                                        if(header_url != nil) {
+                                            currentUser.setObject(header_url!, forKey: "header_url")
+                                        }
+                                        let follwers:AnyObject? = resp.objectForKey("followers_count")
+                                        if(follwers != nil) {
+                                            currentUser.setObject(follwers!, forKey: "followers_count")
+                                        }
+                                        let friends_count:AnyObject? = resp.objectForKey("friends_count")
+                                        if(friends_count != nil) {
+                                            currentUser.setObject(friends_count!, forKey: "friends_count")
+                                        }
+                                        currentUser.saveInBackgroundWithBlock({(succeeded:Bool,error:NSError!) in
+                                            if(succeeded){
+                                                println("user update success")
+                                            }else{
+                                                println(error)
+                                            }
+                                        })
+                                    },
+                                    failure: {(operation:AFHTTPRequestOperation!, error6:NSError!) in
+                                        println(error6)
+                                })
+                            }
+                            DataService.shareService.setUserToken(uuid!)
+                        }
+                        NSNotificationCenter.defaultCenter().postNotificationName("finishedLogin", object: nil)
+                    }else{
+                        println("register bad")
+                    }
+                })
+            }else{
+                NSNotificationCenter.defaultCenter().postNotificationName("loginFailure", object: nil)
+            }
         }
     })
 
@@ -309,10 +310,11 @@ func userLogin(data:NSDictionary, type:Int){
     }else if(type == 3){
         //login with phone number
         user.setValue("register", forKey: "loginType")
-        user.setValue(data.objectForKey("username"), forKey: "nickname")
+        user.setValue(data.objectForKey("username")!, forKey: "nickname")
         user.setValue(0, forKey: "followers_count")
         user.setValue(0, forKey: "friends_count")
         user.setValue(0, forKey: "shared_count")
+        user.setValue(data.objectForKey("password")!, forKey: "password")
         saveUser(user)
     }
 }

@@ -19,11 +19,11 @@ class LoginViewController: UIViewController,GADBannerViewDelegate {
     @IBOutlet weak var txtPhone: UITextField!
     override func viewDidLoad() {
         
-        self.weiboBtn?.layer.cornerRadius = 10
+        self.weiboBtn?.layer.cornerRadius = 5
 //        self.weiboBtn?.backgroundColor = UIColor.brownColor()
         
-        self.qqBtn?.layer.cornerRadius = 10
-//        self.loginBtn?.layer.cornerRadius = 13
+        self.qqBtn?.layer.cornerRadius = 5
+        self.loginBtn?.layer.cornerRadius = 5
 //        self.qqBtn?.backgroundColor = UIColor.blueColor()
         
         initBannerView()
@@ -119,7 +119,6 @@ class LoginViewController: UIViewController,GADBannerViewDelegate {
         }else if(count(phone) != 11 || count(pwd) > 20){
             self.view.makeToast(message: "你输入的字符长度有误", duration: 2.0, position: HRToastPositionCenter)
         }else{
-            
             var userInfo = NSMutableDictionary()
             userInfo.setValue("", forKey: "profile_image_url")
             userInfo.setValue(phone, forKey: "username")

@@ -27,11 +27,17 @@ class ForgetViewController: UIViewController {
         var leftBarItem = UIBarButtonItem(title:"取消", style: UIBarButtonItemStyle.Done, target: self, action: "clickBackBtn")
         leftBarItem.tintColor = UIColor.whiteColor()
         self.navigationItem.leftBarButtonItem = leftBarItem
+        var rightBarItem = UIBarButtonItem(title:"提交", style: UIBarButtonItemStyle.Done, target: self, action: "clickResetBtn:")
+        rightBarItem.tintColor = UIColor.whiteColor()
+        self.navigationItem.rightBarButtonItem = rightBarItem
         self.navigationController?.navigationBar.titleTextAttributes = NSDictionary(object: UIColor.whiteColor(), forKey: NSForegroundColorAttributeName) as [NSObject : AnyObject]
         self.codeBtn.titleLabel?.textAlignment = NSTextAlignment.Center
         
         var tapBgRecognizer = UITapGestureRecognizer(target: self, action: "tapBgView")
         self.view.addGestureRecognizer(tapBgRecognizer)
+        
+        self.codeBtn?.layer.cornerRadius = 5
+        self.resetBtn.layer.cornerRadius = 5
     }
 
     override func didReceiveMemoryWarning() {
@@ -53,8 +59,22 @@ class ForgetViewController: UIViewController {
             self.view.makeToast(message: "请输入正确的手机号码,验证码和密码", duration: 2.0, position: HRToastPositionCenter)
         }else{
             println(444444)
-            
+            AVUser.resetPasswordWithSmsCode(code, newPassword: pwd, block: {(successed:Bool, error:NSError!) in
+                if(successed){
+                    self.view.makeToast(message: "恭喜你密码已重置，现在可以登录啦！", duration: 2.0, position: HRToastPositionCenter)
+                    self.dismissViewControllerAnimated(true, completion: nil)
+
+                    NSTimer.scheduledTimerWithTimeInterval(2.0, target: self, selector: "delayMethod", userInfo: nil, repeats: false)
+                }else{
+                    println(error);
+                    self.view.makeToast(message: "抱歉，你的密码重置失败", duration: 2.0, position: HRToastPositionCenter)
+                }
+            })
         }
+    }
+    
+    func delayMethod(){
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
 
     @IBAction func clickCodeBtn(sender: AnyObject) {
@@ -68,7 +88,13 @@ class ForgetViewController: UIViewController {
                 self.isSendCode = true
                 self.txtCode.becomeFirstResponder()
                 self.codeBtn.backgroundColor = UIColor(red: 253/255.0, green: 103/255.0, blue: 85/255.0, alpha: 0.6)
-                
+                AVUser.requestPasswordResetWithPhoneNumber(phone, block: {(successed:Bool,error:NSError!) in
+                    if(!successed){
+                        self.view.makeToast(message: "验证码发送失败", duration: 2.0, position: HRToastPositionCenter)
+                    }else{
+                        self.view.makeToast(message: "验证码发送成功，请在5分钟有效期之内使用", duration: 2.0, position: HRToastPositionCenter)
+                    }
+                })
             }else{
                 self.view.makeToast(message: "请输入正确的手机号码", duration: 2.0, position: HRToastPositionCenter)
             }
