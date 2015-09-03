@@ -447,11 +447,15 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate,UMSocia
         self.shirtIdx = 0
         self.trouserIdx = 0
         if(DataService.shareService.userToken != nil){
-            self.recommandedClothes = DataService.shareService.getRecommandClothes(DataService.shareService.weather!, dataType:0)
-            let title = self.leftItemBtn?.title
-            if(title == "全部"){
-                self.recommandedClothes = DataService.shareService.getRecommandClothes(DataService.shareService.weather!, dataType:1)
+            if let weather = DataService.shareService.weather {
+                let title = self.leftItemBtn?.title
+                if(title == "全部"){
+                    self.recommandedClothes = DataService.shareService.getRecommandClothes(weather, dataType:1)
+                }else {
+                    self.recommandedClothes = DataService.shareService.getRecommandClothes(weather, dataType:0)
+                }
             }
+            
         }
     }
 }
