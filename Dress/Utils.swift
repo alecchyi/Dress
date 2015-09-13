@@ -52,6 +52,8 @@ func saveUser(user:NSDictionary) -> Bool{
         query.whereKey("qq_id", equalTo:user.objectForKey("qq_uid")!)
     }else if((loginType as? String) == "register"){
         query.whereKey("username", equalTo:user.objectForKey("nickname")!)
+    }else if((loginType as? String) == "ali_taobao"){
+        query.whereKey("taobao_id", equalTo:user.objectForKey("taobao_uid")!)
     }
     query.getFirstObjectInBackgroundWithBlock({(user_info:AVObject!,error:NSError!) in
         if(error == nil){
@@ -62,6 +64,8 @@ func saveUser(user:NSDictionary) -> Bool{
                 username = user_info.objectForKey("weibo_id")
             }else if(login_type == "tencent_qq"){
                 username = user_info.objectForKey("qq_id")
+            }else if(login_type == "ali_taobao"){
+                username = user_info.objectForKey("taobao_id")
             }else{
                 username = user.objectForKey("nickname")!
                 pwd = user.objectForKey("password")!
@@ -87,6 +91,10 @@ func saveUser(user:NSDictionary) -> Bool{
                     let weibo_id:AnyObject? = user.objectForKey("weibo_uid")
                     if(weibo_id != nil) {
                         currentUser.setObject(weibo_id!, forKey: "weibo_id")
+                    }
+                    
+                    if let taobao_id: AnyObject = user.objectForKey("taobao_id") {
+                        currentUser.setObject(taobao_id, forKey: "taobao_id")
                     }
                     
                     
@@ -200,11 +208,17 @@ func saveUser(user:NSDictionary) -> Bool{
                 if(weibo_id != nil) {
                     newUser.setObject(weibo_id!, forKey: "weibo_id")
                 }
+                let taobao_id:AnyObject? = user.objectForKey("taobao_uid")
+                if(taobao_id != nil) {
+                    newUser.setObject(taobao_id!, forKey: "taobao_id")
+                }
                 var username:AnyObject?
                 if(login_type == "sina_weibo"){
                     username = weibo_id
-                }else{
+                }else if(login_type == "tencent_qq"){
                     username = qq_id
+                }else if(login_type == "ali_taobao"){
+                    username = taobao_id
                 }
                 newUser.username = "\(username!)"
                 let follwers:AnyObject? = user.objectForKey("followers_count")
@@ -315,6 +329,17 @@ func userLogin(data:NSDictionary, type:Int){
         user.setValue(0, forKey: "friends_count")
         user.setValue(0, forKey: "shared_count")
         user.setValue(data.objectForKey("password")!, forKey: "password")
+        saveUser(user)
+    }else if(type == 4){
+        //login with taobao account
+        user.setValue("ali_taobao", forKey: "loginType")
+//        user.setValue(data.objectForKey("access_token"), forKey: "access_token")
+        user.setValue(data.objectForKey("uid"), forKey: "taobao_uid")
+        user.setValue(data.objectForKey("nickname"), forKey: "nickname")
+        user.setValue(data.objectForKey("profile_image_url"), forKey: "profile_image_url")
+        user.setValue(0, forKey: "followers_count")
+        user.setValue(0, forKey: "friends_count")
+        user.setValue(0, forKey: "shared_count")
         saveUser(user)
     }
 }
