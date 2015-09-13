@@ -21,7 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WeiboSDKDelegate {
         initLogin()
         initDataDB()
 //        [WeiboSDK  .enableDebugMode]
-        WeiboSDK.enableDebugMode(true)
+        WeiboSDK.enableDebugMode(false)
         WeiboSDK.registerApp(kAppKeyForWeibo)
         
         AVOSCloud.setApplicationId(kAVCloudAppId, clientKey: kAVCloudClientKey)
@@ -32,6 +32,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WeiboSDKDelegate {
         UMSocialWechatHandler.setWXAppId(kWeChatAppId, appSecret: kWeChatSecret, url: kShareRedirectUrl)
         UMSocialSinaHandler.openSSOWithRedirectURL("http://sns.whalecloud.com/sina2/callback")
         UMSocialQQHandler.setQQWithAppId(kQQAppId, appKey: kQQKey, url: kShareRedirectUrl)
+        
+        TaeSDK.sharedInstance().setDebugLogOpen(false)
+        TaeSDK.sharedInstance().closeCrashHandler()
+        
+        TaeSDK.sharedInstance().asyncInit({(initSuccessCallback) in
+            print("success")
+            }, failedCallback: {(initFailedCallback) in
+                print("failure")
+        })
         
         return true
     }
@@ -61,8 +70,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WeiboSDKDelegate {
 
     func application(application: UIApplication, handleOpenURL url: NSURL) -> Bool {
         let str:String = url.scheme! as String
-        if(str.hasPrefix(kWeChatAppId) || str.hasPrefix("tencent")){
+        if(str.hasPrefix(kWeChatAppId) || str.hasPrefix("tencent110428A356")){
             return UMSocialSnsService.handleOpenURL(url)
+        }else if(str.hasPrefix("tencent1104289356")){
+            return TencentOAuth.HandleOpenURL(url)
         }
         return WeiboSDK.handleOpenURL(url, delegate: self)
     }
@@ -70,8 +81,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WeiboSDKDelegate {
     func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject?) -> Bool {
 
         let str:String = url.scheme! as String
-        if(str.hasPrefix(kWeChatAppId) || str.hasPrefix("tencent")){
+        
+        println(str)
+        if(str.hasPrefix(kWeChatAppId) || str.hasPrefix("tencent110428A356")){
             return UMSocialSnsService.handleOpenURL(url)
+        }else if(str.hasPrefix("tencent1104289356")){
+            return TencentOAuth.HandleOpenURL(url)
         }
         return WeiboSDK.handleOpenURL(url, delegate: self)
     }

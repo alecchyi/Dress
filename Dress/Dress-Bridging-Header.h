@@ -18,6 +18,9 @@
 #import "JTSImageViewController.h"
 #import "JTSImageInfo.h"
 
+#import <TAESDK/Taesdk.h>
+#import <ALBBLoginSDK/ALBBLoginService.h>
+
 @import GoogleMobileAds;
 
 

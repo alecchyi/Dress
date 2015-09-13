@@ -13,18 +13,24 @@ class LoginViewController: UIViewController,GADBannerViewDelegate {
     @IBOutlet var weiboBtn:UIButton?
     @IBOutlet var qqBtn:UIButton?
     @IBOutlet var loginBtn:UIButton?
+    @IBOutlet var taobaoBtn: UIButton?
+    
     @IBOutlet var _bannerView:GADBannerView?
 
+    
     @IBOutlet weak var txtPwd: UITextField!
     @IBOutlet weak var txtPhone: UITextField!
+    
+    var tencentAuth:TencentOAuth?
+    
     override func viewDidLoad() {
         
         self.weiboBtn?.layer.cornerRadius = 5
-//        self.weiboBtn?.backgroundColor = UIColor.brownColor()
         
         self.qqBtn?.layer.cornerRadius = 5
         self.loginBtn?.layer.cornerRadius = 5
-//        self.qqBtn?.backgroundColor = UIColor.blueColor()
+        self.taobaoBtn?.layer.masksToBounds = true
+        self.taobaoBtn?.layer.cornerRadius = 5
         
         initBannerView()
         let notificationCenter = NSNotificationCenter.defaultCenter()
@@ -32,10 +38,11 @@ class LoginViewController: UIViewController,GADBannerViewDelegate {
         
         var tapBgRecognizer = UITapGestureRecognizer(target: self, action: "tapBgView")
         self.view.addGestureRecognizer(tapBgRecognizer)
+        
     }
     
     override func viewWillAppear(animated: Bool) {
-       
+        
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -63,25 +70,32 @@ class LoginViewController: UIViewController,GADBannerViewDelegate {
     }
     
     @IBAction func clickWechatLoginBtn(){
-        let snsPlatform:UMSocialSnsPlatform = UMSocialSnsPlatformManager.getSocialPlatformWithName(UMShareToQQ) as UMSocialSnsPlatform
-        snsPlatform.loginClickHandler(self,UMSocialControllerService.defaultControllerService(),true, {(resp:UMSocialResponseEntity!) in
-//                println(resp.responseCode.value)
-//                println("login within umeng")
-                if(resp.responseCode.value == UMSResponseCodeSuccess.value){
-                    let accountDic:NSDictionary = UMSocialAccountManager.socialAccountDictionary()
-                    let account:UMSocialAccountEntity = accountDic.valueForKey(UMShareToQQ) as! UMSocialAccountEntity
-                    println(account.userName)
-                    println(account.usid)
-                    println(account.accessToken)
-                    var userInfo = NSMutableDictionary()
-                    userInfo.setValue(account.iconURL, forKey: "profile_image_url")
-                    userInfo.setValue(account.userName, forKey: "nickname")
-                    userInfo.setValue(account.usid, forKey: "uid")
-                    userInfo.setValue(account.accessToken, forKey: "access_token")
-                    userLogin(userInfo, 2)
-                }
-            
-        })
+        if(!TencentOAuth.iphoneQQInstalled()) {
+            self.view.makeToast(message: "需要安装QQ才能登录", duration: 2.0, position: HRToastPositionDefault)
+        }else {
+            let snsPlatform:UMSocialSnsPlatform = UMSocialSnsPlatformManager.getSocialPlatformWithName(UMShareToQQ) as UMSocialSnsPlatform
+            snsPlatform.loginClickHandler(self,UMSocialControllerService.defaultControllerService(),true, {(resp:UMSocialResponseEntity!) in
+    //                println(resp.responseCode.value)
+    //                println("login within umeng")
+                    if(resp.responseCode.value == UMSResponseCodeSuccess.value){
+                        let accountDic:NSDictionary = UMSocialAccountManager.socialAccountDictionary()
+                        let account:UMSocialAccountEntity = accountDic.valueForKey(UMShareToQQ) as! UMSocialAccountEntity
+                        println(account.userName)
+                        println(account.usid)
+                        println(account.accessToken)
+                        var userInfo = NSMutableDictionary()
+                        userInfo.setValue(account.iconURL, forKey: "profile_image_url")
+                        userInfo.setValue(account.userName, forKey: "nickname")
+                        userInfo.setValue(account.usid, forKey: "uid")
+                        userInfo.setValue(account.accessToken, forKey: "access_token")
+                        userLogin(userInfo, 2)
+                    }
+                
+            })
+        }
+//        let permissions = [kOPEN_PERMISSION_GET_USER_INFO,kOPEN_PERMISSION_GET_SIMPLE_USER_INFO]
+//        print(permissions)
+//        self.tencentAuth?.authorize(permissions, inSafari: false)
     }
     
     func initBannerView(){
@@ -145,5 +159,31 @@ class LoginViewController: UIViewController,GADBannerViewDelegate {
         self.txtPhone.resignFirstResponder()
         self.txtPwd.resignFirstResponder()
     }
+
+    
+    @IBAction func clickTaobaoLoginBtn(sender: AnyObject) {
+        let loginService = TaeSDK.sharedInstance().getService(ALBBLoginService) as? ALBBLoginService
+        
+        if TaeSession.sharedInstance().isLogin() {
+            print("is login")
+        }else {
+            
+            loginService?.showLogin(self, successCallback: {(TaeSession session) in
+                print("success")
+                print(session.getUser())
+                let user:TaeUser = session.getUser()
+                var userInfo = NSMutableDictionary()
+                userInfo.setValue(user.iconUrl, forKey: "profile_image_url")
+                userInfo.setValue(user.userId, forKey: "uid")
+                userInfo.setValue(user.nick, forKey: "nickname")
+                userLogin(userInfo, 4)
+                }, failedCallback: {(NSError error) in
+                    print("error")
+            })
+            
+        }
+    }
+    
+    
     
 }

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="49e-Tb-3d3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="49e-Tb-3d3">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -565,7 +565,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="———其他登录方式———" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JJT-wz-ug2">
-                                <rect key="frame" x="215" y="310" width="170" height="17"/>
+                                <rect key="frame" x="215" y="310" width="169.5" height="17"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" red="0.97379225127551017" green="0.93897449848241732" blue="0.92096900812601101" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -640,35 +640,37 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4vp-i4-Hbc">
-                                <rect key="frame" x="240" y="350" width="40" height="40"/>
+                                <rect key="frame" x="199" y="350" width="40" height="40"/>
                                 <color key="backgroundColor" red="0.70691167091836737" green="0.53961107765658833" blue="0.48968833039508658" alpha="0.75" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="40" id="TMe-WJ-2Eo"/>
                                     <constraint firstAttribute="height" constant="40" id="cfa-4u-2PY"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
-                                <state key="normal" title=" " image="weibo_btn">
+                                <state key="normal" title="        sina" image="weibo_btn">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <state key="highlighted" image="weibo_btn"/>
                                 <connections>
                                     <action selector="clickWeiboLoginBtn" destination="3cl-H6-Xso" eventType="touchUpInside" id="LUD-fu-JXc"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jh3-k5-VMW">
-                                <rect key="frame" x="320" y="350" width="40" height="40"/>
-                                <color key="backgroundColor" red="0.31372549020000001" green="0.31372549020000001" blue="0.31372549020000001" alpha="0.81000000000000005" colorSpace="calibratedRGB"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="alV-pT-lHM">
+                                <rect key="frame" x="280" y="350" width="40" height="40"/>
+                                <color key="backgroundColor" red="0.70691167089999996" green="0.53961107770000005" blue="0.48968833039999998" alpha="0.75" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="40" id="6IZ-sS-3ur"/>
-                                    <constraint firstAttribute="height" constant="40" id="p4A-vj-QDm"/>
+                                    <constraint firstAttribute="width" constant="40" id="Jxl-jP-sxl"/>
+                                    <constraint firstAttribute="height" constant="40" id="ws6-lg-NUf"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
-                                <state key="normal" image="qq_icon">
+                                <state key="normal" title="    taobao" image="taobao_btn">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <state key="highlighted" image="taobao_btn" backgroundImage="taobao_btn"/>
                                 <connections>
-                                    <action selector="clickWechatLoginBtn" destination="3cl-H6-Xso" eventType="touchUpInside" id="gTl-zK-Tsn"/>
+                                    <action selector="clickTaobaoLoginBtn:" destination="3cl-H6-Xso" eventType="touchUpInside" id="zhT-pE-rn5"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gka-p3-ZgO">
@@ -682,6 +684,23 @@
                                     <action selector="clickForgetBtn:" destination="3cl-H6-Xso" eventType="touchUpInside" id="L5f-fk-ZgC"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jh3-k5-VMW">
+                                <rect key="frame" x="360" y="350" width="40" height="40"/>
+                                <color key="backgroundColor" red="0.31372549020000001" green="0.31372549020000001" blue="0.31372549020000001" alpha="0.81000000000000005" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="6IZ-sS-3ur"/>
+                                    <constraint firstAttribute="height" constant="40" id="p4A-vj-QDm"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                <state key="normal" title="        qq" image="qq_icon">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted" image="qq_icon"/>
+                                <connections>
+                                    <action selector="clickWechatLoginBtn" destination="3cl-H6-Xso" eventType="touchUpInside" id="gTl-zK-Tsn"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.95686274510000002" green="0.46666666670000001" blue="0.57254901960000004" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="tintColor" red="0.95686274510000002" green="0.46666666670000001" blue="0.57254901960000004" alpha="1" colorSpace="calibratedRGB"/>
@@ -689,7 +708,7 @@
                             <constraint firstItem="S2x-ye-VTb" firstAttribute="top" secondItem="JJT-wz-ug2" secondAttribute="bottom" constant="13" id="1pg-l9-prc"/>
                             <constraint firstItem="ule-JP-SR8" firstAttribute="top" secondItem="R06-0N-LOr" secondAttribute="bottom" constant="20" id="2ov-Z6-73g"/>
                             <constraint firstItem="LUo-tu-mKa" firstAttribute="leading" secondItem="jqc-xz-3lB" secondAttribute="leadingMargin" constant="28" id="366-Tu-C9s"/>
-                            <constraint firstAttribute="centerX" secondItem="Jh3-k5-VMW" secondAttribute="centerX" constant="-40" id="67O-2j-czE"/>
+                            <constraint firstAttribute="centerX" secondItem="Jh3-k5-VMW" secondAttribute="centerX" constant="-80" id="67O-2j-czE"/>
                             <constraint firstItem="pVa-Sl-3rF" firstAttribute="top" secondItem="JJT-wz-ug2" secondAttribute="top" constant="-80" id="7iF-NK-2TX"/>
                             <constraint firstAttribute="centerY" secondItem="4vp-i4-Hbc" secondAttribute="centerY" constant="182" id="9rr-N4-Ket"/>
                             <constraint firstItem="pVa-Sl-3rF" firstAttribute="trailing" secondItem="tV1-XP-QV4" secondAttribute="trailing" constant="10" id="AWb-Lh-pCx"/>
@@ -712,6 +731,7 @@
                             <constraint firstItem="ule-JP-SR8" firstAttribute="trailing" secondItem="S2x-ye-VTb" secondAttribute="trailing" id="OUp-Gp-aQ0"/>
                             <constraint firstItem="S2x-ye-VTb" firstAttribute="top" secondItem="JJT-wz-ug2" secondAttribute="bottom" constant="-194" id="ObT-qz-FHz"/>
                             <constraint firstItem="ule-JP-SR8" firstAttribute="leading" secondItem="S2x-ye-VTb" secondAttribute="leading" id="QyA-7r-m4Q"/>
+                            <constraint firstItem="pVa-Sl-3rF" firstAttribute="top" secondItem="alV-pT-lHM" secondAttribute="top" constant="-106" id="SZ1-t7-BLk"/>
                             <constraint firstItem="Gka-p3-ZgO" firstAttribute="leading" secondItem="Jr3-ag-KN6" secondAttribute="leading" constant="60" id="T8i-I3-mDq"/>
                             <constraint firstAttribute="trailingMargin" secondItem="ule-JP-SR8" secondAttribute="trailing" constant="10" id="TFB-IO-mlF"/>
                             <constraint firstAttribute="centerX" secondItem="Jr3-ag-KN6" secondAttribute="centerX" constant="60" id="Tng-Cr-eFN"/>
@@ -723,7 +743,8 @@
                             <constraint firstItem="Jr3-ag-KN6" firstAttribute="leading" secondItem="pVa-Sl-3rF" secondAttribute="leading" id="aQn-VH-lmC"/>
                             <constraint firstItem="Gka-p3-ZgO" firstAttribute="top" secondItem="pVa-Sl-3rF" secondAttribute="top" constant="40" id="aSf-L5-0iL"/>
                             <constraint firstItem="Jr3-ag-KN6" firstAttribute="top" secondItem="pVa-Sl-3rF" secondAttribute="bottom" constant="-78" id="ajY-2u-na1"/>
-                            <constraint firstAttribute="centerX" secondItem="4vp-i4-Hbc" secondAttribute="centerX" constant="40" id="bbq-uf-bQQ"/>
+                            <constraint firstAttribute="centerX" secondItem="4vp-i4-Hbc" secondAttribute="centerX" constant="81" id="bbq-uf-bQQ"/>
+                            <constraint firstAttribute="centerX" secondItem="alV-pT-lHM" secondAttribute="centerX" id="cLZ-ms-gHA"/>
                             <constraint firstAttribute="centerX" secondItem="Gka-p3-ZgO" secondAttribute="centerX" constant="60" id="cg5-DQ-CCY"/>
                             <constraint firstItem="pVa-Sl-3rF" firstAttribute="top" secondItem="tV1-XP-QV4" secondAttribute="bottom" constant="10" id="d05-aT-gUb"/>
                             <constraint firstItem="tV1-XP-QV4" firstAttribute="trailing" secondItem="pVa-Sl-3rF" secondAttribute="trailing" id="d2j-Cb-Ybj"/>
@@ -813,6 +834,7 @@
                         <outlet property="_bannerView" destination="LUo-tu-mKa" id="bfi-yA-Yfd"/>
                         <outlet property="loginBtn" destination="pVa-Sl-3rF" id="9Ly-uy-RXy"/>
                         <outlet property="qqBtn" destination="Jh3-k5-VMW" id="1hD-rG-ffv"/>
+                        <outlet property="taobaoBtn" destination="alV-pT-lHM" id="9WN-VR-ZBt"/>
                         <outlet property="txtPhone" destination="S2x-ye-VTb" id="6Gk-Of-gSr"/>
                         <outlet property="txtPwd" destination="tV1-XP-QV4" id="Iex-t9-jIo"/>
                         <outlet property="view" destination="jqc-xz-3lB" id="hMJ-br-oLo"/>
@@ -1354,6 +1376,7 @@
         <image name="me_icon" width="29" height="29"/>
         <image name="qq_icon" width="39" height="39"/>
         <image name="shirt_icon" width="256" height="256"/>
+        <image name="taobao_btn" width="64" height="64"/>
         <image name="trousers_icon" width="256" height="256"/>
         <image name="weather_icon" width="29" height="29"/>
         <image name="weibo_btn" width="32" height="32"/>

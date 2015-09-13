@@ -111,6 +111,18 @@ class PersonalViewController: UIViewController,UITableViewDataSource,UITableView
         userDefaults.removeObjectForKey("userToken")
         DataService.shareService.weather = nil
         NSNotificationCenter.defaultCenter().postNotificationName("unLoginNotify", object: nil)
+        if TaeSession.sharedInstance().isLogin() {
+            print("be log out")
+            let loginService = TaeSDK.sharedInstance().getService(ALBBLoginService) as? ALBBLoginService
+            loginService?.logout()
+            loginService?.setSessionStateChangedHandler({(TaeSession session) in
+                if session.isLogin() {
+                    print("is login now")
+                }else{
+                    print("is logout now")
+                }
+            })
+        }
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
