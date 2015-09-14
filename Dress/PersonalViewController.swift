@@ -42,33 +42,31 @@ class PersonalViewController: UIViewController,UITableViewDataSource,UITableView
     
     override func viewWillAppear(animated: Bool) {
         initPersonalView()
-        let currentUser = AVUser.currentUser()
-        if(currentUser != nil){
+        
+        if let currentUser = AVUser.currentUser() {
             self.profileImg?.image = UIImage(named: "default_head")
-            if let path:String = currentUser?.objectForKey("header_url") as? String{
+            if let path:String = currentUser.objectForKey("header_url") as? String{
                 ImageLoader.sharedLoader.imageForUrl(path, completionHandler: {(image: UIImage?, url: String) in
                     self.profileImg!.image = image
                 })
             }
-            var nickname:String = ""
-            if((currentUser.objectForKey("nickname")) != nil) {
-                nickname = currentUser?.objectForKey("nickname") as! String
+            if let nickname = currentUser.objectForKey("nickname") as? String {
+                self.lblNickname?.text = nickname
             }
-            self.lblNickname?.text = nickname
-            let followers_count:Int = (currentUser?.objectForKey("followers_count") as! Int)
-            self.lblFollowersNum?.text = "粉丝\n\(followers_count)"
-            let friends:Int = (currentUser?.objectForKey("friends_count") as! Int)
-            self.lblFriendsNum?.text = "关注\n\(friends)"
-            var clothes:Int = 0
-            if(currentUser?.objectForKey("cloth_count") != nil){
-                clothes = (currentUser?.objectForKey("cloth_count") as! Int)
+            
+            if let followers_count = currentUser.objectForKey("followers_count") as? Int {
+                self.lblFollowersNum?.text = "粉丝\n\(followers_count)"
             }
-            self.lblClothNum?.text = "衣服\n\(clothes)"
-            var share:Int = 0
-            if(currentUser?.objectForKey("shared_count") != nil){
-                share = currentUser?.objectForKey("shared_count") as! Int
+            if let friends = currentUser.objectForKey("friends_count") as? Int {
+                self.lblFriendsNum?.text = "关注\n\(friends)"
             }
-            self.lblSharedNum?.text = "分享\n\(share)"
+            if let clothes = currentUser.objectForKey("clothes_count") as? Int {
+                self.lblClothNum?.text = "衣服\n\(clothes)"
+            }
+            if let share = currentUser.objectForKey("shared_count") as? Int {
+                self.lblSharedNum?.text = "分享\n\(share)"
+            }
+            
         }
     }
 

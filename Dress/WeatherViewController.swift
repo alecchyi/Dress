@@ -103,7 +103,6 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate,UMSocia
     }
     
     func setClothesMainView(){
-        println("did load")
         let frame = CGRectMake(0, 180, self.view.bounds.width, get_screen_height() - 180 - 44)
         self.clothesMainView!.contentSize = CGSizeMake(frame.size.width, 360)
         self.clothesMainView!.autoresizingMask = UIViewAutoresizing.FlexibleWidth | UIViewAutoresizing.FlexibleHeight
