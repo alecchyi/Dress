@@ -17,9 +17,7 @@
 		06B16DBD1BA48D1B00581363 /* ALBBFullSecurityGuard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06B16DB31BA48D1B00581363 /* ALBBFullSecurityGuard.framework */; };
 		06B16DBE1BA48D1B00581363 /* ALBBHotpatch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06B16DB41BA48D1B00581363 /* ALBBHotpatch.framework */; };
 		06B16DBF1BA48D1B00581363 /* ALBBLoginSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06B16DB51BA48D1B00581363 /* ALBBLoginSDK.framework */; };
-		06B16DC01BA48D1B00581363 /* ALBBPush.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06B16DB61BA48D1B00581363 /* ALBBPush.framework */; };
 		06B16DC11BA48D1B00581363 /* ALBBRpcPlugin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06B16DB71BA48D1B00581363 /* ALBBRpcPlugin.framework */; };
-		06B16DC21BA48D1B00581363 /* CloudPushSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06B16DB81BA48D1B00581363 /* CloudPushSDK.framework */; };
 		06B16DC31BA48D1B00581363 /* SecurityGuardSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06B16DB91BA48D1B00581363 /* SecurityGuardSDK.framework */; };
 		06B16DC41BA48D1B00581363 /* TAESDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06B16DBA1BA48D1B00581363 /* TAESDK.framework */; };
 		06B16DC51BA48D1B00581363 /* UTDID.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06B16DBB1BA48D1B00581363 /* UTDID.framework */; };
@@ -155,9 +153,7 @@
 		06B16DB31BA48D1B00581363 /* ALBBFullSecurityGuard.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ALBBFullSecurityGuard.framework; path = "../../../Downloads/OneSDK 2/ALBBFullSecurityGuard.framework"; sourceTree = "<group>"; };
 		06B16DB41BA48D1B00581363 /* ALBBHotpatch.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ALBBHotpatch.framework; path = "../../../Downloads/OneSDK 2/ALBBHotpatch.framework"; sourceTree = "<group>"; };
 		06B16DB51BA48D1B00581363 /* ALBBLoginSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ALBBLoginSDK.framework; path = "../../../Downloads/OneSDK 2/ALBBLoginSDK.framework"; sourceTree = "<group>"; };
-		06B16DB61BA48D1B00581363 /* ALBBPush.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ALBBPush.framework; path = "../../../Downloads/OneSDK 2/ALBBPush.framework"; sourceTree = "<group>"; };
 		06B16DB71BA48D1B00581363 /* ALBBRpcPlugin.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ALBBRpcPlugin.framework; path = "../../../Downloads/OneSDK 2/ALBBRpcPlugin.framework"; sourceTree = "<group>"; };
-		06B16DB81BA48D1B00581363 /* CloudPushSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudPushSDK.framework; path = "../../../Downloads/OneSDK 2/CloudPushSDK.framework"; sourceTree = "<group>"; };
 		06B16DB91BA48D1B00581363 /* SecurityGuardSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SecurityGuardSDK.framework; path = "../../../Downloads/OneSDK 2/SecurityGuardSDK.framework"; sourceTree = "<group>"; };
 		06B16DBA1BA48D1B00581363 /* TAESDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TAESDK.framework; path = "../../../Downloads/OneSDK 2/TAESDK.framework"; sourceTree = "<group>"; };
 		06B16DBB1BA48D1B00581363 /* UTDID.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UTDID.framework; path = "../../../Downloads/OneSDK 2/UTDID.framework"; sourceTree = "<group>"; };
@@ -315,9 +311,7 @@
 				06B16DBD1BA48D1B00581363 /* ALBBFullSecurityGuard.framework in Frameworks */,
 				06B16DBE1BA48D1B00581363 /* ALBBHotpatch.framework in Frameworks */,
 				06B16DBF1BA48D1B00581363 /* ALBBLoginSDK.framework in Frameworks */,
-				06B16DC01BA48D1B00581363 /* ALBBPush.framework in Frameworks */,
 				06B16DC11BA48D1B00581363 /* ALBBRpcPlugin.framework in Frameworks */,
-				06B16DC21BA48D1B00581363 /* CloudPushSDK.framework in Frameworks */,
 				06B16DC31BA48D1B00581363 /* SecurityGuardSDK.framework in Frameworks */,
 				06B16DC41BA48D1B00581363 /* TAESDK.framework in Frameworks */,
 				06B16DC51BA48D1B00581363 /* UTDID.framework in Frameworks */,
@@ -703,9 +697,7 @@
 				06B16DB31BA48D1B00581363 /* ALBBFullSecurityGuard.framework */,
 				06B16DB41BA48D1B00581363 /* ALBBHotpatch.framework */,
 				06B16DB51BA48D1B00581363 /* ALBBLoginSDK.framework */,
-				06B16DB61BA48D1B00581363 /* ALBBPush.framework */,
 				06B16DB71BA48D1B00581363 /* ALBBRpcPlugin.framework */,
-				06B16DB81BA48D1B00581363 /* CloudPushSDK.framework */,
 				06B16DB91BA48D1B00581363 /* SecurityGuardSDK.framework */,
 				06B16DBA1BA48D1B00581363 /* TAESDK.framework */,
 				06B16DBB1BA48D1B00581363 /* UTDID.framework */,

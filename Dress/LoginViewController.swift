@@ -42,7 +42,11 @@ class LoginViewController: UIViewController,GADBannerViewDelegate {
     }
     
     override func viewWillAppear(animated: Bool) {
-        
+        if TencentOAuth.iphoneQQInstalled() {
+            self.qqBtn?.hidden = false
+        }else {
+            self.qqBtn?.hidden = true
+        }
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -50,7 +54,6 @@ class LoginViewController: UIViewController,GADBannerViewDelegate {
     }
     
     func dismissLoginView(){
-        println("dismiss")
         self.navigationController?.popViewControllerAnimated(true)
     }
     
@@ -169,8 +172,6 @@ class LoginViewController: UIViewController,GADBannerViewDelegate {
         }else {
             
             loginService?.showLogin(self, successCallback: {(TaeSession session) in
-                print("success")
-                print(session.getUser())
                 let user:TaeUser = session.getUser()
                 var userInfo = NSMutableDictionary()
                 userInfo.setValue(user.iconUrl, forKey: "profile_image_url")

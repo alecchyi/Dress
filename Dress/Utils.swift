@@ -96,11 +96,8 @@ func saveUser(user:NSDictionary) -> Bool{
                     if let taobao_id: AnyObject = user.objectForKey("taobao_id") {
                         currentUser.setObject(taobao_id, forKey: "taobao_id")
                     }
-                    let s = currentUser.objectForKey("clothes_count") as! Int
-                    println("user cloth:\(s)")
                     
                     let clothes_count:AnyObject? = user_info.objectForKey("clothes_count")
-                    println(clothes_count)
                     if(clothes_count != nil) {
                         currentUser.setObject(clothes_count!, forKey: "clothes_count")
                     }

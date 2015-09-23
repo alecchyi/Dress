@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WeiboSDKDelegate {
         // Override point for customization after application launch.
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "showLoginPage", name: "unLoginNotify", object: nil)
         initLogin()
-        initDataDB()
+//        initDataDB()
 //        [WeiboSDK  .enableDebugMode]
         WeiboSDK.enableDebugMode(false)
         WeiboSDK.registerApp(kAppKeyForWeibo)
@@ -37,7 +37,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WeiboSDKDelegate {
         TaeSDK.sharedInstance().closeCrashHandler()
         
         TaeSDK.sharedInstance().asyncInit({(initSuccessCallback) in
-            print("success")
             }, failedCallback: {(initFailedCallback) in
                 print("failure")
         })
