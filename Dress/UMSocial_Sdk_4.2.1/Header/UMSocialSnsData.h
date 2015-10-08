@@ -368,22 +368,6 @@ typedef enum {
 
 @end
 
-/**
- 分享到Facebook
- */
-@interface UMSocialFacebookData : UMSocialSnsData
-
-/**
- 分享标题
- */
-@property (nonatomic, copy) NSString *title;
-
-/**
- 分享URL地址
- */
-@property (nonatomic, copy) NSString *url;
-
-@end
 
 
 /**
@@ -544,11 +528,6 @@ typedef enum {
  */
 @property (nonatomic, retain) UMSocialSmsData *smsData;
 
-/**
- Facebook内容
- 
- */
-@property (nonatomic, retain) UMSocialFacebookData * facebookData;
 
 /**
  Twitter内容

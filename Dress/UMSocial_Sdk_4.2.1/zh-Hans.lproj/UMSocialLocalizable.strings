@@ -59,10 +59,6 @@
 "share_wechat_moments" = "分享至微信朋友圈";
 "share_wechat_no_title" = "温馨提示";
 "share_wechat_no_message" = "您的设备没有安装微信";
-"share_facebook_not_login" = "账号未登录";
-"share_facebook_not_login_message" = "账号未登录";
-"share_facebook_no_osSupport" = "系统不支持";
-"share_facebook_no_osSupport_message" = "您的iOS系统版本过低，不支持分享到该平台";
 
 "share_sms_no_osSupport" = "不支持短信";
 "share_sms_no_osSupport_message" = "您的设备不支持短信功能";
@@ -121,7 +117,6 @@
 "wechat_session" = "微信好友";
 "wechat_timeline" = "朋友圈";
 "wechat_favorite" = "微信收藏";
-"facebook" = "Facebook";
 "twitter" = "Twitter";
 "mobile_qq" = "QQ";
 "yx_session" = "易信";

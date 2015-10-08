@@ -64,10 +64,6 @@ extern NSString *const UMShareToWechatFavorite;
  */
 extern NSString *const UMShareToQQ;
 
-/**
- Facebook
- */
-extern NSString *const UMShareToFacebook;
 
 /**
  Twitter
@@ -147,7 +143,6 @@ typedef enum {
     UMSocialSnsTypeEmail,
     UMSocialSnsTypeSms,
     UMSocialSnsTypeMobileQQ,
-    UMSocialSnsTypeFacebook,
     UMSocialSnsTypeTwitter,
     UMSocialSnsTypeYiXinSession,
     UMSocialSnsTypeYiXinTimeline,

@@ -60,10 +60,6 @@
 "share_wechat_moments" = "Share to Wechat Moments";
 "share_wechat_no_title" = "No Wechat";
 "share_wechat_no_message" = "Wechat haven't been install in your device";
-"share_facebook_not_login" = "No login Account";
-"share_facebook_not_login_message" = "Your account haven't login";
-"share_facebook_no_osSupport" = "iOS doesn't support";
-"share_facebook_no_osSupport_message" = "The version of your iOS device doesn't support share the that media";
 
 "share_sms_no_osSupport" = "No SMS";
 "share_sms_no_osSupport_message" = "The device doesn't support SMS";
@@ -123,7 +119,6 @@
 "wechat_session" = "Wechat";
 "wechat_timeline" = "Moments";
 "wechat_favorite" = "Wechat Favorite";
-"facebook" = "Facebook";
 "twitter" = "Twitter";
 "mobile_qq" = "QQ";
 "yx_session" = "YiXin";
