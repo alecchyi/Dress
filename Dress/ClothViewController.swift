@@ -36,7 +36,7 @@ class ClothViewController: UIViewController, NewClothViewControllerDelegate,UICo
     }
     
     func initTabbarItem(){
-        let tabbarImg:UIImage = UIImage(named: "clothes_icon.png")!
+        let tabbarImg:UIImage = UIImage(named: "clothes_icon")!
         tabbarImg.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal)
         self.navigationController?.tabBarItem = UITabBarItem(title: "衣橱", image: tabbarImg, selectedImage: tabbarImg)
     }
