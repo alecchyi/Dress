@@ -64,7 +64,7 @@ class InfoListItemCell: UITableViewCell {
         self.mainView!.frame = frame
         self.btnView!.backgroundColor = UIColor.clearColor()
         var bottomLayer = CALayer(layer: nil)
-        bottomLayer.frame = CGRectMake(0, 0, frame.size.width - 15, 1)
+        bottomLayer.frame = CGRectMake(0, 0, frame.size.width + 50 , 1)
         bottomLayer.backgroundColor = mainColor().CGColor
         self.btnView!.layer.addSublayer(bottomLayer)
         
@@ -73,6 +73,10 @@ class InfoListItemCell: UITableViewCell {
         self.mainView?.removeGestureRecognizer(tapActionGesture)
         self.mainView?.addGestureRecognizer(tapActionGesture)
         
+        let tapLikeWordGr = UITapGestureRecognizer(target: self, action: "clickLikeBtn")
+        self.lblLike?.addGestureRecognizer(tapLikeWordGr)
+        let tapSharewordGr = UITapGestureRecognizer(target: self, action: "clickShareBtn")
+        self.lblShare?.addGestureRecognizer(tapSharewordGr)
     }
     
     override func awakeFromNib() {

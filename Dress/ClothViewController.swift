@@ -32,7 +32,7 @@ class ClothViewController: UIViewController, NewClothViewControllerDelegate,UICo
         frame.origin.x = 0
         frame.origin.y = 114
         frame.size.height = get_screen_height() - 114 - 44
-        self.clothesCollectView!.frame = frame
+//        self.clothesCollectView!.frame = frame
     }
     
     func initTabbarItem(){
@@ -126,7 +126,8 @@ class ClothViewController: UIViewController, NewClothViewControllerDelegate,UICo
             allClothes = NSMutableArray()
         }
         self.clothesList = allClothes!
-        self.clothesCollectView!.registerClass(ClothViewCell.self, forCellWithReuseIdentifier: "ClothViewCell")
+//        self.clothesCollectView!.registerClass(ClothViewCell.self, forCellWithReuseIdentifier: "ClothViewCell")
+        self.clothesCollectView?.registerNib(UINib(nibName: "ClothItemViewCell", bundle: nil), forCellWithReuseIdentifier: "ClothItemViewCell")
         self.clothesCollectView!.delegate = self
         self.clothesCollectView!.dataSource = self
     }
@@ -143,7 +144,7 @@ class ClothViewController: UIViewController, NewClothViewControllerDelegate,UICo
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell:ClothViewCell = collectionView.dequeueReusableCellWithReuseIdentifier("ClothViewCell", forIndexPath: indexPath) as! ClothViewCell
+        let cell:ClothItemViewCell = collectionView.dequeueReusableCellWithReuseIdentifier("ClothItemViewCell", forIndexPath: indexPath) as! ClothItemViewCell
         var cloth = self.clothesList!.objectAtIndex(indexPath.row) as! NSMutableDictionary
         var picPath = cloth.objectForKey("picPath") as! String
         var path = DataService.shareService.getUserClothDirPath().stringByAppendingPathComponent(picPath)
@@ -277,6 +278,15 @@ class ClothViewController: UIViewController, NewClothViewControllerDelegate,UICo
         var imgViewer = JTSImageViewController(imageInfo: info, mode: JTSImageViewControllerMode.Image, backgroundStyle: JTSImageViewControllerBackgroundOptions.Scaled)
         
         imgViewer.showFromViewController(self, transition: JTSImageViewControllerTransition._FromOriginalPosition)
+    }
+}
+
+extension ClothViewController: UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+        var size = CGSizeMake(180, 180)
+        
+        return size
     }
 }
 

@@ -15,7 +15,7 @@ class FindViewController: UIViewController, UITableViewDelegate,UITableViewDataS
     @IBOutlet var _bannerView:GADBannerView?
     @IBOutlet var advImgView:UIImageView?
     
-    var infoList:NSMutableArray?
+    var infoList = [AVObject]()
     var pullRefreshControl:UIRefreshControl?
     var protoptypeCell:InfoListItemCell?
     
@@ -25,7 +25,7 @@ class FindViewController: UIViewController, UITableViewDelegate,UITableViewDataS
         initTabbarItem()
         
         initFindView()
-        
+        self.infoTableView?.tableFooterView = UIView()
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -46,7 +46,7 @@ class FindViewController: UIViewController, UITableViewDelegate,UITableViewDataS
         var frame:CGRect = self.infoTableView!.frame as CGRect
         frame.size.height = get_main_view_height() - 44
         
-        self.infoTableView!.frame = frame
+//        self.infoTableView!.frame = frame
         
         var cellNib:UINib = UINib(nibName: "InfoListItemCell", bundle: nil)
         self.infoTableView!.registerNib(cellNib, forCellReuseIdentifier: "InfoListItemCell")
@@ -62,7 +62,7 @@ class FindViewController: UIViewController, UITableViewDelegate,UITableViewDataS
         self.infoTableView!.addSubview(self.pullRefreshControl!)
         
         //add AD view
-        self._bannerView = GADBannerView(frame: CGRectMake(0, 64, 320, 50))
+        self._bannerView = GADBannerView(frame: CGRectMake(0, 64, self.view.frame.size.width, 50))
         
         self._bannerView?.adUnitID = APP_DISCOVER_ADMOB_AD_UNIT_ID
         self._bannerView?.rootViewController = self
@@ -100,9 +100,10 @@ class FindViewController: UIViewController, UITableViewDelegate,UITableViewDataS
         avQuery.addAscendingOrder("likes_count")
         avQuery.findObjectsInBackgroundWithBlock({(objs:[AnyObject]!,error:NSError!) in
             if((error) == nil){
-                let objs:NSArray = objs as NSArray
-                self.infoList = NSMutableArray(array: objs)
-                self.infoTableView?.reloadData()
+                if let infos = objs as? [AVObject] {
+                    self.infoList = infos
+                    self.infoTableView?.reloadData()
+                }
             }else{
                 println(error)
             }
@@ -130,10 +131,12 @@ class FindViewController: UIViewController, UITableViewDelegate,UITableViewDataS
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell:InfoListItemCell = tableView.dequeueReusableCellWithIdentifier("InfoListItemCell", forIndexPath: indexPath) as! InfoListItemCell
 
-        let item = self.infoList?.objectAtIndex(indexPath.row) as! AVObject
-        cell.lblTitle!.text = item.objectForKey("title") as? String
+        let item = self.infoList[indexPath.row] as AVObject
+        
+        cell.lblTitle!.text = item["title"] as? String
         cell.lblTitle?.numberOfLines = 0
-//        cell.lblTitle?.sizeToFit()
+        cell.lblTitle!.lineBreakMode = NSLineBreakMode.ByCharWrapping
+        cell.lblTitle!.sizeToFit()
         
         cell.lblContent!.text = item.objectForKey("content") as? String
         let size:CGSize = cell.lblContent!.sizeThatFits(cell.lblContent!.frame.size)
@@ -149,23 +152,25 @@ class FindViewController: UIViewController, UITableViewDelegate,UITableViewDataS
         let source = item.objectForKey("source_type") as! String
         cell.lblSource?.text = "来源:\(source)"
         cell.lblAuthor?.text = item.objectForKey("author_name") as? String
-        let avatar_url = item.objectForKey("author_avatar_url") as? String
-        cell.headImg!.image = UIImage(named: "default_head.png")
-        if (avatar_url != nil) {
-            ImageLoader.sharedLoader.imageForUrl(avatar_url!, completionHandler: {(image: UIImage?, url: String) in
+        
+        cell.headImg!.image = UIImage(named: "default_head")
+        if let avatar_url = item.objectForKey("author_avatar_url") as? String {
+            ImageLoader.sharedLoader.imageForUrl(avatar_url, completionHandler: {(image: UIImage?, url: String) in
                 cell.headImg!.image = image
             })
         }
-        let small_img_url = item.objectForKey("small_img_url") as? String
-        if(small_img_url != nil){
-            ImageLoader.sharedLoader.imageForUrl(small_img_url!, completionHandler: {(image: UIImage?, url: String) in
+        
+        if let small_img_url = item.objectForKey("small_img_url") as? String {
+            ImageLoader.sharedLoader.imageForUrl(small_img_url, completionHandler: {(image: UIImage?, url: String) in
                 cell.smallImg!.image = image
             })
             cell.has_small_img = true
+            cell.smallImg?.hidden = false
         }else{
             cell.has_small_img = false
+            cell.smallImg?.hidden = true
         }
-//        println("has_smalll_img----\(indexPath.row)-----\(cell.has_small_img)")
+
         cell.selectionStyle = UITableViewCellSelectionStyle.None
         cell.mainView?.tag = 1000 + indexPath.row
         cell.likeBtn?.tag = 2000 + indexPath.row
@@ -183,32 +188,24 @@ class FindViewController: UIViewController, UITableViewDelegate,UITableViewDataS
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if let infos = self.infoList {
-            return infos.count
-        }else{
-            return 0
-        }
-       
+        return self.infoList.count
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        if let items = self.infoList {
             var cell = self.protoptypeCell!
-            
-            let item = self.infoList!.objectAtIndex(indexPath.row) as! AVObject
+            let frame = tableView.frame
+            let item = self.infoList[indexPath.row] as AVObject
             let content:String = item.objectForKey("content") as! String
             cell.lblContent?.text = content
-            var size = cell.lblContent!.sizeThatFits(CGSizeMake(310, 2000))
+            var size = cell.lblContent!.sizeThatFits(frame.size)
 
-            let height = 58 + 35 + size.height
+            let height = 70 + 35 + size.height
             if let url:String = item.objectForKey("small_img_url") as? String {
                 return height + 80
             }else{
                 return height
             }
-        }
 
-        return 0
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -236,16 +233,17 @@ class FindViewController: UIViewController, UITableViewDelegate,UITableViewDataS
     
     func clickMainView(sender:UITapGestureRecognizer) {
         let tag = sender.view?.tag
-        let item = self.infoList?.objectAtIndex(tag! - 1000) as! AVObject
+        let item = self.infoList[tag! - 1000] as AVObject
         
         let mainStoryBoard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
         var infoDetailViewController = mainStoryBoard.instantiateViewControllerWithIdentifier("infoDetailViewController") as! InfoDetailViewController
         infoDetailViewController.infoObjId = item.objectForKey("objectId") as? String
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.Plain, target: nil, action: nil)
         self.navigationController?.pushViewController(infoDetailViewController, animated: true)
     }
     
     func clickLikeBtn(tag:Int, cell:InfoListItemCell) {
-        let item = self.infoList?.objectAtIndex(tag - 2000) as! AVObject
+        let item = self.infoList[tag - 2000] as AVObject
         var query = AVQuery(className: "Infos")
         let objId = item.objectForKey("objectId") as? String
         var likes = 0
@@ -262,7 +260,7 @@ class FindViewController: UIViewController, UITableViewDelegate,UITableViewDataS
     }
     
     func clickShareBtn(tag: Int, cell:InfoListItemCell) {
-        let item = self.infoList?.objectAtIndex(tag - 3000) as! AVObject
+        let item = self.infoList[tag - 3000] as AVObject
         let content = item.objectForKey("content") as? String
         UMSocialSnsService.presentSnsIconSheetView(self, appKey: kUMKey, shareText: content!, shareImage: nil, shareToSnsNames: [UMShareToSina,UMShareToWechatSession,UMShareToWechatTimeline,UMShareToTencent,UMShareToQzone,UMShareToQQ,UMShareToEmail], delegate: self)
         var query = AVQuery(className: "Infos")

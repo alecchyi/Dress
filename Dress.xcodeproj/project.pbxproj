@@ -22,6 +22,8 @@
 		06B16DC41BA48D1B00581363 /* TAESDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06B16DBA1BA48D1B00581363 /* TAESDK.framework */; };
 		06B16DC51BA48D1B00581363 /* UTDID.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06B16DBB1BA48D1B00581363 /* UTDID.framework */; };
 		06B16DC61BA48D1B00581363 /* UTMini.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06B16DBC1BA48D1B00581363 /* UTMini.framework */; };
+		06B64BD61BCB3D820023C0A6 /* ClothItemViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06B64BD41BCB3D820023C0A6 /* ClothItemViewCell.swift */; };
+		06B64BD71BCB3D820023C0A6 /* ClothItemViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 06B64BD51BCB3D820023C0A6 /* ClothItemViewCell.xib */; };
 		700224581B55F95400EFC2C0 /* RegistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 700224571B55F95400EFC2C0 /* RegistViewController.swift */; };
 		7011C1BA1A7B223E002AE2A8 /* SQLiteDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7011C1B81A7B223E002AE2A8 /* SQLiteDB.swift */; };
 		7011C1BB1A7B223E002AE2A8 /* String-Extras.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7011C1B91A7B223E002AE2A8 /* String-Extras.swift */; };
@@ -158,6 +160,8 @@
 		06B16DBA1BA48D1B00581363 /* TAESDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TAESDK.framework; path = "../../../Downloads/OneSDK 2/TAESDK.framework"; sourceTree = "<group>"; };
 		06B16DBB1BA48D1B00581363 /* UTDID.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UTDID.framework; path = "../../../Downloads/OneSDK 2/UTDID.framework"; sourceTree = "<group>"; };
 		06B16DBC1BA48D1B00581363 /* UTMini.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UTMini.framework; path = "../../../Downloads/OneSDK 2/UTMini.framework"; sourceTree = "<group>"; };
+		06B64BD41BCB3D820023C0A6 /* ClothItemViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClothItemViewCell.swift; sourceTree = "<group>"; };
+		06B64BD51BCB3D820023C0A6 /* ClothItemViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ClothItemViewCell.xib; sourceTree = "<group>"; };
 		296AE8601D1EEA675BE5771F /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		3491C2872CB1ACE1087C2CD9 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		700224571B55F95400EFC2C0 /* RegistViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistViewController.swift; sourceTree = "<group>"; };
@@ -373,6 +377,8 @@
 			isa = PBXGroup;
 			children = (
 				7011C1C51A7B8610002AE2A8 /* InfoListItemCell.xib */,
+				06B64BD41BCB3D820023C0A6 /* ClothItemViewCell.swift */,
+				06B64BD51BCB3D820023C0A6 /* ClothItemViewCell.xib */,
 			);
 			name = CustomView;
 			sourceTree = "<group>";
@@ -830,6 +836,7 @@
 				0694771E1B9C28680043FB78 /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
 				702FB5F61A99770E009693C1 /* UMShareEditViewController.xib in Resources */,
 				70211A671A8DD67600C0A60F /* help.html in Resources */,
+				06B64BD71BCB3D820023C0A6 /* ClothItemViewCell.xib in Resources */,
 				702FB5F91A99770E009693C1 /* UMSnsAccountViewController.xib in Resources */,
 				702FB5FB1A99770E009693C1 /* UMSocialSDKResourcesNew.bundle in Resources */,
 				706BF1CB1B4C281900932218 /* Default568h.png in Resources */,
@@ -933,6 +940,7 @@
 				701FEAFB1AAF255F0005735B /* ImageLoader.swift in Sources */,
 				709767C61A51815200183867 /* TagToolBar.swift in Sources */,
 				70146D861A76416B00D6EB4E /* LoginViewController.swift in Sources */,
+				06B64BD61BCB3D820023C0A6 /* ClothItemViewCell.swift in Sources */,
 				70A663751A49BC9900CB2662 /* WeatherViewController.swift in Sources */,
 				70A663741A49BC9900CB2662 /* PersonalViewController.swift in Sources */,
 				708E1AA51A4B021100FF27A1 /* Weather.swift in Sources */,

@@ -87,8 +87,8 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate,UMSocia
     
     func drawWeatherView(){
         self.weatherView!.backgroundColor = UIColor.clearColor()
-        var frame = CGRectMake(0, 60, self.view.bounds.width, 85)
-        self.weatherView!.frame = frame
+        var frame = CGRectMake(0, 60, self.weatherView!.frame.size.width, 85)
+//        self.weatherView!.frame = frame
         frame.origin.y = 2
         var dataView = WeatherView(frame: frame)
         dataView.setCustomView()
@@ -97,7 +97,7 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate,UMSocia
     }
     
     func drawRulerView(){
-        var frame = CGRectMake(5, 0, 20, self.view.bounds.height + 50)
+        var frame = CGRectMake(5, 0, 20, self.view.frame.size.height + 50)
         var rulerBar = RulerViewBar(frame: frame)
         self.clothesMainView!.addSubview(rulerBar)
     }

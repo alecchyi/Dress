@@ -22,8 +22,7 @@ class StyleTableViewController: UITableViewController,UITableViewDataSource,UITa
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
-
-        
+        self.infoTableView?.tableFooterView = UIView()
         self.infoTableView?.registerClass(UITableViewCell.self, forCellReuseIdentifier: "reuseIdentifier")
         self.infoList = NSMutableArray()
     }

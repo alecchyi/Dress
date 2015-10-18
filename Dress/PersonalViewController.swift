@@ -29,6 +29,7 @@ class PersonalViewController: UIViewController,UITableViewDataSource,UITableView
 
         initTableView()
         // Do any additional setup after loading the view.
+        self.detailTableView?.tableFooterView = UIView()
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -77,7 +78,16 @@ class PersonalViewController: UIViewController,UITableViewDataSource,UITableView
     
     func initPersonalView(){
         var idx:Int = Int(arc4random_uniform(UInt32(5)))
-        self.personalView!.backgroundColor = UIColor(patternImage: UIImage(named: "personal_bg_\(idx).png")!)
+        if let view = self.personalView {
+            var frame = self.view.frame
+            var size = CGSizeMake(frame.size.width, view.frame.size.height)
+            var b = CGRectMake(0, 0, frame.size.width, view.frame.size.height)
+            UIGraphicsBeginImageContext(size)
+            UIImage(named: "personal_bg_\(idx).png")?.drawInRect(b)
+            var image = UIGraphicsGetImageFromCurrentImageContext()
+            UIGraphicsEndImageContext()
+            self.personalView!.backgroundColor = UIColor(patternImage: image!)
+        }
     }
     
     func initTableView(){
@@ -135,24 +145,29 @@ class PersonalViewController: UIViewController,UITableViewDataSource,UITableView
         if(indexPath.row == 4){
             let mainStoryBoard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
             var aboutViewController = mainStoryBoard.instantiateViewControllerWithIdentifier("aboutViewController") as! AboutViewController
+            self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.Plain, target: nil, action: nil)
             self.navigationController?.pushViewController(aboutViewController, animated: true)
         }else if(indexPath.row == 3){
             let mainStoryBoard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
             var helpViewController = mainStoryBoard.instantiateViewControllerWithIdentifier("helpViewController") as! HelpViewController
+            self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.Plain, target: nil, action: nil)
             self.navigationController?.pushViewController(helpViewController, animated: true)
         }else if(indexPath.row == 2){
             let mainStoryBoard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
             var feedbackViewController = mainStoryBoard.instantiateViewControllerWithIdentifier("feedbackViewController") as! FeedbackViewController
+            self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.Plain, target: nil, action: nil)
             self.navigationController?.pushViewController(feedbackViewController, animated: true)
         }else if(indexPath.row == self.detailArr.count - 1){
             clickLogoutBtn()
         }else if(indexPath.row == 1){
             let mainStoryBoard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
             var brandViewController = mainStoryBoard.instantiateViewControllerWithIdentifier("brandViewController") as! BrandTableViewController
+            self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.Plain, target: nil, action: nil)
             self.navigationController?.pushViewController(brandViewController, animated: true)
         }else if(indexPath.row == 0){
             let mainStoryBoard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
             var styleViewController = mainStoryBoard.instantiateViewControllerWithIdentifier("styleViewController") as! StyleTableViewController
+            self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.Plain, target: nil, action: nil)
             self.navigationController?.pushViewController(styleViewController, animated: true)
         }
         
