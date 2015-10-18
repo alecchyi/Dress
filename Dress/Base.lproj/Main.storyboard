@@ -233,7 +233,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eU9-zY-IbY" userLabel="addClothView">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eU9-zY-IbY" userLabel="addClothView">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="439"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="春季" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ll0-oc-HLx">
@@ -264,6 +264,7 @@
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pKZ-EK-zeF">
                                         <rect key="frame" x="5" y="67" width="119" height="30"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
                                         <state key="normal" title="选择类别和季节">
                                             <color key="titleColor" red="0.99215686270000003" green="0.4039215686" blue="0.33333333329999998" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
@@ -291,9 +292,9 @@
                                         <constraints>
                                             <constraint firstAttribute="width" constant="60" id="aDj-Y9-IDz"/>
                                         </constraints>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
                                         <state key="normal" title="选照片">
                                             <color key="titleColor" red="0.99215686270000003" green="0.4039215686" blue="0.33333333329999998" alpha="1" colorSpace="calibratedRGB"/>
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
                                             <action selector="clickPhotoBtn" destination="2qO-Iy-RT4" eventType="touchUpInside" id="9dt-KZ-eyP"/>
@@ -329,7 +330,7 @@
                                     <constraint firstAttribute="height" constant="50" id="IXP-UL-gnL"/>
                                 </constraints>
                             </imageView>
-                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Khw-b3-RnV" customClass="GADBannerView">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Khw-b3-RnV" customClass="GADBannerView">
                                 <rect key="frame" x="0.0" y="549" width="320" height="53"/>
                                 <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
@@ -340,6 +341,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="AuI-7t-X74" firstAttribute="top" secondItem="eU9-zY-IbY" secondAttribute="bottom" constant="61" id="2Dx-IB-O7X"/>
                             <constraint firstItem="AuI-7t-X74" firstAttribute="leading" secondItem="Khw-b3-RnV" secondAttribute="leading" id="32v-QI-cEq"/>
                             <constraint firstAttribute="trailing" secondItem="Khw-b3-RnV" secondAttribute="trailing" id="4Cz-Sg-XN4"/>
                             <constraint firstItem="Khw-b3-RnV" firstAttribute="top" secondItem="eU9-zY-IbY" secondAttribute="bottom" constant="110" id="BIu-DK-URw"/>
@@ -352,6 +354,11 @@
                             <constraint firstItem="Khw-b3-RnV" firstAttribute="trailing" secondItem="AuI-7t-X74" secondAttribute="trailing" id="rjS-oZ-gXP"/>
                             <constraint firstItem="Khw-b3-RnV" firstAttribute="top" relation="lessThanOrEqual" secondItem="0AI-Cy-F4w" secondAttribute="top" constant="549" id="yCK-a1-ipR"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="yCK-a1-ipR"/>
+                            </mask>
+                        </variation>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <toolbarItems/>
@@ -408,7 +415,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ad_banner" highlightedImage="ad_banner" translatesAutoresizingMaskIntoConstraints="NO" id="pVZ-HQ-ZAF">
-                                <rect key="frame" x="0.0" y="64" width="600" height="50"/>
+                                <rect key="frame" x="-4" y="64" width="608" height="50"/>
                             </imageView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" indicatorStyle="white" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="ubX-Xi-pfU" userLabel="infoTableView">
                                 <rect key="frame" x="0.0" y="114" width="600" height="437"/>
@@ -433,10 +440,10 @@
                             <constraint firstItem="Tye-yF-Ckc" firstAttribute="top" secondItem="ubX-Xi-pfU" secondAttribute="bottom" constant="44" id="RWB-lT-tvd"/>
                             <constraint firstItem="ubX-Xi-pfU" firstAttribute="top" secondItem="pVZ-HQ-ZAF" secondAttribute="bottom" id="b0d-ci-ckZ"/>
                             <constraint firstAttribute="trailingMargin" secondItem="ubX-Xi-pfU" secondAttribute="trailing" constant="-16" id="eyY-V4-aqy"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="pVZ-HQ-ZAF" secondAttribute="trailing" constant="-16" id="f4x-c7-ta0"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="pVZ-HQ-ZAF" secondAttribute="trailing" constant="-20" id="f4x-c7-ta0"/>
                             <constraint firstItem="pVZ-HQ-ZAF" firstAttribute="top" secondItem="Iec-e5-Zan" secondAttribute="topMargin" constant="64" id="hWh-UR-JsV"/>
                             <constraint firstItem="ubX-Xi-pfU" firstAttribute="leading" secondItem="Iec-e5-Zan" secondAttribute="leadingMargin" constant="-16" id="ncV-4c-xaA"/>
-                            <constraint firstItem="pVZ-HQ-ZAF" firstAttribute="leading" secondItem="Iec-e5-Zan" secondAttribute="leadingMargin" constant="-16" id="vYp-i3-j6I"/>
+                            <constraint firstItem="pVZ-HQ-ZAF" firstAttribute="leading" secondItem="Iec-e5-Zan" secondAttribute="leadingMargin" constant="-20" id="vYp-i3-j6I"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
@@ -944,7 +951,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view alpha="0.74999999999999978" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NdX-3v-hFG" userLabel="tagsView">
-                                <rect key="frame" x="0.0" y="65" width="600" height="50"/>
+                                <rect key="frame" x="-4" y="65" width="608" height="50"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="标签" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ukf-47-uKw">
                                         <rect key="frame" x="7" y="14" width="34" height="21"/>
@@ -1001,8 +1008,8 @@
                             <constraint firstItem="n6f-Il-2ir" firstAttribute="leading" secondItem="QjC-dQ-RY9" secondAttribute="leadingMargin" constant="-16" id="F3K-H8-cjp"/>
                             <constraint firstItem="n6f-Il-2ir" firstAttribute="top" secondItem="NdX-3v-hFG" secondAttribute="bottom" id="HG8-N6-BHk"/>
                             <constraint firstAttribute="bottomMargin" secondItem="n6f-Il-2ir" secondAttribute="bottom" constant="44" id="OGK-LI-wHS"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="NdX-3v-hFG" secondAttribute="trailing" constant="-16" id="i9x-1s-piy"/>
-                            <constraint firstItem="NdX-3v-hFG" firstAttribute="leading" secondItem="QjC-dQ-RY9" secondAttribute="leadingMargin" constant="-16" id="mos-jb-W8I"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="NdX-3v-hFG" secondAttribute="trailing" constant="-20" id="i9x-1s-piy"/>
+                            <constraint firstItem="NdX-3v-hFG" firstAttribute="leading" secondItem="QjC-dQ-RY9" secondAttribute="leadingMargin" constant="-20" id="mos-jb-W8I"/>
                             <constraint firstItem="n6f-Il-2ir" firstAttribute="top" secondItem="NdX-3v-hFG" secondAttribute="bottom" id="nVP-ex-67S"/>
                             <constraint firstItem="NdX-3v-hFG" firstAttribute="top" secondItem="2G4-YN-4bT" secondAttribute="bottom" constant="1" id="wCD-8u-Mc6"/>
                         </constraints>
