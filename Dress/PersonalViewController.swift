@@ -36,9 +36,7 @@ class PersonalViewController: UIViewController,UITableViewDataSource,UITableView
         super.viewDidAppear(animated)
         var frame = self.detailTableView?.frame
         frame?.size.height = get_screen_height() - 140 - 64 - 44
-//        self.detailTableView?.frame = frame!
-//        self.detailTableView?.contentSize = CGSizeMake(320, 320)
-//        println(self.detailTableView?.frame)
+
     }
     
     override func viewWillAppear(animated: Bool) {
