@@ -19,6 +19,8 @@ let kSeasons = ["春季","夏季","秋季","冬季"]
 let kCategories = ["帽子","上衣","裤子","鞋子"]
 let kShareWords = "嗨，伙伴们，我在使用小衣橱，有它每天穿衣不用愁！"
 
+let kGAD_SIMULATOR_ID = "F1920E7C-F72A-4F23-971B-74384429647F"
+
 func gen_uuid() -> String? {
     var uuid = NSUUID()
     return uuid.UUIDString

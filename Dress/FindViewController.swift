@@ -70,7 +70,7 @@ class FindViewController: UIViewController, UITableViewDelegate,UITableViewDataS
 
         self.view.addSubview(self._bannerView!)
         var request = GADRequest()
-        request.testDevices = ["5B95C192-07BA-49FD-B572-AA23540A","cc95f15c6a339431d0d16e3184949be81f2"]
+        request.testDevices = [kGAD_SIMULATOR_ID]
         self._bannerView?.loadRequest(request)
     }
     
