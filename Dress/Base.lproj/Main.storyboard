@@ -94,63 +94,39 @@
                                             <constraint firstAttribute="width" constant="90" id="P1K-qY-W0e"/>
                                         </constraints>
                                     </imageView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="detailDisclosure" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vOB-l6-p8s" userLabel="tip_icon">
-                                        <rect key="frame" x="20" y="8" width="22" height="22"/>
-                                        <accessibility key="accessibilityConfiguration" label=""/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="22" id="2Pg-uX-MOp"/>
-                                            <constraint firstAttribute="height" constant="22" id="arf-X0-FUs"/>
-                                        </constraints>
-                                        <state key="normal">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="clickTipBtn:" destination="Y6G-ba-LOl" eventType="touchUpInside" id="mqc-Tu-luH"/>
-                                        </connections>
-                                    </button>
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="centerX" secondItem="jRU-cp-aQY" secondAttribute="centerX" id="1NE-7o-I4f"/>
                                     <constraint firstItem="HE1-s2-8CB" firstAttribute="centerX" secondItem="jRU-cp-aQY" secondAttribute="centerX" id="57h-Lw-iOa"/>
-                                    <constraint firstItem="vOB-l6-p8s" firstAttribute="leading" secondItem="dtf-JX-LSX" secondAttribute="leading" constant="20" id="5Wf-Ut-5MJ"/>
-                                    <constraint firstAttribute="trailing" secondItem="vOB-l6-p8s" secondAttribute="trailing" constant="20" symbolic="YES" id="8Lb-SK-OdA"/>
-                                    <constraint firstItem="vOB-l6-p8s" firstAttribute="leading" secondItem="dtf-JX-LSX" secondAttribute="leading" constant="16" id="ASn-mz-Sl5"/>
-                                    <constraint firstAttribute="bottom" secondItem="vOB-l6-p8s" secondAttribute="bottom" constant="370" id="C30-Mg-IvJ"/>
-                                    <constraint firstItem="vOB-l6-p8s" firstAttribute="top" secondItem="dtf-JX-LSX" secondAttribute="top" constant="16" id="Cgv-9O-Uay"/>
                                     <constraint firstItem="HE1-s2-8CB" firstAttribute="top" secondItem="4r3-48-CqP" secondAttribute="bottom" constant="10" id="GzI-G5-VN8"/>
-                                    <constraint firstAttribute="trailing" secondItem="vOB-l6-p8s" secondAttribute="trailing" constant="20" id="ObF-Zk-fo8"/>
-                                    <constraint firstItem="vOB-l6-p8s" firstAttribute="top" secondItem="dtf-JX-LSX" secondAttribute="topMargin" id="Rcp-5J-vBZ"/>
-                                    <constraint firstAttribute="bottom" secondItem="vOB-l6-p8s" secondAttribute="bottom" constant="433" id="SDG-H4-I1u"/>
-                                    <constraint firstAttribute="trailing" secondItem="vOB-l6-p8s" secondAttribute="trailing" constant="11" id="Wdj-Sm-OEe"/>
-                                    <constraint firstItem="vOB-l6-p8s" firstAttribute="leading" secondItem="dtf-JX-LSX" secondAttribute="leading" constant="282" id="WqK-i6-jKw"/>
-                                    <constraint firstAttribute="bottom" secondItem="vOB-l6-p8s" secondAttribute="bottom" constant="370" id="d5g-a9-lc4"/>
                                     <constraint firstItem="HE1-s2-8CB" firstAttribute="centerX" secondItem="4r3-48-CqP" secondAttribute="centerX" id="hX8-0D-a6o"/>
                                     <constraint firstItem="4r3-48-CqP" firstAttribute="top" secondItem="jRU-cp-aQY" secondAttribute="bottom" constant="13" id="lzr-vh-IHz"/>
-                                    <constraint firstItem="vOB-l6-p8s" firstAttribute="leading" secondItem="dtf-JX-LSX" secondAttribute="leading" constant="287" id="mSG-fG-kvC"/>
                                     <constraint firstItem="jRU-cp-aQY" firstAttribute="top" secondItem="dtf-JX-LSX" secondAttribute="top" constant="27" id="tIo-dp-47d"/>
                                 </constraints>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="8Lb-SK-OdA"/>
-                                        <exclude reference="ASn-mz-Sl5"/>
-                                        <exclude reference="C30-Mg-IvJ"/>
-                                        <exclude reference="Cgv-9O-Uay"/>
-                                        <exclude reference="ObF-Zk-fo8"/>
-                                        <exclude reference="SDG-H4-I1u"/>
-                                        <exclude reference="Wdj-Sm-OEe"/>
-                                        <exclude reference="WqK-i6-jKw"/>
-                                        <exclude reference="d5g-a9-lc4"/>
-                                        <exclude reference="mSG-fG-kvC"/>
-                                    </mask>
-                                </variation>
                             </scrollView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="detailDisclosure" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vOB-l6-p8s" userLabel="tip_icon">
+                                <rect key="frame" x="562" y="161" width="22" height="22"/>
+                                <accessibility key="accessibilityConfiguration" label=""/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="22" id="2Pg-uX-MOp"/>
+                                    <constraint firstAttribute="height" constant="22" id="arf-X0-FUs"/>
+                                </constraints>
+                                <state key="normal">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="clickTipBtn:" destination="Y6G-ba-LOl" eventType="touchUpInside" id="mqc-Tu-luH"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="vOB-l6-p8s" secondAttribute="trailing" id="7ra-PC-S0h"/>
                             <constraint firstAttribute="trailingMargin" secondItem="dtf-JX-LSX" secondAttribute="trailing" constant="-16" id="AbD-yW-43T"/>
                             <constraint firstAttribute="trailingMargin" secondItem="dtf-JX-LSX" secondAttribute="trailing" constant="-20" id="FfF-67-gZl"/>
                             <constraint firstAttribute="trailingMargin" secondItem="XHK-17-Km5" secondAttribute="trailing" constant="-20" id="Ifb-o9-vl9"/>
                             <constraint firstAttribute="trailingMargin" secondItem="XHK-17-Km5" secondAttribute="trailing" constant="-16" id="Jph-q6-WKg"/>
+                            <constraint firstItem="dtf-JX-LSX" firstAttribute="top" secondItem="vOB-l6-p8s" secondAttribute="top" constant="-10" id="NeB-qt-1Lf"/>
                             <constraint firstItem="XHK-17-Km5" firstAttribute="leading" secondItem="LCL-vd-mqp" secondAttribute="leadingMargin" constant="-20" id="QIx-ka-dEz"/>
                             <constraint firstItem="6Z5-i6-w0C" firstAttribute="top" secondItem="dtf-JX-LSX" secondAttribute="bottom" id="QWp-lz-raI"/>
                             <constraint firstItem="XHK-17-Km5" firstAttribute="leading" secondItem="LCL-vd-mqp" secondAttribute="leadingMargin" constant="-16" id="RTk-u5-GpG"/>
