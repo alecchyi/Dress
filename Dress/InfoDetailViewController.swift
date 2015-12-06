@@ -47,12 +47,14 @@ class InfoDetailViewController: UIViewController,UIWebViewDelegate {
                 self.detailWebView?.loadHTMLString("<p style='text-align:center;'>数据读取有误</p>", baseURL: url)
             }else{
                 self.detailWebView?.loadHTMLString(obj.objectForKey("detail") as! String, baseURL: url)
+//
+//                var req = NSURLRequest(URL: NSURL(string: "http://localhost:8090/load_js.html")!)
+//                self.detailWebView?.loadRequest(req)
             }
         })
     }
     
     func webView(webView: UIWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -> Bool {
-        
         return true
     }
     
@@ -61,6 +63,6 @@ class InfoDetailViewController: UIViewController,UIWebViewDelegate {
     }
     
     func webViewDidFinishLoad(webView: UIWebView) {
-        
+       // webView.stringByEvaluatingJavaScriptFromString("resizeImg();")
     }
 }

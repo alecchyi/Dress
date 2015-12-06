@@ -45,6 +45,7 @@ class ClothViewController: UIViewController, NewClothViewControllerDelegate,UICo
         //add new btn
         var rightBarBtnItem = UIBarButtonItem(title:"添加", style: UIBarButtonItemStyle.Plain, target: self, action: "clickAddBtn")
         rightBarBtnItem.tintColor = UIColor.whiteColor()
+        
         self.navigationItem.rightBarButtonItem = rightBarBtnItem
         
         //init clothes view

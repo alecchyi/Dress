@@ -1027,7 +1027,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vki-zm-nYh">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <rect key="frame" x="-4" y="0.0" width="328" height="568"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <outlet property="delegate" destination="eTe-92-LbU" id="MIh-zj-b4b"/>
@@ -1036,16 +1036,17 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailingMargin" secondItem="vki-zm-nYh" secondAttribute="trailing" constant="-16" id="3Pr-LZ-hYH"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="vki-zm-nYh" secondAttribute="trailing" constant="-20" id="3Pr-LZ-hYH"/>
                             <constraint firstItem="vki-zm-nYh" firstAttribute="top" secondItem="FUs-Hl-383" secondAttribute="topMargin" id="8dt-lo-peY"/>
                             <constraint firstItem="rK5-rr-QDJ" firstAttribute="top" secondItem="vki-zm-nYh" secondAttribute="bottom" id="h6T-CQ-Puc"/>
-                            <constraint firstItem="vki-zm-nYh" firstAttribute="leading" secondItem="FUs-Hl-383" secondAttribute="leadingMargin" constant="-16" id="sLz-iD-ghh"/>
+                            <constraint firstItem="vki-zm-nYh" firstAttribute="leading" secondItem="FUs-Hl-383" secondAttribute="leadingMargin" constant="-20" id="sLz-iD-ghh"/>
                         </constraints>
                     </view>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="568"/>
                     <connections>
                         <outlet property="aboutWebView" destination="vki-zm-nYh" id="fIx-bf-aqm"/>
+                        <outlet property="view" destination="FUs-Hl-383" id="8LU-Ut-h8S"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cZO-Vr-Hlz" userLabel="First Responder" sceneMemberID="firstResponder"/>
